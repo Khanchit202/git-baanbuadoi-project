@@ -16,23 +16,15 @@
             padding: 0;
             font-family: kkfont;
         }
-        .topbar_menu_logo img {
-            max-width: 50px;
-            height: auto;
-        }
-
     </style>
 </head>
 <body>
 
-    <div class="container pd-50" style="padding: 50px 30px; border-color: #ccc; border-width: 1px; border-radius: 4px; width: 1080px; height: 3000px;">
-        
-            <nav>
-                <?php include("tabbar_view/tab_bar.php"); ?>
-            </nav>
-
+    <div class="container shadow-sm rounded bg-white" style="padding: 50px 30px; border-color: #ccc; border-width: 1px; border-radius: 4px; width: 1080px; height: 3000px;">
+        <nav style="position: sticky; top: 20px;">
+            <?php include("tabbar_view/tab_bar.php"); ?>
+        </nav>
     </div>
-
 
 </body>
 </html>
