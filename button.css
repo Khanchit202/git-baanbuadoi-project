@@ -1,0 +1,26 @@
+.button {
+    width: 150px;
+    height: 150px;
+    background-color: #f8f4f4; /* Light pink background */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 10px; /* Rounded corners */
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Light shadow for a subtle effect */
+    cursor: pointer; /* Change cursor to pointer when hovering over the button */
+}
+
+.button img {
+    background-color: #ccc;
+    border-radius: 50%; /* Circular background */
+    padding: 20px; /* Padding to match the circular background size */
+}
+
+.button p {
+    margin: 10px 0 0;
+    font-size: 16px;
+    color: black; /* Text color */
+}
