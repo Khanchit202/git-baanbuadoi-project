@@ -7,8 +7,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="tabbar_view/nav_bar.css">
     <link rel="stylesheet" href="style1.css">
-    <link rel="stylesheet" href="card.css">
     <link rel="stylesheet" href="button.css">
+    
     
 </head>
 <body>
@@ -32,63 +32,27 @@
             <p>ห้องพัก บ้านพัก และบริการ</p>
         </div>
 
-        <div class="produc_pre">
-            <div class="card position-relative text-white card-hover mb-5" style="width: 340px; height: 350px;">
-                <img src="pre_imag.jpg" class="card-img" alt="Room Image">
-                <span class="badge position-absolute custom-badge p-3" style="top: 10px; left: 10px;">ว่าง</span>
-                <div class="card-img-overlay d-flex flex-column justify-content-end">
-                    <div class="overlay-content p-4">
+        <div class="produc_pre" style="display: flex;flex-wrap: wrap;justify-content: space-between;gap: 20px;">
+        <?php for ($i = 1; $i <= 5; $i++) { ?>
+            <div class="card position-relative text-white card-hover mb-5" style="width: 250px; height: 300px; overflow: hidden; position: relative; border-radius: 20px; margin-bottom: 20px;">
+                <img src="pre_imag.jpg" class="card-img" alt="Room Image" style="height: 100%; object-fit: cover;">
+                <span class="badge position-absolute custom-badge p-3" style="top: 10px; left: 10px; background-color: #4caf50; color: white; border-radius: 20px; padding: 10px;">ว่าง</span>
+                <div class="card-img-overlay d-flex flex-column justify-content-end" style="color: #000;">
+                    <div class="overlay-content p-4" style="background: rgba(255, 255, 255, 0.9); border-radius: 20px;">
                         <div class="d-flex justify-content-between align-items-center mb-2">
-                            <h5 class="card-title m-0">ห้องเดี่ยวส่วนตัว</h5>
+                            <h5 class="card-title m-0" style="font-size: 14px;">ห้องเดี่ยวส่วนตัว</h5>
                             <p class="m-0">★ 4.5</p>
                         </div>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span class="icon-text"><i class="circle-icon">👤</i> 2 - 3</span>
-                            <span class="icon-text"><i class="circle-icon">🛏️</i> 2</span>
-                            <p class="card-text text-right font-weight-bold">499฿</p>
+                        <div class="d-flex justify-content-between align-items-center" style="font-size: 12px;">
+                            <span class="icon-text" style="display: flex; align-items: center;"><i class="circle-icon" style="background-color: #ccc; border-radius: 50%; padding: 5px; margin-right: 5px;">👤</i> 2 - 3</span>
+                            <span class="icon-text" style="display: flex; align-items: center;"><i class="circle-icon" style="background-color: #ccc; border-radius: 50%; padding: 5px; margin-right: 5px;">🛏️</i> 2</span>
+                            <p class="card-text text-right font-weight-bold" style="font-size: 16px; font-weight: bold;">499฿</p>
                         </div>
                     </div>
                 </div>
-                <a href="index.php" class="book-button">+ จอง</a>
+                <a href="index.php" class="book-button" style="display: none;">+ จอง</a>
             </div>
-
-            <div class="card position-relative text-white card-hover mb-5" style="width: 340px; height: 350px;">
-                <img src="pre_imag.jpg" class="card-img" alt="Room Image">
-                <span class="badge position-absolute custom-badge p-3" style="top: 10px; left: 10px;">ว่าง</span>
-                <div class="card-img-overlay d-flex flex-column justify-content-end">
-                    <div class="overlay-content p-4">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <h5 class="card-title m-0">ห้องเดี่ยวส่วนตัว</h5>
-                            <p class="m-0">★ 4.5</p>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span class="icon-text"><i class="circle-icon">👤</i> 2 - 3</span>
-                            <span class="icon-text"><i class="circle-icon">🛏️</i> 2</span>
-                            <p class="card-text text-right font-weight-bold">499฿</p>
-                        </div>
-                    </div>
-                </div>
-                <a href="index.php" class="book-button">+ จอง</a>
-            </div>
-
-            <div class="card position-relative text-white card-hover mb-5" style="width: 340px; height: 350px;">
-                <img src="pre_imag.jpg" class="card-img" alt="Room Image">
-                <span class="badge position-absolute custom-badge p-3" style="top: 10px; left: 10px;">ว่าง</span>
-                <div class="card-img-overlay d-flex flex-column justify-content-end">
-                    <div class="overlay-content p-4">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <h5 class="card-title m-0">ห้องเดี่ยวส่วนตัว</h5>
-                            <p class="m-0">★ 4.5</p>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span class="icon-text"><i class="circle-icon">👤</i> 2 - 3</span>
-                            <span class="icon-text"><i class="circle-icon">🛏️</i> 2</span>
-                            <p class="card-text text-right font-weight-bold">499฿</p>
-                        </div>
-                    </div>
-                </div>
-                <a href="index.php" class="book-button">+ จอง</a>
-            </div>
+        <?php } ?>
         </div>
 
         <div id="title">
