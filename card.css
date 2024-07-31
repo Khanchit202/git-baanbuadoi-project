@@ -1,66 +1,6 @@
-.card {
-    overflow: hidden;
-    position: relative;
-    border-radius: 20px;
-    margin-bottom: 20px;
-}
-
-.card-img {
-    height: 100%;
-    object-fit: cover;
-}
-
-.card-img-overlay {
-    color: #000;
-}
-
-.overlay-content {
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 20px;
-}
-
-.icon-text {
-    display: flex;
-    align-items: center;
-}
-
-.circle-icon {
-    background-color: #ccc;
-    border-radius: 50%;
-    padding: 5px;
-    margin-right: px;
-}
-
 .card-hover .book-button {
     display: none;
 }
-
 .card-hover:hover .book-button {
-    display: block;
-    position: absolute;
-    top: 150px;
-    left: 10%;
-    width: 80%;
-    height: 50px;
-    background-color: white;
-    color: black;
-    border: none;
-    border-radius: 5px;
-    font-size: 10px;
-    font-weight: bold;
-    text-align: center;
-    line-height: 50px;
-    text-decoration: none;
-}
-.custom-badge {
-    background-color: #4caf50;
-    color: white;
-    border-radius: 20px;
-    padding: 10px;
-}
-.produc_pre{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 20px;
+    display: block;position: absolute;top: 150px;left: 10%;width: 80%;height: 50px;background-color: white;color: black;border: none;border-radius: 5px;font-size: 10px;font-weight: bold;text-align: center;line-height: 50px;text-decoration: none;
 }
