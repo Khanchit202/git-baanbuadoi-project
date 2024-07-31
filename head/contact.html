@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ฺBuadoi Fram </title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+    <link rel="icon" type="image/x-icon" href="img/bua/logo.png" style="border-radius: 5px;">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+    
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Data table -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.0/css/dataTables.dataTables.css" />
+    <script src="https://cdn.datatables.net/2.0.0/js/dataTables.js"></script>
+
+    <script type="text/javascript" src="indexs.js"></script>
+    
+    <script type="text/javascript" >
+      $(document).ready(function () {
+        $('#stdData').DataTable();
+      });
+
+    </script>
+</head>
+
+<body>
+    <div class="container-xxl bg-white p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Navbar Start -->
+        <div class="container-fluid nav-bar bg-transparent">
+            <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
+                <a href="index.html" class="navbar-brand d-flex align-items-center text-center">
+                    <div class="icon p-2 me-2">
+                        <img class="img-fluid" src="img/bua/logo.png" alt="Icon" style="width: 45px; height: 45px;">
+                    </div>
+                    <h1 class="m-0 text-primary">Buadoi</h1>
+                </a>
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto">
+                        <a href="index.html" class="nav-item nav-link">หน้าหลัก</a>
+                        <a href="abount/about.html" class="nav-item nav-link">เกี่ยวกับเรา</a>
+                        <a href="property-list.html" class="nav-item nav-link">สินค้า</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">ข่าวสาร</a>
+                            <div class="dropdown-menu rounded-0 m-0">
+                                <a href="testimonial.html" class="dropdown-item">กิจกรรม</a>
+                                <a href="404.html" class="dropdown-item">แนะนำ</a>
+                            </div>
+                        </div>
+                        <a href="contact.html" class="nav-item nav-link active">ติดต่อเรา</a>
+                    </div>
+                    <button class="btn btn-white " data-bs-toggle="modal" data-bs-target="#adddata"><i class="far fa-user-circle" style="font-size:36px"></i></button>
+                </div>
+            </nav>
+        </div>
+        <!-- Navbar End -->
+         
+         <!-- Modal -->
+<div class="modal fade" id="adddata" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">สมัครสมาชิก</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+      <div class="modal-body">
+        
+    <div class="mb-3">
+      <label for="name" class="form-label">User name ชื่อ</label>
+      <input type="text" class="form-control" id="name" name="name" required >
+    </div>
+    <div class="mb-3">
+      <label for="course" class="form-label">Password รหัสผ่าน</label>
+      <input type="text" class="form-control" id="course" name="course" required>
+    </div>
+    <div class="mb-3">
+      <label for="age" class="form-label">Tel เบอร์โทรศัพท์</label>
+      <input type="number" class="form-control" name="age" id="age" required>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email อีเมล์</label>
+      <input type="text" class="form-control" name="email" id="email" required>
+    </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" onclick="save_data()" class="btn btn-primary" name="submit">ยืนยัน</button>
+      
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- closs_modal -->
+
+        <!-- Header Start -->
+        <div class="container-fluid header bg-white p-0">
+            <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
+                <div class="col-md-6 p-5 mt-lg-5">
+                    <h1 class="display-5 animated fadeIn mb-4">Welcom To <span class="text-primary">Buadoi Farm</span>  Production </h1>
+                    <p class="animated fadeIn mb-4 pb-2">ยินดีต้อนรับ
+                        สู่บัวดอยฟาร์ม ยินดีนำเสนอเรื่องราว เกี่ยวกับวัฒนธรรม วิถีชีวิต สินค้าน่าสนใจ</p>
+                    
+                </div>
+                <div class="col-md-6 animated fadeIn">
+                    <div class="owl-carousel header-carousel">
+                        <div class="owl-carousel-item">
+                            <img class="img-fluid" src="img/bua/a1.jpg" alt="">
+                        </div>
+                        <div class="owl-carousel-item">
+                            <img class="img-fluid" src="img/bua/b1.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+
+
+        <!-- Search Start -->
+        <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
+            
+        </div>
+        <!-- Search End -->
+
+
+
+        <!-- Contact Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                    <h1 class="mb-3">ติดต่อเราได้ที่</h1>
+                    <p>หากท่านมีข้อสงสัย หรืออยากทราบข้อมูลเพื่อเติม หรือหลายละเอียดต่างๆ ท่านสามารถติดต่อเรา โดยตรง ตามช่องทางที่ท่านสะดวกได้เลย</p>
+                </div>
+
+
+                <!-- Call to Action Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                
+                    <div class="bg-white rounded p-4 px-3">
+                        <div class="row g-4">
+                            <div class="col-12">
+                                <div class="row gy-4">
+                                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.1s">
+                                        <div class="bg-light rounded p-3">
+                                            <a href=""><div class="d-flex align-items-center bg-white rounded p-3" style="border: 1px dashed rgba(0, 185, 142, .3)">
+                                                <div class="icon me-3" style="width: 60px; height: 60px;">
+                                                    <i class="fab fa-instagram fa-2x text-primary"></i>
+                                                </div>
+                                                <span>Instagram</span>
+                                            </div></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.3s">
+                                        <div class="bg-light rounded p-3">
+                                            <a href=""><div class="d-flex align-items-center bg-white rounded p-3" style="border: 1px dashed rgba(0, 185, 142, .3)">
+                                                <div class="icon me-3 " style="width: 60px; height: 60px;">
+                                                    <i class="fab fa-facebook-f fa-2x text-primary"></i>
+                                                </div>
+                                                <span>facebook pag</span>
+                                            </div></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.5s">
+                                        <div class="bg-light rounded p-3">
+                                            <a href=""><div class="d-flex align-items-center bg-white rounded p-3" style="border: 1px dashed rgba(0, 185, 142, .3)">
+                                                <div class="icon me-3" style="width: 60px; height: 60px;">
+                                                    <i class="fab fa-tumblr  fa-2x text-primary"></i>
+                                                </div>
+                                                <span>Twitter & X</span>
+                                            </div></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.3s">
+                                        <div class="bg-light rounded p-3">
+                                            <a href=""><div class="d-flex align-items-center bg-white rounded p-3" style="border: 1px dashed rgba(0, 185, 142, .3)">
+                                                <div class="icon me-3" style="width: 60px; height: 60px;">
+                                                    <i class="fab fa-weixin fa-2x text-primary"></i>
+                                                </div>
+                                                <span>Line</span>
+                                            </div></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.3s">
+                                        <div class="bg-light rounded p-3">
+                                            <a href=""><div class="d-flex align-items-center bg-white rounded p-3" style="border: 1px dashed rgba(0, 185, 142, .3)">
+                                                <div class="icon me-3" style="width: 60px; height: 60px;">
+                                                    <i class="fa fa-envelope-open fa-2x text-primary"></i>
+                                                </div>
+                                                <span>BuadoiFram@gmail.com</span>
+                                            </div></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.5s">
+                                        <div class="bg-light rounded p-3">
+                                            <a href=""><div class="d-flex align-items-center bg-white rounded p-3" style="border: 1px dashed rgba(0, 185, 142, .3)">
+                                                <div class="icon me-3" style="width: 60px; height: 60px;">
+                                                    <i class="fa fa-phone-alt fa-2x text-primary"></i>
+                                                </div>
+                                                <span>0958935107</span>
+                                            </div></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                    </div>
+                    </div>
+            </div>
+        </div>
+        <!-- Call to Action End -->
+        <div class="text-center mx-auto mb-5 mt-5 fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h1 class="mb-3">เยี่ยมชมหรือติดต่อเรา</h1>
+            <p>บ้านนอแล ดอยอ่างขาง ตำบล ม่อนปิ่น อำเภอ ฝาง จังหวัดเชียงใหม่ 50110</p>
+        </div>
+                
+                    <div class="container-xxl ">
+                    <div class="text-center mx-auto mb-5 wow fadeInUp " data-wow-delay="0.1s" >
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d120022.82019442834!2d98.95786453880915!3d19.93648999536336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30d0d046dd2d052b%3A0x24a62e01d0ef8d07!2z4Lio4Li54LiZ4Lii4LmM4Lir4Lix4LiV4LiW4LiB4Lij4Lij4Lih4Lia4LmJ4Liy4LiZ4LiZ4Lit4LmB4Lil!5e0!3m2!1sth!2sth!4v1711204555439!5m2!1sth!2sth" width="500" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+        
+                    
+
+
+            <!-- Footer Start -->
+        <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn " data-wow-delay="0.1s">
+            <div class="container py-5 ">
+                <div class="row  ml-5">
+                     <div class="col-lg-3 col-md-6  ">
+                <h5 class="text-white mb-4">Contact Us</h5>
+                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>ดอยอ่างขาง บ้านนอแล จังหวัดเชียงใหม่</p>
+                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>0958935107</p>
+                <p class="mb-2"><i class="fa fa-envelope me-3"></i>BuadoiFram@gmail.com</p>
+                <div class="d-flex pt-2">
+                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/profile.php?id=100070949645333&locale=th_TH"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-tumblr"></i></a>
+                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-weixin"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-white mb-4">Quick Links</h5>
+                <a class="btn btn-link text-white-50" href="">About Us</a>
+                <a class="btn btn-link text-white-50" href="">Contact Us</a>
+                <a class="btn btn-link text-white-50" href="">Our Services</a>
+                <a class="btn btn-link text-white-50" href="">Privacy Policy</a>
+                <a class="btn btn-link text-white-50" href="">Terms & Condition</a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-white mb-4">Photo Gallery</h5>
+                <div class="row g-2 pt-2">
+                    <div class="col-4">
+                        <img class="img-fluid rounded bg-light p-1" src="img/property-1.jpg" alt="">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid rounded bg-light p-1" src="img/property-2.jpg" alt="">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid rounded bg-light p-1" src="img/property-3.jpg" alt="">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid rounded bg-light p-1" src="img/property-4.jpg" alt="">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid rounded bg-light p-1" src="img/property-5.jpg" alt="">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid rounded bg-light p-1" src="img/property-6.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+            </div>
+                 <div class="container">
+                 <div class="copyright" >
+            <div class="row">
+                <div class="col-md-20 text-center text-md-center mb-3 mb-md-0" >
+                    &copy; <a class="border-bottom" >Your Site Name</a>, All Right Reserved. 
+                    
+                    <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                    2024 By <a class="border-bottom" >Buadoi Farm</a>
+                </div>
+                
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        <!-- Footer End -->
+
+
+            <!-- Back to Top -->
+            <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top" ><i class="bi bi-arrow-up"></i></a>
+    
+    </div>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="lib/wow/wow.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+<!-- Template Javascript -->
+<script src="js/main.js"></script>
+</body>
+
+</html>
