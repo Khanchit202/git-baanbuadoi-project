@@ -186,7 +186,7 @@
                     const bookButton = card.querySelector('.book-button');
                     setTimeout(() => {
                         bookButton.style.display = 'block';
-                    }, 300); // หน่วงเวลา 0.3 วินาที
+                    }, 50); // หน่วงเวลา 0.3 วินาที
                 });
 
                 card.addEventListener('mouseleave', () => {
