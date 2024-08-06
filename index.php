@@ -6,9 +6,7 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="tabbar_view/nav_bar.css">
-    
     <link rel="stylesheet" href="style1.css">
-    <link rel="stylesheet" href="cs.css">
     <link rel="stylesheet" href="button.css">
     <link rel="stylesheet" href="card.css">
 
@@ -36,38 +34,13 @@
             <?php include("tabbar_view/tab_bar.php"); ?>
         </nav>
 
-        <div class="container">
-            <div class="text-container">
-                <h1>โฮมสเตย์บ้านบัวดอย</h1>
-                <div class="welcome">
-                    <?php include("jas.php"); ?>
-                </div>
-                <div class="button-container">
-                    <button class="view-rooms-button">
-                        <span class="icon">&#x1F4E6;</span>
-                        <span class="text">ดูห้องพักและบริการ</span>
-                    </button>
-                </div>
-                <p>สู่เว็บไซต์จองห้องพักและบริการกิจการบ้านบัวดอย ดอยอ่างขาง อำเภอฝาง จังหวัดเชียงใหม่</p>
-            </div>
-            <div class="slideshow-container">
-                <div class="mySlides fade">
-                    <img src="img/bua/img1.jpg" style="width:100%">
-                </div>
-                <div class="mySlides fade">
-                    <img src="img/bua/img2.jpg" style="width:100%">
-                </div>
-                <div class="mySlides fade">
-                    <img src="img/bua/img3.jpg" style="width:100%">
-                </div>
-                <div class="mySlides fade">
-                    <img src="img/bua/img4.jpg" style="width:100%">
-                </div>
-            </div>
+        <div class="pre_product" style="display:flex;">
+            <?php include("headbar.php"); ?>
         </div>
-
-        <script src="index2.js"></script>
-
+        <div class="ddd" style="text-align: center;padding:15px;background-color: #4DA866;color: white;">
+            <h1 style="font-size: 16px;">หน้าหลัก</h1>
+        </div>
+        
         <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
             <div id="title">
                 <h1>แนะนำห้องพัก โฮมสเตย์</h1>
@@ -257,9 +230,6 @@
                             <div class="position-relative">
                                 <a href=""><img class="img-fluid" src="img/bua/po2.jpg" alt=""></a>
                                 <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
-                                    <!-- <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a> -->
                                 </div>
                             </div>
                             <div class="text-center p-4 mt-3">
@@ -275,9 +245,6 @@
                             <div class="position-relative">
                                 <a href=""><img class="img-fluid" src="img/bua/po3.jpg" alt=""></a>
                                 <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
-                                    <!-- <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a> -->
                                 </div>
                             </div>
                             <div class="text-center p-4 mt-3">
@@ -294,9 +261,6 @@
                             <div class="position-relative">
                                 <a href=""><img class="img-fluid" src="img/bua/po4.jpg" alt=""></a>
                                 <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
-                                    <!-- <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a> -->
                                 </div>
                             </div>
                             <div class="text-center p-4 mt-3">
