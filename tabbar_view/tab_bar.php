@@ -5,11 +5,19 @@
             </div>
             <div class="topbar_menu_list">
                 <ul>
-                    <li><a href="">หน้าหลัก</a></li>
+                    <li>
+                        <?php
+                        echo "<a href='./index.php'>หน้าหลัก</a>";
+                        ?>
+                    </li>
                     <li><a href="">ข้อมูลห้องพัก</a></li>
                     <li><a href="">ข้อมูลบริการ</a></li>
                     <li><a href="">ข่าวสารประชาสัมพันธ์</a></li>
-                    <li><a href="">เกี่ยวกับเรา</a></li>
+                    <li>
+                        <?php
+                        echo "<a href='./contect.php'>เกี่ยวกับเรา</a>";
+                        ?>
+                    </li>
                 </ul>
                 <a href=""><div class="btn btn-custom">เข้าสู่ระบบ</div></a>
             </div>
