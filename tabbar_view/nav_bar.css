@@ -42,7 +42,7 @@
     margin-right: 20px;
     list-style: none;
     font-weight: bold;
-}
+} 
 
 .topbar_menu_list ul li a {
     text-decoration: none;
@@ -51,6 +51,13 @@
 
 .topbar_menu_list ul li a:hover {
     opacity: 40%;
+}
+
+.topbar_menu_list ul li a.active {
+    background-color: rgb(70, 243, 127); /* เปลี่ยนสีพื้นหลังตามที่คุณต้องการ */
+    color: rgb(21, 20, 20); /* เปลี่ยนสีข้อความตามที่คุณต้องการ */
+    border-radius: 5px; /* เพิ่มขอบมนให้กับแทบสี */
+    padding: 10px 10px; /* เพิ่ม padding ให้กับแทบสี */
 }
 
 @media (max-width: 768px) {
@@ -74,14 +81,17 @@
         width: 100%;
     }
 }
-.btn-custom{
+
+.btn-custom {
     background-color: #4DA866;
     color: white;
-    margin-left: 10px;padding: 10px 20px;
+    margin-left: 10px;
+    padding: 10px 20px;
     font-size: 12px;
     border-radius: 20px;
 }
-.btn-custom:hover{
-    background-color: rgb(155, 163, 155);
+
+.btn-custom:hover {
+    background-color: rgb(163, 155, 155);
     color: black;
 }

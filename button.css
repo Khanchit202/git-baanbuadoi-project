@@ -13,7 +13,7 @@
     cursor: pointer; /* Change cursor to pointer when hovering over the button */
 }
 .button:hover{
-    background-color: #ddd0d0; /* Light pink background */
+    background-color: #d0ddd0; /* Light pink background */
 }
 .button img {
     background-color: #ccc;

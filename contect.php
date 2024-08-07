@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contect</title>
+    <title>Contect เกี่ยวกับเรา</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="tabbar_view/nav_bar.css">
-    
     <link rel="stylesheet" href="style1.css">
     <link rel="stylesheet" href="button.css">
     <link rel="stylesheet" href="card.css">
@@ -52,10 +51,10 @@
             </div>
         </div>
         <!-- About End -->
-    </div>
+    
         
         <!-- Team  -->
-        <div class="container-xxl bg-white p-0">
+        
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;margin-top:70px;">
                     <h1 class="mb-3">สมาชิก</h1>
                 </div>
@@ -127,7 +126,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+    </div>
         <!-- Team End -->
          
         <!-- Call to Action Start -->
