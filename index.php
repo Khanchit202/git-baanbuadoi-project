@@ -34,10 +34,12 @@
             <?php include("tabbar_view/tab_bar.php"); ?>
         </nav>
 
-        <div class="pre_product" style="display:flex;">
-            <?php include("headbar.php"); ?>
+        <div class="pre_image" style="height: 400px">
+                <?php include("headbar.php"); ?>
         </div>
-        <div class="ddd" style="text-align: center;padding:15px;background-color: #4DA866;color: white;">
+
+
+        <div class="ddd" style="text-align: center;padding:10px;background-color: #4DA866;color: white;">
             <h1 style="font-size: 16px;">หน้าหลัก</h1>
         </div>
         
