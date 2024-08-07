@@ -10,9 +10,9 @@
                         echo "<a href='./index.php'>หน้าหลัก</a>";
                         ?>
                     </li>
-                    <li><a href="">ข้อมูลห้องพัก</a></li>
-                    <li><a href="">ข้อมูลบริการ</a></li>
-                    <li><a href="">ข่าวสารประชาสัมพันธ์</a></li>
+                    <li><a href="room_product.php">ข้อมูลห้องพัก</a></li>
+                    <li><a href="service_product.php">ข้อมูลบริการ</a></li>
+                    <li><a href="premaket.php">ข่าวสารประชาสัมพันธ์</a></li>
                     <li>
                         <?php
                         echo "<a href='./contect.php'>เกี่ยวกับเรา</a>";
