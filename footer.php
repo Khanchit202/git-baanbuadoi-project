@@ -26,7 +26,7 @@
                     <div class="d-flex pt-2">
                         <a class="btn btn-social" href="#" style="display: inline-block; width: 40px; height: 40px; line-height: 40px; border-radius: 50%; text-align: center; background-color: #555; color: #fff; margin-right: 10px;"><i class="fab fa-facebook-f"></i></a>
                         <a class="btn btn-social" href="#" style="display: inline-block; width: 40px; height: 40px; line-height: 40px; border-radius: 50%; text-align: center; background-color: #555; color: #fff; margin-right: 10px;"><i class="fab fa-instagram"></i></a>
-                        <a class="btn btn-social" href="#" style="display: inline-block; width: 40px; height: 40px; line-height: 40px; border-radius: 50%; text-align: center; background-color: #555; color: #fff; margin-right: 10px;"><i class="fab fa-tiktok"></i></a>
+                        <a class="btn btn-social" href="#" style="display: inline-block; width: 40px; height: 40px; line-height: 40px; border-radius: 50%; text-align: center; background-color: #555; color: #fff; margin-right: 10px;"><i class="fab fa-tumblr"></i></a>
                         <a class="btn btn-social" href="#" style="display: inline-block; width: 40px; height: 40px; line-height: 40px; border-radius: 50%; text-align: center; background-color: #555; color: #fff; margin-right: 10px;"><i class="fab fa-weixin"></i></a>
                     </div>
                 </div>

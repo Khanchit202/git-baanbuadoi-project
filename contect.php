@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="tabbar_view/nav_bar.css">
     
     <link rel="stylesheet" href="style1.css">
-    <link rel="stylesheet" href="cs.css">
     <link rel="stylesheet" href="button.css">
     <link rel="stylesheet" href="card.css">
 
@@ -228,6 +227,7 @@
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d120022.82019442834!2d98.95786453880915!3d19.93648999536336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30d0d046dd2d052b%3A0x24a62e01d0ef8d07!2z4Lio4Li54LiZ4Lii4LmM4Lir4Lix4LiV4LiW4LiB4Lij4Lij4Lih4Lia4LmJ4Liy4LiZ4LiZ4Lit4LmB4Lil!5e0!3m2!1sth!2sth!4v1711204555439!5m2!1sth!2sth" width="500" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
+        
     
         
         
