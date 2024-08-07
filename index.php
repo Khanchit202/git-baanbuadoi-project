@@ -283,7 +283,7 @@
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                    <h1 class="mb-3">ช่าวสารเพิ่มเติม</h1>
+                    <h1 class="mb-3">กิจกรรมชุมชน</h1>
                     <p >กิจกรรมแจกของขวัญ คูปองส่วนลด กิจกรรมต่างของ Buodoi.</p>
                 </div>
                 <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
