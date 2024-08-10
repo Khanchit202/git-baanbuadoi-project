@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>premaket ข่าวสารประชาสัมพันธ์</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="tabbar_view/nav_bar.css">
     <link rel="stylesheet" href="style1.css">
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="card.css">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="../img/favicon.ico" rel="icon">
     <link rel="icon" type="image/x-icon" href="img/bua/logo.png" style="border-radius: 5px;">
     
     <!-- Icon Font Stylesheet -->

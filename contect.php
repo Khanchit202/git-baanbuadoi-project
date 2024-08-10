@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="card.css">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="../img/favicon.ico" rel="icon">
     <link rel="icon" type="image/x-icon" href="img/bua/logo.png" style="border-radius: 5px;">
     
     <!-- Icon Font Stylesheet -->
