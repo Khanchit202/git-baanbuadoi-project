@@ -26,3 +26,6 @@
     font-size: 16px;
     color: black; /* Text color */
 }
+.btn-primary { 
+    margin: 5px; 
+}

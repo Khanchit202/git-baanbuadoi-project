@@ -25,6 +25,9 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 <a href="./contect.php" class="<?php echo $current_page == 'contect.php' ? 'active' : ''; ?>">เกี่ยวกับเรา</a>
             </li>
         </ul>
-        <a href=""><div class="btn btn-custom">เข้าสู่ระบบ</div></a>
+        <a href="./login.php" class="btn btn-custom">เข้าสู่ระบบ</a>
     </div>
 </div>
+
+
+
