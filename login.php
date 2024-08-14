@@ -11,36 +11,11 @@ include("db_conet.php");
     <title>Contect เกี่ยวกับเรา</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="tabbar_view/nav_bar.css">
-    <link rel="stylesheet" href="style1.css">
-    <link rel="stylesheet" href="button.css">
-    <link rel="stylesheet" href="card.css">
-
+    <link rel="stylesheet" href="style1.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Favicon -->
-    <link href="../img/favicon.ico" rel="icon">
+    <link href="img/favicon.ico" rel="icon">
     <link rel="icon" type="image/x-icon" href="img/bua/logo.png" style="border-radius: 5px;">
-    
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- <script type="text/javascript" src="indexs.js"></script> -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
-
-    <!-- jquery -->
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- Data table -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.0/css/dataTables.dataTables.css" />
-    <script src="https://cdn.datatables.net/2.0.0/js/dataTables.js"></script>
-
-    <script type="text/javascript" src="indexs.js"></script>
 </head>
 <body>
     <div class="container-xxl bg-white p-0">
@@ -58,27 +33,32 @@ include("db_conet.php");
                 <img src="tabbar_view/baanbuadoi.png" alt="Logo" class="img-fluid" style="max-width: 70%; height: auto;">
             </div>
             <div class="col-md-6">
-                <h1>เข้าสู่ระบบ</h1>
-                <form class="row g-3 needs-validation" novalidate style="margin-top:20px; max-width: 400px; margin: auto;">
+                <h1><center>เข้าสู่ระบบจอง</center></h1>
+                <h2><center>Login</center></h2>
+                <form class="row g-3 needs-validation" novalidate style="margin-top:20px; max-width: 350px; margin: auto;">
                         <div class="col-12">
-                            <label for="validationCustom01" class="form-label"><strong></strong></label>
-                            <input type="text" class="form-control" id="username" name="username" required>
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
+                            <label for="validationCustom01" class="form-label"><strong>User Name</strong></label>
+                            <input type="text" class="form-control" placeholder="ชื่อผู้ใช้" id="username" name="username" required>
                 </div>
                         <div class="col-12">
-                            <label for="validationCustom02" class="form-label"><strong>Password รหัสผ่าน</strong></label>
-                            <input type="password" class="form-control" placeholder="ควรตั้ง 6 ตัวขึ้นไป" required>
-                        <div class="valid-feedback">
-                             Looks good!
-                        </div>
+                            <label for="validationCustom02" class="form-label"><strong>Password</strong></label>
+                            <input type="password" class="form-control" placeholder="รหัสผ่าน" required>
                 </div>
                 <div class="col-12 d-flex justify-content-center gap-3" style="margin-top:30px;">
-                        <button class="btn btn-success" onclick="save_data()" style="background-color: lime" type="submit" name="submit">สมัครสมาชิก</button>
+                        <button class="btn btn-success" style="background-color: #4DA866;  width: 100%;"  type="submit" name="submit">เข้าสู่ระบบ</button>
+                </div>
+                <div class="d-flex justify-content-between" style="border-bottom: 1px solid black; padding-bottom: 10px;">
+                    <a href="index.php" class="align-self-end" style="margin-top:10px; text-decoration: none; color: black;"><i class="fas fa-arrow-left"></i> กลับหน้าหลัก</a>
+                    <a href="" class="align-self-end" style="margin-top:10px; text-decoration: none; color: black;">ลืมรหัสผ่าน?</a>
+                </div>
+                <div class="text-center" style="margin-top: 10px;">
+                    <p>หากคุณยังไม่มีบัญชีผู้ใช้
+                    <a href="form_user.php" style=" color: #4DA866;">สมัครสมาชิก</a></p>
                 </div>
                 </form>
-
+            </div>
+            <div class="text-center mt-5">
+                <p>ออกแบบและพัฒนาโดย นายครรชิต บางพระ และนายสมชาย หมั่นเฮิง หลักสูตรระบบสารสนเทศทางธุรกิจ-พัฒนาซอฟต์แวร์ มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา</p>
             </div>
         </div>
     </div>
@@ -87,9 +67,7 @@ include("db_conet.php");
     <!-- form login end  -->
         
         
-        <nav>
-            <?php include("footer.php"); ?>
-        </nav>
+        
 
     
     

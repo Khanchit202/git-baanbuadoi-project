@@ -312,36 +312,7 @@
     </div>
         <!-- Testimonial End -->
 
-        <!-- Modal login-->
-        <div class="modal fade" id="adddata" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-    <a href="./form_user.php" class="align-self-end"style="margin-top:10px;margin-right:10px;">ลงทะเบียน</a>
-      <div class="modal-header d-flex justify-content-center">
-        <h5 class="modal-title" id="exampleModalLabel">
-          <i class="fa fa-user fa-3x" aria-hidden="true"></i>
-        </h5>
-      </div>
-      <form id="loginForm">
-        <div class="modal-body">
-          <div class="mb-3 text-center">
-            <label for="name" class="form-label">User Name</label>
-            <input type="text" class="form-control" id="name" name="name" required >
-          </div>
-          <div class="mb-3 text-center">
-            <label for="course" class="form-label">Password</label>
-            <input type="password" class="form-control" id="course" name="course" required>
-          </div>
-        </div>
-        <div class="modal-footer justify-content-center">
-          <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" onclick="save_data()" class="btn btn-success" name="submit">ยืนยัน</button>
-        </div>
-      </form>
-      
-    </div>
-  </div>
-</div>
+       
 
 <!-- closs_modal -->
         <nav>

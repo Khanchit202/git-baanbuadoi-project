@@ -12,7 +12,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $tel = $_POST['tel'];
     $age = $_POST['age'];
     $gender = $_POST['gender'];
-    $locations = $_POST['locations'];
+    $locations = $_POST['location'];
 
     $sql = "INSERT INTO user (userName,userPass,userFName,userLName,userAge,userGender,userTel,userEmail,userLocation) VALUES(:username,:pass,:fname,:lname,:email,:tel,:age,:gender,:locations)";
     $stmt = $db_con->prepare($sql);
@@ -28,10 +28,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $result = $stmt->execute();
     if($result){
         $response['status'] = 'ok';
-
+        echo "<script>alert('เพิ่มข้อมูลสำเร็จ');</script>";
     }else{
         $response['status'] = 'error';
-
+        echo "<script>alert('เกิดข้อผิดพลาดในการเพิ่มข้อมูล');</script>";
     }
 
 }
