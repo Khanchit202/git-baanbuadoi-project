@@ -53,7 +53,7 @@
                     <h5 class="text-center">REGISTER</h5>
                     <form class="row g-3 needs-validation" novalidate 
                         style="margin-top:20px; max-width: 450px; margin: auto;" 
-                        method="POST" action="register.php">
+                        method="POST" action="user/register.php">
 
                         <div class="col-12">
                             <label for="username" class="form-label"><strong>User Name: ใช้เข้าสู่ระบบ</strong></label>
