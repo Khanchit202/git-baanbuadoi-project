@@ -86,9 +86,10 @@
 
                         <div class="col-12">
                             <label for="tel" class="form-label"><strong>Tel: เบอร์โทรศัพท์</strong></label>
+
                             <input type="number" class="form-control" id="tel" name="tel"  required>
                         </div>
-
+                        
                         <div class="col-12 d-flex justify-content-center gap-3" style="margin-top:30px;">
                             <button id="submit" class="btn btn-success" style="background-color: #4DA866; width: 100%;" type="submit"  disabled>ลงทะเบียน</button>
                         </div>
@@ -106,8 +107,6 @@
                             </p>
                         </div>
                     </form> 
-
-
                 </div>
 
                 <div class="col-md-6 d-flex align-items-center justify-content-center">
