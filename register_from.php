@@ -88,27 +88,6 @@
                             <label for="tel" class="form-label"><strong>Tel: เบอร์โทรศัพท์</strong></label>
                             <input type="number" class="form-control" id="tel" name="tel" placeholder="08XXXXXX" required>
                         </div>
-
-                        <div class="col-12">
-                            <label for="location" class="form-label"><strong>Location: ที่อยู่</strong></label>
-                            <input type="text" class="form-control" id="location" name="location" placeholder="บ้านเลขที่/ตำบล/อำเภอ/จังหวัด/รหัสไปรษณีย์" required>
-                        </div>
-
-                        <div class="col-12 d-flex align-items-center">
-                            <div class="me-3">
-                                <label for="age" class="form-label"><strong>Age: อายุ</strong></label>
-                                <input type="number" class="form-control" id="age" name="age" placeholder="อายุ" required>
-                            </div>
-                            <div>
-                                <label for="gender" class="form-label"><strong>Gender: เพศ</strong></label>
-                                <select class="form-select" id="gender" name="gender" required>
-                                    <option value="">เลือกเพศ</option>
-                                    <option value="0">ชาย</option>
-                                    <option value="1">หญิง</option>
-                                </select>
-                            </div>
-                        </div>
-
                         <div class="col-12 d-flex justify-content-center gap-3" style="margin-top:30px;">
                             <button id="submit" class="btn btn-success" style="background-color: #4DA866; width: 100%;" type="submit"  disabled>ลงทะเบียน</button>
                         </div>
@@ -126,8 +105,6 @@
                             </p>
                         </div>
                     </form> 
-
-
                 </div>
 
                 <div class="col-md-6 d-flex align-items-center justify-content-center">
