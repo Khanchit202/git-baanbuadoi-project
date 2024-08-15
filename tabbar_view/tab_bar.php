@@ -1,4 +1,5 @@
 <?php
+session_start();
 $current_page = basename($_SERVER['PHP_SELF']);
 ?>
 
@@ -8,26 +9,44 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <p>โฮมสเตย์บ้านบัวดอย</p>
     </div>
     <div class="topbar_menu_list">
-        <ul>
-            <li>
-                <a href="index.php" class="<?php echo $current_page == 'index.php' ? 'active' : ''; ?>">หน้าหลัก</a>
-            </li>
-            <li>
-                <a href="./room_product.php" class="<?php echo $current_page == 'room_product.php' ? 'active' : ''; ?>">ข้อมูลห้องพัก</a>
-            </li>
-            <li>
-                <a href="./service_product.php" class="<?php echo $current_page == 'service_product.php' ? 'active' : ''; ?>">ข้อมูลบริการ</a>
-            </li>
-            <li>
-                <a href="./premaket.php" class="<?php echo $current_page == 'premaket.php' ? 'active' : ''; ?>">ข่าวสารประชาสัมพันธ์</a>
-            </li>
-            <li>
-                <a href="./contect.php" class="<?php echo $current_page == 'contect.php' ? 'active' : ''; ?>">เกี่ยวกับเรา</a>
-            </li>
-        </ul>
-        <a href="./login.php" class="btn btn-custom">เข้าสู่ระบบ</a>
+
+        <?php include("menu_navbar.php"); 
+            menu_navbar()
+        ?>
+        
     </div>
 </div>
 
 
 
+
+
+
+<script>
+    function toggleDropdown() {
+    const dropdown = document.querySelector('.dropdown');
+    const menu = dropdown.querySelector('.dropdown-menu');
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+}
+
+window.onclick = function(event) {
+    if (!event.target.closest('.dropdown')) {
+        const dropdowns = document.querySelectorAll('.dropdown-menu');
+        dropdowns.forEach(menu => {
+            if (menu.style.display === 'block') {
+                menu.style.display = 'none';
+            }
+        });
+    }
+}
+
+document.querySelectorAll('.dropdown-menu a').forEach(link => {
+    link.addEventListener('mouseover', function() {
+        this.style.backgroundColor = '#f0f0f0';
+    });
+    link.addEventListener('mouseout', function() {
+        this.style.backgroundColor = '';
+    });
+});
+
+</script>

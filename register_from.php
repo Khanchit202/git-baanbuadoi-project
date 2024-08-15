@@ -21,19 +21,19 @@
     <script src="https://cdn.datatables.net/2.0.0/js/dataTables.js"></script>
     <style>
         .is-valid {
-            border-color: #28a745; /* สีเขียวสำหรับข้อความที่ถูกต้อง */
+            border-color: #28a745;
         }
         .is-invalid {
-            border-color: #dc3545; /* สีแดงสำหรับข้อความที่ไม่ถูกต้อง */
+            border-color: #dc3545;
         }
         .invalid-feedback {
             display: none;
             color: #dc3545;
         }
         .btn-disabled {
-            background-color: #d6d6d6; /* สีพื้นหลังปุ่มเมื่อไม่สามารถกดได้ */
-            color: #6c757d; /* สีข้อความปุ่มเมื่อไม่สามารถกดได้ */
-            cursor: not-allowed; /* เปลี่ยนเคอร์เซอร์เป็นสัญลักษณ์ไม่สามารถคลิกได้ */
+            background-color:  #d6d6d6;
+            color: black;
+            cursor: not-allowed;
         }
     </style>
 </head>
@@ -62,7 +62,7 @@
                         </div>
                         <div class="col-12">
                             <label for="password" class="form-label"><strong>Password</strong></label>
-                            <input type="password" class="form-control" id="passwd" name="passwd" placeholder="ควรตั้ง 6 หลักขึ้นไป" required>
+                            <input type="password" class="form-control" id="passwd" name="passwd"  required>
                         </div>
                         <div class="col-12">
                             <label for="confirm-password" class="form-label"><strong>ยืนยัน Password</strong></label>
@@ -81,13 +81,15 @@
 
                         <div class="col-12">
                             <label for="email" class="form-label"><strong>Email: อีเมล์</strong></label>
-                            <input type="text" class="form-control" id="email" name="email" placeholder="UserXXXX.Gmail.com" required>
+                            <input type="text" class="form-control" id="email" name="email" required>
                         </div>
 
                         <div class="col-12">
                             <label for="tel" class="form-label"><strong>Tel: เบอร์โทรศัพท์</strong></label>
-                            <input type="number" class="form-control" id="tel" name="tel" placeholder="08XXXXXX" required>
+
+                            <input type="number" class="form-control" id="tel" name="tel"  required>
                         </div>
+                        
                         <div class="col-12 d-flex justify-content-center gap-3" style="margin-top:30px;">
                             <button id="submit" class="btn btn-success" style="background-color: #4DA866; width: 100%;" type="submit"  disabled>ลงทะเบียน</button>
                         </div>

@@ -1,6 +1,7 @@
 <?php
 session_start();
 include("../db_config.php");
+$db_con = connect_db("client");
 
 // if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 
@@ -10,10 +11,8 @@ include("../db_config.php");
     $lname = $_POST['lname'];
     $email = $_POST['email'];
     $tel = $_POST['tel'];
-    $age = $_POST['age'];
-    $gender = $_POST['gender'];
-    $location = $_POST['location'];
     $userLavelID = 4;
+    $userProfile = "img/profile/profile_1.jpg";
 
     // $username = "member";
     // $passwd = "123456";
@@ -28,8 +27,8 @@ include("../db_config.php");
 
     $hashedPasswd = password_hash($passwd, PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO users (userName, userPass, userFName, userLName, userAge, userGender, userTel, userEmail, userLocation, userLavelID) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO users (userName, userPass, userFName, userLName,  userTel, userEmail,  userLavelID, userImg) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
     try {
 
@@ -39,13 +38,10 @@ include("../db_config.php");
         $stmt->bindParam(2, $hashedPasswd);
         $stmt->bindParam(3, $fname);
         $stmt->bindParam(4, $lname);
-        $stmt->bindParam(5, $age);
-        $stmt->bindParam(6, $gender);
-        $stmt->bindParam(7, $tel);
-        $stmt->bindParam(8, $email);
-        $stmt->bindParam(9, $location);
-        $stmt->bindParam(10, $userLavelID);
-
+        $stmt->bindParam(5, $tel);
+        $stmt->bindParam(6, $email);
+        $stmt->bindParam(7, $userLavelID);
+        $stmt->bindParam(8, $userProfile);
         $result = $stmt->execute();
 
         if ($result) {
