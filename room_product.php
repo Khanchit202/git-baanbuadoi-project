@@ -44,14 +44,14 @@
         </div>
         
         <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
-            <div id="title2" style="margin: 80px 0">
+            <div id="title2" style="margin: 80px 30px">
                 <h1>ห้องพักทั้งหมด</h1>
                 <p>โฮมสเตย์บ้านบัวดอย ดอยอ่างขาง</p>
             </div>
         </div>
 
 
-        <div class="produc_pre" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px;">
+        <div class="produc_pre" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; margin: 0 30px;">
             <?php 
             for ($i = 1; $i <= 12; $i++) { 
                 echo "<div class='wow fadeInUp' data-wow-delay='0.5s'>"

@@ -1,6 +1,6 @@
 
 
-<div class="topbar_menu">
+<div class="topbar_menu" style="margin: 0 20px;">
     <div class="topbar_menu_logo">
         <a href="index.php"><img src="tabbar_view/baanbuadoi.png" alt="โฮมสเตย์บ้านบัวดอย Baanbuadoi"></a>
         <p>โฮมสเตย์บ้านบัวดอย</p>

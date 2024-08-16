@@ -61,7 +61,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
             <li><a href="./service_product.php" class="<?php echo $current_page == 'service_product.php' ? 'active' : ''; ?>">ข้อมูลบริการ</a></li>
             <li><a href="./premaket.php" class="<?php echo $current_page == 'premaket.php' ? 'active' : ''; ?>">ข่าวสารประชาสัมพันธ์</a></li>
             <li><a href="./contect.php" class="<?php echo $current_page == 'contect.php' ? 'active' : ''; ?>">เกี่ยวกับเรา</a></li>
-            <li><a href="./contect.php" class="<?php echo $current_page == 'contect.php' ? 'active' : ''; ?>">จัดการข้อมูล</a></li>
+            <li><a href="service/edit_data.php" class="<?php echo $current_page == 'contect.php' ? 'active' : ''; ?>">จัดการข้อมูล</a></li>
         </ul>
         <?php render_dropdown($profile_name); ?>
     <?php
@@ -77,7 +77,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
             <li><a href="./service_product.php" class="<?php echo $current_page == 'service_product.php' ? 'active' : ''; ?>">ข้อมูลบริการ</a></li>
             <li><a href="./premaket.php" class="<?php echo $current_page == 'premaket.php' ? 'active' : ''; ?>">ข่าวสารประชาสัมพันธ์</a></li>
             <li><a href="./contect.php" class="<?php echo $current_page == 'contect.php' ? 'active' : ''; ?>">เกี่ยวกับเรา</a></li>
-            <li><a href="./contect.php" class="<?php echo $current_page == 'contect.php' ? 'active' : ''; ?>">จัดการข้อมูล</a></li>
+            <li><a href="service/edit_data.php" class="<?php echo $current_page == 'contect.php' ? 'active' : ''; ?>">จัดการข้อมูล</a></li>
         </ul>
         <?php render_dropdown($profile_name); ?>
     <?php
@@ -93,7 +93,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
             <li><a href="./service_product.php" class="<?php echo $current_page == 'service_product.php' ? 'active' : ''; ?>">ข้อมูลบริการ</a></li>
             <li><a href="./premaket.php" class="<?php echo $current_page == 'premaket.php' ? 'active' : ''; ?>">ข่าวสารประชาสัมพันธ์</a></li>
             <li><a href="./contect.php" class="<?php echo $current_page == 'contect.php' ? 'active' : ''; ?>">เกี่ยวกับเรา</a></li>
-            <li><a href="./contect.php" class="<?php echo $current_page == 'contect.php' ? 'active' : ''; ?>">จัดการข้อมูล</a></li>
+            <li><a href="service/edit_data.php" class="<?php echo $current_page == 'contect.php' ? 'active' : ''; ?>">จัดการข้อมูล</a></li>
         </ul>
         <?php render_dropdown($profile_name); ?>
     <?php
