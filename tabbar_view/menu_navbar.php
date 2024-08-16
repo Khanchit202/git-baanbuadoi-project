@@ -1,4 +1,5 @@
 <?php
+
 function menu_navbar() {
     
     if (empty($_SESSION['user_lavel'])) {
@@ -49,6 +50,10 @@ function render_dropdown($profile_name) {
 } 
 
 function admin_menu($profile_name) {
+    session_start();
+$current_page = basename($_SERVER['PHP_SELF']);
+session_start();
+$current_page = basename($_SERVER['PHP_SELF']);
     ?>   
         <ul>
             <li><a href="index.php" class="<?php echo $current_page == 'index.php' ? 'active' : ''; ?>">หน้าหลัก</a></li>
@@ -63,6 +68,8 @@ function admin_menu($profile_name) {
 } 
 
 function owner_menu($profile_name) {
+    session_start();
+$current_page = basename($_SERVER['PHP_SELF']);
     ?>   
         <ul>
             <li><a href="index.php" class="<?php echo $current_page == 'index.php' ? 'active' : ''; ?>">หน้าหลัก</a></li>
@@ -77,6 +84,8 @@ function owner_menu($profile_name) {
 } 
 
 function emp_menu($profile_name) {
+    session_start();
+$current_page = basename($_SERVER['PHP_SELF']);
     ?>   
         <ul>
             <li><a href="index.php" class="<?php echo $current_page == 'index.php' ? 'active' : ''; ?>">หน้าหลัก</a></li>
@@ -91,6 +100,8 @@ function emp_menu($profile_name) {
 } 
 
 function member_menu($profile_name) {
+    session_start();
+$current_page = basename($_SERVER['PHP_SELF']);
     ?>   
         <ul>
             <li><a href="index.php" class="<?php echo $current_page == 'index.php' ? 'active' : ''; ?>">หน้าหลัก</a></li>
@@ -104,6 +115,8 @@ function member_menu($profile_name) {
 } 
 
 function web_menu() {
+    session_start();
+$current_page = basename($_SERVER['PHP_SELF']);
     ?>   
         <ul>
             <li><a href="index.php" class="<?php echo $current_page == 'index.php' ? 'active' : ''; ?>">หน้าหลัก</a></li>

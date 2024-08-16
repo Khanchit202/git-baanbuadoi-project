@@ -1,7 +1,4 @@
-<?php
-session_start();
-$current_page = basename($_SERVER['PHP_SELF']);
-?>
+
 
 <div class="topbar_menu">
     <div class="topbar_menu_logo">
