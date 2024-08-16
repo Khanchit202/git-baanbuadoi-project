@@ -50,10 +50,7 @@ function render_dropdown($profile_name) {
 } 
 
 function admin_menu($profile_name) {
-    session_start();
-$current_page = basename($_SERVER['PHP_SELF']);
-session_start();
-$current_page = basename($_SERVER['PHP_SELF']);
+    $current_page = basename($_SERVER['PHP_SELF']);
     ?>   
         <ul>
             <li><a href="index.php" class="<?php echo $current_page == 'index.php' ? 'active' : ''; ?>">หน้าหลัก</a></li>
@@ -61,15 +58,14 @@ $current_page = basename($_SERVER['PHP_SELF']);
             <li><a href="./service_product.php" class="<?php echo $current_page == 'service_product.php' ? 'active' : ''; ?>">ข้อมูลบริการ</a></li>
             <li><a href="./premaket.php" class="<?php echo $current_page == 'premaket.php' ? 'active' : ''; ?>">ข่าวสารประชาสัมพันธ์</a></li>
             <li><a href="./contect.php" class="<?php echo $current_page == 'contect.php' ? 'active' : ''; ?>">เกี่ยวกับเรา</a></li>
-            <li><a href="service/edit_data.php" class="<?php echo $current_page == 'contect.php' ? 'active' : ''; ?>">จัดการข้อมูล</a></li>
+            <li><a href="service/edit_data.php" class="<?php echo $current_page == 'edit_data.php' ? 'active' : ''; ?>">จัดการข้อมูล</a></li>
         </ul>
         <?php render_dropdown($profile_name); ?>
     <?php
 } 
 
 function owner_menu($profile_name) {
-    session_start();
-$current_page = basename($_SERVER['PHP_SELF']);
+    $current_page = basename($_SERVER['PHP_SELF']);
     ?>   
         <ul>
             <li><a href="index.php" class="<?php echo $current_page == 'index.php' ? 'active' : ''; ?>">หน้าหลัก</a></li>
@@ -84,8 +80,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
 } 
 
 function emp_menu($profile_name) {
-    session_start();
-$current_page = basename($_SERVER['PHP_SELF']);
+    $current_page = basename($_SERVER['PHP_SELF']);
     ?>   
         <ul>
             <li><a href="index.php" class="<?php echo $current_page == 'index.php' ? 'active' : ''; ?>">หน้าหลัก</a></li>
@@ -100,8 +95,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
 } 
 
 function member_menu($profile_name) {
-    session_start();
-$current_page = basename($_SERVER['PHP_SELF']);
+    $current_page = basename($_SERVER['PHP_SELF']);
     ?>   
         <ul>
             <li><a href="index.php" class="<?php echo $current_page == 'index.php' ? 'active' : ''; ?>">หน้าหลัก</a></li>
@@ -115,8 +109,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
 } 
 
 function web_menu() {
-    session_start();
-$current_page = basename($_SERVER['PHP_SELF']);
+    $current_page = basename($_SERVER['PHP_SELF']);
     ?>   
         <ul>
             <li><a href="index.php" class="<?php echo $current_page == 'index.php' ? 'active' : ''; ?>">หน้าหลัก</a></li>
