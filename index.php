@@ -52,7 +52,7 @@
         </div>
 
 
-        <div class="produc_pre" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px;">
+        <div class="produc_pre" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; margin: 0 30px;">
             <?php 
             for ($i = 1; $i <= 4; $i++) { 
                 echo "<div class='wow fadeInUp' data-wow-delay='0.5s'>"
@@ -151,7 +151,7 @@
             </div>
         </div>
 
-        <div class="produc_pre" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px;">
+        <div class="produc_pre" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; margin: 0 30px;">
             <!-- การ์ดสำหรับสินค้าประเภทอื่น -->
             <?php 
             for ($i = 1; $i <= 4; $i++) { 

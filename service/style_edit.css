@@ -1,8 +1,12 @@
+@font-face {
+    font-family: kkfont;
+    src: url('../EkkamaiNew-Regular.ttf');
+}
 body, html {
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: Arial, sans-serif;
+    font-family: kkfont;
 }
 
 .navbar {
