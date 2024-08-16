@@ -40,9 +40,9 @@
         </div>
 
 
-        <div class="ddd" style="text-align: center;padding:10px;background-color: #4DA866;color: white;">
+        <!-- <div class="ddd" style="text-align: center;padding:10px;background-color: #4DA866;color: white;">
             <h1 style="font-size: 16px;">หน้าหลัก</h1>
-        </div>
+        </div> -->
         
         <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
             <div id="title">
