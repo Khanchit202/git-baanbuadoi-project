@@ -12,7 +12,7 @@ function menu_dash() {
         }else if($_SESSION['user_lavel'] == 2){
             $lavel = $_SESSION['user_lavel'];
             $lavel_name = "เจ้าของกิจการ";
-            $lavel_color = "green";
+            $lavel_color = "LimeGreen";
         }else{
             $lavel = $_SESSION['user_lavel'];
             $lavel_name = "พนักงาน";
