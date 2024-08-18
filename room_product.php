@@ -1,3 +1,7 @@
+<?php
+include ("db_config.php");
+$db_con = connect_db();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

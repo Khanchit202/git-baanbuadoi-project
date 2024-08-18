@@ -1,4 +1,7 @@
-
+<?php
+include ("db_config.php");
+$db_con = connect_db();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -201,83 +204,42 @@
         </script>
 
         
-        <!-- Team Start -->
+        <!-- procuct Start -->
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                     <h1 class="mb-3">ผลิตภัณฑ์ชุมชน</h1>
                     <p >สินค้าแนะนำจากบ้านบัวดอย ผลิตภัณฑ์ของเราและของชุมชนบ้านนอแล </p>
                 </div>
-                <div class="row g-4">
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="property-item rounded overflow-hidden">
-                        <div class="team-item rounded overflow-hidden bg-light">
-                            <div class="position-relative">
-                                <a href=""><img class="img-fluid" src="img/bua/po1.jpg" alt="" ></a>
-                                <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
-                                    <!-- <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a> -->
+                <?php
+                    $sql = 'SELECT newPic, newTitle, newID, newType FROM news WHERE newType = "สินค้า"';
+                    $stmt = $db_con->prepare($sql);
+                    $stmt->execute();
+
+                    // เก็บข้อมูลในตัวแปร $products
+                    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                ?>
+                <div class="produc_pre" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin: 0 10px;">
+                    <!-- การ์ดสำหรับกิจกรรม -->
+                    <?php foreach ($products as $product) { ?>
+                        <div class="col-lg-2 col-md-6  wow fadeInUp" data-wow-delay="0.3s">
+                            <div class="property-item rounded overflow-hidden">
+                                <div class="team-item rounded overflow-hidden bg-light">
+                                    <div class="position-relative">
+                                        <a href=""><img class="img-fluid zoom" src="premaket/news_pic/<?php echo $product['newPic']; ?>" alt="Product Image"></a>
+                                        <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
+                                        </div>
+                                    </div>
+                                    <div class="text-center p-4 mt-3 bg-light-green text-dark">
+                                        <h5 class="fw-bold mb-0"><?php echo $product['newTitle']; ?></h5>
+                                        <small></small>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="text-center p-4 mt-3">
-                                <h5 class="fw-bold mb-0">ปู่เฒ่าทิ้งไม้เท้า</h5>
-                                <small></small>
-                            </div>
                         </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s" >
-                        <div class="property-item rounded overflow-hidden">
-                        <div class="team-item rounded overflow-hidden bg-light">
-                            <div class="position-relative">
-                                <a href=""><img class="img-fluid" src="img/bua/po2.jpg" alt=""></a>
-                                <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
-                                </div>
-                            </div>
-                            <div class="text-center p-4 mt-3">
-                                <h5 class="fw-bold mb-0">สมุนไพรเจี่ยวกู่หลาน</h5>
-                                <small></small>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="property-item rounded overflow-hidden">
-                        <div class="team-item rounded overflow-hidden bg-light">
-                            <div class="position-relative">
-                                <a href=""><img class="img-fluid" src="img/bua/po3.jpg" alt=""></a>
-                                <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
-                                </div>
-                            </div>
-                            <div class="text-center p-4 mt-3">
-                                <h5 class="fw-bold mb-0">ผลไม้บัวหิมะ</h5>
-                                <small></small>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                        <div class="property-item rounded overflow-hidden">
-                        <div class="team-item rounded overflow-hidden bg-light">
-                            <div class="position-relative">
-                                <a href=""><img class="img-fluid" src="img/bua/po4.jpg" alt=""></a>
-                                <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
-                                </div>
-                            </div>
-                            <div class="text-center p-4 mt-3">
-                                <h5 class="fw-bold mb-0">ผลไม้อะโวคาโด</h5>
-                                <small></small>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    
+                    <?php } ?>
                 </div>
-            </div>
-        </div>
-        <!-- Team End -->
+        <!--  End -->
 
     
 

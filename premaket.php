@@ -1,3 +1,7 @@
+<?php
+include ("db_config.php");
+$db_con = connect_db();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,6 +31,9 @@
 
     <script type="text/javascript" src="indexs.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
+
+    
+</style>
 </head>
 <body>
     <div class="container-xxl bg-white p-0">
@@ -40,10 +47,10 @@
 
 
         <div class="ddd" style="text-align: center;padding:10px;background-color: #4DA866;color: white;">
-            <h1 style="font-size: 16px;">บริการทั้งหมด</h1>
+            <h1 style="font-size: 16px;">แนะนำสินค้าผลิตภัณฑ์ชุมชน</h1>
         </div>
 
-        <div class="container-xxl py-5">
+        <!-- <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                     <h1 class="mb-3">กิจกรรมชุมชน</h1>
@@ -70,118 +77,41 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
-        <!-- Team Start -->
-        <div class="container-xxl py-5">
-            <div class="container">
-                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                    <h1 class="mb-3">ผลิตภัณฑ์ชุมชน</h1>
-                    <p >สินค้าแนะนำจากบ้านบัวดอย ผลิตภัณฑ์ของเราและของชุมชนบ้านนอแล </p>
-                </div>
-                <div class="row g-4">
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="property-item rounded overflow-hidden">
-                        <div class="team-item rounded overflow-hidden bg-light">
-                            <div class="position-relative">
-                                <a href=""><img class="img-fluid" src="img/bua/po1.jpg" alt="" ></a>
-                                <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
-                                    <!-- <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a> -->
-                                </div>
-                            </div>
-                            <div class="text-center p-4 mt-3">
-                                <h5 class="fw-bold mb-0">ปู่เฒ่าทิ้งไม้เท้า</h5>
-                                <small></small>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s" >
-                        <div class="property-item rounded overflow-hidden">
-                        <div class="team-item rounded overflow-hidden bg-light">
-                            <div class="position-relative">
-                                <a href=""><img class="img-fluid" src="img/bua/po2.jpg" alt=""></a>
-                                <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
-                                </div>
-                            </div>
-                            <div class="text-center p-4 mt-3">
-                                <h5 class="fw-bold mb-0">สมุนไพรเจี่ยวกู่หลาน</h5>
-                                <small></small>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="property-item rounded overflow-hidden">
-                        <div class="team-item rounded overflow-hidden bg-light">
-                            <div class="position-relative">
-                                <a href=""><img class="img-fluid" src="img/bua/po3.jpg" alt=""></a>
-                                <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
-                                </div>
-                            </div>
-                            <div class="text-center p-4 mt-3">
-                                <h5 class="fw-bold mb-0">ผลไม้บัวหิมะ</h5>
-                                <small></small>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                        <div class="property-item rounded overflow-hidden">
-                        <div class="team-item rounded overflow-hidden bg-light">
-                            <div class="position-relative">
-                                <a href=""><img class="img-fluid" src="img/bua/po4.jpg" alt=""></a>
-                                <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
-                                </div>
-                            </div>
-                            <div class="text-center p-4 mt-3">
-                                <h5 class="fw-bold mb-0">ผลไม้อะโวคาโด</h5>
-                                <small></small>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-        <!-- Team End -->
 
+        <!-- ส่วนแสดงข่าวสารประชาสัมพันธ์ -->
         <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
             <div id="title">
-                <h1>สินค้าประจำฤดูกาลแนะนำ</h1>
-                <p>สินค้าเฉพาะบ้านบัวดอย ดอยอ่างขาง จังหวัดเชียงใหม่</p>
+                <h1>กิจกรรมและประชาสัมพันธ์</h1>
+                <p>ข่าวสารชุมชน กิจกรรมชุมชน ที่น่าสนใจ</p>
             </div>
         </div>
+        <?php
+            $sql = 'SELECT newPic, newTitle, newID, newType FROM news WHERE newType in ("ชุมชน","เทศกาล")';
+            $stmt = $db_con->prepare($sql);
+            $stmt->execute();
 
-        <div class="produc_pre" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; margin: 0 30px;">
-            <!-- การ์ดสำหรับสินค้าประเภทอื่น -->
-            <?php 
-            for ($i = 1; $i <= 4; $i++) { 
-                echo "<div class='wow fadeInUp' data-wow-delay='0.5s'>"
-                ?>    
-                    <div class="card position-relative text-white card-hover mb-5" style="width: 250px; height: 300px; overflow: hidden; position: relative; border-radius: 20px; margin-bottom: 20px;">
-                        <img src="img/bua/po4.jpg" class="card-img" alt="Product Image" style="height: 100%; object-fit: cover;">
-                        <span class="badge position-absolute custom-badge p-3" style="top: 10px; left: 10px; background-color: #4caf50; color: white; border-radius: 20px; padding: 10px;">มีสินค้า</span>
-                        <div class="card-img-overlay d-flex flex-column justify-content-end" style="color: #000;">
-                            <div class="overlay-content p-4" style="background: rgba(255, 255, 255, 0.9); border-radius: 20px; transition: transform 0.3s;">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <h5 class="card-title m-0" style="font-size: 14px;">สินค้าประเภทอื่น</h5>
-                                    <p class="m-0">★ 4.8</p>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center" style="font-size: 12px;">
-                                    <p class="card-text text-right font-weight-bold" style="font-size: 16px; font-weight: bold;">50฿ / กก.</p>
-                                </div>
+            // เก็บข้อมูลในตัวแปร $products
+            $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            ?>
+
+            <div class="produc_pre" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; margin: 0 30px;">
+                <!-- การ์ดสำหรับกิจกรรม -->
+                <?php foreach ($products as $product) { ?>
+                    <div class='wow fadeInUp' data-wow-delay='0.5s'>
+                        <div class="card position-relative text-white card-hover mb-5" style="width: 350px; height: 400px; overflow: hidden; position: relative; border-radius: 20px; margin-bottom: 20px;">
+                            <img src="premaket/news_pic/<?php echo $product['newPic']; ?>" class="card-img" alt="Product Image" style="height: 100%; object-fit: cover;">
+                            <span class="badge position-absolute custom-badge p-3" style="top: 10px; left: 50%; transform: translateX(-50%); background-color: #fff; color: #000; border-radius: 5px; padding: 10px;"><?php echo $product['newTitle']; ?></span>
+                            <div class="card-img-overlay d-flex flex-column justify-content-end" style="color: #000;">
+                                <div class="overlay-content p-4" style="border-radius: 20px; transition: transform 0.3s;"></div>
                             </div>
+                            <a href="news_detail.php&id" class="book-button" style="display: none; position: absolute; top: 320px; left: 10%; width: 80%; height: 50px; background-color: #fff; color: #000; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;">อ่าเพิ่มเติม</a>
                         </div>
-                        <a href="product_page.php" class="book-button" style="display: none; position: absolute; top: 230px; left: 10%; width: 80%; height: 50px; background-color: #4caf50; color: white; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;">ดูรายละเอียด</a>
                     </div>
-                </div>
-            <?php } ?>
-        </div>
+                <?php } ?>
+            </div>
+        <!-- ปิดส่วนแสดงข่าวสารประชาสัมพันธ์ -->
 
         <script>
             // JavaScript to show/hide the button on hover and move overlay-content
@@ -205,6 +135,43 @@
                 });
             });
         </script>
+
+        <!-- Team Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                    <h1 class="mb-3">ผลิตภัณฑ์ชุมชน</h1>
+                    <p >สินค้าแนะนำจากบ้านบัวดอย ผลิตภัณฑ์ของเราและของชุมชนบ้านนอแล </p>
+                </div>
+                <?php
+                    $sql = 'SELECT newPic, newTitle, newID, newType FROM news WHERE newType = "สินค้า"';
+                    $stmt = $db_con->prepare($sql);
+                    $stmt->execute();
+
+                    // เก็บข้อมูลในตัวแปร $products
+                    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                ?>
+                <div class="produc_pre" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin: 0 10px;">
+                    <!-- การ์ดสำหรับกิจกรรม -->
+                    <?php foreach ($products as $product) { ?>
+                        <div class="col-lg-2 col-md-6  wow fadeInUp" data-wow-delay="0.3s">
+                            <div class="property-item rounded overflow-hidden">
+                                <div class="team-item rounded overflow-hidden bg-light">
+                                    <div class="position-relative">
+                                        <a href=""><img class="img-fluid zoom" src="premaket/news_pic/<?php echo $product['newPic']; ?>" alt="Product Image"></a>
+                                        <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
+                                        </div>
+                                    </div>
+                                    <div class="text-center p-4 mt-3 bg-light-green text-dark">
+                                        <h5 class="fw-bold mb-0"><?php echo $product['newTitle']; ?></h5>
+                                        <small></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php } ?>
+                </div>
+        <!-- Team End -->
 
 
 
