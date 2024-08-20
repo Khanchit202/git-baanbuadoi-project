@@ -31,6 +31,10 @@ $db_con = connect_db();
 
     <script type="text/javascript" src="indexs.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <!-- SweetAlert CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- SweetAlert JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <div class="container-xxl bg-white p-0">
@@ -46,41 +50,100 @@ $db_con = connect_db();
         <div class="ddd" style="text-align: center;padding:10px;background-color: #4DA866;color: white;">
             <h1 style="font-size: 16px;">ห้องพักทั้งหมด</h1>
         </div>
+
+
+        <!-- ส่วนแสดงข้อมูลห้องพัก -->
         
         <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
             <div id="title2" style="margin: 80px 30px">
                 <h1>ห้องพักทั้งหมด</h1>
                 <p>โฮมสเตย์บ้านบัวดอย ดอยอ่างขาง</p>
+                <div class="d-flex justify-content-end">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="options" id="option1" value="00001">
+                        <label class="form-check-label" for="option1">
+                            แสดงห้องว่าง
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="options" id="option2" value="00003">
+                        <label class="form-check-label" for="option2">
+                            ห้องที่กำลังจะว่าง
+                        </label>
+                    </div>
+                </div>
             </div>
         </div>
 
+        <?php
+            $stdID = isset($_GET['stdID']) ? $_GET['stdID'] : null;
 
-        <div class="produc_pre" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; margin: 0 30px;">
-            <?php 
-            for ($i = 1; $i <= 12; $i++) { 
-                echo "<div class='wow fadeInUp' data-wow-delay='0.5s'>"
-                ?>    
-                    <div class="card position-relative text-white card-hover mb-5" style="width: 250px; height: 300px; overflow: hidden; position: relative; border-radius: 20px; margin-bottom: 20px;">
-                        <img src="pre_imag.jpg" class="card-img" alt="Room Image" style="height: 100%; object-fit: cover;">
-                        <span class="badge position-absolute custom-badge p-3" style="top: 10px; left: 10px; background-color: #4caf50; color: white; border-radius: 20px; padding: 10px;">ว่าง</span>
-                        <div class="card-img-overlay d-flex flex-column justify-content-end" style="color: #000;">
-                            <div class="overlay-content p-4" style="background: rgba(255, 255, 255, 0.9); border-radius: 20px; transition: transform 0.3s;">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <h5 class="card-title m-0" style="font-size: 14px;">ห้องเดี่ยวส่วนตัว</h5>
-                                    <p class="m-0">★ 4.5</p>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center" style="font-size: 12px;">
-                                    <span class="icon-text" style="display: flex; align-items: center;"><i class="fa fa-bed text-dark me-2" style="background-color: #ccc; border-radius: 50%; padding: 5px; margin-right: 5px;"></i> 2 - 3</span>
-                                    <span class="icon-text" style="display: flex; align-items: center;"><i class="fa fa-bath text-dark me-2" style="background-color: #ccc; border-radius: 50%; padding: 5px; margin-right: 5px;"></i> 2</span>
-                                    <p class="card-text text-right font-weight-bold" style="font-size: 16px; font-weight: bold;">499฿</p>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="index.php" class="book-button" style="display: none; position: absolute; top: 230px; left: 10%; width: 80%; height: 50px; background-color: #4caf50; color: white; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;">+ จอง</a>
+            if ($stdID) {
+                $sql = 'SELECT roomPic, roomName, roomID, roomBed, roomBath, roomPrice, stdID FROM room_product WHERE stdID = :stdID';
+                $stmt = $db_con->prepare($sql);
+                $stmt->execute(['stdID' => $stdID]);
+            } else {
+                $sql = 'SELECT roomPic, roomName, roomID, roomBed, roomBath, roomPrice, stdID FROM room_product';
+                $stmt = $db_con->prepare($sql);
+                $stmt->execute();
+            }
+            
+            $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            ?>
+            <div class="produc_pre d-flex flex-row flex-wrap justify-content-start" style="margin: 0 30px;">
+    <!-- การ์ดสำหรับห้อง -->
+    <?php foreach ($rooms as $room) { 
+        // กำหนดข้อความและสีพื้นหลังตามค่า stdID
+        if ($room['stdID'] == '00001') {
+            $statusText = 'ว่าง';
+            $badgeColor = '#4caf50'; // สีเขียว
+            $buttonText = '+ จอง';
+            $buttonColor = '#4caf50'; // สีเขียว
+        } elseif ($room['stdID'] == '00002') {
+            $statusText = 'ไม่ว่าง';
+            $badgeColor = '#f44336'; // สีแดง
+            $buttonText = 'เต็ม';
+            $buttonColor = '#f44336'; // สีแดง
+        } elseif ($room['stdID'] == '00003') {
+            $statusText = 'รอสักครู่';
+            $badgeColor = '#ffeb3b'; // สีเหลือง
+            $buttonText = 'รอสักครู่';
+            $buttonColor = '#ffeb3b'; // สีเหลือง
+        } else {
+            // กรณีอื่น ๆ
+        }
+    ?>
+    <div class="wow fadeInUp" data-wow-delay="0.5s" style="margin: 30px;">
+        <div class="card position-relative text-white card-hover mb-5" style="width: 250px; height: 300px; overflow: hidden; position: relative; border-radius: 20px;">
+            <img src="room/room_pic/<?php echo $room['roomPic']; ?>" class="card-img" alt="Room Image" style="height: 100%; object-fit: cover;">
+            <span class="badge position-absolute custom-badge p-3" style="top: 10px; left: 10px; background-color: <?php echo $badgeColor; ?>; color: white; border-radius: 20px; padding: 10px;">
+                <?php echo $statusText; ?>
+            </span>
+            <div class="card-img-overlay d-flex flex-column justify-content-end" style="color: #000;">
+                <div class="overlay-content p-4" style="background: rgba(255, 255, 255, 0.9); border-radius: 20px; transition: transform 0.3s;">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h5 class="card-title m-0" style="font-size: 14px;"><?php echo $room['roomName']; ?></h5>
+                        <p class="m-0">★ </p>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center" style="font-size: 12px;">
+                        <span class="icon-text" style="display: flex; align-items: center;"><i class="fa fa-bed text-dark me-2" style="background-color: #ccc; border-radius: 50%; padding: 5px; margin-right: 5px;"></i> <?php echo $room['roomBed']; ?></span>
+                        <span class="icon-text" style="display: flex; align-items: center;"><i class="fa fa-bath text-dark me-2" style="background-color: #ccc; border-radius: 50%; padding: 5px; margin-right: 5px;"></i> <?php echo $room['roomBath']; ?></span>
+                        <p class="card-text text-right font-weight-bold" style="font-size: 16px; font-weight: bold;"><?php echo $room['roomPrice']; ?>฿</p>
                     </div>
                 </div>
-            <?php } ?>
+            </div>
+            <a href="javascript:void(0);" class="book-button" onclick="showAlert('<?php echo $statusText; ?>')" style="position: absolute; top: 230px; left: 10%; width: 80%; height: 50px; background-color: <?php echo $buttonColor; ?>; color: white; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;"><?php echo $buttonText; ?></a>
         </div>
+    </div>
+    <?php } ?>
+</div>
+
+
+
+
+     <!-- ปิด ส่วนแสดงข้อมูลห้องพัก -->
+
+
         <div class="produc_pre" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px;">
 
         <script>
@@ -105,7 +168,34 @@ $db_con = connect_db();
                 });
             });
         </script>
-        
+        <!-- แสดงแจ้งเตือนเมื่อค่าเป็นไม่ว่าง -->
+        <script>
+            function showAlert(statusText) {
+                if (statusText === 'ไม่ว่าง' || statusText === 'รอสักครู่') {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'ไม่สามารถจองได้',
+                        text: 'ห้องนี้ไม่ว่างหรือต้องรอสักครู่',
+                        confirmButtonText: 'ตกลง'
+                    });
+                }
+            }
+        </script>
+
+        <!-- ตรวจสอบ optionที่เลือก -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const radioButtons = document.querySelectorAll('input[name="options"]');
+                radioButtons.forEach(radio => {
+                    radio.addEventListener('change', function() {
+                        const selectedValue = this.value;
+                        window.location.href = `?stdID=${selectedValue}`;
+                    });
+                });
+            });
+        </script>
+        <!-- ปิดตรวจสอบ optionที่เลือก -->
+
         </div>
     </div>
     <nav>

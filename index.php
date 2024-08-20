@@ -55,32 +55,53 @@ $db_con = connect_db();
         </div>
 
 
-        <div class="produc_pre" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; margin: 0 30px;">
-            <?php 
-            for ($i = 1; $i <= 4; $i++) { 
-                echo "<div class='wow fadeInUp' data-wow-delay='0.5s'>"
-                ?>    
-                    <div class="card position-relative text-white card-hover mb-5" style="width: 250px; height: 300px; overflow: hidden; position: relative; border-radius: 20px; margin-bottom: 20px;">
-                        <img src="pre_imag.jpg" class="card-img" alt="Room Image" style="height: 100%; object-fit: cover;">
-                        <span class="badge position-absolute custom-badge p-3" style="top: 10px; left: 10px; background-color: #4caf50; color: white; border-radius: 20px; padding: 10px;">ว่าง</span>
+        <?php
+            $stdID = isset($_GET['stdID']) ? $_GET['stdID'] : '00001';
+
+            
+                $sql = 'SELECT roomPic, roomName, roomID, roomBed, roomBath, roomPrice, stdID FROM room_product WHERE stdID = :stdID';
+                $stmt = $db_con->prepare($sql);
+                $stmt->execute(['stdID' => $stdID]);
+            
+            $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            ?>
+            <div class="produc_pre d-flex flex-row flex-wrap justify-content-start" style="margin: 0 30px;">
+                <!-- การ์ดสำหรับห้อง -->
+                <?php foreach ($rooms as $room) { 
+                    // กำหนดข้อความและสีพื้นหลังตามค่า stdID
+                    if ($room['stdID'] == '00001') {
+                        $statusText = 'ว่าง';
+                        $badgeColor = '#4caf50'; // สีเขียว
+                        $buttonText = '+ จอง';
+                        $buttonColor = '#4caf50'; // สีเขียว
+                    }else {
+                        // กรณีอื่น ๆ
+                    }
+                ?>
+                <div class="wow fadeInUp" data-wow-delay="0.5s" style="margin: 30px;">
+                    <div class="card position-relative text-white card-hover mb-5" style="width: 250px; height: 300px; overflow: hidden; position: relative; border-radius: 20px;">
+                        <img src="room/room_pic/<?php echo $room['roomPic']; ?>" class="card-img" alt="Room Image" style="height: 100%; object-fit: cover;">
+                        <span class="badge position-absolute custom-badge p-3" style="top: 10px; left: 10px; background-color: <?php echo $badgeColor; ?>; color: white; border-radius: 20px; padding: 10px;">
+                            <?php echo $statusText; ?>
+                        </span>
                         <div class="card-img-overlay d-flex flex-column justify-content-end" style="color: #000;">
                             <div class="overlay-content p-4" style="background: rgba(255, 255, 255, 0.9); border-radius: 20px; transition: transform 0.3s;">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <h5 class="card-title m-0" style="font-size: 14px;">ห้องเดี่ยวส่วนตัว</h5>
-                                    <p class="m-0">★ 4.5</p>
+                                    <h5 class="card-title m-0" style="font-size: 14px;"><?php echo $room['roomName']; ?></h5>
+                                    <p class="m-0">★ </p>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center" style="font-size: 12px;">
-                                    <span class="icon-text" style="display: flex; align-items: center;"><i class="fa fa-bed text-dark me-2" style="background-color: #ccc; border-radius: 50%; padding: 5px; margin-right: 5px;"></i> 2 - 3</span>
-                                    <span class="icon-text" style="display: flex; align-items: center;"><i class="fa fa-bath text-dark me-2" style="background-color: #ccc; border-radius: 50%; padding: 5px; margin-right: 5px;"></i> 2</span>
-                                    <p class="card-text text-right font-weight-bold" style="font-size: 16px; font-weight: bold;">499฿</p>
+                                    <span class="icon-text" style="display: flex; align-items: center;"><i class="fa fa-bed text-dark me-2" style="background-color: #ccc; border-radius: 50%; padding: 5px; margin-right: 5px;"></i> <?php echo $room['roomBed']; ?></span>
+                                    <span class="icon-text" style="display: flex; align-items: center;"><i class="fa fa-bath text-dark me-2" style="background-color: #ccc; border-radius: 50%; padding: 5px; margin-right: 5px;"></i> <?php echo $room['roomBath']; ?></span>
+                                    <p class="card-text text-right font-weight-bold" style="font-size: 16px; font-weight: bold;"><?php echo $room['roomPrice']; ?>฿</p>
                                 </div>
                             </div>
                         </div>
-                        <a href="index.php" class="book-button" style="display: none; position: absolute; top: 230px; left: 10%; width: 80%; height: 50px; background-color: #4caf50; color: white; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;">+ จอง</a>
+                        <a href="javascript:void(0);" class="book-button" onclick="showAlert('<?php echo $statusText; ?>')" style="position: absolute; top: 230px; left: 10%; width: 80%; height: 50px; background-color: <?php echo $buttonColor; ?>; color: white; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;"><?php echo $buttonText; ?></a>
                     </div>
                 </div>
-            <?php } ?>
-        </div>
+                <?php } ?>
+            </div>
 
 
         <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
@@ -124,28 +145,38 @@ $db_con = connect_db();
             </div>
 
         </div>
+        <?php
+            
 
-        <!-- About Start -->
+            $sql = 'SELECT newTitle, newDetail,newID,newPic FROM news WHERE newID = "00015"';
+            $stmt = $db_con->prepare($sql);
+            $stmt->execute();
+
+            $news = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        ?>           
+        <!--new Start -->
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="row g-5 align-items-center">
-                    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                        <div class="about-img position-relative overflow-hidden p-5 pe-0">
-                            <img class="img-fluid w-100" src="img/bua/about1.jpg">
+                    <?php foreach ($news as $item) { ?>
+                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                            <div class="about-img position-relative overflow-hidden p-5 pe-0">
+                                <img class="img-fluid w-100" src="premaket/news_pic/<?php echo $item['newPic']; ?>"  alt="Product Image">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                        <h1 class="mb-4">ข่าวสารน่าสนใจวันนี้</h1>
-                        <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
-                        <!-- <p><i class="fa fa-check text-primary me-3"></i></p>
-                        <p><i class="fa fa-check text-primary me-3"></i></p>
-                        <p><i class="fa fa-check text-primary me-3"></i></p> -->
-                        <a class="btn btn-custom py-3 px-5 mt-3" href="">อ่านเพิ่มเติม</a>
-                    </div>
+                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                            <h1 class="mb-4">ข่าวสารน่าสนใจวันนี้</h1>
+                            <h2><?php echo $item['newTitle']; ?></h2>
+                            <p class="mb-4"><?php echo $item['newDetail']; ?></p>
+                            <a class="btn btn-custom py-3 px-5 mt-3" href="">อ่านเพิ่มเติม</a>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
-        <!-- About End -->
+
+
+        <!-- new End -->
 
         <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
             <div id="title">
@@ -275,6 +306,42 @@ $db_con = connect_db();
     </div>
         <!-- Testimonial End -->
 
+        <!-- ส่วนของสคิป -->
+            <script>
+                // JavaScript to show/hide the button on hover and move overlay-content
+                const cards = document.querySelectorAll('.card-hover');
+
+                cards.forEach(card => {
+                    card.addEventListener('mouseenter', () => {
+                        const overlayContent = card.querySelector('.overlay-content');
+                        overlayContent.style.transform = 'translateY(-40px)'; // เลื่อนขึ้น
+                        const bookButton = card.querySelector('.book-button');
+                        setTimeout(() => {
+                            bookButton.style.display = 'block';
+                        }, 50); // หน่วงเวลา 0.3 วินาที
+                    });
+
+                    card.addEventListener('mouseleave', () => {
+                        const overlayContent = card.querySelector('.overlay-content');
+                        overlayContent.style.transform = 'translateY(0)'; // คืนสภาพเดิม
+                        const bookButton = card.querySelector('.book-button');
+                        bookButton.style.display = 'none'; // ซ่อนปุ่ม
+                    });
+                });
+            </script>
+            <!-- ตรวจสอบ optionที่เลือก -->
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const radioButtons = document.querySelectorAll('input[name="options"]');
+                    radioButtons.forEach(radio => {
+                        radio.addEventListener('change', function() {
+                            const selectedValue = this.value;
+                            window.location.href = `?stdID=${selectedValue}`;
+                        });
+                    });
+                });
+            </script>
+            <!-- ปิดตรวจสอบ optionที่เลือก -->
        
 
 <!-- closs_modal -->
@@ -298,5 +365,7 @@ $db_con = connect_db();
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    
 </body>
 </html>
