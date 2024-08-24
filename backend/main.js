@@ -18,8 +18,8 @@ $(document).ready(function () {
       loadContent('room_data/room.php');
   });
   $('#dash-data').click(function () {
-    loadContent('dash_data/dash_data.php');
-});
+    loadContent('dash_data/dash.php');
+  });
 
   function loadContent(page) {
       $.ajax({

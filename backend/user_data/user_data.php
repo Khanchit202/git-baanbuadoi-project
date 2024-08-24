@@ -27,7 +27,7 @@ function getUserLevelName($level) {
         </button>
     </div>
     <div class="text-center">
-        <table class="table" style="margin-top: 20px; font-size: 18px;">
+        <table class="table" style="margin-top: 20px; font-size: 16px;">
             <thead>
                 <tr>
                     <th scope="col">ลำดับ</th>
@@ -58,7 +58,7 @@ function getUserLevelName($level) {
                     ?>
                     <th scope="row"><?php echo $index + 1; ?></th>
                     <td><?php echo htmlspecialchars($user['userName']); ?></td>
-                    <td><?php echo htmlspecialchars($user['userID']); ?></td>
+                    <td><?php echo htmlspecialchars($user['userFName']); ?></td>
                     <td><?php echo htmlspecialchars($user['userLName']); ?></td>
                     <td style="color: <?php echo $lavel_color; ?>;"><i class="lni lni-checkmark-circle" style="margin-right: 8px;"></i><?php echo getUserLevelName($user['userLavelID']); ?></td>
                     <td>
