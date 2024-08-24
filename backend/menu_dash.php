@@ -43,16 +43,16 @@ function user_status($lavel_name, $lavel_color) {
 function admin_dash($lavel_name, $lavel_color) {
     $current_page = basename($_SERVER['PHP_SELF']);
     ?>   
-        <ul class="sidebar-nav">
+            <ul class="sidebar-nav">
                 <?php user_status($lavel_name, $lavel_color); ?>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="#" id="dash-data" class="sidebar-link">
                         <i class="lni lni-grid-alt"></i>
                         <span>แดชบอร์ด</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="#" id="user-data" class="sidebar-link">
                         <i class="lni lni-protection"></i>
                         <span>กำหนดสิทธิ์การเข้าถึงระบบ</span>
                     </a>
@@ -61,18 +61,17 @@ function admin_dash($lavel_name, $lavel_color) {
                     <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
                         data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
                         <i class="lni lni-list"></i>
-                        <span>จัดการข้อมูล</span>
+                        <span>จัดการข้อมูลกิจการ</span>
                     </a>
                     <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">ห้องพัก</a>
+                            <a href="#" id="room-data" class="sidebar-link">ห้องพัก</a>
                         </li>
                         <li class="sidebar-item">
                             <a href="#" class="sidebar-link">บริการ</a>
                         </li>
                     </ul>
                 </li>
-
             </ul>
 
     <?php

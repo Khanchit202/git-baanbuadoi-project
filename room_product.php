@@ -100,14 +100,14 @@ $db_con = connect_db();
             $buttonText = '+ จอง';
             $buttonColor = '#4caf50'; // สีเขียว
         } elseif ($room['stdID'] == '00002') {
-            $statusText = 'ไม่ว่าง';
+            $statusText = 'เต็ม';
             $badgeColor = '#f44336'; // สีแดง
-            $buttonText = 'เต็ม';
+            $buttonText = 'รายละเอียด';
             $buttonColor = '#f44336'; // สีแดง
         } elseif ($room['stdID'] == '00003') {
-            $statusText = 'รอสักครู่';
+            $statusText = 'กำลังเตรียม';
             $badgeColor = '#ffeb3b'; // สีเหลือง
-            $buttonText = 'รอสักครู่';
+            $buttonText = 'รายละเอียด';
             $buttonColor = '#ffeb3b'; // สีเหลือง
         } else {
             // กรณีอื่น ๆ

@@ -342,12 +342,11 @@ $db_con = connect_db();
                 });
             </script>
             <!-- ปิดตรวจสอบ optionที่เลือก -->
-       
-
-<!-- closs_modal -->
-        <nav>
-            <?php include("footer.php"); ?>
-        </nav>
+    </div>   
+</div>
+    <nav>
+        <?php include("footer.php"); ?>
+    </nav>
 
     
     
