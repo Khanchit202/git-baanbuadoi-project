@@ -1,6 +1,8 @@
 <?php
     session_start();
     include("../db_config.php");
+    include("menu_dash.php");
+
     $db_con = connect_db("client");
 ?>
 <!DOCTYPE html>
@@ -22,7 +24,6 @@
     <script type="text/javascript" src="user_data.js"></script>
 </head>
 
-
 <body>
     <div class="wrapper">
         <aside id="sidebar">
@@ -33,7 +34,7 @@
                 </div>
             </div>
 
-            <?php include("menu_dash.php"); 
+            <?php
                 menu_dash();
             ?>
             
@@ -53,9 +54,30 @@
                     </button>
                 </div>
             </nav>
-            <div id="content">
-
-
+            <div>
+                <?php
+                    if (isset($_GET['page'])) {
+                        $page = $_GET['page'];
+                        switch ($page) {
+                            case 'dashboard':
+                                include 'dash_data/dash.php';
+                                break;
+                            case 'user-data':
+                                include 'user_data/user_data.php';
+                                break;
+                            case 'room-data':
+                                include 'room_data/room.php';
+                                break;
+                            case 'service-data':
+                                include 'dash_data/dash.php';
+                                break;
+                            default:
+                                echo "<h2>ไม่พบหน้า</h2>";
+                        }
+                    } else {
+                        include 'dash_data/dash.php';
+                    }
+                ?>
             </div>
             <div class="footer" style="background-color: white; border-radius: 10px; margin-top: 10px; text-align: center; height: 60px;padding-top:20px;">
                 <div class="bar">

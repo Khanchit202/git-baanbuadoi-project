@@ -1,8 +1,4 @@
 <?php
-include("../../db_config.php");
-$db_con = connect_db("client");
-
-// ดึงข้อมูลผู้ใช้งาน
 $users = $db_con->query("SELECT * FROM users");
 $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
 
@@ -84,51 +80,42 @@ function getUserLevelName($level) {
         <h5 class="modal-title" id="addDataModalLabel">เพิ่มข้อมูลผู้ใช้ระบบ</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <form id="employeeForm">
+      <div class="modal-body" >
           <div class="mb-3">
               <label for="username" class="form-label">ชื่อผู้ใช้</label>
-              <input type="text" class="form-control" name="username" id="username" required>
+              <input type="text" class="form-control" name="username" id="userName" required>
           </div>
           <div class="mb-3">
               <label for="firstName" class="form-label">ชื่อจริง</label>
-              <input type="text" class="form-control" name="firstName" id="firstName" required>
+              <input type="text" class="form-control" name="firstName" id="userFName" required>
           </div>
           <div class="mb-3">
               <label for="lastName" class="form-label">นามสกุล</label>
-              <input type="text" class="form-control" name="lastName" id="lastName" required>
+              <input type="text" class="form-control" name="lastName" id="userLName" required>
           </div>
           <div class="mb-3">
               <label for="phone" class="form-label">เบอร์โทรศัพท์</label>
-              <input type="tel" class="form-control" name="phone" id="phone" required>
+              <input type="tel" class="form-control" name="phone" id="userTel" required>
           </div>
           <div class="mb-3">
               <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" name="email" id="email" required>
+              <input type="email" class="form-control" name="email" id="userEmail" required>
           </div>
           <div class="mb-3">
               <label for="accessLevel" class="form-label">สิทธิ์การเข้าถึง</label>
-              <select class="form-select" name="accessLevel" id="accessLevel" required>
+              <select class="form-select" name="accessLevel" id="userLavelID" required>
                   <option value="1">ผู้ดูแลระบบ (Admin)</option>
                   <option value="2">เจ้าของกิจการ (Owner)</option>
                   <option value="3">พนักงาน (Employee)</option>
                   <option value="4">สมาชิก (Member)</option>
               </select>
           </div>
-          <div class="mb-3">
-              <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="resetPassword">
-                  <label class="form-check-label" for="resetPassword">
-                      รีเซ็ตรหัสผ่าน
-                  </label>
-              </div>
-          </div>
-        </form>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+            <button type="button" onclick="save_data()" class="btn btn-primary">บันทึกข้อมูล</button>
+        </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" onclick="save_data()" class="btn btn-primary">Save changes</button>
-      </div>
+      
     </div>
   </div>
 </div>
