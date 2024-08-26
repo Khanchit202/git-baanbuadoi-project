@@ -13,6 +13,7 @@ $db_con = connect_db();
     <link rel="stylesheet" href="style1.css">
     <link rel="stylesheet" href="button.css">
     <link rel="stylesheet" href="card.css">
+    <link rel="stylesheet" href="https://cdn.lineicons.com/3.0/lineicons.css">
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -110,40 +111,40 @@ $db_con = connect_db();
             </div>
         </div>
 
-        <div class="menu_pro d-flex justify-content-between m-5">
+        <div class="menu_pro d-flex justify-content-between" style="margin: 60px 60px;">
             
             <div class="wow fadeInUp" data-wow-delay="0.2s">
-                <div class="button">
-                    <img src="icon1.png" alt="icon" width="80" height="80">
-                    <p>บริการทั้งหมด</p>
+            <div class="button">
+                    <i class="lni lni-grid-alt" style="font-size: 30px;"></i>
+                    <p style="font-size: 14px;">บริการทั้งหมด</p>
                 </div>
             </div>
             <div class="wow fadeInUp" data-wow-delay="0.4s">
                 <div class="button">
-                    <img src="icon1.png" alt="icon" width="80" height="80">
-                    <p>บริการทั้งหมด</p>
+                    <i class="lni lni-caravan" style="font-size: 30px;"></i>
+                    <p style="font-size: 14px;">ห้องพัก</p>
                 </div>
             </div>
             <div class="wow fadeInUp" data-wow-delay="0.6s">
                 <div class="button">
-                    <img src="icon1.png" alt="icon" width="80" height="80">
-                    <p>บริการทั้งหมด</p>
+                    <i class="lni lni-basketball" style="font-size: 30px;"></i>
+                    <p style="font-size: 14px;">บริการ</p>
                 </div>
             </div>
             <div class="wow fadeInUp" data-wow-delay="0.8s">
                 <div class="button">
-                    <img src="icon1.png" alt="icon" width="80" height="80">
-                    <p>บริการทั้งหมด</p>
+                    <i class="lni lni-book" style="font-size: 30px;"></i>
+                    <p style="font-size: 14px;">ข่าวสาร</p>
                 </div>
             </div>
-            <div class="wow fadeInUp" data-wow-delay="0.10s">
+            <div class="wow fadeInUp" data-wow-delay="1s">
                 <div class="button">
-                    <img src="icon1.png" alt="icon" width="80" height="80">
-                    <p>บริการทั้งหมด</p>
+                    <i class="lni lni-offer" style="font-size: 30px;"></i>
+                    <p style="font-size: 14px;">โปรโมชั่น</p>
                 </div>
+            </div>
             </div>
 
-        </div>
         <?php
             
 
