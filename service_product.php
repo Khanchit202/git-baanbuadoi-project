@@ -34,13 +34,8 @@
             <?php include("tabbar_view/tab_bar.php"); ?>
         </nav>
 
-        <div class="pre_image" style="height: 400px">
-                <?php include("headbar.php"); ?>
-        </div>
-
-        
         <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
-            <div id="title2" style="margin: 80px 30px">
+            <div id="title2" style="margin: 60px 60px">
                 <h1>บริการทั้งหมด</h1>
                 <p>โฮมสเตย์บ้านบัวดอย ดอยอ่างขาง</p>
             </div>
@@ -54,7 +49,7 @@
                 ?>    
                      <div class="card position-relative text-white card-hover mb-5" style="width: 250px; height: 300px; overflow: hidden; position: relative; border-radius: 5px;">
                         <img src="img/bua/avocado.jpg" class="card-img" alt="Product Image" style="height: 100%; object-fit: cover;">
-                        <span class="badge position-absolute custom-badge " style="top: 10px; left: 15px; background-color: #4caf50; color: white; border-radius: 10px; padding: 10px 20px; opacity: 80%;">มีสินค้า</span>
+                        <span class="badge position-absolute custom-badge " style="top: 10px; left: 15px; background-color: #4caf50; color: white; border-radius: 5px; padding: 10px 20px; opacity: 80%;">มีสินค้า</span>
                         <div class="card-img-overlay d-flex flex-column justify-content-end" style="color: #000;">
                             <div class="overlay-content p-4" style="background: rgba(255, 255, 255, 0.9); border-radius: 10px; transition: transform 0.3s;">
                                 <div class="d-flex justify-content-between align-items-center mb-2">

@@ -50,20 +50,6 @@ $db_con = connect_db();
             <div id="title2" style="margin: 60px 60px">
                 <h1>ห้องพักทั้งหมด</h1>
                 <p>โฮมสเตย์บ้านบัวดอย ดอยอ่างขาง</p>
-                <div class="d-flex justify-content-end">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="options" id="option1" value="00001">
-                        <label class="form-check-label" for="option1">
-                            แสดงห้องว่าง
-                        </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="options" id="option2" value="00003">
-                        <label class="form-check-label" for="option2">
-                            ห้องที่กำลังจะว่าง
-                        </label>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -108,7 +94,7 @@ $db_con = connect_db();
     <div class="wow fadeInUp" data-wow-delay="0.5s" style="margin: 30px;">
         <div class="card position-relative text-white card-hover mb-5" style="width: 250px; height: 300px; overflow: hidden; position: relative; border-radius: 5px;">
             <img src="room/room_pic/<?php echo $room['roomPic']; ?>" class="card-img" alt="Room Image" style="height: 100%; object-fit: cover;">
-            <span class="badge position-absolute custom-badge" style="top: 10px; left: 15px; background-color: <?php echo $badgeColor; ?>; color: white; border-radius: 10px; padding: 10px; opacity: 80%; padding: 10px 20px;">
+            <span class="badge position-absolute custom-badge" style="top: 10px; left: 15px; background-color: <?php echo $badgeColor; ?>; color: white; border-radius: 5px; padding: 10px; opacity: 80%; padding: 10px 20px;">
                 <?php echo $statusText; ?>
             </span>
             <div class="card-img-overlay d-flex flex-column justify-content-end" style="color: #000;">
