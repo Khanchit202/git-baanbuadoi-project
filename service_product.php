@@ -38,10 +38,6 @@
                 <?php include("headbar.php"); ?>
         </div>
 
-
-        <div class="ddd" style="text-align: center;padding:10px;background-color: #4DA866;color: white;">
-            <h1 style="font-size: 16px;">บริการทั้งหมด</h1>
-        </div>
         
         <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
             <div id="title2" style="margin: 80px 30px">
@@ -56,22 +52,21 @@
             for ($i = 1; $i <= 12; $i++) { 
                 echo "<div class='wow fadeInUp' data-wow-delay='0.5s'>"
                 ?>    
-                    <div class="card position-relative text-white card-hover mb-5" style="width: 250px; height: 300px; overflow: hidden; position: relative; border-radius: 20px; margin-bottom: 20px;">
-                        <img src="img/bua/service1.png" class="card-img" alt="Room Image" style="height: 100%; object-fit: cover;">
-                        <span class="badge position-absolute custom-badge p-3" style="top: 10px; left: 10px; background-color: #4caf50; color: white; border-radius: 20px; padding: 10px;">ว่าง</span>
+                     <div class="card position-relative text-white card-hover mb-5" style="width: 250px; height: 300px; overflow: hidden; position: relative; border-radius: 5px;">
+                        <img src="img/bua/avocado.jpg" class="card-img" alt="Product Image" style="height: 100%; object-fit: cover;">
+                        <span class="badge position-absolute custom-badge " style="top: 10px; left: 15px; background-color: #4caf50; color: white; border-radius: 10px; padding: 10px 20px; opacity: 80%;">มีสินค้า</span>
                         <div class="card-img-overlay d-flex flex-column justify-content-end" style="color: #000;">
-                            <div class="overlay-content p-4" style="background: rgba(255, 255, 255, 0.9); border-radius: 20px; transition: transform 0.3s;">
+                            <div class="overlay-content p-4" style="background: rgba(255, 255, 255, 0.9); border-radius: 10px; transition: transform 0.3s;">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <h5 class="card-title m-0" style="font-size: 14px;">ห้องเดี่ยวส่วนตัว</h5>
-                                    <p class="m-0">★ 4.5</p>
+                                    <h5 class="card-title m-0" style="font-size: 14px;">สินค้าประเภทอื่น</h5>
+                                    <p class="m-0">★ 4.8</p>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center" style="font-size: 12px;">
-                                    <span class="icon-text" style="display: flex; align-items: center;"><i class="fa fa-bed text-dark me-2" style="background-color: #ccc; border-radius: 50%; padding: 5px; margin-right: 5px;"></i> 2 - 3</span>
-                                    <p class="card-text text-right font-weight-bold" style="font-size: 16px; font-weight: bold;">499฿</p>
+                                    <p class="card-text text-right font-weight-bold" style="font-size: 16px; font-weight: bold;">1,200฿</p>
                                 </div>
                             </div>
                         </div>
-                        <a href="index.php" class="book-button" style="display: none; position: absolute; top: 230px; left: 10%; width: 80%; height: 50px; background-color: #4caf50; color: white; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;">+ จอง</a>
+                        <a href="product_page.php" class="book-button" style="display: none; position: absolute; top: 230px; left: 10%; width: 80%; height: 50px; background-color: #4caf50; color: white; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;">+ สั่งซื้อ</a>
                     </div>
                 </div>
             <?php } ?>

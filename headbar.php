@@ -1,6 +1,6 @@
 
-         <div class="text-container" style="text-align: center;padding-top:100px">
-            <h1 style="font-size: 40px;padding-top:50px;">โฮมสเตย์บ้านบัวดอย</h1>
+         <div class="text-container" style="text-align: center; padding-top:100px">
+            <h1 style="font-size: 30px; padding-top:50px;">โฮมสเตย์บ้านบัวดอย</h1>
             <div class="welcome" style="font-size: 50px;height:70px;">
                 <?php include("welcome.php"); ?>
             </div>

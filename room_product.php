@@ -42,20 +42,12 @@ $db_con = connect_db();
             <?php include("tabbar_view/tab_bar.php"); ?>
         </nav>
 
-        <div class="pre_image" style="height: 400px">
-                <?php include("headbar.php"); ?>
-        </div>
-
-
-        <div class="ddd" style="text-align: center;padding:10px;background-color: #4DA866;color: white;">
-            <h1 style="font-size: 16px;">ห้องพักทั้งหมด</h1>
-        </div>
 
 
         <!-- ส่วนแสดงข้อมูลห้องพัก -->
         
         <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
-            <div id="title2" style="margin: 80px 30px">
+            <div id="title2" style="margin: 60px 60px">
                 <h1>ห้องพักทั้งหมด</h1>
                 <p>โฮมสเตย์บ้านบัวดอย ดอยอ่างขาง</p>
                 <div class="d-flex justify-content-end">
@@ -96,31 +88,31 @@ $db_con = connect_db();
         // กำหนดข้อความและสีพื้นหลังตามค่า stdID
         if ($room['stdID'] == '00001') {
             $statusText = 'ว่าง';
-            $badgeColor = '#4caf50'; // สีเขียว
+            $badgeColor = '#4caf50';
             $buttonText = '+ จอง';
-            $buttonColor = '#4caf50'; // สีเขียว
+            $buttonColor = '#4caf50';
         } elseif ($room['stdID'] == '00002') {
             $statusText = 'เต็ม';
-            $badgeColor = '#f44336'; // สีแดง
+            $badgeColor = '#DE6461';
             $buttonText = 'รายละเอียด';
-            $buttonColor = '#f44336'; // สีแดง
+            $buttonColor = '#DE6461';
         } elseif ($room['stdID'] == '00003') {
             $statusText = 'กำลังเตรียม';
-            $badgeColor = '#ffeb3b'; // สีเหลือง
+            $badgeColor = '#3B8386';
             $buttonText = 'รายละเอียด';
-            $buttonColor = '#ffeb3b'; // สีเหลือง
+            $buttonColor = '#3B8386';
         } else {
             // กรณีอื่น ๆ
         }
     ?>
     <div class="wow fadeInUp" data-wow-delay="0.5s" style="margin: 30px;">
-        <div class="card position-relative text-white card-hover mb-5" style="width: 250px; height: 300px; overflow: hidden; position: relative; border-radius: 20px;">
+        <div class="card position-relative text-white card-hover mb-5" style="width: 250px; height: 300px; overflow: hidden; position: relative; border-radius: 5px;">
             <img src="room/room_pic/<?php echo $room['roomPic']; ?>" class="card-img" alt="Room Image" style="height: 100%; object-fit: cover;">
-            <span class="badge position-absolute custom-badge p-3" style="top: 10px; left: 10px; background-color: <?php echo $badgeColor; ?>; color: white; border-radius: 20px; padding: 10px;">
+            <span class="badge position-absolute custom-badge" style="top: 10px; left: 15px; background-color: <?php echo $badgeColor; ?>; color: white; border-radius: 10px; padding: 10px; opacity: 80%; padding: 10px 20px;">
                 <?php echo $statusText; ?>
             </span>
             <div class="card-img-overlay d-flex flex-column justify-content-end" style="color: #000;">
-                <div class="overlay-content p-4" style="background: rgba(255, 255, 255, 0.9); border-radius: 20px; transition: transform 0.3s;">
+                <div class="overlay-content p-4" style="background: rgba(255, 255, 255, 0.9); border-radius: 10px; transition: transform 0.3s;">
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <h5 class="card-title m-0" style="font-size: 14px;"><?php echo $room['roomName']; ?></h5>
                         <p class="m-0">★ </p>

@@ -38,7 +38,7 @@ $db_con = connect_db();
             <?php include("tabbar_view/tab_bar.php"); ?>
         </nav>
 
-        <div class="pre_image" style="height: 400px">
+        <div class="pre_image" style="height: 300px">
                 <?php include("headbar.php"); ?>
         </div>
 
@@ -58,7 +58,6 @@ $db_con = connect_db();
         <?php
             $stdID = isset($_GET['stdID']) ? $_GET['stdID'] : '00001';
 
-            
                 $sql = 'SELECT roomPic, roomName, roomID, roomBed, roomBath, roomPrice, stdID FROM room_product WHERE stdID = :stdID';
                 $stmt = $db_con->prepare($sql);
                 $stmt->execute(['stdID' => $stdID]);
@@ -71,9 +70,9 @@ $db_con = connect_db();
                     // กำหนดข้อความและสีพื้นหลังตามค่า stdID
                     if ($room['stdID'] == '00001') {
                         $statusText = 'ว่าง';
-                        $badgeColor = '#4caf50'; // สีเขียว
+                        $badgeColor = '#4caf50';
                         $buttonText = '+ จอง';
-                        $buttonColor = '#4caf50'; // สีเขียว
+                        $buttonColor = '#4caf50';
                     }else {
                         // กรณีอื่น ๆ
                     }

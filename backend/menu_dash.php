@@ -69,6 +69,12 @@ function admin_dash($lavel_name, $lavel_color) {
                     </li>
                 </ul>
             </li>
+            <li class="sidebar-item">
+                <a href="?page=user-data" class="sidebar-link <?php echo ($current_page == 'user-data' ? 'active' : '') ?>">
+                    <i class="lni lni-list"></i>
+                    <span>ข้อมูลการจอง</span>
+                </a>
+            </li>
         </ul>
     <?php
 } 

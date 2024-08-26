@@ -15,9 +15,9 @@ function getUserLevelName($level) {
 ?>
 <p style="font-size: 16px; padding: 5px 20px;">กำหนดสิทธิ์การเข้าถึงระบบ</p>
 <div id="user-table" style="align-items: center;background-color: white; border-radius: 10px; padding: 50px;">
-    <div class="d-flex justify-content-between m-2">
-        <p style="font-size: 24px;">รายชื่อ</p>
-        <button class="btn btn-primary" style="font-size: 16px;" data-bs-toggle="modal" data-bs-target="#addDataModal">
+    <div class="d-flex justify-content-between">
+        <p style="font-size: 20px;">ผู้ใช้ระบบทั้งหมด</p>
+        <button class="btn btn-primary" style="font-size: 12px;margin-right: 80px;" data-bs-toggle="modal" data-bs-target="#addDataModal">
             <i class="lni lni-circle-plus" style="padding: 5px;"></i>
             เพิ่มผู้ใช้  
         </button>

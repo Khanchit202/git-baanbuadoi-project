@@ -38,21 +38,22 @@
                 menu_dash();
             ?>
             
-            <div class="sidebar-footer">
-                <a href="../index.php" class="sidebar-link">
-                    <i class="lni lni-home"></i>
-                    <span>กลับหน้าหลัก</span>
-                </a>
-            </div>
         </aside>
 
         <div class="main p-3" style="background-color: #ECF0F1;">
-            <nav class="navbar navbar-light bg-light" style="border-radius: 10px; margin-bottom: 20px;">
+            <nav class="navbar navbar-light bg-light justify-content-between" style="border-radius: 10px; margin-bottom: 20px;">
                 <div class="bar">
                     <button class="toggle-btn" type="button">
                         <i class="lni lni-menu"></i>
                     </button>
                 </div>
+                <p style="margin: 5px 0px 0px 0px;">ระบบบริหารจัดการกิจการ</p>
+                <div class="sidebar-footer">
+                <a href="../index.php" class="sidebar-link">
+                    <i class="lni lni-home"></i>
+                    <span>กลับหน้าหลัก</span>
+                </a>
+            </div>
             </nav>
             <div>
                 <?php
