@@ -55,26 +55,29 @@ $db_con = connect_db();
             </div>
         </div>
 
-
+    <!-- ห้องพัก -->
         <?php
             $stdID = isset($_GET['stdID']) ? $_GET['stdID'] : '00001';
 
-                $sql = 'SELECT roomPic, roomName, roomID, roomBed, roomBath, roomPrice, stdID FROM room_product WHERE stdID = :stdID';
-                $stmt = $db_con->prepare($sql);
-                $stmt->execute(['stdID' => $stdID]);
-            
+            $sql = 'SELECT roomPic, roomName, roomID, roomBed, roomBath, roomPrice, stdID FROM room_product WHERE stdID = :stdID';
+            $stmt = $db_con->prepare($sql);
+            $stmt->execute(['stdID' => $stdID]);
+
             $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>
             <div class="produc_pre d-flex flex-row flex-wrap justify-content-start" style="margin: 0 30px;">
                 <!-- การ์ดสำหรับห้อง -->
-                <?php foreach ($rooms as $room) { 
+                <?php 
+                $count = 0;
+                foreach ($rooms as $room) { 
+                    if ($count >= 8) break; // แสดงแค่ 8 การ์ด
                     // กำหนดข้อความและสีพื้นหลังตามค่า stdID
                     if ($room['stdID'] == '00001') {
                         $statusText = 'ว่าง';
                         $badgeColor = '#4caf50';
                         $buttonText = '+ จอง';
                         $buttonColor = '#4caf50';
-                    }else {
+                    } else {
                         // กรณีอื่น ๆ
                     }
                 ?>
@@ -100,8 +103,12 @@ $db_con = connect_db();
                         <a href="javascript:void(0);" class="book-button" onclick="showAlert('<?php echo $statusText; ?>')" style="position: absolute; top: 230px; left: 10%; width: 80%; height: 50px; background-color: <?php echo $buttonColor; ?>; color: white; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;"><?php echo $buttonText; ?></a>
                     </div>
                 </div>
-                <?php } ?>
+                <?php 
+                    $count++;
+                } 
+                ?>
             </div>
+        <!-- ปิดห้องพัก -->
 
 
         <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
@@ -174,10 +181,9 @@ $db_con = connect_db();
                 </div>
             </div>
         </div>
-
-
         <!-- new End -->
 
+        <!-- บริการ -->
         <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
             <div id="title">
                 <h1>แนะนำบริการ</h1>
@@ -185,54 +191,59 @@ $db_con = connect_db();
             </div>
         </div>
 
-        <div class="produc_pre" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; margin: 0 30px;">
-            <!-- การ์ดสำหรับสินค้าประเภทอื่น -->
-            <?php 
-            for ($i = 1; $i <= 4; $i++) { 
-                echo "<div class='wow fadeInUp' data-wow-delay='0.5s'>"
-                ?>    
-                    <div class="card position-relative text-white card-hover mb-5" style="width: 250px; height: 300px; overflow: hidden; position: relative; border-radius: 20px; margin-bottom: 20px;">
-                        <img src="img/bua/po4.jpg" class="card-img" alt="Product Image" style="height: 100%; object-fit: cover;">
-                        <span class="badge position-absolute custom-badge p-3" style="top: 10px; left: 10px; background-color: #4caf50; color: white; border-radius: 20px; padding: 10px;">มีสินค้า</span>
+        <?php
+            $stdID = isset($_GET['stdID']) ? $_GET['stdID'] : '00001';
+
+            $sql = 'SELECT serviceID, serviceName, servicePrice, serviceDetail,servicePic,serviceTime,serviceTotal,stdID FROM service_product WHERE stdID = :stdID';
+            $stmt = $db_con->prepare($sql);
+            $stmt->execute(['stdID' => $stdID]);
+
+            $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            ?>
+            <div class="produc_pre d-flex flex-row flex-wrap justify-content-start" style="margin: 0 30px;">
+                <!-- การ์ดสำหรับบริการ -->
+                <?php 
+                $count = 0;
+                foreach ($services as $service) { 
+                    if ($count >= 4) break; // แสดงแค่ 4 การ์ด
+                    // กำหนดข้อความและสีพื้นหลังตามค่า stdID
+                    if ($room['stdID'] == '00001') {
+                        $statusText = 'มีบริการ';
+                        $badgeColor = '#4caf50';
+                        $buttonText = '+ จอง';
+                        $buttonColor = '#4caf50';
+                    } else {
+                        // กรณีอื่น ๆ
+                    }
+                ?>
+                <div class="wow fadeInUp" data-wow-delay="0.5s" style="margin: 30px;">
+                    <div class="card position-relative text-white card-hover mb-5" style="width: 250px; height: 300px; overflow: hidden; position: relative; border-radius: 20px;">
+                        <img src="img/service/<?php echo $service['servicePic']; ?>" class="card-img" alt="Room Image" style="height: 100%; object-fit: cover;">
+                        <span class="badge position-absolute custom-badge p-3" style="top: 10px; left: 10px; background-color: <?php echo $badgeColor; ?>; color: white; border-radius: 20px; padding: 10px;">
+                            <?php echo $statusText; ?>
+                        </span>
                         <div class="card-img-overlay d-flex flex-column justify-content-end" style="color: #000;">
                             <div class="overlay-content p-4" style="background: rgba(255, 255, 255, 0.9); border-radius: 20px; transition: transform 0.3s;">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <h5 class="card-title m-0" style="font-size: 14px;">สินค้าประเภทอื่น</h5>
-                                    <p class="m-0">★ 4.8</p>
+                                    <h5 class="card-title m-0" style="font-size: 14px;"><?php echo $service['serviceName']; ?></h5>
+                                    <p class="m-0">★ </p>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center" style="font-size: 12px;">
-                                    <p class="card-text text-right font-weight-bold" style="font-size: 16px; font-weight: bold;">1,200฿</p>
+                                    <p class="card-text text-right font-weight-bold" style="font-size: 16px; font-weight: bold;"><?php echo $service['servicePrice']; ?>฿</p>
                                 </div>
                             </div>
                         </div>
-                        <a href="product_page.php" class="book-button" style="display: none; position: absolute; top: 230px; left: 10%; width: 80%; height: 50px; background-color: #4caf50; color: white; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;">+ สั่งซื้อ</a>
+                        <a href="javascript:void(0);" class="book-button" onclick="showAlert('<?php echo $statusText; ?>')" style="position: absolute; top: 230px; left: 10%; width: 80%; height: 50px; background-color: <?php echo $buttonColor; ?>; color: white; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;"><?php echo $buttonText; ?></a>
                     </div>
                 </div>
-            <?php } ?>
-        </div>
+                <?php 
+                    $count++;
+                } 
+                ?>
+            </div>
 
-        <script>
-            // JavaScript to show/hide the button on hover and move overlay-content
-            const cards = document.querySelectorAll('.card-hover');
-
-            cards.forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    const overlayContent = card.querySelector('.overlay-content');
-                    overlayContent.style.transform = 'translateY(-40px)'; // เลื่อนขึ้น
-                    const bookButton = card.querySelector('.book-button');
-                    setTimeout(() => {
-                        bookButton.style.display = 'block';
-                    }, 50); // หน่วงเวลา 0.3 วินาที
-                });
-
-                card.addEventListener('mouseleave', () => {
-                    const overlayContent = card.querySelector('.overlay-content');
-                    overlayContent.style.transform = 'translateY(0)'; // คืนสภาพเดิม
-                    const bookButton = card.querySelector('.book-button');
-                    bookButton.style.display = 'none'; // ซ่อนปุ่ม
-                });
-            });
-        </script>
+    <!-- ปิดบริการ -->
+        
 
         
         <!-- procuct Start -->
@@ -307,6 +318,7 @@ $db_con = connect_db();
         <!-- Testimonial End -->
 
         <!-- ส่วนของสคิป -->
+        
             <script>
                 // JavaScript to show/hide the button on hover and move overlay-content
                 const cards = document.querySelectorAll('.card-hover');

@@ -101,7 +101,7 @@ $db_con = connect_db();
                 <?php foreach ($products as $product) { ?>
                     <div class='wow fadeInUp' data-wow-delay='0.5s'>
                         <div class="card position-relative text-white card-hover mb-5" style="width: 350px; height: 400px; overflow: hidden; position: relative; border-radius: 20px; margin-bottom: 20px;">
-                            <img src="premaket/news_pic/<?php echo $product['newPic']; ?>" class="card-img" alt="Product Image" style="height: 100%; object-fit: cover;">
+                            <img src="img/news_pic/<?php echo $product['newPic']; ?>" class="card-img" alt="Product Image" style="height: 100%; object-fit: cover;">
                             <span class="badge position-absolute custom-badge p-3" style="top: 10px; left: 50%; transform: translateX(-50%); background-color: #fff; color: #000; border-radius: 5px; padding: 10px;"><?php echo $product['newTitle']; ?></span>
                             <div class="card-img-overlay d-flex flex-column justify-content-end" style="color: #000;">
                                 <div class="overlay-content p-4" style="border-radius: 20px; transition: transform 0.3s;"></div>

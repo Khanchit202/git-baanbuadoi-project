@@ -1,3 +1,7 @@
+<?php
+include ("db_config.php");
+$db_con = connect_db();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,31 +46,94 @@
         </div>
 
 
-        <div class="produc_pre" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; margin: 0 30px;">
-            <?php 
-            for ($i = 1; $i <= 12; $i++) { 
-                echo "<div class='wow fadeInUp' data-wow-delay='0.5s'>"
-                ?>    
-                     <div class="card position-relative text-white card-hover mb-5" style="width: 250px; height: 300px; overflow: hidden; position: relative; border-radius: 5px;">
-                        <img src="img/bua/avocado.jpg" class="card-img" alt="Product Image" style="height: 100%; object-fit: cover;">
-                        <span class="badge position-absolute custom-badge " style="top: 10px; left: 15px; background-color: #4caf50; color: white; border-radius: 5px; padding: 10px 20px; opacity: 80%;">มีสินค้า</span>
+        <?php
+            
+            // รับค่า stdID และ page จาก URL
+            $stdID = isset($_GET['stdID']) ? $_GET['stdID'] : null;
+            $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+            $limit = 12;
+            $offset = ($page - 1) * $limit;
+
+            // ดึงข้อมูลจากฐานข้อมูล
+            if ($stdID) {
+                $sql = 'SELECT serviceID, serviceName, servicePrice, serviceDetail,servicePic,stdID FROM service_product WHERE stdID = :stdID LIMIT :limit OFFSET :offset';
+                $stmt = $db_con->prepare($sql);
+                $stmt->bindParam(':stdID', $stdID, PDO::PARAM_STR);
+                $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+                $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+                $stmt->execute();
+            } else {
+                $sql = 'SELECT serviceID, serviceName, servicePrice, serviceDetail,servicePic,stdID FROM service_product LIMIT :limit OFFSET :offset';
+                $stmt = $db_con->prepare($sql);
+                $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+                $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+                $stmt->execute();
+            }
+
+            $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            ?>
+            <div class="produc_pre d-flex flex-row flex-wrap justify-content-start" style="margin: 0 30px;" id="product">
+                <!-- การ์ดสำหรับสินค้า -->
+                <?php foreach ($services as $service) { 
+                    // กำหนดข้อความและสีพื้นหลังตามค่า productStatus
+                    if ($service['stdID'] == '00001') {
+                        $statusText = 'มีสินค้า';
+                        $badgeColor = '#4caf50';
+                        $buttonText = '+ สั่งซื้อ';
+                        $buttonColor = '#4caf50';
+                    } elseif ($service['stdID'] == '00002') {
+                        $statusText = 'หมด';
+                        $badgeColor = '#DE6461';
+                        $buttonText = 'รายละเอียด';
+                        $buttonColor = '#DE6461';
+                    } elseif ($service['stdID'] == '00003') {
+                        $statusText = 'กำลังเตรียม';
+                        $badgeColor = '#3B8386';
+                        $buttonText = 'รายละเอียด';
+                        $buttonColor = '#3B8386';
+                    } else {
+                        // กรณีอื่น ๆ
+                    }
+                ?>
+                <div class="wow fadeInUp" data-wow-delay="0.5s" style="margin: 30px;">
+                    <div class="card position-relative text-white card-hover mb-5" style="width: 250px; height: 300px; overflow: hidden; position: relative; border-radius: 5px;">
+                        <img src="img/service/<?php echo $service['servicePic']; ?>" class="card-img" alt="Product Image" style="height: 100%; object-fit: cover;">
+                        <span class="badge position-absolute custom-badge" style="top: 10px; left: 15px; background-color: <?php echo $badgeColor; ?>; color: white; border-radius: 5px; padding: 10px; opacity: 80%; padding: 10px 20px;">
+                            <?php echo $statusText; ?>
+                        </span>
                         <div class="card-img-overlay d-flex flex-column justify-content-end" style="color: #000;">
                             <div class="overlay-content p-4" style="background: rgba(255, 255, 255, 0.9); border-radius: 10px; transition: transform 0.3s;">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <h5 class="card-title m-0" style="font-size: 14px;">สินค้าประเภทอื่น</h5>
-                                    <p class="m-0">★ 4.8</p>
+                                    <h5 class="card-title m-0" style="font-size: 14px;"><?php echo $service['serviceName']; ?></h5>
+                                    <p class="m-0">★ </p>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center" style="font-size: 12px;">
-                                    <p class="card-text text-right font-weight-bold" style="font-size: 16px; font-weight: bold;">1,200฿</p>
+                                    <p class="card-text text-right font-weight-bold" style="font-size: 16px; font-weight: bold;"><?php echo $service['servicePrice']; ?>฿</p>
                                 </div>
                             </div>
                         </div>
-                        <a href="product_page.php" class="book-button" style="display: none; position: absolute; top: 230px; left: 10%; width: 80%; height: 50px; background-color: #4caf50; color: white; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;">+ สั่งซื้อ</a>
+                        <a href="javascript:void(0);" class="book-button" onclick="showAlert('<?php echo $statusText; ?>')" style="position: absolute; top: 230px; left: 10%; width: 80%; height: 50px; background-color: <?php echo $buttonColor; ?>; color: white; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;"><?php echo $buttonText; ?></a>
                     </div>
                 </div>
-            <?php } ?>
-        </div>
-        <div class="produc_pre" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px;">
+                <?php } ?>
+            </div>
+            <!-- Pagination -->
+            <div class="pagination d-flex justify-content-center">
+                <?php
+                $totalProducts = $db_con->query('SELECT COUNT(*) FROM service_product')->fetchColumn();
+                $totalPages = ceil($totalProducts / $limit);
+
+                if ($page > 1) {
+                    echo '<a href="?page=' . ($page - 1) . '"><i class="fa fa-arrow-left "></i></a>';
+                }
+
+                if ($page < $totalPages) {
+                    echo '<a href="?page=' . ($page + 1) . '"><i class="fa fa-arrow-right "></i></a>';
+                }
+                ?>
+            </div>
+
+        
 
         <script>
             // JavaScript to show/hide the button on hover and move overlay-content

@@ -28,13 +28,22 @@ $db_con = connect_db();
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Data table -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.4/css/dataTables.dataTables.css" />
+    <script src="https://cdn.datatables.net/2.1.4/js/dataTables.js"></script>
 
-    <script type="text/javascript" src="indexs.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
     <!-- SweetAlert CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <!-- SweetAlert JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" >
+      $(document).ready(function () {
+        $('#room').DataTable();
+      });
+
+    </script>
+
 </head>
 <body>
     <div class="container-xxl bg-white p-0">
@@ -55,70 +64,89 @@ $db_con = connect_db();
 
         <?php
             $stdID = isset($_GET['stdID']) ? $_GET['stdID'] : null;
+            $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+            $limit = 12;
+            $offset = ($page - 1) * $limit;
 
             if ($stdID) {
-                $sql = 'SELECT roomPic, roomName, roomID, roomBed, roomBath, roomPrice, stdID FROM room_product WHERE stdID = :stdID';
+                $sql = 'SELECT roomPic, roomName, roomID, roomBed, roomBath, roomPrice, stdID FROM room_product WHERE stdID = :stdID LIMIT :limit OFFSET :offset';
                 $stmt = $db_con->prepare($sql);
-                $stmt->execute(['stdID' => $stdID]);
+                $stmt->bindParam(':stdID', $stdID, PDO::PARAM_STR);
+                $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+                $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+                $stmt->execute();
             } else {
-                $sql = 'SELECT roomPic, roomName, roomID, roomBed, roomBath, roomPrice, stdID FROM room_product';
+                $sql = 'SELECT roomPic, roomName, roomID, roomBed, roomBath, roomPrice, stdID FROM room_product LIMIT :limit OFFSET :offset';
                 $stmt = $db_con->prepare($sql);
+                $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+                $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
                 $stmt->execute();
             }
-            
+
             $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>
-            <div class="produc_pre d-flex flex-row flex-wrap justify-content-start" style="margin: 0 30px;">
-    <!-- การ์ดสำหรับห้อง -->
-    <?php foreach ($rooms as $room) { 
-        // กำหนดข้อความและสีพื้นหลังตามค่า stdID
-        if ($room['stdID'] == '00001') {
-            $statusText = 'ว่าง';
-            $badgeColor = '#4caf50';
-            $buttonText = '+ จอง';
-            $buttonColor = '#4caf50';
-        } elseif ($room['stdID'] == '00002') {
-            $statusText = 'เต็ม';
-            $badgeColor = '#DE6461';
-            $buttonText = 'รายละเอียด';
-            $buttonColor = '#DE6461';
-        } elseif ($room['stdID'] == '00003') {
-            $statusText = 'กำลังเตรียม';
-            $badgeColor = '#3B8386';
-            $buttonText = 'รายละเอียด';
-            $buttonColor = '#3B8386';
-        } else {
-            // กรณีอื่น ๆ
-        }
-    ?>
-    <div class="wow fadeInUp" data-wow-delay="0.5s" style="margin: 30px;">
-        <div class="card position-relative text-white card-hover mb-5" style="width: 250px; height: 300px; overflow: hidden; position: relative; border-radius: 5px;">
-            <img src="room/room_pic/<?php echo $room['roomPic']; ?>" class="card-img" alt="Room Image" style="height: 100%; object-fit: cover;">
-            <span class="badge position-absolute custom-badge" style="top: 10px; left: 15px; background-color: <?php echo $badgeColor; ?>; color: white; border-radius: 5px; padding: 10px; opacity: 80%; padding: 10px 20px;">
-                <?php echo $statusText; ?>
-            </span>
-            <div class="card-img-overlay d-flex flex-column justify-content-end" style="color: #000;">
-                <div class="overlay-content p-4" style="background: rgba(255, 255, 255, 0.9); border-radius: 10px; transition: transform 0.3s;">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <h5 class="card-title m-0" style="font-size: 14px;"><?php echo $room['roomName']; ?></h5>
-                        <p class="m-0">★ </p>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center" style="font-size: 12px;">
-                        <span class="icon-text" style="display: flex; align-items: center;"><i class="fa fa-bed text-dark me-2" style="background-color: #ccc; border-radius: 50%; padding: 5px; margin-right: 5px;"></i> <?php echo $room['roomBed']; ?></span>
-                        <span class="icon-text" style="display: flex; align-items: center;"><i class="fa fa-bath text-dark me-2" style="background-color: #ccc; border-radius: 50%; padding: 5px; margin-right: 5px;"></i> <?php echo $room['roomBath']; ?></span>
-                        <p class="card-text text-right font-weight-bold" style="font-size: 16px; font-weight: bold;"><?php echo $room['roomPrice']; ?>฿</p>
+            <div class="produc_pre d-flex flex-row flex-wrap justify-content-start" style="margin: 0 30px;" id="room">
+                <!-- การ์ดสำหรับห้อง -->
+                <?php foreach ($rooms as $room) { 
+                    // กำหนดข้อความและสีพื้นหลังตามค่า stdID
+                    if ($room['stdID'] == '00001') {
+                        $statusText = 'ว่าง';
+                        $badgeColor = '#4caf50';
+                        $buttonText = '+ จอง';
+                        $buttonColor = '#4caf50';
+                    } elseif ($room['stdID'] == '00002') {
+                        $statusText = 'เต็ม';
+                        $badgeColor = '#DE6461';
+                        $buttonText = 'รายละเอียด';
+                        $buttonColor = '#DE6461';
+                    } elseif ($room['stdID'] == '00003') {
+                        $statusText = 'กำลังเตรียม';
+                        $badgeColor = '#3B8386';
+                        $buttonText = 'รายละเอียด';
+                        $buttonColor = '#3B8386';
+                    } else {
+                        // กรณีอื่น ๆ
+                    }
+                ?>
+                <div class="wow fadeInUp" data-wow-delay="0.5s" style="margin: 30px;">
+                    <div class="card position-relative text-white card-hover mb-5" style="width: 250px; height: 300px; overflow: hidden; position: relative; border-radius: 5px;">
+                        <img src="room/room_pic/<?php echo $room['roomPic']; ?>" class="card-img" alt="Room Image" style="height: 100%; object-fit: cover;">
+                        <span class="badge position-absolute custom-badge" style="top: 10px; left: 15px; background-color: <?php echo $badgeColor; ?>; color: white; border-radius: 5px; padding: 10px; opacity: 80%; padding: 10px 20px;">
+                            <?php echo $statusText; ?>
+                        </span>
+                        <div class="card-img-overlay d-flex flex-column justify-content-end" style="color: #000;">
+                            <div class="overlay-content p-4" style="background: rgba(255, 255, 255, 0.9); border-radius: 10px; transition: transform 0.3s;">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h5 class="card-title m-0" style="font-size: 14px;"><?php echo $room['roomName']; ?></h5>
+                                    <p class="m-0">★ </p>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center" style="font-size: 12px;">
+                                    <span class="icon-text" style="display: flex; align-items: center;"><i class="fa fa-bed text-dark me-2" style="background-color: #ccc; border-radius: 50%; padding: 5px; margin-right: 5px;"></i> <?php echo $room['roomBed']; ?></span>
+                                    <span class="icon-text" style="display: flex; align-items: center;"><i class="fa fa-bath text-dark me-2" style="background-color: #ccc; border-radius: 50%; padding: 5px; margin-right: 5px;"></i> <?php echo $room['roomBath']; ?></span>
+                                    <p class="card-text text-right font-weight-bold" style="font-size: 16px; font-weight: bold;"><?php echo $room['roomPrice']; ?>฿</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="javascript:void(0);" class="book-button" onclick="showAlert('<?php echo $statusText; ?>')" style="position: absolute; top: 230px; left: 10%; width: 80%; height: 50px; background-color: <?php echo $buttonColor; ?>; color: white; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;"><?php echo $buttonText; ?></a>
                     </div>
                 </div>
+                <?php } ?>
             </div>
-            <a href="javascript:void(0);" class="book-button" onclick="showAlert('<?php echo $statusText; ?>')" style="position: absolute; top: 230px; left: 10%; width: 80%; height: 50px; background-color: <?php echo $buttonColor; ?>; color: white; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;"><?php echo $buttonText; ?></a>
-        </div>
-    </div>
-    <?php } ?>
-</div>
+            <!-- Pagination -->
+            <div class="pagination d-flex justify-content-center">
+                <?php
+                $totalRooms = $db_con->query('SELECT COUNT(*) FROM room_product')->fetchColumn();
+                $totalPages = ceil($totalRooms / $limit);
 
+                if ($page > 1) {
+                    echo '<a href="?page=' . ($page - 1) . '"><i class="fa fa-arrow-left "></i></a>';
+                }
 
-
-
+                if ($page < $totalPages) {
+                    echo '<a href="?page=' . ($page + 1) . '"><i class="fa fa-arrow-right "></i></a>';
+                }
+                ?>
+            </div>
      <!-- ปิด ส่วนแสดงข้อมูลห้องพัก -->
 
 
@@ -149,11 +177,18 @@ $db_con = connect_db();
         <!-- แสดงแจ้งเตือนเมื่อค่าเป็นไม่ว่าง -->
         <script>
             function showAlert(statusText) {
-                if (statusText === 'ไม่ว่าง' || statusText === 'รอสักครู่') {
+                if (statusText === 'เต็ม' ) {
                     Swal.fire({
                         icon: 'warning',
                         title: 'ไม่สามารถจองได้',
-                        text: 'ห้องนี้ไม่ว่างหรือต้องรอสักครู่',
+                        text: 'ห้องนี้ไม่ว่างหรือถูกจองแล้ว',
+                        confirmButtonText: 'ตกลง'
+                    });
+                }else if( statusText === 'กำลังเตรียม'){
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'ไม่สามารถจองได้',
+                        text: 'ห้องนี้อยู่ในระหว่างเตรียมการกรุณารอสักครู่',
                         confirmButtonText: 'ตกลง'
                     });
                 }

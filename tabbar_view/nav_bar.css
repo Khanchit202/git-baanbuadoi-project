@@ -51,10 +51,8 @@
 }
 
 .topbar_menu_list ul li a.active {
-    background-color: rgb(70, 243, 127); /* เปลี่ยนสีพื้นหลังตามที่คุณต้องการ */
-    color: rgb(21, 20, 20); /* เปลี่ยนสีข้อความตามที่คุณต้องการ */
-    border-radius: 5px; /* เพิ่มขอบมนให้กับแทบสี */
-    padding: 10px 10px; /* เพิ่ม padding ให้กับแทบสี */
+    color: rgb(130, 54, 23); 
+    font-weight: bold; 
 }
 
 @media (max-width: 768px) {
@@ -91,7 +89,6 @@
 .btn-custom:hover {
     background-color: rgb(163, 155, 155);
     color: black;
-    
 }
 
 .dropdown-menu a {
@@ -100,6 +97,8 @@
     text-decoration: none;
     color: #333;
 }
+
 .dropdown-menu a:hover {
     background-color: #f0f0f0;
 }
+

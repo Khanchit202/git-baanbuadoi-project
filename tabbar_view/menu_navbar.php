@@ -1,3 +1,4 @@
+
 <?php
 
 function menu_navbar() {
