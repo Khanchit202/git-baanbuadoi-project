@@ -77,7 +77,7 @@ $db_con = connect_db();
                 <?php foreach ($services as $service) { 
                     // กำหนดข้อความและสีพื้นหลังตามค่า productStatus
                     if ($service['stdID'] == '00001') {
-                        $statusText = 'มีสินค้า';
+                        $statusText = 'มีบริการ';
                         $badgeColor = '#4caf50';
                         $buttonText = '+ สั่งซื้อ';
                         $buttonColor = '#4caf50';
