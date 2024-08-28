@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 20, 2024 at 03:41 PM
+-- Generation Time: Aug 28, 2024 at 03:50 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -45,6 +45,13 @@ CREATE TABLE `booking` (
   `serviceID` smallint(5) UNSIGNED ZEROFILL NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `booking`
+--
+
+INSERT INTO `booking` (`bookID`, `bookName`, `bookTel`, `bookDateStart`, `bookDateEnd`, `bookPrice`, `bookDate`, `bookDetail`, `bookConfirm`, `bookStatus`, `bookCancel`, `userID`, `pmtID`, `roomID`, `serviceID`) VALUES
+(00003, 'สมชาย', '0830026319', '2024-08-27 18:55:02', '2024-08-27 18:55:02', 500.00, '2024-08-27 18:55:02', 'จองห้องพัก', 1, 1, 0, 00003, 00001, 00007, 00001);
+
 -- --------------------------------------------------------
 
 --
@@ -59,6 +66,13 @@ CREATE TABLE `booking_bill` (
   `roomID` smallint(5) UNSIGNED ZEROFILL NOT NULL,
   `serviceID` smallint(5) UNSIGNED ZEROFILL NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `booking_bill`
+--
+
+INSERT INTO `booking_bill` (`billID`, `payID`, `bookID`, `userID`, `roomID`, `serviceID`) VALUES
+(00003, 00001, 00003, 00003, 00007, 00001);
 
 -- --------------------------------------------------------
 
@@ -79,6 +93,13 @@ CREATE TABLE `booking_payment` (
   `serviceID` smallint(5) UNSIGNED ZEROFILL NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `booking_payment`
+--
+
+INSERT INTO `booking_payment` (`payID`, `payPic`, `payDate`, `payNameAc`, `payManey`, `payStatus`, `bookID`, `userID`, `roomID`, `serviceID`) VALUES
+(00001, 'pay.jpg', '2024-08-27 18:57:08', 'somchai', 250.00, 1, 00003, 00003, 00007, 00001);
+
 -- --------------------------------------------------------
 
 --
@@ -92,6 +113,13 @@ CREATE TABLE `checking` (
   `user_userID` smallint(5) UNSIGNED ZEROFILL NOT NULL,
   `billID` smallint(5) UNSIGNED ZEROFILL NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `checking`
+--
+
+INSERT INTO `checking` (`checkID`, `checkDate`, `checkStatus`, `user_userID`, `billID`) VALUES
+(00001, '2024-08-27 18:58:19', 'สำเร็จ', 00003, 00003);
 
 -- --------------------------------------------------------
 
@@ -182,6 +210,13 @@ CREATE TABLE `promotions` (
   `userID` smallint(5) UNSIGNED ZEROFILL NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `promotions`
+--
+
+INSERT INTO `promotions` (`pmtID`, `pmtTitle`, `pmtDetail`, `pmtCode`, `pmtDiscont`, `pmtUnit`, `pmtDate`, `pmtStartDate`, `pmtEndDate`, `pmtPic`, `userID`) VALUES
+(00001, 'ลดราคา', 'Tour bus', '00001', 100.00, 'ฺB', '2024-08-27 18:52:40', '2024-08-27 18:52:40', '2024-08-27 18:52:40', 'pomo.jpg', 00003);
+
 -- --------------------------------------------------------
 
 --
@@ -198,6 +233,13 @@ CREATE TABLE `reviws_room` (
   `userID` smallint(5) UNSIGNED ZEROFILL NOT NULL,
   `billID` smallint(5) UNSIGNED ZEROFILL NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `reviws_room`
+--
+
+INSERT INTO `reviws_room` (`rvrID`, `rvrDetail`, `rvrScore`, `rvrDate`, `roomID`, `checkID`, `userID`, `billID`) VALUES
+(00000000002, 'รีวิวห้องพัก', 2, '2024-08-27 18:59:11', 00007, 00001, 00003, 00003);
 
 -- --------------------------------------------------------
 
@@ -246,7 +288,15 @@ INSERT INTO `room_product` (`roomID`, `roomPrice`, `roomName`, `roomDetail`, `ro
 (00009, 300.00, 'ห้องเดียว', 'ห้องเดียว', 1, 1, 'ห้องเดียว', 'room1.jpg', 1, 1, 00003),
 (00010, 300.00, 'ห้องเดียว', 'ห้องเดียว', 1, 1, 'ห้องเดียว', 'room1.jpg', 1, 1, 00001),
 (00011, 500.00, 'ห้องส่วนตัว', 'ห้องเดียว', 2, 1, 'ห้องเดียว', 'room1.jpg', 1, 1, 00001),
-(00012, 500.00, 'ห้องส่วนตัว', 'ห้องเดียว', 2, 1, 'ห้องเดียว', 'room1.jpg', 1, 1, 00001);
+(00012, 500.00, 'ห้องส่วนตัว', 'ห้องเดียว', 2, 1, 'ห้องเดียว', 'room1.jpg', 1, 1, 00001),
+(00013, 500.00, 'ห้องส่วนตัว', 'ห้องเดียว', 2, 1, 'ห้องเดียว', 'room1.jpg', 1, 1, 00001),
+(00014, 500.00, 'ห้องส่วนตัว', 'ห้องเดียว', 2, 1, 'ห้องเดียว', 'room1.jpg', 1, 1, 00001),
+(00015, 500.00, 'ห้องส่วนตัว', 'ห้องเดียว', 2, 1, 'ห้องเดียว', 'room1.jpg', 1, 1, 00001),
+(00016, 500.00, 'ห้องส่วนตัว', 'ห้องเดียว', 2, 1, 'ห้องเดียว', 'room1.jpg', 1, 1, 00001),
+(00017, 500.00, 'ห้องส่วนตัว', 'ห้องเดียว', 2, 1, 'ห้องเดียว', 'room1.jpg', 1, 1, 00001),
+(00018, 500.00, 'ห้องส่วนตัว', 'ห้องเดียว', 2, 1, 'ห้องเดียว', 'room1.jpg', 1, 1, 00001),
+(00019, 500.00, 'ห้องส่วนตัว', 'ห้องเดียว', 2, 1, 'ห้องเดียว', 'room1.jpg', 1, 1, 00001),
+(00020, 500.00, 'ห้องส่วนตัว', 'ห้องเดียว', 2, 1, 'ห้องเดียว', 'room1.jpg', 1, 1, 00001);
 
 -- --------------------------------------------------------
 
@@ -261,8 +311,19 @@ CREATE TABLE `service_product` (
   `servicePrice` decimal(8,2) NOT NULL,
   `serviceTotal` smallint(5) NOT NULL,
   `serviceTime` smallint(3) NOT NULL,
-  `stdID` smallint(5) UNSIGNED ZEROFILL NOT NULL
+  `stdID` smallint(5) UNSIGNED ZEROFILL NOT NULL,
+  `servicePic` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `service_product`
+--
+
+INSERT INTO `service_product` (`serviceID`, `serviceName`, `serviceDetail`, `servicePrice`, `serviceTotal`, `serviceTime`, `stdID`, `servicePic`) VALUES
+(00001, 'เต้นฑ์', 'เต้นฑ์', 150.00, 0, 1, 00001, 'service1.png'),
+(00002, 'รถนำเที่ยว', 'รถนำเที่ยว', 500.00, 3, 2, 00001, 'car1.jpg'),
+(00003, 'ไกด์นำเที่ยว', 'ไกด์นำเที่ยว', 100.00, 3, 2, 00001, 'peple.jpg'),
+(00004, 'เซทหมูกระทะ', 'เซทหมูกระทะ', 500.00, 10, 2, 00001, 'pig.jpg');
 
 -- --------------------------------------------------------
 
@@ -460,25 +521,25 @@ ALTER TABLE `user_lavel`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `bookID` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT;
+  MODIFY `bookID` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `booking_bill`
 --
 ALTER TABLE `booking_bill`
-  MODIFY `billID` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT;
+  MODIFY `billID` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `booking_payment`
 --
 ALTER TABLE `booking_payment`
-  MODIFY `payID` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT;
+  MODIFY `payID` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `checking`
 --
 ALTER TABLE `checking`
-  MODIFY `checkID` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT;
+  MODIFY `checkID` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `checking_fine`
@@ -502,13 +563,13 @@ ALTER TABLE `product_status`
 -- AUTO_INCREMENT for table `promotions`
 --
 ALTER TABLE `promotions`
-  MODIFY `pmtID` tinyint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT;
+  MODIFY `pmtID` tinyint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `reviws_room`
 --
 ALTER TABLE `reviws_room`
-  MODIFY `rvrID` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT;
+  MODIFY `rvrID` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `reviws_service`
@@ -520,13 +581,13 @@ ALTER TABLE `reviws_service`
 -- AUTO_INCREMENT for table `room_product`
 --
 ALTER TABLE `room_product`
-  MODIFY `roomID` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `roomID` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `service_product`
 --
 ALTER TABLE `service_product`
-  MODIFY `serviceID` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT;
+  MODIFY `serviceID` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `statistics`
