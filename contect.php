@@ -79,7 +79,7 @@
                     <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="team-item rounded overflow-hidden">
                             <div class="position-relative">
-                                <img class="img-fluid" src="img/bua/ดาวน์โหลด (10) (1).png" alt="">
+                                <img class="img-fluid" src="img/profile/profile_1.jpg" alt="">
                                 <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
                                     <a class="btn btn-square mx-1 bg-white"style="border:solid 1px #000" href=""><i class="fab fa-facebook-f"></i></a>
                                     
@@ -95,7 +95,7 @@
                     <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="team-item rounded overflow-hidden">
                             <div class="position-relative">
-                                <img class="img-fluid" src="img/bua/ดาวน์โหลด (10) (1).png" alt="">
+                                <img class="img-fluid" src="img/profile/profile_1.jpg" alt="">
                                 <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
                                     <a class="btn btn-square mx-1 bg-white"style="border:solid 1px #000" href=""><i class="fab fa-facebook-f"></i></a>
                                     
@@ -111,7 +111,7 @@
                     <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="team-item rounded overflow-hidden">
                             <div class="position-relative">
-                                <img class="img-fluid" src="img/bua/ดาวน์โหลด (10) (1).png" alt="">
+                                <img class="img-fluid" src="img/profile/profile_1.jpg" alt="">
                                 <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
                                     <a class="btn btn-square mx-1 bg-white"style="border:solid 1px #000" href=""><i class="fab fa-facebook-f"></i></a>
                                     
