@@ -8,7 +8,6 @@ $db_con = connect_db();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ฺHome Buadoi</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="tabbar_view/nav_bar.css">
     <link rel="stylesheet" href="style1.css">
     <link rel="stylesheet" href="button.css">
@@ -262,7 +261,7 @@ $db_con = connect_db();
                             <div class="property-item rounded overflow-hidden">
                                 <div class="team-item rounded overflow-hidden bg-light">
                                     <div class="position-relative">
-                                        <a href=""><img class="img-fluid zoom" src="premaket/news_pic/<?php echo $product['newPic']; ?>" alt="Product Image"></a>
+                                        <a href=""><img class="img-fluid zoom" src="img/news_pic/<?php echo $product['newPic']; ?>" alt="Product Image"></a>
                                         <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
                                         </div>
                                     </div>
