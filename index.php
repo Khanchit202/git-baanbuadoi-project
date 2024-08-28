@@ -39,14 +39,9 @@ $db_con = connect_db();
             <?php include("tabbar_view/tab_bar.php"); ?>
         </nav>
 
-        <div class="pre_image" style="height: 300px">
+        <div class="pre_image" style="height: 250px">
                 <?php include("headbar.php"); ?>
         </div>
-
-
-        <!-- <div class="ddd" style="text-align: center;padding:10px;background-color: #4DA866;color: white;">
-            <h1 style="font-size: 16px;">หน้าหลัก</h1>
-        </div> -->
         
         <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
             <div id="title">
@@ -70,8 +65,7 @@ $db_con = connect_db();
                 <?php 
                 $count = 0;
                 foreach ($rooms as $room) { 
-                    if ($count >= 8) break; // แสดงแค่ 8 การ์ด
-                    // กำหนดข้อความและสีพื้นหลังตามค่า stdID
+                    if ($count >= 8) break;
                     if ($room['stdID'] == '00001') {
                         $statusText = 'ว่าง';
                         $badgeColor = '#4caf50';
@@ -82,13 +76,13 @@ $db_con = connect_db();
                     }
                 ?>
                 <div class="wow fadeInUp" data-wow-delay="0.5s" style="margin: 30px;">
-                    <div class="card position-relative text-white card-hover mb-5" style="width: 250px; height: 300px; overflow: hidden; position: relative; border-radius: 20px;">
-                        <img src="room/room_pic/<?php echo $room['roomPic']; ?>" class="card-img" alt="Room Image" style="height: 100%; object-fit: cover;">
-                        <span class="badge position-absolute custom-badge p-3" style="top: 10px; left: 10px; background-color: <?php echo $badgeColor; ?>; color: white; border-radius: 20px; padding: 10px;">
+                    <div class="card position-relative text-white card-hover mb-5" style="width: 250px; height: 300px; overflow: hidden; position: relative; border-radius: 5px;">
+                        <img src="img/room_pic/<?php echo $room['roomPic']; ?>" class="card-img" alt="Room Image" style="height: 100%; object-fit: cover;">
+                        <span class="badge position-absolute custom-badge" style="top: 10px; left: 15px; background-color: <?php echo $badgeColor; ?>; color: white; border-radius: 5px;  padding: 10px 20px; opacity: 60%;">
                             <?php echo $statusText; ?>
                         </span>
                         <div class="card-img-overlay d-flex flex-column justify-content-end" style="color: #000;">
-                            <div class="overlay-content p-4" style="background: rgba(255, 255, 255, 0.9); border-radius: 20px; transition: transform 0.3s;">
+                            <div class="overlay-content p-4" style="background: rgba(255, 255, 255, 0.9); border-radius: 10px; transition: transform 0.3s;">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
                                     <h5 class="card-title m-0" style="font-size: 14px;"><?php echo $room['roomName']; ?></h5>
                                     <p class="m-0">★ </p>
@@ -168,7 +162,7 @@ $db_con = connect_db();
                     <?php foreach ($news as $item) { ?>
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                             <div class="about-img position-relative overflow-hidden p-5 pe-0">
-                                <img class="img-fluid w-100" src="premaket/news_pic/<?php echo $item['newPic']; ?>"  alt="Product Image">
+                                <img class="img-fluid w-100" src="img/news_pic/<?php echo $item['newPic']; ?>"  alt="Product Image">
                             </div>
                         </div>
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
@@ -217,13 +211,13 @@ $db_con = connect_db();
                     }
                 ?>
                 <div class="wow fadeInUp" data-wow-delay="0.5s" style="margin: 30px;">
-                    <div class="card position-relative text-white card-hover mb-5" style="width: 250px; height: 300px; overflow: hidden; position: relative; border-radius: 20px;">
+                    <div class="card position-relative text-white card-hover mb-5" style="width: 250px; height: 300px; overflow: hidden; position: relative; border-radius: 5px;">
                         <img src="img/service/<?php echo $service['servicePic']; ?>" class="card-img" alt="Room Image" style="height: 100%; object-fit: cover;">
-                        <span class="badge position-absolute custom-badge p-3" style="top: 10px; left: 10px; background-color: <?php echo $badgeColor; ?>; color: white; border-radius: 20px; padding: 10px;">
+                        <span class="badge position-absolute custom-badge" style="top: 10px; left: 15px; background-color: <?php echo $badgeColor; ?>; color: white; border-radius: 5px; padding: 10px 20px; opacity: 60%;">
                             <?php echo $statusText; ?>
                         </span>
                         <div class="card-img-overlay d-flex flex-column justify-content-end" style="color: #000;">
-                            <div class="overlay-content p-4" style="background: rgba(255, 255, 255, 0.9); border-radius: 20px; transition: transform 0.3s;">
+                            <div class="overlay-content p-4" style="background: rgba(255, 255, 255, 0.9); border-radius: 10px; transition: transform 0.3s;">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
                                     <h5 class="card-title m-0" style="font-size: 14px;"><?php echo $service['serviceName']; ?></h5>
                                     <p class="m-0">★ </p>
@@ -272,8 +266,8 @@ $db_con = connect_db();
                                         <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
                                         </div>
                                     </div>
-                                    <div class="text-center p-4 mt-3 bg-light-green text-dark">
-                                        <h5 class="fw-bold mb-0"><?php echo $product['newTitle']; ?></h5>
+                                    <div class="text-center p-4 mt-3 bg-light-green" >
+                                        <h5 class="fw-bold mb-0" style="font-size: 16px;"><?php echo $product['newTitle']; ?></h5>
                                         <small></small>
                                     </div>
                                 </div>
