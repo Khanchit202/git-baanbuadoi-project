@@ -13,7 +13,6 @@ $db_con = connect_db();
     <link rel="stylesheet" href="style1.css">
     <link rel="stylesheet" href="button.css">
     <link rel="stylesheet" href="card.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -157,34 +156,6 @@ $db_con = connect_db();
                     bookButton.style.display = 'none'; // ซ่อนปุ่ม
                 });
             });
-        </script>
-        <script>
-            function showAlert(statusText) {
-                if (statusText === 'หมด' ) {
-                    Swal.fire({
-                        icon: 'warning',
-                        title: 'หมด',
-                        text: 'ไม่สามารถจองบริการนี้ได้ชั่วคราว!',
-                        confirmButtonText: 'ตกลง'
-                    });
-                }else if( statusText === 'กำลังเตรียม'){
-                    Swal.fire({
-                        icon: 'warning',
-                        title: 'กำลังเตรียมบริการ',
-                        text: 'โปรดลองอีกครับภายหลัง!',
-                        confirmButtonText: 'ตกลง'
-                    });
-                }else if( statusText === 'มีบริการ'){
-                    Swal.fire({
-                        title: 'ขออภัย',
-                        text: 'ระบบยังไม่เปิดให้บริการ!',
-                        icon: 'info',
-                        confirmButtonText: 'ตกลง',
-                        allowOutsideClick: false,
-                        allowEscapeKey: false
-                    });
-                }
-            }
         </script>
         
         </div>

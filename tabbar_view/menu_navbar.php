@@ -57,7 +57,7 @@ function admin_menu($profile_name) {
             <li><a href="index.php" class="<?php echo $current_page == 'index.php' ? 'active' : ''; ?>">หน้าหลัก</a></li>
             <li><a href="./room_product.php" class="<?php echo $current_page == 'room_product.php' ? 'active' : ''; ?>">ข้อมูลห้องพัก</a></li>
             <li><a href="./service_product.php" class="<?php echo $current_page == 'service_product.php' ? 'active' : ''; ?>">ข้อมูลบริการ</a></li>
-            <li><a href="./no-signel/nopage.php" class="<?php echo $current_page == 'no-signel/nopage.php' ? 'active' : ''; ?>">ข่าวสารประชาสัมพันธ์</a></li>
+            <li><a href="./premaket.php" class="<?php echo $current_page == 'premaket.php' ? 'active' : ''; ?>">ข่าวสารประชาสัมพันธ์</a></li>
             <li><a href="./contect.php" class="<?php echo $current_page == 'contect.php' ? 'active' : ''; ?>">เกี่ยวกับเรา</a></li>
             <li><a href="backend/dashboard.php" class="<?php echo $current_page == 'backend/dashboard.php' ? 'active' : ''; ?>">จัดการข้อมูล</a></li>
         </ul>
@@ -72,7 +72,7 @@ function owner_menu($profile_name) {
             <li><a href="index.php" class="<?php echo $current_page == 'index.php' ? 'active' : ''; ?>">หน้าหลัก</a></li>
             <li><a href="./room_product.php" class="<?php echo $current_page == 'room_product.php' ? 'active' : ''; ?>">ข้อมูลห้องพัก</a></li>
             <li><a href="./service_product.php" class="<?php echo $current_page == 'service_product.php' ? 'active' : ''; ?>">ข้อมูลบริการ</a></li>
-            <li><a href="./no-signel/nopage.php" class="<?php echo $current_page == 'no-signel/nopage.php' ? 'active' : ''; ?>">ข่าวสารประชาสัมพันธ์</a></li>
+            <li><a href="./premaket.php" class="<?php echo $current_page == 'premaket.php' ? 'active' : ''; ?>">ข่าวสารประชาสัมพันธ์</a></li>
             <li><a href="./contect.php" class="<?php echo $current_page == 'contect.php' ? 'active' : ''; ?>">เกี่ยวกับเรา</a></li>
             <li><a href="backend/dashboard.php" class="<?php echo $current_page == 'backend/dashboard.php' ? 'active' : ''; ?>">จัดการข้อมูล</a></li>
 
@@ -89,7 +89,7 @@ function emp_menu($profile_name) {
             <li><a href="index.php" class="<?php echo $current_page == 'index.php' ? 'active' : ''; ?>">หน้าหลัก</a></li>
             <li><a href="./room_product.php" class="<?php echo $current_page == 'room_product.php' ? 'active' : ''; ?>">ข้อมูลห้องพัก</a></li>
             <li><a href="./service_product.php" class="<?php echo $current_page == 'service_product.php' ? 'active' : ''; ?>">ข้อมูลบริการ</a></li>
-            <li><a href="./no-signel/nopage.php" class="<?php echo $current_page == 'no-signel/nopage.php' ? 'active' : ''; ?>">ข่าวสารประชาสัมพันธ์</a></li>
+            <li><a href="./premaket.php" class="<?php echo $current_page == 'premaket.php' ? 'active' : ''; ?>">ข่าวสารประชาสัมพันธ์</a></li>
             <li><a href="./contect.php" class="<?php echo $current_page == 'contect.php' ? 'active' : ''; ?>">เกี่ยวกับเรา</a></li>
             <li><a href="backend/dashboard.php" class="<?php echo $current_page == 'backend/dashboard.php' ? 'active' : ''; ?>">จัดการข้อมูล</a></li>
         </ul>
@@ -104,7 +104,7 @@ function member_menu($profile_name) {
             <li><a href="index.php" class="<?php echo $current_page == 'index.php' ? 'active' : ''; ?>">หน้าหลัก</a></li>
             <li><a href="./room_product.php" class="<?php echo $current_page == 'room_product.php' ? 'active' : ''; ?>">ข้อมูลห้องพัก</a></li>
             <li><a href="./service_product.php" class="<?php echo $current_page == 'service_product.php' ? 'active' : ''; ?>">ข้อมูลบริการ</a></li>
-            <li><a href="./no-signel/nopage.php" class="<?php echo $current_page == 'no-signel/nopage.php' ? 'active' : ''; ?>">ข่าวสารประชาสัมพันธ์</a></li>
+            <li><a href="./premaket.php" class="<?php echo $current_page == 'premaket.php' ? 'active' : ''; ?>">ข่าวสารประชาสัมพันธ์</a></li>
             <li><a href="./contect.php" class="<?php echo $current_page == 'contect.php' ? 'active' : ''; ?>">เกี่ยวกับเรา</a></li>
         </ul>
         <?php render_dropdown($profile_name); ?>
@@ -118,7 +118,7 @@ function web_menu() {
             <li><a href="index.php" class="<?php echo $current_page == 'index.php' ? 'active' : ''; ?>">หน้าหลัก</a></li>
             <li><a href="./room_product.php" class="<?php echo $current_page == 'room_product.php' ? 'active' : ''; ?>">ข้อมูลห้องพัก</a></li>
             <li><a href="./service_product.php" class="<?php echo $current_page == 'service_product.php' ? 'active' : ''; ?>">ข้อมูลบริการ</a></li>
-            <li><a href="./no-signel/nopage.php" class="<?php echo $current_page == 'no-signel/nopage.php' ? 'active' : ''; ?>">ข่าวสารประชาสัมพันธ์</a></li>
+            <li><a href="./premaket.php" class="<?php echo $current_page == 'premaket.php' ? 'active' : ''; ?>">ข่าวสารประชาสัมพันธ์</a></li>
             <li><a href="./contect.php" class="<?php echo $current_page == 'contect.php' ? 'active' : ''; ?>">เกี่ยวกับเรา</a></li>
         </ul>
         <a href="./login.php" class="btn btn-custom">เข้าสู่ระบบ</a>
