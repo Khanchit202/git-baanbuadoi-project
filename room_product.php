@@ -175,15 +175,24 @@ $db_con = connect_db();
                     Swal.fire({
                         icon: 'warning',
                         title: 'ไม่สามารถจองได้',
-                        text: 'ห้องนี้ไม่ว่างหรือถูกจองแล้ว',
+                        text: 'ขออภัยห้องนี้ไม่ว่างหรือถูกจองแล้ว!',
                         confirmButtonText: 'ตกลง'
                     });
                 }else if( statusText === 'กำลังเตรียม'){
                     Swal.fire({
                         icon: 'warning',
-                        title: 'ไม่สามารถจองได้',
-                        text: 'ห้องนี้อยู่ในระหว่างเตรียมการกรุณารอสักครู่',
+                        title: 'กำลังทำความสะอาด',
+                        text: 'ขออภัยห้องนี้อยู่ในระหว่างเตรียมการกรุณารอสักครู่...',
                         confirmButtonText: 'ตกลง'
+                    });
+                }else if( statusText === 'ว่าง'){
+                    Swal.fire({
+                        title: 'ขออภัย',
+                        text: 'ระบบยังไม่เปิดให้บริการ!',
+                        icon: 'info',
+                        confirmButtonText: 'ตกลง',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false
                     });
                 }
             }
