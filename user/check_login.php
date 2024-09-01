@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+<body>
+    
+</body>
+</html>
 <?php
 session_start();
 include("../db_config.php");
@@ -36,11 +49,34 @@ if ($row) {
         $_SESSION['userImg'] = "";
         $_SESSION['FName'] = "";
         $_SESSION['LName'] = "";
-        echo "<script>alert('Username หรือ Password ไม่ถูกต้อง กรุณากรอกใหม่'); window.location.href='../login.php';</script>";
+        echo "<script>
+            Swal.fire({
+                icon: 'error',
+                title: 'ไม่พบบัญชีนี้',
+                text: 'Username หรือ Password ไม่ถูกต้อง กรุณากรอกใหม่',
+                confirmButtonText: 'ตกลง'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '../login.php';
+                }
+            });
+        </script>";
     }
 } else {
     $_SESSION['valid_login'] = "";
     $_SESSION['user_lavel'] = "";
-    echo "<script>alert('Username หรือ Password ไม่ถูกต้อง กรุณากรอกใหม่'); window.location.href='../login.php';</script>";
+    echo "<script>
+        Swal.fire({
+            icon: 'error',
+            title: 'กรุณากรอกข้อมูลให้ถูกต้อง',
+            text: 'Username หรือ Password ไม่ถูกต้อง กรุณากรอกใหม่',
+            confirmButtonText: 'ตกลง'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '../login.php';
+            }
+        });
+    </script>";
 }
+
 ?>
