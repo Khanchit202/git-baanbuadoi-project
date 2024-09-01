@@ -117,7 +117,7 @@ $db_con = connect_db();
                 ?>
                 <div class="wow fadeInUp" data-wow-delay="0.5s" style="margin: 30px;">
                     <div class="card position-relative text-white card-hover mb-5" style="width: 250px; height: 300px; overflow: hidden; position: relative; border-radius: 5px;">
-                        <img src="img/room_pic/g<?php echo $room['roomPic']; ?>" class="card-img" alt="Room Image" style="height: 100%; object-fit: cover;">
+                        <img src="img/room_pic/<?php echo $room['roomPic']; ?>" class="card-img" alt="Room Image" style="height: 100%; object-fit: cover;">
                         <span class="badge position-absolute custom-badge" style="top: 10px; left: 15px; background-color: <?php echo $badgeColor; ?>; color: white; border-radius: 5px; padding: 10px; opacity: 80%; padding: 10px 20px;">
                             <?php echo $statusText; ?>
                         </span>
@@ -140,7 +140,20 @@ $db_con = connect_db();
                 </div>
                 <?php } ?>
             </div>
+            <div class="pagination d-flex justify-content-center">
+                <?php
+                $totalRooms = $db_con->query('SELECT COUNT(*) FROM room_product')->fetchColumn();
+                $totalPages = ceil($totalRooms / $limit);
 
+                if ($page > 1) {
+                    echo '<a href="?page=' . ($page - 1) . '"><i class="fa fa-arrow-left "></i></a>';
+                }
+
+                if ($page < $totalPages) {
+                    echo '<a href="?page=' . ($page + 1) . '"><i class="fa fa-arrow-right "></i></a>';
+                }
+                ?>
+            </div>
      <!-- ปิด ส่วนแสดงข้อมูลห้องพัก -->
 
 
