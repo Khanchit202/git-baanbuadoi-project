@@ -1,3 +1,7 @@
+<?php
+include ("db_config.php");
+$db_con = connect_db();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,20 +37,32 @@
         <nav>
             <?php include("tabbar_view/tab_bar.php"); ?>
         </nav>
+
+        <?php
+            
+
+            $sql = 'SELECT newTitle, newDetail,newID,newPic FROM news WHERE newID = "00016"';
+            $stmt = $db_con->prepare($sql);
+            $stmt->execute();
+
+            $news = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        ?>
         <!-- About Start -->
         <div class="container-xxl bg-white p-0">
             <div class="container">
                 <div class="row g-5 align-items-center">
+                <?php foreach ($news as $item) { ?>
                     <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                         <div class="about-img position-relative overflow-hidden p-5 pe-0">
-                            <img class="img-fluid w-100" src="img/bua/about1.jpg">
+                            <img class="img-fluid w-100" src="img/news_pic/<?php echo $item['newPic']; ?>">
                         </div>
                     </div>
                     <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                        <h1 class="mb-4">ประวัติความเป็นมาของเรา</h1>
-                        <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
-                        
+                        <h1 class="mb-4"><?php echo $item['newTitle']; ?></h1>
+                        <p class="mt-3 mb-3 text-justify"><?php echo nl2br($item['newDetail']); ?></p>
+
                     </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>

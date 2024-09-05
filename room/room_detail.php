@@ -7,12 +7,10 @@ $db_con = connect_db();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>room product ห้องพัก</title>
+    <title> รายละเอียดห้องพัก</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="../tabbar_view/nav_bar.css">
     <link rel="stylesheet" href="../style1.css">
-    <link rel="stylesheet" href="../button.css">
-    <link rel="stylesheet" href="../card.css">
+    <link rel="stylesheet" href="../backend/dash.css">
 
     <!-- Favicon -->
     <link href="../img/favicon.ico" rel="icon">
@@ -37,42 +35,93 @@ $db_con = connect_db();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <!-- SweetAlert JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .home-icon {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 30px;
+            z-index: 1000;
+        }
+        body {
+            background-color: #f0f0f0; /* กำหนดสีพื้นหลังเป็นสีเทา */
+        }
+    </style>
+
     
 
 </head>
 <body>
-    <div class="container-xxl bg-white p-0">
-        <div class="container-fluid header bg-white p-0">
-            <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
-                <div class="col-md-6 p-5 mt-lg-5">
-                    <h1 class="display-5 animated fadeIn mb-4">Welcom To <span >Buadoi</span>   </h1>
-                    
+    
+
+    <div class="main p-3" style="background-color: #ECF0F1;">
+            <nav class="navbar navbar-light bg-light justify-content-between" style="border-radius: 10px; margin-bottom: 20px;">
+                <div class="bar">
+                    <button class="toggle-btn" type="button">
+                        <i class="lni lni-menu"></i>
+                    </button>
                 </div>
-                <div class="col-md-6 animated fadeIn">
-                    <div class="owl-carousel header-carousel">
-                        <div class="owl-carousel-item">
-                            <img class="img-fluid" src="../img/bua/a1.jpg" alt="">
-                        </div>
-                        
+                <p style="margin: 5px 0px 0px 0px;">จองห้องพักและบริการ</p>
+                <div class="sidebar-footer">
+                <a href="../index.php" class="sidebar-link">
+                    <i class="lni lni-home"></i>
+                    <span>กลับหน้าหลัก</span>
+                </a>
+            </div>
+            </nav>
+        
+        <div class="container-fluid mt-5">
+        <div class="row">
+        <!-- คอลัมน์ฝั่งซ้ายสำหรับรูปภาพ -->
+             <div class="col-md-6" style="background-color: #D6EAF8; padding: 20px;">
+                <img src="../img/room_pic/room1.jpg" class="img-fluid rounded" alt="Image Description">
+            </div>
+
+        <!-- คอลัมน์ฝั่งขวาสำหรับเนื้อหา -->
+        <div class="col-md-6" style="background-color: #FFF; padding: 20px;">
+                <p>รายละเอียดห้องพัก</p>
+            <div class="container">
+                <!-- แถวที่ 1 -->
+                <div class="row mb-4">
+                    <div class="col-md-4" style="background-color: #D6EAF8; padding: 20px;">
+                        <p>ประเภทห้องพัก</p>
+                    </div>
+                    <div class="col-md-4" style="background-color: #D6EAF8; padding: 20px;">
+                        <p>จำนวนเตียงนอน</p>
+                    </div>
+                    <div class="col-md-4" style="background-color: #D6EAF8; padding: 20px;">
+                        <p>ห้องน้ำ</p>
                     </div>
                 </div>
-            </div>
+                <!-- แถวที่ 2 -->
+                <div class="row mb-4">
+                    <div class="col-md-4" style="background-color: #D6EAF8; padding: 20px;">
+                        <p>MAX</p>
+                    </div>
+                    <div class="col-md-4" style="background-color: #D6EAF8; padding: 20px;">
+                        <p>MIN</p>
+                    </div>
+                    <div class="col-md-4" style="background-color: #D6EAF8; padding: 20px;">
+                        <p>ราคา/คืน</p>
+                    </div>
+                </div>
+                <!-- แถวที่ 3 -->
+                <div class="row mb-4">
+                        <p>อุปกรณ์เครื่องใช้ต่าง</p>
+                    
+                    
+                </div> 
+            </div> 
         </div>
+    
 
-
-
-        <!-- ส่วนแสดงข้อมูลห้องพัก -->
-        
-        <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
-            <div id="title2" style="margin: 60px 60px">
-                <h1>รายละเอียดห้องพัก</h1>
-                <p>โฮมสเตย์บ้านบัวดอย ดอยอ่างขาง</p>
-            </div>
-        </div>
-
-        
-
- </div>       
+    </div>
+    </div>
+    </div>
+    
     <nav>
         <?php include("../footer.php"); ?>
     </nav>

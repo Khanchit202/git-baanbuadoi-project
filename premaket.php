@@ -96,21 +96,26 @@ $db_con = connect_db();
             $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>
 
-            <div class="produc_pre" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; margin: 0 30px;">
-                <!-- การ์ดสำหรับกิจกรรม -->
-                <?php foreach ($products as $product) { ?>
-                    <div class='wow fadeInUp' data-wow-delay='0.5s'>
-                        <div class="card position-relative text-white card-hover mb-5" style="width: 350px; height: 400px; overflow: hidden; position: relative; border-radius: 20px; margin-bottom: 20px;">
-                            <img src="img/news_pic/<?php echo $product['newPic']; ?>" class="card-img" alt="Product Image" style="height: 100%; object-fit: cover;">
-                            <span class="badge position-absolute custom-badge p-3" style="top: 10px; left: 50%; transform: translateX(-50%); background-color: #fff; color: #000; border-radius: 5px; padding: 10px;"><?php echo $product['newTitle']; ?></span>
-                            <div class="card-img-overlay d-flex flex-column justify-content-end" style="color: #000;">
-                                <div class="overlay-content p-4" style="border-radius: 20px; transition: transform 0.3s;"></div>
+            <div class="container-xxl bg-white p-0">
+                <div class="container">
+                    <div class="row g-4">
+                        <!-- การ์ดสำหรับกิจกรรม -->
+                        <?php foreach ($products as $product) { ?>
+                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                                <div class="card position-relative text-white card-hover mb-5" style="width: 100%; height: 400px; overflow: hidden; position: relative; border-radius: 20px;">
+                                    <img src="img/news_pic/<?php echo $product['newPic']; ?>" class="card-img" alt="Product Image" style="height: 100%; object-fit: cover;">
+                                    <span class="badge position-absolute custom-badge p-3" style="top: 10px; left: 50%; transform: translateX(-50%); background-color: #fff; color: #000; border-radius: 5px; padding: 10px;"><?php echo $product['newTitle']; ?></span>
+                                    <div class="card-img-overlay d-flex flex-column justify-content-end" style="color: #000;">
+                                        <div class="overlay-content p-4" style="border-radius: 20px; transition: transform 0.3s;"></div>
+                                    </div>
+                                    <a href="news_detail.php&id" class="book-button" style="display: none; position: absolute; top: 320px; left: 10%; width: 80%; height: 50px; background-color: #fff; color: #000; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;">อ่านเพิ่มเติม</a>
+                                </div>
                             </div>
-                            <a href="news_detail.php&id" class="book-button" style="display: none; position: absolute; top: 320px; left: 10%; width: 80%; height: 50px; background-color: #fff; color: #000; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;">อ่าเพิ่มเติม</a>
-                        </div>
+                        <?php } ?>
                     </div>
-                <?php } ?>
+                </div>
             </div>
+
         <!-- ปิดส่วนแสดงข่าวสารประชาสัมพันธ์ -->
 
         <script>

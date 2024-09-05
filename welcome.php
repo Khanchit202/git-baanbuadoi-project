@@ -1,7 +1,7 @@
 <div id="typingEffect"></div>
 
 <script>
-  const text = "ยินดีตอนรับ";
+  const text = "ยินดีต้อนรับ";
   let index = 0;
   const speed = 300;
   const delay = 2000;

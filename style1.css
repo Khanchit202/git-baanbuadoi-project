@@ -117,3 +117,10 @@ nav {
 .zoom:hover {
     transform: scale(1.1);
 }
+
+.small-img {
+    width: 100px; /* กำหนดความกว้างของรูปภาพ */
+    height: 200px; /* ให้ความสูงปรับตามอัตราส่วนของรูปภาพ */
+    margin-top: 20px;
+}
+
