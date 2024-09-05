@@ -139,11 +139,11 @@ $db_con = connect_db();
                 $totalPages = ceil($totalRooms / $limit);
 
                 if ($page > 1) {
-                    echo '<a href="?page=' . ($page - 1) . '"><i class="fa fa-arrow-left "></i></a>';
+                    echo '<a href="?page=' . ($page - 1) . '"><i class="fa fa-arrow-left" style="color: #4DA866;"></i></a>';
                 }
 
                 if ($page < $totalPages) {
-                    echo '<a href="?page=' . ($page + 1) . '"><i class="fa fa-arrow-right "></i></a>';
+                    echo '<a href="?page=' . ($page + 1) . '"><i class="fa fa-arrow-right style="color: #4DA866;"></i></a>';
                 }
                 ?>
             </div>

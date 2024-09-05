@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="img/favicon.ico" rel="icon">
     <link rel="icon" type="image/x-icon" href="img/bua/logo.png" style="border-radius: 5px;">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style>
     .btn-disabled {
         background-color: #d6d6d6;
