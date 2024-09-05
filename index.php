@@ -14,6 +14,7 @@ $db_con = connect_db();
     <link rel="stylesheet" href="button.css">
     <link rel="stylesheet" href="card.css">
     <link rel="stylesheet" href="https://cdn.lineicons.com/3.0/lineicons.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -94,7 +95,7 @@ $db_con = connect_db();
                                 </div>
                             </div>
                         </div>
-                        <a href="javascript:void(0);" class="book-button" onclick="showAlert('<?php echo $statusText; ?>')" style="position: absolute; top: 230px; left: 10%; width: 80%; height: 50px; background-color: <?php echo $buttonColor; ?>; color: white; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;"><?php echo $buttonText; ?></a>
+                        <a href="javascript:void(0);" class="book-button" onclick="showSystemUnavailableAlert()" style="position: absolute; top: 230px; left: 10%; width: 80%; height: 50px; background-color: <?php echo $buttonColor; ?>; color: white; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;"><?php echo $buttonText; ?></a>
                     </div>
                 </div>
                 <?php 
@@ -115,31 +116,31 @@ $db_con = connect_db();
         <div class="menu_pro d-flex justify-content-between" style="margin: 60px 60px;">
             
             <div class="wow fadeInUp" data-wow-delay="0.2s">
-            <div class="button">
+            <div class="button" onclick="showSystemUnavailableAlert()">
                     <i class="lni lni-grid-alt" style="font-size: 30px;"></i>
                     <p style="font-size: 14px;">บริการทั้งหมด</p>
                 </div>
             </div>
             <div class="wow fadeInUp" data-wow-delay="0.4s">
-                <div class="button">
+                <div class="button" onclick="showSystemUnavailableAlert()">
                     <i class="lni lni-caravan" style="font-size: 30px;"></i>
                     <p style="font-size: 14px;">ห้องพัก</p>
                 </div>
             </div>
             <div class="wow fadeInUp" data-wow-delay="0.6s">
-                <div class="button">
+                <div class="button" onclick="showSystemUnavailableAlert()">
                     <i class="lni lni-basketball" style="font-size: 30px;"></i>
                     <p style="font-size: 14px;">บริการ</p>
                 </div>
             </div>
             <div class="wow fadeInUp" data-wow-delay="0.8s">
-                <div class="button">
+                <div class="button" onclick="showSystemUnavailableAlert()">
                     <i class="lni lni-book" style="font-size: 30px;"></i>
                     <p style="font-size: 14px;">ข่าวสาร</p>
                 </div>
             </div>
             <div class="wow fadeInUp" data-wow-delay="1s">
-                <div class="button">
+                <div class="button" onclick="showSystemUnavailableAlert()">
                     <i class="lni lni-offer" style="font-size: 30px;"></i>
                     <p style="font-size: 14px;">โปรโมชั่น</p>
                 </div>
@@ -169,7 +170,7 @@ $db_con = connect_db();
                             <h1 class="mb-4">ข่าวสารน่าสนใจวันนี้</h1>
                             <h2><?php echo $item['newTitle']; ?></h2>
                             <p class="mb-4"><?php echo $item['newDetail']; ?></p>
-                            <a class="btn btn-custom py-3 px-5 mt-3" href="">อ่านเพิ่มเติม</a>
+                            <a class="btn btn-custom py-3 px-5 mt-3" href="javascript:void(0);" onclick="showSystemUnavailableAlert()">อ่านเพิ่มเติม</a>
                         </div>
                     <?php } ?>
                 </div>
@@ -227,7 +228,7 @@ $db_con = connect_db();
                                 </div>
                             </div>
                         </div>
-                        <a href="javascript:void(0);" class="book-button" onclick="showAlert('<?php echo $statusText; ?>')" style="position: absolute; top: 230px; left: 10%; width: 80%; height: 50px; background-color: <?php echo $buttonColor; ?>; color: white; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;"><?php echo $buttonText; ?></a>
+                        <a href="javascript:void(0);" class="book-button" onclick="showSystemUnavailableAlert()" style="position: absolute; top: 230px; left: 10%; width: 80%; height: 50px; background-color: <?php echo $buttonColor; ?>; color: white; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;"><?php echo $buttonText; ?></a>
                     </div>
                 </div>
                 <?php 
@@ -262,7 +263,7 @@ $db_con = connect_db();
                             <div class="property-item rounded overflow-hidden">
                                 <div class="team-item rounded overflow-hidden bg-light">
                                     <div class="position-relative">
-                                        <a href=""><img class="img-fluid zoom" src="img/news_pic/<?php echo $product['newPic']; ?>" alt="Product Image"></a>
+                                        <a href="javascript:void(0);" onclick="showSystemUnavailableAlert()"><img class="img-fluid zoom" src="img/news_pic/<?php echo $product['newPic']; ?>" alt="Product Image"></a>
                                         <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
                                         </div>
                                     </div>
@@ -348,6 +349,18 @@ $db_con = connect_db();
                 });
             </script>
             <!-- ปิดตรวจสอบ optionที่เลือก -->
+            <script>
+                function showSystemUnavailableAlert() {
+                    Swal.fire({
+                        title: 'ขออภัย!',
+                        text: 'ระบบยังไม่เปิดให้บริการ',
+                        icon: 'info',
+                        confirmButtonText: 'ตกลง',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false
+                    });
+                }
+            </script>
     </div>   
 </div>
     <nav>
