@@ -1,4 +1,8 @@
+<header>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</header>
 <?php
+
 session_start();
 include("../db_config.php");
 $db_con = connect_db("client");
@@ -28,7 +32,17 @@ if ($row) {
         $_SESSION['userImg'] = $userImg;
         $_SESSION['FName'] = $userFname;
         $_SESSION['LName'] = $userLname;
-        header('Location: ../index.php');
+        echo "<script>
+            Swal.fire({
+                icon: 'success',
+                title: 'เข้าสู่ระบบสำเร็จ',
+                text: 'กำลังนำคุณไปยังหน้าแรก...',
+                timer: 2000,
+                showConfirmButton: false
+            }).then(() => {
+                window.location.href = '../index.php';
+            });
+        </script>";
         exit();
     } else {
         $_SESSION['valid_login'] = "";
@@ -39,8 +53,8 @@ if ($row) {
         echo "<script>
             Swal.fire({
                 icon: 'error',
-                title: 'ไม่พบบัญชีนี้',
-                text: 'Username หรือ Password ไม่ถูกต้อง กรุณากรอกใหม่',
+                title: 'การเข้าสู่ระบบล้มเหลว',
+                text: 'Username หรือ Password ไม่ถูกต้อง',
                 confirmButtonText: 'ตกลง'
             }).then((result) => {
                 if (result.isConfirmed) {
@@ -55,7 +69,7 @@ if ($row) {
     echo "<script>
         Swal.fire({
             icon: 'error',
-            title: 'กรุณากรอกข้อมูลให้ถูกต้อง',
+            title: 'ไม่พบผู้ใช้',
             text: 'Username หรือ Password ไม่ถูกต้อง กรุณากรอกใหม่',
             confirmButtonText: 'ตกลง'
         }).then((result) => {

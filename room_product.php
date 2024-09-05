@@ -143,7 +143,7 @@ $db_con = connect_db();
                 }
 
                 if ($page < $totalPages) {
-                    echo '<a href="?page=' . ($page + 1) . '"><i class="fa fa-arrow-right style="color: #4DA866;"></i></a>';
+                    echo '<a href="?page=' . ($page + 1) . '"><i class="fa fa-arrow-right" style="color: #4DA866;"></i></a>';
                 }
                 ?>
             </div>
