@@ -7,14 +7,12 @@ $db_con = connect_db();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ฺHome Buadoi</title>
+    <title>รายละเอียด</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="tabbar_view/nav_bar.css">
     <link rel="stylesheet" href="style1.css">
-    <link rel="stylesheet" href="button.css">
-    <link rel="stylesheet" href="card.css">
     <link rel="stylesheet" href="https://cdn.lineicons.com/3.0/lineicons.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -35,25 +33,23 @@ $db_con = connect_db();
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
 </head>
 <body>
-
-        <nav>
+    <div class="container-xxl bg-white p-0">
+        <nav id="navbar">
             <?php include("tabbar_view/tab_bar.php"); ?>
         </nav>
-   
-<div class="container position-relative">
-  <div class="col-12 col-lg-8 mt-0 h-100 position-absolute top-0 end-0 bg-cover" data-aos="fade-left" style="background-image: url(img/room_pic/room2.jpg);">
-    
-  </div>
-    <div class="row">
 
-<div class="col-lg-7 py-vh-6 position-relative" data-aos="fade-right">
-  <h1 class="display-1 fw-bold mt-5">Sell more useless stuff faster!</h1>
-  <div class="welcome" style="font-size: 50px;height:70px;">
-                <?php include("welcome.php"); ?>
+        <div class>
+            <div id="deteil_img">
+
             </div>
-  <p class="lead">To be honest, this is just a stupid placeholder text. We don´t know how to sell anything, not even lesser or slower as you.</p>
-  <a href="#" class="btn btn-custom btn-xl shadow me-3 rounded-0 my-5">Get started free</a>
-</div>
+            <div id="deteil_text">
+
+            </div>
+        </div>
+
+
+    </div>
+
     <nav>
         <?php include("footer.php"); ?>
     </nav>

@@ -40,7 +40,7 @@
 <body>
 
 <div class="container-xxl bg-white p-0">
-    <nav>
+    <nav id="navbar">
         <?php include("tabbar_view/tab_bar.php"); ?>
     </nav>
     
