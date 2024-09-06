@@ -1,5 +1,6 @@
 <header>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="../font-web.css">
 </header>
 <?php
 
@@ -37,7 +38,7 @@ if ($row) {
                 icon: 'success',
                 title: 'เข้าสู่ระบบสำเร็จ',
                 text: 'กำลังนำคุณไปยังหน้าแรก...',
-                timer: 2000,
+                timer: 2500,
                 showConfirmButton: false
             }).then(() => {
                 window.location.href = '../index.php';
