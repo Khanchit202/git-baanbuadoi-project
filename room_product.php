@@ -69,21 +69,14 @@ $db_con = connect_db();
             $offset = ($page - 1) * $limit;
 
             if ($stdID) {
-                $sql = 'SELECT rp.roomPic, rp.roomName, rp.roomID, rp.roomBed, rp.roomBath, rp.roomPrice, rp.stdID, rr.rvrScore 
-                        FROM room_product rp 
-                        LEFT JOIN reviws_room rr ON rp.roomID = rr.roomID 
-                        WHERE rp.stdID = :stdID 
-                        LIMIT :limit OFFSET :offset';
+                $sql = 'SELECT roomPic, roomName, roomID, roomBed, roomBath, roomPrice, stdID FROM room_product WHERE stdID = :stdID LIMIT :limit OFFSET :offset';
                 $stmt = $db_con->prepare($sql);
                 $stmt->bindParam(':stdID', $stdID, PDO::PARAM_STR);
                 $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
                 $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
                 $stmt->execute();
             } else {
-                $sql = 'SELECT rp.roomPic, rp.roomName, rp.roomID, rp.roomBed, rp.roomBath, rp.roomPrice, rp.stdID, rr.rvrScore 
-                        FROM room_product rp 
-                        LEFT JOIN reviws_room rr ON rp.roomID = rr.roomID 
-                        LIMIT :limit OFFSET :offset';
+                $sql = 'SELECT roomPic, roomName, roomID, roomBed, roomBath, roomPrice, stdID FROM room_product LIMIT :limit OFFSET :offset';
                 $stmt = $db_con->prepare($sql);
                 $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
                 $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
@@ -125,7 +118,7 @@ $db_con = connect_db();
                             <div class="overlay-content p-4" style="background: rgba(255, 255, 255, 0.9); border-radius: 10px; transition: transform 0.3s;">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
                                     <h5 class="card-title m-0" style="font-size: 14px;"><?php echo $room['roomName']; ?></h5>
-                                    <p class="m-0">★ <?php echo $room['rvrScore']; ?></p>
+                                    <p class="m-0">★ </p>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center" style="font-size: 12px;">
                                     <span class="icon-text" style="display: flex; align-items: center;"><i class="fa fa-bed text-dark me-2" style="background-color: #ccc; border-radius: 50%; padding: 5px; margin-right: 5px;"></i> <?php echo $room['roomBed']; ?></span>
@@ -134,23 +127,23 @@ $db_con = connect_db();
                                 </div>
                             </div>
                         </div>
-                        <a href="<?php echo ($statusText == 'เต็ม' || $statusText == 'กำลังเตรียม') ? 'javascript:void(0);' : './room/room_detail.php?roomID=' . $room['roomID']; ?>" class="book-button" onclick="showAlert('<?php echo $statusText; ?>')" style="position: absolute; top: 230px; left: 10%; width: 80%; height: 50px; background-color: <?php echo $buttonColor; ?>; color: white; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;"><?php echo $buttonText; ?></a>
-
+                        <a href="javascript:void(0);" class="book-button" onclick="showAlert('<?php echo $statusText; ?>')" style="position: absolute; top: 230px; left: 10%; width: 80%; height: 50px; background-color: <?php echo $buttonColor; ?>; color: white; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;"><?php echo $buttonText; ?></a>
                     </div>
                 </div>
                 <?php } ?>
             </div>
+            <!-- Pagination -->
             <div class="pagination d-flex justify-content-center">
                 <?php
                 $totalRooms = $db_con->query('SELECT COUNT(*) FROM room_product')->fetchColumn();
                 $totalPages = ceil($totalRooms / $limit);
 
                 if ($page > 1) {
-                    echo '<a href="?page=' . ($page - 1) . '"><i class="fa fa-arrow-left "></i></a>';
+                    echo '<a href="?page=' . ($page - 1) . '"><i class="fa fa-arrow-left" style="color: #4DA866;"></i></a>';
                 }
 
                 if ($page < $totalPages) {
-                    echo '<a href="?page=' . ($page + 1) . '"><i class="fa fa-arrow-right "></i></a>';
+                    echo '<a href="?page=' . ($page + 1) . '"><i class="fa fa-arrow-right" style="color: #4DA866;"></i></a>';
                 }
                 ?>
             </div>
@@ -188,15 +181,24 @@ $db_con = connect_db();
                     Swal.fire({
                         icon: 'warning',
                         title: 'ไม่สามารถจองได้',
-                        text: 'ห้องนี้ไม่ว่างหรือถูกจองแล้ว',
+                        text: 'ขออภัยห้องนี้ไม่ว่างหรือถูกจองแล้ว!',
                         confirmButtonText: 'ตกลง'
                     });
                 }else if( statusText === 'กำลังเตรียม'){
                     Swal.fire({
                         icon: 'warning',
-                        title: 'ไม่สามารถจองได้',
-                        text: 'ห้องนี้อยู่ในระหว่างเตรียมการกรุณารอสักครู่',
+                        title: 'กำลังทำความสะอาด',
+                        text: 'ขออภัยห้องนี้อยู่ในระหว่างเตรียมการกรุณารอสักครู่...',
                         confirmButtonText: 'ตกลง'
+                    });
+                }else if( statusText === 'ว่าง'){
+                    Swal.fire({
+                        title: 'ขออภัย',
+                        text: 'ระบบยังไม่เปิดให้บริการ!',
+                        icon: 'info',
+                        confirmButtonText: 'ตกลง',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false
                     });
                 }
             }

@@ -72,77 +72,96 @@ $db_con = connect_db();
         <!-- Team  -->
         
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;margin-top:70px;">
-                    <h1 class="mb-3">สมาชิก</h1>
+                    <h1 class="mb-3">เจ้าหน้าที่ดูแลระบบ</h1>
                 </div>
-            <div class="container">
-                <div class="row g-4">
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="team-item rounded overflow-hidden">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="img/bua/team1.jpg" alt="">
-                                <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
-                                    <a class="btn btn-square mx-1 bg-white"style="border:solid 1px #000" href="https://www.facebook.com/somchai.munheng?locale=th_TH"><i class="fab fa-facebook-f"></i></a>
-                                    
-                                    <a class="btn btn-square mx-1 bg-white"style="border:solid 1px #000" href="https://www.instagram.com/hobb_p2002/"><i class="fab fa-instagram"></i></a>
+
+                <div class="menu_pro d-flex justify-content-between" style="margin: 60px 60px;" >
+                    <div class="wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="card" style="width: 250px;">
+                            <img src="img/bua/team1.jpg" class="card-img-top" alt="Programer" style="height: 200px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title" style="font-size: 16px; font-weight: bold;">Somchai Manhoeng</h5>
+                                <p class="card-text" style="font-size: 12px;">Programer</p>
+                                <div class="mt-3">
+                                    <a href="https://www.facebook.com" target="_blank" style="text-decoration: none;">
+                                        <div style="width: 40px; height: 40px; border-radius: 5px; background-color: #3b5998; display: inline-flex; align-items: center; justify-content: center;">
+                                            <i class="bi bi-facebook" style="font-size: 16px; color: white;"></i>
+                                        </div>
+                                    </a>
+                                    <a href="https://www.instagram.com" target="_blank" style="text-decoration: none;">
+                                        <div style="width: 40px; height: 40px; border-radius: 5px; background-color: #E1306C; display: inline-flex; align-items: center; justify-content: center;">
+                                            <i class="bi bi-instagram" style="font-size: 16px; color: white;"></i>
+                                        </div>
+                                    </a>
                                 </div>
-                            </div>
-                            <div class="text-center p-4 mt-3">
-                                <h5 class="fw-bold mb-0">Somchai Manhoeng</h5>
-                                <small>Programer</small>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="team-item rounded overflow-hidden">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="img/profile/profile_1.jpg" alt="">
-                                <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
-                                    <a class="btn btn-square mx-1 bg-white"style="border:solid 1px #000" href=""><i class="fab fa-facebook-f"></i></a>
-                                    
-                                    <a class="btn btn-square mx-1 bg-white"style="border:solid 1px #000" href=""><i class="fab fa-instagram"></i></a>
+                    <div class="wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="card" style="width: 250px;">
+                            <img src="img/profile/khanchit.jpg" class="card-img-top" alt="Programer" style="height: 200px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title" style="font-size: 16px; font-weight: bold;">ครรชิต บางพระ</h5>
+                                <p class="card-text" style="font-size: 12px;">Programer</p>
+                                <div class="mt-3">
+                                    <a href="https://web.facebook.com/khanchit.bp/" target="_blank" style="text-decoration: none;">
+                                        <div style="width: 40px; height: 40px; border-radius: 5px; background-color: #3b5998; display: inline-flex; align-items: center; justify-content: center;">
+                                            <i class="bi bi-facebook" style="font-size: 16px; color: white;"></i>
+                                        </div>
+                                    </a>
+                                    <a href="https://www.instagram.com/khanchit.ig/" target="_blank" style="text-decoration: none;">
+                                        <div style="width: 40px; height: 40px; border-radius: 5px; background-color: #E1306C; display: inline-flex; align-items: center; justify-content: center;">
+                                            <i class="bi bi-instagram" style="font-size: 16px; color: white;"></i>
+                                        </div>
+                                    </a>
                                 </div>
-                            </div>
-                            <div class="text-center p-4 mt-3">
-                                <h5 class="fw-bold mb-0">Somchai Manhoeng</h5>
-                                <small>Programer</small>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="team-item rounded overflow-hidden">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="img/profile/profile_1.jpg" alt="">
-                                <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
-                                    <a class="btn btn-square mx-1 bg-white"style="border:solid 1px #000" href=""><i class="fab fa-facebook-f"></i></a>
-                                    
-                                    <a class="btn btn-square mx-1 bg-white"style="border:solid 1px #000" href=""><i class="fab fa-instagram"></i></a>
+                    <div class="wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="card" style="width: 250px;">
+                            <img src="img/profile/khanchit_bp.jpg" class="card-img-top" alt="Addmin" style="height: 200px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title" style="font-size: 16px; font-weight: bold;">Khanchit Bangphra</h5>
+                                <p class="card-text" style="font-size: 12px;">Admin</p>
+                                <div class="mt-3">
+                                    <a href="https://web.facebook.com/khanchit.bp/" target="_blank" style="text-decoration: none;">
+                                        <div style="width: 40px; height: 40px; border-radius: 5px; background-color: #3b5998; display: inline-flex; align-items: center; justify-content: center;">
+                                            <i class="bi bi-facebook" style="font-size: 16px; color: white;"></i>
+                                        </div>
+                                    </a>
+                                    <a href="https://www.instagram.com/khanchit.ig/" target="_blank" style="text-decoration: none;">
+                                        <div style="width: 40px; height: 40px; border-radius: 5px; background-color: #E1306C; display: inline-flex; align-items: center; justify-content: center;">
+                                            <i class="bi bi-instagram" style="font-size: 16px; color: white;"></i>
+                                        </div>
+                                    </a>
                                 </div>
-                            </div>
-                            <div class="text-center p-4 mt-3">
-                                <h5 class="fw-bold mb-0">Somchai Manhoeng</h5>
-                                <small>Programer</small>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="team-item rounded overflow-hidden">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="img/profile/profile_1.jpg" alt="">
-                                <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
-                                    <a class="btn btn-square mx-1 bg-white"style="border:solid 1px #000" href=""><i class="fab fa-facebook-f"></i></a>
-                                    
-                                    <a class="btn btn-square mx-1 bg-white"style="border:solid 1px #000" href=""><i class="fab fa-instagram"></i></a>
+                    <div class="wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="card" style="width: 250px;">
+                            <img src="img/bua/team1.jpg" class="card-img-top" alt="Addmin" style="height: 200px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title" style="font-size: 16px; font-weight: bold;">สมชาย หมั่นเฮิง</h5>
+                                <p class="card-text" style="font-size: 12px;">Admin</p>
+                                <div class="mt-3">
+                                    <a href="https://web.facebook.com/khanchit.bp/" target="_blank" style="text-decoration: none;">
+                                        <div style="width: 40px; height: 40px; border-radius: 5px; background-color: #3b5998; display: inline-flex; align-items: center; justify-content: center;">
+                                            <i class="bi bi-facebook" style="font-size: 16px; color: white;"></i>
+                                        </div>
+                                    </a>
+                                    <a href="https://www.instagram.com/khanchit.ig/" target="_blank" style="text-decoration: none;">
+                                        <div style="width: 40px; height: 40px; border-radius: 5px; background-color: #E1306C; display: inline-flex; align-items: center; justify-content: center;">
+                                            <i class="bi bi-instagram" style="font-size: 16px; color: white;"></i>
+                                        </div>
+                                    </a>
                                 </div>
-                            </div>
-                            <div class="text-center p-4 mt-3">
-                                <h5 class="fw-bold mb-0">Somchai Manhoeng</h5>
-                                <small>Programer</small>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-    </div>
         <!-- Team End -->
          
         <!-- Call to Action Start -->
