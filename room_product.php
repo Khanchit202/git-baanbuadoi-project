@@ -127,7 +127,7 @@ $db_con = connect_db();
                                 </div>
                             </div>
                         </div>
-                        <a href="javascript:void(0);" class="book-button" onclick="showAlert('<?php echo $statusText; ?>')" style="position: absolute; top: 230px; left: 10%; width: 80%; height: 50px; background-color: <?php echo $buttonColor; ?>; color: white; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;"><?php echo $buttonText; ?></a>
+                        <a href="<?php echo ($statusText == 'เต็ม' || $statusText == 'กำลังเตรียม') ? 'javascript:void(0);' : './room/room_detail.php?roomID=' . $room['roomID']; ?>" class="book-button" onclick="showAlert('<?php echo $statusText; ?>')" style="position: absolute; top: 230px; left: 10%; width: 80%; height: 50px; background-color: <?php echo $buttonColor; ?>; color: white; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;"><?php echo $buttonText; ?></a>
                     </div>
                 </div>
                 <?php } ?>
@@ -190,15 +190,6 @@ $db_con = connect_db();
                         title: 'กำลังทำความสะอาด',
                         text: 'ขออภัยห้องนี้อยู่ในระหว่างเตรียมการกรุณารอสักครู่...',
                         confirmButtonText: 'ตกลง'
-                    });
-                }else if( statusText === 'ว่าง'){
-                    Swal.fire({
-                        title: 'ขออภัย',
-                        text: 'ระบบยังไม่เปิดให้บริการ!',
-                        icon: 'info',
-                        confirmButtonText: 'ตกลง',
-                        allowOutsideClick: false,
-                        allowEscapeKey: false
                     });
                 }
             }
