@@ -58,7 +58,7 @@ function getUserLevelName($level) {
                     <td><?php echo htmlspecialchars($user['userLName']); ?></td>
                     <td style="color: <?php echo $lavel_color; ?>;"><i class="lni lni-checkmark-circle" style="margin-right: 8px;"></i><?php echo getUserLevelName($user['userLavelID']); ?></td>
                     <td>
-                        <button onclick="openEditModal(<?php echo $user['userID']; ?>)" class="btn btn-primary btn-sm">
+                        <button onclick="openEditModal(<?php echo str_pad($user['userID'], 5, "0", STR_PAD_LEFT); ?>')" class="btn btn-primary btn-sm">
                             <i class="lni lni-pencil" style="padding: 5px;"></i>
                         </button>
                         <button onclick="delete_data('<?php echo str_pad($user['userID'], 5, "0", STR_PAD_LEFT); ?>')" class="btn btn-danger btn-sm">
@@ -120,3 +120,52 @@ function getUserLevelName($level) {
   </div>
 </div>
 <!-- End Modal -->
+
+<!-- Modal edit-->
+<div class="modal fade" id="editdata" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">เเก้ไขข้อมูลนักศึกษา</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" >
+          <div class="mb-3">
+              <label for="username" class="form-label">ชื่อผู้ใช้</label>
+              <input type="text" class="form-control" name="username" id="edit_userName" required>
+          </div>
+          <div class="mb-3">
+              <label for="firstName" class="form-label">ชื่อจริง</label>
+              <input type="text" class="form-control" name="firstName" id="edit_userFName" required>
+          </div>
+          <div class="mb-3">
+              <label for="lastName" class="form-label">นามสกุล</label>
+              <input type="text" class="form-control" name="lastName" id="edit_userLName" required>
+          </div>
+          <div class="mb-3">
+              <label for="phone" class="form-label">เบอร์โทรศัพท์</label>
+              <input type="tel" class="form-control" name="phone" id="edit_userTel" required>
+          </div>
+          <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" name="email" id="edit_userEmail" required>
+          </div>
+          <div class="mb-3">
+              <label for="accessLevel" class="form-label">สิทธิ์การเข้าถึง</label>
+              <select class="form-select" name="accessLevel" id="userLavelID" required>
+                  <option value="1">ผู้ดูแลระบบ (Admin)</option>
+                  <option value="2">เจ้าของกิจการ (Owner)</option>
+                  <option value="3">พนักงาน (Employee)</option>
+                  <option value="4">สมาชิก (Member)</option>
+              </select>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" onclick="update_data()" class="btn btn-primary" name="submit">UPDATE</button>
+    
+      </div>
+    </div>
+  </div>
+</div>
+ <!-- Modal edit-->  

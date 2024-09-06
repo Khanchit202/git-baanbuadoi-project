@@ -111,3 +111,63 @@ function save_data(){
     }
 
 }
+
+function openEditModal(index) { 
+    $('#editdata').modal('show');
+
+    $('#edit_userName').val(data[index].userNamename);
+    $('#edit_userFName').val(data[index].userFName);
+    $('#edit_userLName').val(data[index].userLName);
+    $('#edit_userTel').val(data[index].userTel);
+    $('#edit_userEmail').val(data[index].userEmail);
+    id = data[index].userID;
+ }
+
+ function update_data() {
+    var name = $('#edit_userName').val();
+    var fname = $('#edit_userFName').val();
+    var lname = $('#edit_userLName').val();
+    var tel = $('#edit_userTel').val();
+    var email = $('#edit_userEmail').val();
+
+    $.ajax({
+        url: 'api/updatadata.php',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            id:id,
+            name:name,
+            fname:fname,
+            lname:lname,
+            tel:tel,
+            email:email,
+        },
+    })
+    .done(function(result) {
+        if(result.status == 'ok'){
+            Swal.fire({
+                title: "แก้ไขข้อมูลสำเร็จ",
+                text: "",
+                icon: "success",
+                didClose:() => {//ทำอะไรต่อเมื่อกดสวิต
+                    getData();
+                    $("#editdata").modal('hide');//แก้ไขเสร็จปิดmodal
+                }
+              });
+        }else{
+            Swal.fire({
+                title: "ไม่สามารถแก้ไขข้อมูลได้!",
+                text: "",
+                icon: "error",
+                
+              });
+
+        }
+    })
+    .fail(function() {
+        console.log("error");
+    })
+    .always(function() {
+        console.log("complete");
+    });
+ }
