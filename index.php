@@ -248,7 +248,7 @@ $db_con = connect_db();
     <!-- ปิดบริการ -->
         
 
-        <div class="text-center mx-auto mt-5 mb-2 wow slideInLeft" data-wow-delay="0.1s">
+        <div class="text-center mx-auto mt-5 mb-2 wow fadeInUp" data-wow-delay="0.1s">
             <h1 class="fw-bold" style="color: #BC5686;">ผลิตภัณฑ์ชุมชนแนะนำ</h1>
             <p style="color: #BC5686;">ผลิตภัณฑ์จากวิสาหกิจชุมชน เลือกชื้อได้เฉพาะที่นี้เท่านั้น</p>
         </div>
@@ -286,7 +286,7 @@ $db_con = connect_db();
         <!--  End -->
 
     
-        <div class="text-center mx-auto mt-5 mb-2 wow slideInLeft" data-wow-delay="0.1s">
+        <div class="text-center mx-auto mt-5 mb-2 wow fadeInUp" data-wow-delay="0.1s">
             <h1 class="fw-bold" style="color: #BC5686;">กิจกรรมชุมชน</h1>
             <p style="color: #BC5686;">กิจกรรม วัฒนธรรม และเทศการในชุมชน เพื่อรอคุณมาสัมผัส</p>
         </div>
