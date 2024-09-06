@@ -1,8 +1,22 @@
 <div id="typingEffect"></div>
 
+<style>
+  #typingEffect::after {
+    content: ' |';
+    animation: blink 0.7s infinite;
+  }
+
+  @keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+</style>
+
 <script>
   const text = "ยินดีต้อนรับ";
   let index = 0;
+  let isDeleting = false;
   const speed = 300;
   const delay = 2000;
 
@@ -10,21 +24,24 @@
     const typingElement = document.getElementById('typingEffect');
     typingElement.textContent = text.slice(0, index);
 
-    if (index < text.length) {
-      index++;
-      setTimeout(typeEffect, speed);
-    } else {
-      // เมื่อข้อความครบแล้วให้แสดงทั้งหมด
-      typingElement.textContent = text;
-      setTimeout(() => {
-        // รอให้ครบ 2 วินาที จากนั้นลบข้อความและเริ่มใหม่
-        index = 0;
-        typingElement.style.visibility = 'hidden';
+    if (!isDeleting) {
+      if (index < text.length) {
+        index++;
+        setTimeout(typeEffect, speed);
+      } else {
         setTimeout(() => {
-          typingElement.style.visibility = 'visible';
-          typeEffect();
-        }, 100);
-      }, delay);
+          isDeleting = true;
+          setTimeout(typeEffect, speed);
+        }, delay);
+      }
+    } else {
+      if (index > 0) {
+        index--;
+        setTimeout(typeEffect, 100);
+      } else {
+        isDeleting = false;
+        setTimeout(typeEffect, 100);
+      }
     }
   }
 
