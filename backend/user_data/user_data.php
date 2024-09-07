@@ -12,6 +12,7 @@ function getUserLevelName($level) {
         default: return '';
     }
 }
+
 ?>
 <p style="font-size: 16px; padding: 5px 20px;">กำหนดสิทธิ์การเข้าถึงระบบ</p>
 <div id="user-table" style="align-items: center;background-color: white; border-radius: 10px; padding: 50px;">
@@ -58,7 +59,10 @@ function getUserLevelName($level) {
                     <td><?php echo htmlspecialchars($user['userLName']); ?></td>
                     <td style="color: <?php echo $lavel_color; ?>;"><i class="lni lni-checkmark-circle" style="margin-right: 8px;"></i><?php echo getUserLevelName($user['userLavelID']); ?></td>
                     <td>
-                        <button onclick="openEditModal(<?php echo str_pad($user['userID'], 5, "0", STR_PAD_LEFT); ?>')" class="btn btn-primary btn-sm">
+                        <button onclick="resetpass('<?php echo str_pad($user['userID'], 5, "0", STR_PAD_LEFT); ?>')" class="btn btn-primary btn-sm">
+                            <i class="lni lni-key" style="padding: 5px;"></i>
+                        </button>
+                        <button onclick="openEditModal('<?php echo str_pad($user['userID'], 5, "0", STR_PAD_LEFT); ?>')" class="btn btn-primary btn-sm">
                             <i class="lni lni-pencil" style="padding: 5px;"></i>
                         </button>
                         <button onclick="delete_data('<?php echo str_pad($user['userID'], 5, "0", STR_PAD_LEFT); ?>')" class="btn btn-danger btn-sm">
@@ -121,8 +125,10 @@ function getUserLevelName($level) {
 </div>
 <!-- End Modal -->
 
+
+
 <!-- Modal edit-->
-<div class="modal fade" id="editdata" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editdatauser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -131,28 +137,28 @@ function getUserLevelName($level) {
       </div>
       <div class="modal-body" >
           <div class="mb-3">
-              <label for="username" class="form-label">ชื่อผู้ใช้</label>
-              <input type="text" class="form-control" name="username" id="edit_userName" required>
+              <label for="name" class="form-label">ชื่อผู้ใช้</label>
+              <input type="text" class="form-control"  id="edit_userName" required>
           </div>
           <div class="mb-3">
-              <label for="firstName" class="form-label">ชื่อจริง</label>
-              <input type="text" class="form-control" name="firstName" id="edit_userFName" required>
+              <label for="fname" class="form-label">ชื่อจริง</label>
+              <input type="text" class="form-control"  id="edit_userFName" required>
           </div>
           <div class="mb-3">
-              <label for="lastName" class="form-label">นามสกุล</label>
-              <input type="text" class="form-control" name="lastName" id="edit_userLName" required>
+              <label for="lname" class="form-label">นามสกุล</label>
+              <input type="text" class="form-control"  id="edit_userLName" required>
           </div>
           <div class="mb-3">
-              <label for="phone" class="form-label">เบอร์โทรศัพท์</label>
-              <input type="tel" class="form-control" name="phone" id="edit_userTel" required>
+              <label for="tel" class="form-label">เบอร์โทรศัพท์</label>
+              <input type="number" class="form-control"  id="edit_userTel" required>
           </div>
           <div class="mb-3">
               <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" name="email" id="edit_userEmail" required>
+              <input type="email" class="form-control"  id="edit_userEmail" required>
           </div>
           <div class="mb-3">
               <label for="accessLevel" class="form-label">สิทธิ์การเข้าถึง</label>
-              <select class="form-select" name="accessLevel" id="userLavelID" required>
+              <select class="form-select"  id="userLavelID" required disabled>
                   <option value="1">ผู้ดูแลระบบ (Admin)</option>
                   <option value="2">เจ้าของกิจการ (Owner)</option>
                   <option value="3">พนักงาน (Employee)</option>

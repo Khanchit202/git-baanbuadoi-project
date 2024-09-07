@@ -1,63 +1,36 @@
 <?php
-    session_start();
-    include("../db_config.php");
-    $id = $_GET['id'];
 
-    $sql = "SELECT * FROM users WHERE id= ?";
-    $stmt= $db_con->prepare($sql);
-    $stmt->bindParam(1,$id);
-    $stmt->execute();
+include("../../../db_config.php");
 
-    $row = $stmt->fetch();
+try {
+    // เชื่อมต่อกับฐานข้อมูล
+    $db_con = connect_db("client");
+    $db_con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $response = array();
+
+    if ($_SERVER['REQUEST_METHOD'] == "POST") {
+        $userPass = password_hash('123456', PASSWORD_DEFAULT); // ใช้ password_hash เพื่อความปลอดภัย
+        $userID = $_POST['userID'];
+
+        $sql = "UPDATE users SET userPass = :userPass WHERE userID = :userID";
+        $stmt = $db_con->prepare($sql);
+        $stmt->bindParam(':userPass', $userPass);
+        $stmt->bindParam(':userID', $userID);
+
+        $result = $stmt->execute();
+        if ($result) {
+            $response['status'] = 'ok';
+        } else {
+            $response['status'] = 'error';
+        }
+    } else {
+        $response['status'] = 'no-request';
+    }
+} catch (PDOException $e) {
+    $response['status'] = 'error';
+    $response['message'] = "Error: " . $e->getMessage();
+}
+
+echo json_encode($response); // เข้ารหัสแบบ JSON
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-</head>
-<body>
-    <div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-4">
-        <h3>แก้ไขข้อมูล</h3>
-        </div>
-</div>
-        <div class="row justify-content-center">
-            <div class="col-4">
-            <form action="updatadata.php" method="POST">
-                <div class="mb-3">
-                    <label for="name" class="form-label">ชื่อผู้ใช้</label>
-                    <input type="text" class="form-control" name="edit_userName"  value="<?=$row['userName']?>">
-                </div>
-                <div class="mb-3">
-                    <label for="course" class="form-label">ชื่อจริง</label>
-                    <input type="text" class="form-control" name="edit_userFName" value="<?=$row['userFName']?>">
-                </div>
-                <div class="mb-3">
-                    <label for="gender" class="form-label">นามสกุล</label>
-                    <input type="text" class="form-control" name="edit_userLName" value="<?=$row['userLName']?>">
-                </div>
-                <div class="mb-3">
-                    <label for="age" class="form-label">เบอร์โทรศัพท์</label>
-                    <input type="number" class="form-control" name="edit_userTel" value="<?=$row['userTel']?>">
-                </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="text" class="form-control" name="edit_userEmail" value="<?=$row['userEmail']?>">
-                </div>
-
-                <input type="hidden" name="id" value="<?=$id?>" >
-                <div class="d-grid">
-                    <button type="submit" class="btn btn-primary" name="submit">แก้ไข</button>
-                    </form>
-            </div>
-        </div>
-
-    </div>
-    
-</body>
-</html>

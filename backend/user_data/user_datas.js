@@ -1,3 +1,4 @@
+
 function delete_data(userID) {
     console.log(userID);
     Swal.fire({
@@ -112,16 +113,21 @@ function save_data(){
 
 }
 
-function openEditModal(index) { 
-    $('#editdata').modal('show');
 
-    $('#edit_userName').val(data[index].userNamename);
-    $('#edit_userFName').val(data[index].userFName);
-    $('#edit_userLName').val(data[index].userLName);
-    $('#edit_userTel').val(data[index].userTel);
-    $('#edit_userEmail').val(data[index].userEmail);
-    id = data[index].userID;
- }
+function openEditModal(userID) {
+        $('#editdatauser').modal('show');
+
+        $('#edit_userName').val(userID.userName);
+        $('#edit_userFName').val(userID.userFName);
+        $('#edit_userLName').val(userID.userLName);
+        $('#edit_userTel').val(userID.userTel);
+        $('#edit_userEmail').val(userID.userEmail);
+        $('#userLavelID').val(userID.userLavelID);
+   
+}
+
+
+
 
  function update_data() {
     var name = $('#edit_userName').val();
@@ -171,3 +177,55 @@ function openEditModal(index) {
         console.log("complete");
     });
  }
+
+
+
+
+ function resetpass(userID) {
+    console.log(userID);
+    Swal.fire({
+        title: "คุณต้องการ Reset รหัสผ่านหรือไม่",
+        text: "Reset รหัสผ่าน ข้อมูลของผู้ใช้เลขที่ " + userID + " หรือไม่?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "ยืนยัน,",
+        cancelButtonText: "ยกเลิก"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            
+            $.ajax({
+                url: 'user_data/api/edit.php',
+                type: 'POST',
+                dataType: 'json',
+                data: { userID: userID,
+                 }
+            })
+            .done(function(response) {
+                if (response.status == 'ok') {
+                    Swal.fire({
+                        title: "Reset รหัสผ่านเรียบร้อบ",
+                        text: "",
+                        icon: "success"
+                    }).then(() => {
+                        window.location.reload(); // Refresh the page
+                    });
+                } else {
+                    Swal.fire({
+                        title: "ไม่สามารถReset รหัสผ่านได้",
+                        text: "มีข้อผิดพลาดในการReset รหัสผ่านของผู้ใช้",
+                        icon: "error"
+                    });
+                }
+            })
+            .fail(function() {
+                Swal.fire({
+                    title: "ข้อผิดพลาด",
+                    text: "ไม่สามารถติดต่อกับเซิร์ฟเวอร์ได้",
+                    icon: "error"
+                });
+            });
+        }
+    });
+}
