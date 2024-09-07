@@ -127,7 +127,7 @@ $db_con = connect_db();
                                 </div>
                             </div>
                         </div>
-                        <a href="<?php echo ($statusText == 'เต็ม' || $statusText == 'กำลังเตรียม') ? 'javascript:void(0);' : './room/room_detail.php?roomID=' . $room['roomID']; ?>" class="book-button" onclick="showAlert('<?php echo $statusText; ?>')" style="position: absolute; top: 230px; left: 10%; width: 80%; height: 50px; background-color: <?php echo $buttonColor; ?>; color: white; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;"><?php echo $buttonText; ?></a>
+                        <a href="<?php echo ($statusText == 'เต็ม' || $statusText == 'กำลังเตรียม') ? 'javascript:void(0);' : 'deteil_product.php?id=' . $room['roomID']; ?>" class="book-button" onclick="showAlert('<?php echo $statusText; ?>')" style="position: absolute; top: 230px; left: 10%; width: 80%; height: 50px; background-color: <?php echo $buttonColor; ?>; color: white; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;"><?php echo $buttonText; ?></a>
                     </div>
                 </div>
                 <?php } ?>

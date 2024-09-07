@@ -69,14 +69,14 @@ if (!$room) {
                         </div>
                         <div class="row mb-2">
                             <div class="col-md-3 fw-bold"><p>จำนวนเตียงนอน</p></div> 
-                            <div style="color:#4DA865; " class="col-md-2 fw-bold"><?php echo htmlspecialchars($room['roomBed']); ?> <i class="fa fa-bath me-2" style="padding: 5px; margin-left: 5px;"></i></div>
+                            <div style="color:#4DA865; " class="col-md-2 fw-bold"><?php echo htmlspecialchars($room['roomBed']); ?> <i class="fa fa-bed me-2" style="padding: 5px; margin-left: 5px;"></i></div>
                             <div class="col-md-3 fw-bold"><p>จำนวนห้องน้ำ</p></div> 
                             <div style="color:#4DA865; " class="col-md-2 fw-bold"><?php echo htmlspecialchars($room['roomBed']); ?> <i class="fa fa-bath me-2" style="padding: 5px; margin-left: 5px;"></i></div>
                         </div>
 
                         <div class="row mb-2">
                             <div class="col-md-3 fw-bold"><p>จำนวนห้องน้ำ</p></div> 
-                            <div style="color:#4DA865; " class="col-md-2 fw-bold"><?php echo htmlspecialchars($room['roomMin']); ?> - <?php echo htmlspecialchars($room['roomMax']);?> <i class="fa fa-bath me-2" style="padding: 5px; margin-left: 5px;"></i></div>
+                            <div style="color:#4DA865; " class="col-md-2 fw-bold"><?php echo htmlspecialchars($room['roomMin']); ?> - <?php echo htmlspecialchars($room['roomMax']);?> <i class="lni lni-users me-2" style="font-size: 12px; margin-left: 5px;"></i></div>
                             <div class="col-md-3 fw-bold"><p>ราคามัดจำ (กรณีจองออนไลท์)</p></div> 
                             <div style="color:#4DA865; " class="col-md-2 fw-bold">30 เปอร์เซ็น</div>
                         </div>
