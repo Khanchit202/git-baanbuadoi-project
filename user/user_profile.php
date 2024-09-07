@@ -25,6 +25,8 @@
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.lineicons.com/3.0/lineicons.css">
 
     <!-- Libraries Stylesheet -->
     <link href="lib/animate/animate.min.css" rel="stylesheet">
@@ -88,7 +90,7 @@
 
 
     <div class="main p-3" style="background-color: #ECF0F1;">
-            <nav class="navbar navbar-light bg-light justify-content-between" style="border-radius: 10px; margin-bottom: 20px;">
+            <nav class="navbar navbar-light bg-light justify-content-between" style="border-radius: 10px; margin-bottom: 40px;">
                 <div class="bar">
                     <button class="toggle-btn" type="button">
                         <i class="lni lni-menu"></i>
@@ -102,7 +104,7 @@
                 </a>
             </div>
             </nav>
-        
+      
             <div class="container" style="display: flex; justify-content: center; align-items: center;">
             <div class="row" style="width: 100%;">
             <!-- คอลัมน์ฝั่งซ้ายสำหรับรูปภาพ -->
@@ -172,11 +174,13 @@
             </div>
             </div>
         </div>
-    </div>
+        </div>
+        <nav>
+            <?php include("../footer.php"); ?>
+        </nav>
     
-    <nav>
-        <?php include("../footer.php"); ?>
-    </nav>
+    
+    
     <!-- Include Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
