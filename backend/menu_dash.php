@@ -12,9 +12,14 @@ function menu_dash() {
             $lavel = $_SESSION['user_lavel'];
             $lavel_name = "เจ้าของกิจการ";
             $lavel_color = "LimeGreen";
-        } else {
+        }elseif ($_SESSION['user_lavel'] == 3){
             $lavel = $_SESSION['user_lavel'];
             $lavel_name = "พนักงาน";
+            $lavel_color = "LimeGreen";
+
+        } else {
+            $lavel = $_SESSION['user_lavel'];
+            $lavel_name = "สมาชิก";
             $lavel_color = "blue";
         }
     }
@@ -23,6 +28,7 @@ function menu_dash() {
         case 1: admin_dash($lavel_name, $lavel_color); break;
         case 2: owner_dash($lavel_name, $lavel_color); break;
         case 3: emp_dash($lavel_name, $lavel_color); break;
+        case 4: cus_dash($lavel_name, $lavel_color); break;
         default: no_dash();
     }
 }
@@ -144,6 +150,21 @@ function emp_dash($lavel_name, $lavel_color) {
                         <a href="?page=service-data" class="sidebar-link <?php echo ($current_page == 'service-data' ? 'active' : '') ?>">บริการ</a>
                     </li>
                 </ul>
+            </li>
+        </ul>
+    <?php
+} 
+function cus_dash($lavel_name, $lavel_color) {
+    $current_page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
+    ?>   
+        <ul class="sidebar-nav">
+            <?php user_status($lavel_name, $lavel_color); ?>
+            
+            <li class="sidebar-item">
+                <a href="" class="sidebar-link <?php echo ($current_page == 'user-data' ? 'active' : '') ?>">
+                    <i class="lni lni-list"></i>
+                    <span>ข้อมูลการจอง</span>
+                </a>
             </li>
         </ul>
     <?php
