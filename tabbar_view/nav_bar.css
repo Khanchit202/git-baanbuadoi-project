@@ -1,9 +1,20 @@
 .topbar_menu {
-    box-shadow: 2px 2px 3px #2a2828;
-    background-color: white;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 5px 20px; 
+    border-radius: 5px;
+}
+#navbar {
+    transition: all 0.3s ease;
+}
+
+#navbar.scrolled {
+    transition: all 0.3s ease;
+    box-shadow: 1px 1px 5px #ccc;
+    background-color: white;
+    margin: 0 20px; 
+    border-radius: 5px;
 }
 
 .topbar_menu_logo {
@@ -101,4 +112,3 @@
 .dropdown-menu a:hover {
     background-color: #f0f0f0;
 }
-

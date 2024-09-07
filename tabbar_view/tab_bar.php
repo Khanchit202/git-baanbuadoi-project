@@ -3,7 +3,7 @@ session_start();
 $current_page = basename($_SERVER['PHP_SELF']);
 ?>
 
-<div class="topbar_menu" style="margin: 0 20px; padding: 5px 20px; border-radius: 5px;">
+<div class="topbar_menu">
     <div class="topbar_menu_logo">
         <a href="index.php"><img src="tabbar_view/baanbuadoi.png" alt="โฮมสเตย์บ้านบัวดอย Baanbuadoi"></a>
         <p>โฮมสเตย์บ้านบัวดอย</p>
@@ -48,5 +48,14 @@ document.querySelectorAll('.dropdown-menu a').forEach(link => {
         this.style.backgroundColor = '';
     });
 });
+
+window.addEventListener('scroll', function() {
+        const navbar = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled'); // เพิ่ม class เมื่อเลื่อนลง
+        } else {
+            navbar.classList.remove('scrolled'); // ลบ class เมื่อเลื่อนกลับขึ้น
+        }
+    });
 
 </script>

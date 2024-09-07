@@ -1,0 +1,7 @@
+@font-face {
+    font-family: kkfont;
+    src: url('EkkamaiNew-Regular.ttf');
+}
+body {
+    font-family: kkfont;
+}

@@ -15,40 +15,41 @@ $db_con = connect_db();
     <link rel="stylesheet" href="card.css">
     <link rel="stylesheet" href="https://cdn.lineicons.com/3.0/lineicons.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
     <link rel="icon" type="image/x-icon" href="img/bua/logo.png" style="border-radius: 5px;">
-    
-    <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
     <link href="lib/animate/animate.min.css" rel="stylesheet">
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
     <script type="text/javascript" src="indexs.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container-xxl bg-white p-0">
-        <nav>
+        <nav id="navbar">
             <?php include("tabbar_view/tab_bar.php"); ?>
         </nav>
 
-        <div class="pre_image" style="height: 250px">
-                <?php include("headbar.php"); ?>
-        </div>
-        
-        <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
-            <div id="title">
-                <h1>แนะนำห้องพัก โฮมสเตย์</h1>
-                <p>ห้องพัก บ้านพัก และบริการ</p>
+        <div class="container-fluid" style="background-color: #ffffff; height: 780px; position: relative;">
+            <div class="row">
+                <div class="col-lg-7 py-vh-6 position-relative wow slideInLeft" data-wow-delay="0.1s" style="margin-top: 150px; z-index: 1;" data-aos="fade-right">
+                    <h1 class="display-1 fw-bold" style="font-size: 60px; padding-left: 60px; color: #4DA865;">บ้านบัวดอยโฮมสเตย์</h1>
+                    <div class="welcome fw-bold" style="font-size: 50px; padding-left: 60px; height: 70px; color: #BC5686;">
+                        <?php include("welcome.php"); ?>
+                    </div>
+                    <p class="lead" style="font-size: 18px; padding-left: 60px; color: #4DA865;">ระบบจองห้องพักและบริการสำหรับนักท่องเที่ยวให้ความสะดวกสบายในการจองที่พักและบริการ พร้อมยกระดับประสบการณ์การท่องเที่ยวที่ดียิ่งขึ้น</p>
+                    <a href="#" class="btn btn-custom shadow" style="margin-left: 60px; margin-top: 30px; font-size: 15px;"><i class="lni lni-pointer-top" style="font-size: 25px;"></i>&nbsp;&nbsp;ดูห้องพักและบริการทั้งหมด</a>
+                </div>
+                <div class="col-lg-5 wow slideInRight" data-wow-delay="0.1s" style="position: absolute; top: 0; right: 0; height: 100%; width: 50%; background: url('img/news_pic/baby1.jpg') no-repeat center center; background-size: cover;">
+                </div>
             </div>
+        </div>
+
+
+
+        <div class="text-start mx-auto mt-5 mb-2 wow slideInLeft" data-wow-delay="0.1s">
+                <h1 class="fw-bold" style="margin-left: 70px; color: #BC5686;">แนะนำห้องพัก</h1>
+                <p style="margin-left: 70px; color: #BC5686;">โฮมสเตย์บ้านบัวดอย รวบรวมห้องพักทั่วทั้งดอยอ่างขาง</p>
         </div>
 
     <!-- ห้องพัก -->
@@ -95,7 +96,7 @@ $db_con = connect_db();
                                 </div>
                             </div>
                         </div>
-                        <a href="javascript:void(0);" class="book-button" onclick="showSystemUnavailableAlert()" style="position: absolute; top: 230px; left: 10%; width: 80%; height: 50px; background-color: <?php echo $buttonColor; ?>; color: white; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;"><?php echo $buttonText; ?></a>
+                        <a href="deteil_product.php?id=<?php echo $room['roomID']; ?>" class="book-button" style="position: absolute; top: 230px; left: 10%; width: 80%; height: 50px; background-color: <?php echo $buttonColor; ?>; color: white; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;"><?php echo $buttonText; ?></a>
                     </div>
                 </div>
                 <?php 
@@ -106,43 +107,41 @@ $db_con = connect_db();
         <!-- ปิดห้องพัก -->
 
 
-        <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
-            <div id="title">
-                <h1>หมวดหมู่</h1>
-                <p>ห้องพัก บ้านพัก และบริการ</p>
-            </div>
+        <div class="text-end mx-auto mt-5 mb-2 wow slideInRight" data-wow-delay="0.1s">
+            <h1 class="fw-bold" style="margin-right: 70px; color: #BC5686;">หมวดหมู่</h1>
+            <p style="margin-right: 70px; color: #BC5686;">เลือกหมวดหมู่ที่ต้องการรับบริการ กับบ้านบัวดอย</p>
         </div>
 
         <div class="menu_pro d-flex justify-content-between" style="margin: 60px 60px;">
             
             <div class="wow fadeInUp" data-wow-delay="0.2s">
             <div class="button" onclick="showSystemUnavailableAlert()">
-                    <i class="lni lni-grid-alt" style="font-size: 30px;"></i>
-                    <p style="font-size: 14px;">บริการทั้งหมด</p>
+                    <i class="lni lni-grid-alt" style="font-size: 30px;  color: #BC5686;"></i>
+                    <p style="font-size: 14px;  color: #BC5686;">บริการทั้งหมด</p>
                 </div>
             </div>
             <div class="wow fadeInUp" data-wow-delay="0.4s">
                 <div class="button" onclick="showSystemUnavailableAlert()">
-                    <i class="lni lni-caravan" style="font-size: 30px;"></i>
-                    <p style="font-size: 14px;">ห้องพัก</p>
+                    <i class="lni lni-caravan" style="font-size: 30px;  color: #BC5686;"></i>
+                    <p style="font-size: 14px;  color: #BC5686;">ห้องพัก</p>
                 </div>
             </div>
             <div class="wow fadeInUp" data-wow-delay="0.6s">
                 <div class="button" onclick="showSystemUnavailableAlert()">
-                    <i class="lni lni-basketball" style="font-size: 30px;"></i>
-                    <p style="font-size: 14px;">บริการ</p>
+                    <i class="lni lni-basketball" style="font-size: 30px;  color: #BC5686;"></i>
+                    <p style="font-size: 14px;  color: #BC5686;">บริการ</p>
                 </div>
             </div>
             <div class="wow fadeInUp" data-wow-delay="0.8s">
                 <div class="button" onclick="showSystemUnavailableAlert()">
-                    <i class="lni lni-book" style="font-size: 30px;"></i>
-                    <p style="font-size: 14px;">ข่าวสาร</p>
+                    <i class="lni lni-book" style="font-size: 30px;  color: #BC5686;"></i>
+                    <p style="font-size: 14px;  color: #BC5686;">ข่าวสาร</p>
                 </div>
             </div>
             <div class="wow fadeInUp" data-wow-delay="1s">
                 <div class="button" onclick="showSystemUnavailableAlert()">
-                    <i class="lni lni-offer" style="font-size: 30px;"></i>
-                    <p style="font-size: 14px;">โปรโมชั่น</p>
+                    <i class="lni lni-offer" style="font-size: 30px;  color: #BC5686;"></i>
+                    <p style="font-size: 14px;  color: #BC5686;">โปรโมชั่น</p>
                 </div>
             </div>
             </div>
@@ -179,11 +178,9 @@ $db_con = connect_db();
         <!-- new End -->
 
         <!-- บริการ -->
-        <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
-            <div id="title">
-                <h1>แนะนำบริการ</h1>
-                <p>บริการ และสินค้าต่างๆ ของบ้านบัวดอย</p>
-            </div>
+        <div class="text-start mx-auto mt-5 mb-2 wow slideInLeft" data-wow-delay="0.1s">
+            <h1 class="fw-bold" style="margin-left: 70px; color: #BC5686;">แนะนำบริการ</h1>
+            <p style="margin-left: 70px; color: #BC5686;">โฮมสเตย์บ้านบัวดอย รวบรวมบริการ และผลิตภัณท์ท้องถินดอยอ่างขาง</p>
         </div>
 
         <?php
@@ -240,14 +237,13 @@ $db_con = connect_db();
     <!-- ปิดบริการ -->
         
 
-        
+        <div class="text-center mx-auto mt-5 mb-2 wow fadeInUp" data-wow-delay="0.1s">
+            <h1 class="fw-bold" style="color: #BC5686;">ผลิตภัณฑ์ชุมชนแนะนำ</h1>
+            <p style="color: #BC5686;">ผลิตภัณฑ์จากวิสาหกิจชุมชน เลือกชื้อได้เฉพาะที่นี้เท่านั้น</p>
+        </div>
         <!-- procuct Start -->
         <div class="container-xxl py-5">
             <div class="container">
-                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                    <h1 class="mb-3">ผลิตภัณฑ์ชุมชน</h1>
-                    <p >สินค้าแนะนำจากบ้านบัวดอย ผลิตภัณฑ์ของเราและของชุมชนบ้านนอแล </p>
-                </div>
                 <?php
                     $sql = 'SELECT newPic, newTitle, newID, newType FROM news WHERE newType = "สินค้า"';
                     $stmt = $db_con->prepare($sql);
@@ -256,7 +252,7 @@ $db_con = connect_db();
                     // เก็บข้อมูลในตัวแปร $products
                     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
-                <div class="produc_pre" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin: 0 10px;">
+                <div class="produc_pre" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin: 0 35px;">
                     <!-- การ์ดสำหรับกิจกรรม -->
                     <?php foreach ($products as $product) { ?>
                         <div class="col-lg-2 col-md-6  wow fadeInUp" data-wow-delay="0.3s">
@@ -279,14 +275,13 @@ $db_con = connect_db();
         <!--  End -->
 
     
-
+        <div class="text-center mx-auto mt-5 mb-2 wow fadeInUp" data-wow-delay="0.1s">
+            <h1 class="fw-bold" style="color: #BC5686;">กิจกรรมชุมชน</h1>
+            <p style="color: #BC5686;">กิจกรรม วัฒนธรรม และเทศการในชุมชน เพื่อรอคุณมาสัมผัส</p>
+        </div>
         <!-- Testimonial Start -->
         <div class="container-xxl py-5">
             <div class="container">
-                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                    <h1 class="mb-3">กิจกรรมชุมชน</h1>
-                    <p >กิจกรรมแจกของขวัญ คูปองส่วนลด กิจกรรมต่างของ Buodoi.</p>
-                </div>
                 <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
                     <div class="testimonial-item bg-light rounded p-3">
                         <div class="bg-white border rounded p-4">
@@ -367,15 +362,11 @@ $db_con = connect_db();
         <?php include("footer.php"); ?>
     </nav>
 
-    
-    
     <!-- Include Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JavaScript Libraries -->
     <script src="lib/wow/wow.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>

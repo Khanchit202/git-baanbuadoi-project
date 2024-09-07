@@ -34,7 +34,7 @@ $db_con = connect_db();
 </head>
 <body>
     <div class="container-xxl bg-white p-0">
-        <nav>
+        <nav id="navbar">
             <?php include("tabbar_view/tab_bar.php"); ?>
         </nav>
 
@@ -161,7 +161,6 @@ $db_con = connect_db();
                         </div>
                     </div>
                 </div>
-            </div>
         <!-- Team End -->
          
         <!-- Call to Action Start -->
@@ -263,7 +262,7 @@ $db_con = connect_db();
                 </div>
         
     
-        
+    </div>
         
         <nav>
             <?php include("footer.php"); ?>
