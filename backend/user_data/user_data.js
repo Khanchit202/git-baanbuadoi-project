@@ -113,61 +113,70 @@ function save_data(){
 
 }
 
+var id;
+function reset(userID) {
+    // ตรวจสอบข้อมูลที่ส่งเข้ามา
+    $('#editdatauser').modal('show');
 
-function openEditModal(userID) {
-        $('#editdatauser').modal('show');
-
-        $('#edit_userName').val(userID.userName);
-        $('#edit_userFName').val(userID.userFName);
-        $('#edit_userLName').val(userID.userLName);
-        $('#edit_userTel').val(userID.userTel);
-        $('#edit_userEmail').val(userID.userEmail);
-        $('#userLavelID').val(userID.userLavelID);
-   
+    $('#edit_userName').val(userID.userName);
+    $('#edit_userFName').val(userID.userFName);
+    $('#edit_userLName').val(userID.userLName);
+    $('#edit_userTel').val(userID.userTel);
+    $('#edit_userEmail').val(userID.userEmail);
+    $('#edit_userLavelID').val(userID.userLavelID);
+    id = userID.userID;
 }
 
-
-
-
- function update_data() {
+function update_data() {
     var name = $('#edit_userName').val();
     var fname = $('#edit_userFName').val();
     var lname = $('#edit_userLName').val();
     var tel = $('#edit_userTel').val();
     var email = $('#edit_userEmail').val();
-
+    var level = $('#edit_userLavelID').val();
+    
     $.ajax({
-        url: 'api/updatadata.php',
+        url: 'user_data/api/updatadata.php',
         type: 'POST',
         dataType: 'json',
         data: {
-            id:id,
-            name:name,
-            fname:fname,
-            lname:lname,
-            tel:tel,
-            email:email,
+            id: id,
+            name: name,
+            fname: fname,
+            lname: lname,
+            tel: tel,
+            email: email,
+            level: level,
         },
+        beforeSend: function() {
+            console.log("Sending data:", {
+                id: id,
+                name: name,
+                fname: fname,
+                lname: lname,
+                tel: tel,
+                email: email,
+                level: level,
+            });
+        }
     })
     .done(function(result) {
+        console.log("Response received:", result);
         if(result.status == 'ok'){
             Swal.fire({
                 title: "แก้ไขข้อมูลสำเร็จ",
                 text: "",
                 icon: "success",
-                didClose:() => {//ทำอะไรต่อเมื่อกดสวิต
-                    getData();
-                    $("#editdata").modal('hide');//แก้ไขเสร็จปิดmodal
+                didClose: () => {
+                    $("#editdatauser").modal('hide');
                 }
-              });
-        }else{
+            });
+        } else {
             Swal.fire({
                 title: "ไม่สามารถแก้ไขข้อมูลได้!",
                 text: "",
                 icon: "error",
-                
-              });
-
+            });
         }
     })
     .fail(function() {
@@ -176,7 +185,9 @@ function openEditModal(userID) {
     .always(function() {
         console.log("complete");
     });
- }
+    
+}
+
 
 
 

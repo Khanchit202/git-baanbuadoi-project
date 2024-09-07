@@ -62,9 +62,18 @@ function getUserLevelName($level) {
                         <button onclick="resetpass('<?php echo str_pad($user['userID'], 5, "0", STR_PAD_LEFT); ?>')" class="btn btn-primary btn-sm">
                             <i class="lni lni-key" style="padding: 5px;"></i>
                         </button>
-                        <button onclick="openEditModal('<?php echo str_pad($user['userID'], 5, "0", STR_PAD_LEFT); ?>')" class="btn btn-primary btn-sm">
+                        <button onclick="reset({
+                            userID: '<?php echo addslashes($user['userID']); ?>',
+                            userName: '<?php echo addslashes($user['userName']); ?>',
+                            userFName: '<?php echo addslashes($user['userFName']); ?>',
+                            userLName: '<?php echo addslashes($user['userLName']); ?>',
+                            userTel: '<?php echo addslashes($user['userTel']); ?>',
+                            userEmail: '<?php echo addslashes($user['userEmail']); ?>',
+                            userLavelID: '<?php echo addslashes($user['userLavelID']); ?>'
+                        })" class="btn btn-primary btn-sm">
                             <i class="lni lni-pencil" style="padding: 5px;"></i>
                         </button>
+
                         <button onclick="delete_data('<?php echo str_pad($user['userID'], 5, "0", STR_PAD_LEFT); ?>')" class="btn btn-danger btn-sm">
                             <i class="lni lni-trash-can" style="padding: 5px;"></i>
                         </button>
@@ -126,8 +135,7 @@ function getUserLevelName($level) {
 <!-- End Modal -->
 
 
-
-<!-- Modal edit-->
+    <!-- Modal edit-->
 <div class="modal fade" id="editdatauser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -138,27 +146,27 @@ function getUserLevelName($level) {
       <div class="modal-body" >
           <div class="mb-3">
               <label for="name" class="form-label">ชื่อผู้ใช้</label>
-              <input type="text" class="form-control"  id="edit_userName" required>
+              <input type="text" class="form-control"  id="edit_userName" required disabled>
           </div>
           <div class="mb-3">
               <label for="fname" class="form-label">ชื่อจริง</label>
-              <input type="text" class="form-control"  id="edit_userFName" required>
+              <input type="text" class="form-control"  id="edit_userFName" required disabled>
           </div>
           <div class="mb-3">
               <label for="lname" class="form-label">นามสกุล</label>
-              <input type="text" class="form-control"  id="edit_userLName" required>
+              <input type="text" class="form-control"  id="edit_userLName" required disabled>
           </div>
           <div class="mb-3">
               <label for="tel" class="form-label">เบอร์โทรศัพท์</label>
-              <input type="number" class="form-control"  id="edit_userTel" required>
+              <input type="number" class="form-control"  id="edit_userTel" required disabled>
           </div>
           <div class="mb-3">
               <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control"  id="edit_userEmail" required>
+              <input type="email" class="form-control"  id="edit_userEmail" required disabled>
           </div>
           <div class="mb-3">
               <label for="accessLevel" class="form-label">สิทธิ์การเข้าถึง</label>
-              <select class="form-select"  id="userLavelID" required disabled>
+              <select class="form-select"  id="edit_userLavelID" required >
                   <option value="1">ผู้ดูแลระบบ (Admin)</option>
                   <option value="2">เจ้าของกิจการ (Owner)</option>
                   <option value="3">พนักงาน (Employee)</option>
@@ -175,3 +183,6 @@ function getUserLevelName($level) {
   </div>
 </div>
  <!-- Modal edit-->  
+
+
+
