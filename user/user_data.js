@@ -16,13 +16,26 @@ function updateData() {
         if (xhr.readyState === 4 && xhr.status === 200) {
             var response = JSON.parse(xhr.responseText);
             if (response.status === 'success') {
-                alert(response.message);
-                // ปิด Modal
+                // ปิด Modal ก่อน
                 $('#editModal').modal('hide');
-                // รีเฟรชข้อมูลใหม่
-                location.reload();
+                
+                // แสดง SweetAlert หลังจากปิด Modal
+                swal({
+                    title: "แก้ไขข้อมูลสำเร็จ",
+                    text: response.message,
+                    icon: "success",
+                    button: "OK",
+                }).then(() => {
+                    // รีเฟรชข้อมูลใหม่
+                    location.reload();
+                });
             } else {
-                alert(response.message);
+                swal({
+                    title: "แก้ไขข้อมูลไม่สำเร็จ",
+                    text: response.message,
+                    icon: "error",
+                    button: "OK",
+                });
             }
         }
     };

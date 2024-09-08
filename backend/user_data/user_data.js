@@ -162,22 +162,27 @@ function update_data() {
     })
     .done(function(result) {
         console.log("Response received:", result);
-        if(result.status == 'ok'){
-            Swal.fire({
-                title: "แก้ไขข้อมูลสำเร็จ",
-                text: "",
+        if (response.status === 'success') {
+            swal({
+                title: "Success",
+                text: response.message,
                 icon: "success",
-                didClose: () => {
-                    $("#editdatauser").modal('hide');
-                }
+                button: "OK",
+            }).then(() => {
+                // ปิด Modal
+                $('#editdatauser').modal('hide');
+                // รีเฟรชข้อมูลใหม่
+                location.reload();
             });
         } else {
-            Swal.fire({
-                title: "ไม่สามารถแก้ไขข้อมูลได้!",
-                text: "",
+            swal({
+                title: "Error",
+                text: response.message,
                 icon: "error",
+                button: "OK",
             });
         }
+        
     })
     .fail(function() {
         console.log("error");

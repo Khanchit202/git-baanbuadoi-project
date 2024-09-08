@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->execute();
 
         $response['status'] = 'success';
-        $response['message'] = 'ข้อมูลถูกบันทึกเรียบร้อยแล้ว';
+        
     } catch (PDOException $e) {
         $response['status'] = 'error';
         $response['message'] = 'Error: ' . $e->getMessage();
