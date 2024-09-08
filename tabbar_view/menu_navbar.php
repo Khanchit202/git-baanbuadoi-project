@@ -1,8 +1,10 @@
 
+
 <?php
 
 function menu_navbar() {
-    
+
+   
     if (empty($_SESSION['user_lavel'])) {
         $lavel = "";
     } else {
@@ -11,6 +13,7 @@ function menu_navbar() {
     
     if (empty($_SESSION['userImg'])) {
         $profile_name = "img/profile/profile_1.jpg";
+        
     } else {
         $profile_name = $_SESSION['userImg'];
     }
@@ -35,7 +38,7 @@ function render_dropdown($profile_name) {
             <div class="dropdown-menu"
             style="display: none; position: absolute; top: 50px; right: 0; background-color: #fff; border: 1px solid #ddd; border-radius: 4px; min-width: 150px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 1000; font-size: 12px;">
             <p style="margin: 0px;display: block; padding: 10px; text-decoration: none; color: #333;font-weight: bold;">คุณ <?php echo $_SESSION['FName'], " " , $_SESSION['LName'] ?></p>
-            <a href="./user/user_profile.php?userID=<?php echo $_SESSION['FName'], " " , $_SESSION['LName'] ?>" style="display: block; padding: 10px; text-decoration: none; color: #333;">
+            <a href="./user_profile.php?userID=<?php echo $_SESSION['FName'] ?>" style="display: block; padding: 10px; text-decoration: none; color: #333;">
                 <i class="fas fa-user" style="color: #000;"></i> โปรไฟล์ของฉัน
             </a>
 
