@@ -62,9 +62,10 @@ $db_con = connect_db();
         <div class="row" style="width: 100%;justify-content: center;">
             <!-- คอลัมน์ฝั่งซ้ายสำหรับรูปภาพ -->
             <div class="col-md-4 ml-5" style="background-color: #FFF; padding: 20px; border-radius: 20px; text-align: right; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                <div style="width: 100%; height: auto; text-align: center;">
-                    <img src="img/user_img/<?php echo htmlspecialchars($user['userImg']); ?>" class="img-fluid rounded" alt="Image Description" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
+            <div style="width: 380px; height: 400px; background-color: #fff; text-align: center; ">
+                <img src="img/user_img/<?php echo htmlspecialchars($user['userImg']); ?>" class="img-fluid rounded" alt="Image Description" style="width: 380px; height: 390px; object-fit: cover;">
+            </div>
+
                 <div class="row mt-5" style="border: solid 5px green; border-radius: 10px;">
                     <button type="button" class="btn btn-light btn-block">อัพโหลดรูปโปรไฟล์</button>
                 </div>
@@ -72,48 +73,72 @@ $db_con = connect_db();
                 <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#myModal">เปลี่ยนรหัสผ่าน
                 </button>
                 </div>
-                <div class="row mt-3">
-                    <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#editModal">แก้ไขข้อมูลส่วนตัว</button>
-                    </div>
+                
             </div>
 
             <!-- คอลัมน์ฝั่งขวาสำหรับเนื้อหา -->
             <div class="col-md-6 ml-2" style="background-color: #FFF; padding: 10px; border-radius: 20px;  margin-left: 10px;box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);">
-                <p>รายละเอียดข้อมูลส่วนตัว</p>
+                <p style="font-weight: bold;">รายละเอียดข้อมูลส่วนตัว</p>
+
                 <div class="container">
                     <!-- แถวที่ 1 -->
                     <div class="row mb-4" style="display: flex; align-items: center;">
                         <p>UserName :</p>
-                        <div class="col-md-3" style="flex: 1; border-radius: 10px; background-color: #f0f0f0;">
+                        <div class="col-md-3" style="flex: 1; border-radius: 10px; background-color: #fde0dc;">
                             <p style="margin-top: 15px;"><?php echo htmlspecialchars($user['userName']); ?></p>
                         </div>
                     </div>
 
-                    <div class="row mb-4" style="display: flex; align-items: center;">
+                    <!-- <div class="row mb-4" style="display: flex; align-items: center;">
                         <p>Password :</p>
                         <div class="col-md-3" style="flex: 1; border-radius: 10px; background-color: #f0f0f0;">
                             <p style="margin-top: 15px;"><?php echo str_repeat('*', min(10, strlen($user['userPass']))); ?></p>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row mb-4" style="display: flex; align-items: center;">
                         <p>ชื่อ-นามสกุล :</p>
-                        <div class="col-md-3" style="flex: 1; border-radius: 10px; background-color: #f0f0f0;">
+                        <div class="col-md-3" style="flex: 1; border-radius: 10px; background-color: #fde0dc;">
                             <p style="margin-top: 15px;"><?php echo htmlspecialchars($user['userFName']) . " " . htmlspecialchars($user['userLName']); ?></p>
                         </div>
                     </div>
 
                     <div class="row mb-4" style="display: flex; align-items: center;">
-                        <p>เบอร์โทรศัพท์ :</p>
-                        <div class="col-md-3" style="flex: 1; border-radius: 10px; background-color: #f0f0f0;">
+                            <p>เบอร์โทรศัพท์ : <span style="margin-left: 190px;">สิทธิผู้ใช้งาน :</span></p>
+                        <div class="col-md-3" style="flex: 1; border-radius: 10px; background-color: #fde0dc; margin-right: 10px;">
                             <p style="margin-top: 15px;"><?php echo htmlspecialchars($user['userTel']); ?></p>
                         </div>
+                        
+                        <div class="col-md-3" style="flex: 1; border-radius: 10px; background-color: #fde0dc;">
+                            <p style="margin-top: 15px;">
+                                <?php 
+                                    if ($user['userLavelID'] == 1) {
+                                        echo 'ADMIN';
+                                    } else if($user['userLavelID'] == 2){
+                                        echo 'Owner';
+                                    } else if($user['userLavelID'] == 3){
+                                        echo 'พนักงาน';
+                                    } elseif($user['userLavelID'] == 4){
+                                        echo 'สมาชิก';
+                                    }
+                                    else {
+                                        
+                                    }
+                                ?>
+                            </p>
+                        </div>
+
                     </div>
+
                     <div class="row mb-4" style="display: flex; align-items: center;">
                         <p>Email :</p>
-                        <div class="col-md-3" style="flex: 1; border-radius: 10px; background-color: #f0f0f0;">
+                        <div class="col-md-3" style="flex: 1; border-radius: 10px; background-color: #fde0dc;">
                             <p style="margin-top: 15px;"><?php echo htmlspecialchars($user['userEmail']); ?></p>
                         </div>
                     </div>
+                    <div class="row mt-3">
+                    <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#editModal">แก้ไขข้อมูลส่วนตัว</button>
+                    </div>
+            </div>
                 </div>
             </div>
         </div>
