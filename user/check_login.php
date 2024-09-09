@@ -4,7 +4,6 @@
 <link rel="stylesheet" href="../font-web.css">
 </header>
 <?php
-
 session_start();
 include("../db_config.php");
 $db_con = connect_db("client");
@@ -12,7 +11,7 @@ $db_con = connect_db("client");
 $form_username = $_POST['username'];
 $form_passwd = $_POST['passwd'];
 
-$sql = "SELECT userName, userPass, userLavelID, userImg, userFName, userLName FROM users WHERE userName = :username";
+$sql = "SELECT userName, userPass, userLavelID, userImg, userFName, userLName, userID FROM users WHERE userName = :username";
 $stmt = $db_con->prepare($sql);
 
 $stmt->bindValue(':username', $form_username, PDO::PARAM_STR);
@@ -27,6 +26,7 @@ if ($row) {
     $userImg = $row['userImg'];
     $userFname = $row['userFName'];
     $userLname = $row['userLName'];
+    $userID = $row['userID'];
 
     if (password_verify($form_passwd, $hashedPasswd)) {
         $_SESSION['valid_login'] = $db_username;
@@ -34,6 +34,7 @@ if ($row) {
         $_SESSION['userImg'] = $userImg;
         $_SESSION['FName'] = $userFname;
         $_SESSION['LName'] = $userLname;
+        $_SESSION['userID'] = $userID;
         echo "<script>
             Swal.fire({
                 icon: 'success',
@@ -55,6 +56,7 @@ if ($row) {
         $_SESSION['userImg'] = "";
         $_SESSION['FName'] = "";
         $_SESSION['LName'] = "";
+        $_SESSION['userID'] = "";
         echo "<script>
             Swal.fire({
                 icon: 'error',
@@ -85,3 +87,4 @@ if ($row) {
     </script>";
 }
 ?>
+

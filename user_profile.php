@@ -1,4 +1,5 @@
 <?php
+
 include ("db_config.php");
 $db_con = connect_db();
 ?>
@@ -40,13 +41,12 @@ $db_con = connect_db();
     if (isset($_GET['userID'])) {
         // รับค่าพารามิเตอร์ userID
         $userID = $_GET['userID'];
-        $userDetails = explode(' ', $userID); // แยกค่าตามช่องว่าง
-        $firstName = $userDetails[0];
+        
 
         // เตรียมและดำเนินการคำสั่ง SQL
-        $sql = "SELECT * FROM users WHERE userFName = :firstName";
+        $sql = "SELECT * FROM users WHERE userID = :userID";
         $stmt = $db_con->prepare($sql);
-        $stmt->bindParam(':firstName', $firstName);
+        $stmt->bindParam(':userID', $userID);
         $stmt->execute();
 
         // ตั้งค่าผลลัพธ์เป็น associative array
@@ -183,13 +183,10 @@ $db_con = connect_db();
                 <!-- ฟอร์มแก้ไขข้อมูล -->
                 <form>
                     <div class="form-group">
-                        <label for="username">ชื่อผู้ใช้งาน</label>
+                        <label for="username">User Name</label>
                         <input type="text" class="form-control" id="username" value="<?php echo htmlspecialchars($user['userName']); ?>">
                     </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" value="<?php echo htmlspecialchars($user['userPass']); ?>">
-                    </div>
+
                     <div class="form-group">
                         <label for="fname">ชื่อ</label>
                         <input type="text" class="form-control" id="fname" value="<?php echo htmlspecialchars($user['userFName']); ?>">
@@ -212,47 +209,56 @@ $db_con = connect_db();
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
                 <button type="button" class="btn btn-primary" onclick="updateData()">บันทึกข้อมูล</button>
             </div>
+            <script>
+                var userId = <?php echo json_encode($_SESSION['userID']); ?>;
+            </script>
+
         </div>
     </div>
 </div>
 <!-- Modal edit-->    
 
+
 <!-- Modal pass-->  
 
 <div class="modal" id="myModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title text-center w-100">เปลี่ยนรหัสผ่าน</h4>
-                    
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <!-- Modal Body -->
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="currentPassword">รหัสผ่านปัจจุบัน:</label>
-                            <input type="password" class="form-control" id="currentPassword">
-                        </div>
-                        <div class="form-group">
-                            <label for="newPassword">รหัสผ่านใหม่:</label>
-                            <input type="password" class="form-control" id="newPassword">
-                        </div>
-                        <div class="form-group">
-                            <label for="confirmPassword">ยืนยันรหัสผ่านใหม่:</label>
-                            <input type="password" class="form-control" id="confirmPassword">
-                        </div>
-                        <button type="submit" class="btn btn-primary">บันทึก</button>
-                    </form>
-                </div>
-                <!-- Modal Footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">ปิด</button>
-                </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title text-center w-100">เปลี่ยนรหัสผ่าน</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
             </div>
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form >
+                    <div class="form-group">
+                        <label for="currentPassword">รหัสผ่านปัจจุบัน:</label>
+                        <input type="password" class="form-control" id="currentPassword">
+                    </div>
+                    <div class="form-group">
+                        <label for="newPassword">รหัสผ่านใหม่:</label>
+                        <input type="password" class="form-control" id="newPassword">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">ยืนยันรหัสผ่านใหม่:</label>
+                        <input type="password" class="form-control" id="confirmPassword">
+                    </div>
+                    <button type="submit" onclick="updatepass()" class="btn btn-primary">บันทึก</button>
+                </form>
+            </div>
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">ปิด</button>
+            </div>
+            <script>
+                var userId = <?php echo json_encode($_SESSION['userID']); ?>;
+            </script>
         </div>
+        
     </div>
+</div>
+
     <!-- The Modal -->
 </body>
 </html>

@@ -1,45 +1,40 @@
 <?php
+session_start();
 include("../../db_config.php");
 $db_con = connect_db("client");
+
 $response = array();
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // รับค่าจากฟอร์ม
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
-    $password = $_POST['password'];
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
     $tel = $_POST['tel'];
     $email = $_POST['email'];
+    $userId = $_POST['userId']; // รับค่า userId จาก POST
 
-    // เชื่อมต่อฐานข้อมูล
     try {
-        // เตรียมและดำเนินการคำสั่ง SQL
-        $sql = "UPDATE users SET userPass = :password, userFName = :fname, userLName = :lname, userTel = :tel, userEmail = :email WHERE userName = :username";
+        $sql = "UPDATE users SET userName = :username, userFName = :fname, userLName = :lname, userTel = :tel, userEmail = :email WHERE userID = :userId";
         $stmt = $db_con->prepare($sql);
-        $stmt->bindParam(':username', $username);
-        $stmt->bindParam(':password', $password);
-        $stmt->bindParam(':fname', $fname);
-        $stmt->bindParam(':lname', $lname);
-        $stmt->bindParam(':tel', $tel);
-        $stmt->bindParam(':email', $email);
-        $stmt->execute();
+        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+        $stmt->bindParam(':fname', $fname, PDO::PARAM_STR);
+        $stmt->bindParam(':lname', $lname, PDO::PARAM_STR);
+        $stmt->bindParam(':tel', $tel, PDO::PARAM_STR);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
 
-        $response['status'] = 'success';
-        
+        if ($stmt->execute()) {
+            $response['status'] = 'success';
+            $response['message'] = 'ข้อมูลถูกอัปเดตเรียบร้อยแล้ว';
+        } else {
+            $response['status'] = 'error';
+            $response['message'] = 'เกิดข้อผิดพลาดในการอัปเดตข้อมูล';
+        }
     } catch (PDOException $e) {
         $response['status'] = 'error';
-        $response['message'] = 'Error: ' . $e->getMessage();
+        $response['message'] = 'เกิดข้อผิดพลาด: ' . $e->getMessage();
     }
 
-    // ปิดการเชื่อมต่อ
-    $db_con = null;
-} else {
-    $response['status'] = 'error';
-    $response['message'] = 'Invalid request method';
+    echo json_encode($response);
 }
-
-// ส่งการตอบกลับในรูปแบบ JSON
-header('Content-Type: application/json');
-echo json_encode($response);
 ?>
