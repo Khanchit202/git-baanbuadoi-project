@@ -1,0 +1,102 @@
+function showBookingForm(roomId) {
+    document.getElementById('booking_form').style.display = 'block';
+}
+
+var lastBookingDate = "";
+
+        $('#booking_date').on('change', function() {
+            var currentBookingDate = $(this).val();
+            if (currentBookingDate !== lastBookingDate) {
+                $('#customer_info').hide();
+                $('#reserved').hide();
+                lastBookingDate = currentBookingDate;
+            }
+        });
+
+        function checkBooking(roomId) {
+            var bookingDate = $('#booking_date').val();
+
+            if (bookingDate === "") {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'กรุณาเลือกวัน',
+                });
+                return;
+            }
+
+            $.ajax({
+                url: 'check_booking.php',
+                type: 'POST',
+                data: {roomId: roomId, bookingDate: bookingDate},
+                success: function(response) {
+                    if (response === "available") {
+                        $('#customer_info').show();
+                        console.log(response);
+                    } else if (response === "booked") {
+                        $('#reserved').show();
+                    }
+                }
+            });
+        }
+
+function confirmBooking(roomId) {
+    var customerName = $('#customer_name').val();
+    var customerPhone = $('#customer_phone').val();
+    var customerDetail = $('#customer_detail').val();
+    var customerPro = $('#customer_pro').val();
+    var customerPrice = $('#price').val();
+    var bookingDate = $('#booking_date').val();
+    var paymentMethods = [];
+
+    console.log(customerName)
+    console.log(customerPhone)
+    console.log(customerDetail)
+    console.log(customerPro)
+    console.log(customerPrice)
+    console.log(bookingDate)
+    console.log(paymentMethods)
+    
+    
+    if ($('#payment1').is(':checked')) {
+        paymentMethods.push($('#credit_card').val());
+    }
+    
+    if ($('#payment2').is(':checked')) paymentMethods.push($('#payment2').val());
+
+    if (customerName === "" || customerPhone === "" || paymentMethods.length === 0) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'กรุณากรอกข้อมูลให้ครบ',
+        });
+        return;
+    }
+
+    $.ajax({
+        url: 'confirm_booking.php',
+        type: 'POST',
+        data: {
+            roomId: roomId,
+            name: customerName,
+            phone: customerPhone,
+            detail: customerDetail,
+            promotion: customerPro,
+            price: customerPrice,
+            date: bookingDate
+        },
+        success: function(response) {
+            if (response === "success") {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'การจองสำเร็จ',
+                }).then(() => {
+                    $('#credit_card').show();  // แสดงข้อมูลลูกค้าหลังจากการจองสำเร็จ
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'เกิดข้อผิดพลาด',
+                });
+            }
+        }
+    });
+}

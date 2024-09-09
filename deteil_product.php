@@ -87,9 +87,8 @@ if (!$room) {
                             <div class="col-md-3 fw-bold"><p>ราคามัดจำ</p></div> 
                             <div class="col-md-2 bg-light text-center" style="margin:0; padding:0; border-radius: 10px;"><h3 class="fw-bold" style="font-size:14px; margin-top:10px;"><?php echo $deposit ?> ฿</h3></div>
                         </div>
-                    <br><br>
-                    
-                    <button class="btn btn-custom" style="width: 100%;"> + จอง </button>
+                    <br><br>                     
+                    <button onclick="window.location.href='room_booking/booking.php?id=<?php echo $room['roomID']; ?>'" class="btn btn-custom" style="width: 100%;"> + จอง </button>
                 </div>
             </div>
         </div>
@@ -98,7 +97,7 @@ if (!$room) {
             <div class="row " style="width: 100%;">
                 <div class="text-end mt-3">
                     <p class="fw-bold" style="font-size: 14px; margin-bottom: 5px;">แสดงความคิดเห็น</p>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="text-decoration-underline" style="text-decoration: none;"><p class="" style="font-size: 12px; margin:0; color: black;">แสดงเพิ่มเติม</p></a>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" style="text-decoration: none;"><p class="" style="font-size: 12px; margin:0; color: black;">แสดงเพิ่มเติม</p></a>
                 </div>
             </div>
             <div class="container">
@@ -173,6 +172,126 @@ if (!$room) {
         </div>
     </div>
     </div>
+
+    <div class="container-xxl bg-white p-0">
+
+
+    <!-- ห้องพัก -->
+    <div class="text-start mx-auto mt-5 mb-2 wow slideInLeft" data-wow-delay="0.1s">
+                <h1 class="fw-bold" style="margin-left: 70px; color: #BC5686;">แนะนำห้องพัก</h1>
+                <p style="margin-left: 70px; color: #BC5686;">โฮมสเตย์บ้านบัวดอย รวบรวมห้องพักทั่วทั้งดอยอ่างขาง</p>
+        </div>
+        <?php
+            $stdID = isset($_GET['stdID']) ? $_GET['stdID'] : '00001';
+
+            $sql = 'SELECT roomPic, roomName, roomID, roomBed, roomBath, roomPrice, stdID FROM room_product WHERE stdID = :stdID';
+            $stmt = $db_con->prepare($sql);
+            $stmt->execute(['stdID' => $stdID]);
+
+            $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            ?>
+            <div class="produc_pre d-flex flex-row flex-wrap justify-content-start" style="margin: 0 30px;">
+                <!-- การ์ดสำหรับห้อง -->
+                <?php 
+                $count = 0;
+                foreach ($rooms as $room) { 
+                    if ($count >= 8) break;
+                    if ($room['stdID'] == '00001') {
+                        $statusText = 'ว่าง';
+                        $badgeColor = '#4caf50';
+                        $buttonText = '+ จอง';
+                        $buttonColor = '#4caf50';
+                    } else {
+                        // กรณีอื่น ๆ
+                    }
+                ?>
+                <div class="wow fadeInUp" data-wow-delay="0.5s" style="margin: 30px;">
+                    <div class="card position-relative text-white card-hover mb-5" style="width: 250px; height: 300px; overflow: hidden; position: relative; border-radius: 5px;">
+                        <img src="img/room_pic/<?php echo $room['roomPic']; ?>" class="card-img" alt="Room Image" style="height: 100%; object-fit: cover;">
+                        <span class="badge position-absolute custom-badge" style="top: 10px; left: 15px; background-color: <?php echo $badgeColor; ?>; color: white; border-radius: 5px;  padding: 10px 20px; opacity: 60%;">
+                            <?php echo $statusText; ?>
+                        </span>
+                        <div class="card-img-overlay d-flex flex-column justify-content-end" style="color: #000;">
+                            <div class="overlay-content p-4" style="background: rgba(255, 255, 255, 0.9); border-radius: 10px; transition: transform 0.3s;">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h5 class="card-title m-0" style="font-size: 14px;"><?php echo $room['roomName']; ?></h5>
+                                    <p class="m-0">★ </p>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center" style="font-size: 12px;">
+                                    <span class="icon-text" style="display: flex; align-items: center;"><i class="fa fa-bed text-dark me-2" style="background-color: #ccc; border-radius: 50%; padding: 5px; margin-right: 5px;"></i> <?php echo $room['roomBed']; ?></span>
+                                    <span class="icon-text" style="display: flex; align-items: center;"><i class="fa fa-bath text-dark me-2" style="background-color: #ccc; border-radius: 50%; padding: 5px; margin-right: 5px;"></i> <?php echo $room['roomBath']; ?></span>
+                                    <p class="card-text text-right font-weight-bold" style="font-size: 16px; font-weight: bold;"><?php echo $room['roomPrice']; ?>฿</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="deteil_product.php?id=<?php echo $room['roomID']; ?>" class="book-button" style="position: absolute; top: 230px; left: 10%; width: 80%; height: 50px; background-color: <?php echo $buttonColor; ?>; color: white; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;"><?php echo $buttonText; ?></a>
+                    </div>
+                </div>
+                <?php 
+                    $count++;
+                } 
+                ?>
+            </div>
+        <!-- ปิดห้องพัก -->
+
+        <!-- บริการ -->
+        <div class="text-start mx-auto mt-5 mb-2 wow slideInLeft" data-wow-delay="0.1s">
+            <h1 class="fw-bold" style="margin-left: 70px; color: #BC5686;">แนะนำบริการ</h1>
+            <p style="margin-left: 70px; color: #BC5686;">โฮมสเตย์บ้านบัวดอย รวบรวมบริการ และผลิตภัณท์ท้องถินดอยอ่างขาง</p>
+        </div>
+
+        <?php
+            $stdID = isset($_GET['stdID']) ? $_GET['stdID'] : '00001';
+
+            $sql = 'SELECT serviceID, serviceName, servicePrice, serviceDetail,servicePic,serviceTime,serviceTotal,stdID FROM service_product WHERE stdID = :stdID';
+            $stmt = $db_con->prepare($sql);
+            $stmt->execute(['stdID' => $stdID]);
+
+            $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            ?>
+            <div class="produc_pre d-flex flex-row flex-wrap justify-content-start" style="margin: 0 30px;">
+                <!-- การ์ดสำหรับบริการ -->
+                <?php 
+                $count = 0;
+                foreach ($services as $service) { 
+                    if ($count >= 4) break; // แสดงแค่ 4 การ์ด
+                    // กำหนดข้อความและสีพื้นหลังตามค่า stdID
+                    if ($room['stdID'] == '00001') {
+                        $statusText = 'มีบริการ';
+                        $badgeColor = '#4caf50';
+                        $buttonText = '+ จอง';
+                        $buttonColor = '#4caf50';
+                    } else {
+                        // กรณีอื่น ๆ
+                    }
+                ?>
+                <div class="wow fadeInUp" data-wow-delay="0.5s" style="margin: 30px;">
+                    <div class="card position-relative text-white card-hover mb-5" style="width: 250px; height: 300px; overflow: hidden; position: relative; border-radius: 5px;">
+                        <img src="img/service/<?php echo $service['servicePic']; ?>" class="card-img" alt="Room Image" style="height: 100%; object-fit: cover;">
+                        <span class="badge position-absolute custom-badge" style="top: 10px; left: 15px; background-color: <?php echo $badgeColor; ?>; color: white; border-radius: 5px; padding: 10px 20px; opacity: 60%;">
+                            <?php echo $statusText; ?>
+                        </span>
+                        <div class="card-img-overlay d-flex flex-column justify-content-end" style="color: #000;">
+                            <div class="overlay-content p-4" style="background: rgba(255, 255, 255, 0.9); border-radius: 10px; transition: transform 0.3s;">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h5 class="card-title m-0" style="font-size: 14px;"><?php echo $service['serviceName']; ?></h5>
+                                    <p class="m-0">★ </p>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center" style="font-size: 12px;">
+                                    <p class="card-text text-right font-weight-bold" style="font-size: 16px; font-weight: bold;"><?php echo $service['servicePrice']; ?>฿</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="javascript:void(0);" class="book-button" onclick="showSystemUnavailableAlert()" style="position: absolute; top: 230px; left: 10%; width: 80%; height: 50px; background-color: <?php echo $buttonColor; ?>; color: white; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;"><?php echo $buttonText; ?></a>
+                    </div>
+                </div>
+                <?php 
+                    $count++;
+                } 
+                ?>
+            </div>
+    </div>
+    <!-- ปิดบริการ -->
 
     <nav>
         <?php include("footer.php"); ?>

@@ -11,7 +11,7 @@ $db_con = connect_db("client");
 $form_username = $_POST['username'];
 $form_passwd = $_POST['passwd'];
 
-$sql = "SELECT userName, userPass, userLavelID, userImg, userFName, userLName, userID FROM users WHERE userName = :username";
+$sql = "SELECT userID, userName, userPass, userLavelID, userImg, userFName, userLName FROM users WHERE userName = :username";
 $stmt = $db_con->prepare($sql);
 
 $stmt->bindValue(':username', $form_username, PDO::PARAM_STR);
@@ -20,6 +20,7 @@ $stmt->execute();
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if ($row) {
+    $userId = $row['userID'];
     $hashedPasswd = $row['userPass'];
     $db_username = $row['userName'];
     $lavel = $row['userLavelID'];
