@@ -1,55 +1,51 @@
 <?php
 session_start();
 include("../../db_config.php");
-$db_con = connect_db("client");
+$db_con = connect_db("client"); // เชื่อมต่อฐานข้อมูล
+$response = array(); // เชื่อมต่อฐานข้อมูล
 
-$response = array();
+header('Content-Type: application/json'); // ระบุว่าเนื้อหาที่ส่งกลับเป็น JSON
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['userImg'])) {
+    $userID = $_SESSION['userID'];
+    $img = $_FILES['userImg'];
+    $imgName = $img['name'];
+    $imgTmpName = $img['tmp_name'];
+    $imgSize = $img['size'];
+    $imgError = $img['error'];
+    $imgType = $img['type'];
 
+    $imgExt = explode('.', $imgName);
+    $imgActualExt = strtolower(end($imgExt));
 
-if (isset($_FILES['userImg']['name'])) {
-    $filename = $_FILES['userImg']['name']; // ชื่อไฟล์ที่รับมาจากฟอร์ม
-    $filename = substr(str_shuffle("abcdefgsikjlmnopqrstuvwsyz0123456789"), 0, 10) . "_" . $filename; // ชื่อไฟล์ใหม่
-    $tmp_file = $_FILES['userImg']['tmp_name'];
-    copy($tmp_file, "../../img/profile/$filename"); // copy
+    $allowed = array('jpg', 'jpeg', 'png');
 
-    try {
-        // ตรวจสอบว่า userLavelID มีอยู่ในตาราง user_lavel หรือไม่
-        $userID = $_SESSION['userID']; // สมมติว่าคุณมีค่า userLavelID ใน session
-        $stmt = $db_con->prepare("SELECT COUNT(*) FROM users WHERE userID = :userID");
-        $stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
-        $stmt->execute();
-        $count = $stmt->fetchColumn();
+    if (in_array($imgActualExt, $allowed)) {
+        if ($imgError === 0) {
+            if ($imgSize < 1000000) { // จำกัดขนาดไฟล์ที่ 1MB
+                $imgNewName = "profile" . $userID . "." . $imgActualExt;
+                $imgDestination = 'img/profile/' . $imgNewName;
+                move_uploaded_file($imgTmpName, $imgDestination);
 
-        if ($count == 0) {
-            throw new Exception("userLavelID ไม่ถูกต้อง");
-        }
-
-        $stmt = $db_con->prepare("INSERT INTO users (userImg, userID) VALUES (:userImg, :userID)");
-        $stmt->bindParam(':userImg', $filename);
-        $stmt->bindParam(':userID', $userLavelID, PDO::PARAM_INT);
-
-        if ($stmt->execute()) {
-            $response['status'] = 'success';
-            $response['message'] = 'อัปโหลดรูปภาพเรียบร้อยแล้ว';
+                // อัปเดตฐานข้อมูล
+                $sql = "UPDATE users SET userImg = :userImg WHERE userID = :userID";
+                $stmt = $db_con->prepare($sql);
+                $stmt->bindParam(':userImg', $imgNewName);
+                $stmt->bindParam(':userID', $userID);
+                if ($stmt->execute()) {
+                    $_SESSION['userImg'] = $imgNewName;
+                    echo json_encode(['success' => true, 'message' => 'รูปภาพถูกอัปโหลดเรียบร้อยแล้ว']);
+                } else {
+                    echo json_encode(['success' => false, 'message' => 'เกิดข้อผิดพลาดในการอัปเดตรูปภาพ']);
+                }
+            } else {
+                echo json_encode(['success' => false, 'message' => 'ไฟล์มีขนาดใหญ่เกินไป']);
+            }
         } else {
-            $response['status'] = 'error';
-            $response['message'] = 'เกิดข้อผิดพลาดในการอัปโหลดรูปภาพ';
+            echo json_encode(['success' => false, 'message' => 'เกิดข้อผิดพลาดในการอัปโหลดไฟล์']);
         }
-    } catch (PDOException $e) {
-        $response['status'] = 'error';
-        $response['message'] = 'เกิดข้อผิดพลาด: ' . $e->getMessage();
-    } catch (Exception $e) {
-        $response['status'] = 'error';
-        $response['message'] = $e->getMessage();
+    } else {
+        echo json_encode(['success' => false, 'message' => 'ไม่สามารถอัปโหลดไฟล์ประเภทนี้ได้']);
     }
-
-    echo json_encode($response);
-} else {
-    $response['status'] = 'error';
-    $response['message'] = 'No file uploaded.';
-    echo json_encode($response);
 }
-
-$db_con = null;
 ?>

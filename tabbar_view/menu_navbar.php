@@ -3,8 +3,6 @@
 <?php
 
 function menu_navbar() {
-
-   
     if (empty($_SESSION['user_lavel'])) {
         $lavel = "";
     } else {
@@ -13,10 +11,11 @@ function menu_navbar() {
     
     if (empty($_SESSION['userImg'])) {
         $profile_name = "img/profile/profile_1.jpg";
-        
     } else {
         $profile_name = $_SESSION['userImg'];
     }
+
+    
     
     switch ($lavel) {
         case 1: admin_menu($profile_name); break;
@@ -27,7 +26,14 @@ function menu_navbar() {
     }
 }
 
+
 function render_dropdown($profile_name) {
+   
+    if (empty($_SESSION['userImg'])) {
+        $profile_name = "img/profile/profile_1.jpg";
+    } else {
+        $profile_name = $_SESSION['userImg'];
+    }
     ?>    
         <div class="dropdown" style="position: relative; display: inline-block;">
             <div class="profile-button" onclick="toggleDropdown()"
