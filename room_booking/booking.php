@@ -1,7 +1,13 @@
 <?php
+session_start();
 include ("../db_config.php");
 $db_con = connect_db();
 $id = $_GET['id'];
+
+if (($_SESSION['userID']) == "") {
+        header("Location: ../login.php");
+    exit;
+}
 
 $query = $db_con->prepare("SELECT * FROM room_product WHERE roomID = :id");
 $query->bindParam(':id', $id, PDO::PARAM_INT);
@@ -124,9 +130,9 @@ if (!$room) {
                     โอนผ่าน PromptPay QR CODE (ไม่พร้อมให้บริการ)
                 </label>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <button onclick="confirmBooking('<?php echo $id ?>')" class="btn btn-success mt-3">ชำระเงิน</button>
-            </div> 
+            </div>  -->
         </div>
 
 
@@ -149,7 +155,7 @@ if (!$room) {
                         <input type="password" id="cvv" class="form-control mb-3" placeholder="CVV" maxlength="3" />
                     </div>
                 </div>
-                <button class="btn btn-success mt-3">ยืนยันการชำระเงิน</button>
+                <button onclick="confirmBooking('<?php echo $id ?>')" class="btn btn-success mt-3">ชำระเงิน</button>
             </div> 
         </div>
 

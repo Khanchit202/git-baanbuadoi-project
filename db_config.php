@@ -5,7 +5,7 @@
             $db_host = "localhost";
             $db_user = "root";
             $db_pass = "";
-            $db_port = "3306";
+            $db_port = "3307";
         }else if($type=="server"){
             $db_name = "";
             $db_host = "";

@@ -5,23 +5,30 @@ $db_con = connect_db();
 $roomId = $_POST['roomId'];
 $bookingDate = $_POST['bookingDate'];
 
-$query = $db_con->prepare("
-    SELECT * FROM booking
-    WHERE roomID = :roomId 
-    AND bookCancel != 1
-    AND :bookingDate = DATE(bookDateStart)
-");
+$bookingTimestamp = strtotime($bookingDate);
+$currentTimestamp = strtotime(date("Y-m-d"));
 
-$query->bindParam(':roomId', $roomId);
-$query->bindParam(':bookingDate', $bookingDate);
-$query->execute();
-$result = $query->fetch(PDO::FETCH_ASSOC);
-
-if ($result) {
-    echo "booked";
-    
+// ตรวจสอบหากวันที่ที่รับมาผ่านมาแล้ว
+if ($bookingTimestamp < $currentTimestamp) {
+    echo "oldday";
 } else {
-    echo "available";
-    
+    // ตรวจสอบข้อมูลการจอง
+    $query = $db_con->prepare("
+        SELECT * FROM booking
+        WHERE roomID = :roomId 
+        AND bookCancel != 1
+        AND DATE(bookDateStart) = :bookingDate
+    ");
+
+    $query->bindParam(':roomId', $roomId);
+    $query->bindValue(':bookingDate', $bookingDate);
+    $query->execute();
+    $result = $query->fetch(PDO::FETCH_ASSOC);
+
+    if ($result) {
+        echo "booked";
+    } else {
+        echo "available";
+    }
 }
 ?>
