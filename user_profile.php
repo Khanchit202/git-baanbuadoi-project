@@ -62,7 +62,6 @@ $db_con = connect_db();
             <div style="width: 380px; height: 400px; background-color: #fff; text-align: center; ">
                 <img src="img/profile/<?php echo htmlspecialchars($user['userImg']); ?>" class="img-fluid rounded" alt="Image Description" style="width: 380px; height: 390px; object-fit: cover;">
             </div>
-
                 <div class="row mt-5" style="border: solid 5px green; border-radius: 10px;">
                     <button type="button" class="btn btn-light btn-block"data-toggle="modal" data-target="#myimg">อัพโหลดรูปโปรไฟล์</button>
                 </div>
