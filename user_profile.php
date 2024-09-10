@@ -63,7 +63,7 @@ $db_con = connect_db();
             <!-- คอลัมน์ฝั่งซ้ายสำหรับรูปภาพ -->
             <div class="col-md-4 ml-5" style="background-color: #FFF; padding: 20px; border-radius: 20px; text-align: right; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
             <div style="width: 380px; height: 400px; background-color: #fff; text-align: center; ">
-                <img src="img/user_img/<?php echo htmlspecialchars($user['userImg']); ?>" class="img-fluid rounded" alt="Image Description" style="width: 380px; height: 390px; object-fit: cover;">
+                <img src="<?php echo htmlspecialchars($user['userImg']); ?>" class="img-fluid rounded" alt="Image Description" style="width: 380px; height: 390px; object-fit: cover;">
             </div>
 
                 <div class="row mt-5" style="border: solid 5px green; border-radius: 10px;">

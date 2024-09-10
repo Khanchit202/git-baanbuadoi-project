@@ -19,7 +19,7 @@ var lastBookingDate = "";
             if (bookingDate === "") {
                 Swal.fire({
                     icon: 'warning',
-                    title: 'กรุณาเลือกวัน',
+                    title: 'กรุณาเลือกวันที่ต้องการเข้าพัก',
                 });
                 return;
             }
@@ -29,14 +29,22 @@ var lastBookingDate = "";
                 type: 'POST',
                 data: {roomId: roomId, bookingDate: bookingDate},
                 success: function(response) {
+                    console.log(response);
                     if (response === "available") {
                         $('#customer_info').show();
                         console.log(response);
                     } else if (response === "booked") {
                         $('#reserved').show();
+                    } else if (response === "oldday") {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'กรุณาเลือกวันที่ต้องการเข้าพัก',
+                            text: "คุณเลือกวันที่ย้อนหลัง",
+                            confirmButtonText: 'ตกลง'
+                        });
                     }
                 }
-            });
+            });                      
         }
 
 function confirmBooking(roomId) {

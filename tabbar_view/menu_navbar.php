@@ -32,7 +32,7 @@ function render_dropdown($profile_name) {
         <div class="dropdown" style="position: relative; display: inline-block;">
             <div class="profile-button" onclick="toggleDropdown()"
                  style="width: 40px; height: 40px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; background-color: #f0f0f0; border: 2px solid #ddd; cursor: pointer;">
-                <img src="img/profile/<?php echo $profile_name ?>" alt="Profile"
+                <img src="<?php echo $profile_name ?>" alt="Profile"
                      style="width: 100%; height: 100%; object-fit: cover;">
             </div>
             <div class="dropdown-menu"
