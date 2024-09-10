@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['userImg'])) {
         if ($imgError === 0) {
             if ($imgSize < 1000000) { // จำกัดขนาดไฟล์ที่ 1MB
                 $imgNewName = "profile" . $userID . "." . $imgActualExt;
-                $imgDestination = 'img/profile/' . $imgNewName;
+                $imgDestination = '../../img/profile/' . $imgNewName;
                 move_uploaded_file($imgTmpName, $imgDestination);
 
                 // อัปเดตฐานข้อมูล
