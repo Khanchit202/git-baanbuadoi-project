@@ -129,8 +129,8 @@ $db_con = connect_db();
     </div>
 
     <!-- ส่วนแสดงประวัติการจอง -->
-    <div class="container" style=" padding: 10px 60px;">
-        <div class="pro" style="width: 100%; background-color: #fff; height: 300px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <div class="container" style=" padding: 0px 60px;">
+        <div class="pro" style="width: 100%; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 20px 0px;">
             <div class="d-flex justify-content-between m-2 mb-3" style="padding: 10px 35px;">
                 <p>ข้อมูลประวัติการจอง</p>
                 <div class="d-flex">
