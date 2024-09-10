@@ -67,7 +67,7 @@ $db_con = connect_db();
             </div>
 
                 <div class="row mt-5" style="border: solid 5px green; border-radius: 10px;">
-                    <button type="button" class="btn btn-light btn-block">อัพโหลดรูปโปรไฟล์</button>
+                    <button type="button" class="btn btn-light btn-block"data-toggle="modal" data-target="#myimg">อัพโหลดรูปโปรไฟล์</button>
                 </div>
                 <div class="row mt-3">
                 <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#myModal">เปลี่ยนรหัสผ่าน
@@ -283,7 +283,35 @@ $db_con = connect_db();
         
     </div>
 </div>
-
     <!-- The Modal -->
+    
+<!-- Modal pass-->  
+<div class="modal" id="myimg">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title text-center w-100">อัพโหลดรูปโปรไฟล์</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form action="insert_img.php" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="img">เลือกไฟล์รูปภาพ:</label>
+                        <input type="file" class="form-control" id="img" name="userImg" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">บันทึก</button>
+                </form>
+            </div>
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">ปิด</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 </body>
 </html>
