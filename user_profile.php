@@ -23,14 +23,11 @@ $db_con = connect_db();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
     <link href="lib/animate/animate.min.css" rel="stylesheet">
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    
-
-    
-
-
-
-
+  
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
 </head>
 <body>
     <div class="container-xxl bg-white p-0">
@@ -245,7 +242,6 @@ $db_con = connect_db();
 
 
 <!-- Modal pass-->  
-
 <div class="modal" id="myModal">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -256,20 +252,35 @@ $db_con = connect_db();
             </div>
             <!-- Modal Body -->
             <div class="modal-body">
-                <form >
+                <form>
                     <div class="form-group">
                         <label for="currentPassword">รหัสผ่านปัจจุบัน:</label>
-                        <input type="password" class="form-control" id="currentPassword">
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="currentPassword">
+                            <span class="input-group-text" id="toggle-current-password" style="cursor: pointer;">
+                                <i class="fas fa-eye" id="toggle-current-password-icon"></i>
+                            </span>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="newPassword">รหัสผ่านใหม่:</label>
-                        <input type="password" class="form-control" id="newPassword">
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="newPassword">
+                            <span class="input-group-text" id="toggle-new-password" style="cursor: pointer;">
+                                <i class="fas fa-eye" id="toggle-new-password-icon"></i>
+                            </span>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="confirmPassword">ยืนยันรหัสผ่านใหม่:</label>
-                        <input type="password" class="form-control" id="confirmPassword">
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="confirmPassword">
+                            <span class="input-group-text" id="toggle-confirm-password" style="cursor: pointer;">
+                                <i class="fas fa-eye" id="toggle-confirm-password-icon"></i>
+                            </span>
+                        </div>
                     </div>
-                    <button type="submit" onclick="updatepass()" class="btn btn-primary">บันทึก</button>
+                    <button type="button" onclick="updatepass()" class="btn btn-primary">บันทึก</button>
                 </form>
             </div>
             <!-- Modal Footer -->
@@ -280,12 +291,12 @@ $db_con = connect_db();
                 var userId = <?php echo json_encode($_SESSION['userID']); ?>;
             </script>
         </div>
-        
     </div>
 </div>
-    <!-- The Modal -->
+
+<!-- The Modal pass -->
     
-<!-- Modal pass-->  
+<!-- Modal Img-->  
 <div class="modal" id="myimg">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -296,12 +307,12 @@ $db_con = connect_db();
             </div>
             <!-- Modal Body -->
             <div class="modal-body">
-                <form action="insert_img.php" method="post" enctype="multipart/form-data">
+                <form id="uploadForm" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="img">เลือกไฟล์รูปภาพ:</label>
                         <input type="file" class="form-control" id="img" name="userImg" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">บันทึก</button>
+                    <button type="button" class="btn btn-primary" onclick="upImg()">บันทึก</button>
                 </form>
             </div>
             <!-- Modal Footer -->
@@ -312,6 +323,53 @@ $db_con = connect_db();
     </div>
 </div>
 
+<!-- Modal Img-->
 
+<!-- แสดงรหัสที่กำลังกรอก -->
+<script>
+document.getElementById('toggle-current-password').addEventListener('click', function () {
+    var passwordField = document.getElementById('currentPassword');
+    var passwordIcon = document.getElementById('toggle-current-password-icon');
+    if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        passwordIcon.classList.remove('fa-eye');
+        passwordIcon.classList.add('fa-eye-slash');
+    } else {
+        passwordField.type = 'password';
+        passwordIcon.classList.remove('fa-eye-slash');
+        passwordIcon.classList.add('fa-eye');
+    }
+});
+
+document.getElementById('toggle-new-password').addEventListener('click', function () {
+    var passwordField = document.getElementById('newPassword');
+    var passwordIcon = document.getElementById('toggle-new-password-icon');
+    if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        passwordIcon.classList.remove('fa-eye');
+        passwordIcon.classList.add('fa-eye-slash');
+    } else {
+        passwordField.type = 'password';
+        passwordIcon.classList.remove('fa-eye-slash');
+        passwordIcon.classList.add('fa-eye');
+    }
+});
+
+document.getElementById('toggle-confirm-password').addEventListener('click', function () {
+    var passwordField = document.getElementById('confirmPassword');
+    var passwordIcon = document.getElementById('toggle-confirm-password-icon');
+    if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        passwordIcon.classList.remove('fa-eye');
+        passwordIcon.classList.add('fa-eye-slash');
+    } else {
+        passwordField.type = 'password';
+        passwordIcon.classList.remove('fa-eye-slash');
+        passwordIcon.classList.add('fa-eye');
+    }
+});
+</script>
+
+<!-- แสดงรหัสที่กำลังกรอก -->
 </body>
 </html>

@@ -1,37 +1,37 @@
 <?php
 session_start();
 include("../../db_config.php");
-$db_con = connect_db("client");
+$db_con = connect_db("client"); // เชื่อมต่อฐานข้อมูล
 $response = array();
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+header('Content-Type: application/json'); // เพิ่มบรรทัดนี้เพื่อระบุว่าเนื้อหาที่ส่งกลับเป็น JSON
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $userID = $_POST['userID'];
     $currentPassword = $_POST['currentPassword'];
     $newPassword = $_POST['newPassword'];
-    $userId = $_SESSION['userId']; // สมมติว่ามีการเก็บ userId ใน session
 
     // ตรวจสอบรหัสผ่านปัจจุบัน
-    $sql = "SELECT userPass FROM users WHERE userId = ?";
+    $sql = "SELECT userPass FROM users WHERE userID = :userID";
     $stmt = $db_con->prepare($sql);
-    $stmt->bind_param("userId", $userId);
+    $stmt->bindParam(':userID', $userID);
     $stmt->execute();
-    $stmt->bind_result($hashedPassword);
-    $stmt->fetch();
-    $stmt->close();
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if (password_verify($currentPassword, $hashedPassword)) {
+    if (password_verify($currentPassword, $user['userPass'])) {
         // อัปเดตรหัสผ่านใหม่
-        $newHashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
-        $sql = "UPDATE users SET userPass = ? WHERE userId = ?";
+        $newPasswordHash = password_hash($newPassword, PASSWORD_DEFAULT);
+        $sql = "UPDATE users SET userPass = :newPassword WHERE userID = :userID";
         $stmt = $db_con->prepare($sql);
-        $stmt->bind_param("si", $newHashedPassword, $userId);
+        $stmt->bindParam(':newPassword', $newPasswordHash);
+        $stmt->bindParam(':userID', $userID);
         if ($stmt->execute()) {
-            echo json_encode(array("status" => "success", "message" => "รหัสผ่านถูกอัปเดตเรียบร้อยแล้ว"));
+            echo json_encode(['message' => 'รหัสผ่านถูกเปลี่ยนเรียบร้อยแล้ว']);
         } else {
-            echo json_encode(array("status" => "error", "message" => "เกิดข้อผิดพลาดในการอัปเดตรหัสผ่าน"));
+            echo json_encode(['message' => 'เกิดข้อผิดพลาดในการเปลี่ยนรหัสผ่าน']);
         }
-        $stmt->close();
     } else {
-        echo json_encode(array("status" => "error", "message" => "รหัสผ่านปัจจุบันไม่ถูกต้อง"));
+        echo json_encode(['message' => 'รหัสผ่านปัจจุบันไม่ถูกต้อง']);
     }
 }
 ?>

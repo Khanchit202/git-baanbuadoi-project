@@ -123,4 +123,6 @@ nav {
     height: 200px; /* ให้ความสูงปรับตามอัตราส่วนของรูปภาพ */
     margin-top: 20px;
 }
-
+.input-group-text {
+    cursor: pointer;
+}

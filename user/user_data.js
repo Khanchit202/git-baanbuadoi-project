@@ -56,35 +56,70 @@ function updateData() {
 
 
 
-
 function updatepass() {
     var currentPassword = document.getElementById('currentPassword').value;
     var newPassword = document.getElementById('newPassword').value;
     var confirmPassword = document.getElementById('confirmPassword').value;
 
     if (newPassword !== confirmPassword) {
-        swal('ข้อผิดพลาด', 'รหัสผ่านใหม่และยืนยันรหัสผ่านไม่ตรงกัน', 'error');
-        return false;
+        Swal.fire({
+            icon: 'error',
+            title: 'ข้อผิดพลาด',
+            text: 'รหัสผ่านใหม่ไม่ตรงกัน'
+        });
+        return;
     }
 
-    // ส่งข้อมูลไปยังเซิร์ฟเวอร์
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'user/api/update_password.php', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            var response = JSON.parse(xhr.responseText);
-            if (response.status === "success") {
-                swal('สำเร็จ', response.message, 'success').then(() => {
-                    location.reload(); // รีโหลดหน้าใหม่
+            try {
+                var response = JSON.parse(xhr.responseText);
+                Swal.fire({
+                    icon: response.message === 'รหัสผ่านถูกเปลี่ยนเรียบร้อยแล้ว' ? 'success' : 'error',
+                    title: response.message === 'รหัสผ่านถูกเปลี่ยนเรียบร้อยแล้ว' ? 'สำเร็จ' : 'ข้อผิดพลาด',
+                    text: response.message
+                }).then((result) => {
+                    if (result.isConfirmed && response.message === 'รหัสผ่านถูกเปลี่ยนเรียบร้อยแล้ว') {
+                        location.reload();
+                    }
                 });
-            } else {
-                swal('ข้อผิดพลาด', response.message, 'error');
+            } catch (e) {
+                console.error('ไม่สามารถแปลงข้อมูล JSON ได้:', e);
             }
         }
     };
-    xhr.send('currentPassword=' + encodeURIComponent(currentPassword) + 
-             '&newPassword=' + encodeURIComponent(newPassword));
-
-    return false; // ป้องกันการรีเฟรชหน้า
+    xhr.send('userID=' + userId + '&currentPassword=' + currentPassword + '&newPassword=' + newPassword);
 }
+
+
+function upImg() {
+    var form = document.getElementById('uploadForm');
+    var formData = new FormData(form);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'user/api/insert_img.php', true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            try {
+                var response = JSON.parse(xhr.responseText);
+                Swal.fire({
+                    icon: response.success ? 'success' : 'error',
+                    title: response.success ? 'สำเร็จ' : 'ข้อผิดพลาด',
+                    text: response.message
+                }).then((result) => {
+                    if (result.isConfirmed && response.success) {
+                        location.reload();
+                    }
+                });
+            } catch (e) {
+                console.error('ไม่สามารถแปลงข้อมูล JSON ได้:', e);
+            }
+        }
+    };
+    xhr.send(formData);
+}
+
+
