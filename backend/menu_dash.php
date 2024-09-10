@@ -71,7 +71,7 @@ function admin_dash($lavel_name, $lavel_color) {
                 </ul>
             </li>
             <li class="sidebar-item">
-                <a href="?page=user-data" class="sidebar-link <?php echo ($current_page == 'user-data' ? 'active' : '') ?>">
+                <a href="?page=booking-data" class="sidebar-link <?php echo ($current_page == 'booking-data' ? 'active' : '') ?>">
                     <i class="lni lni-list"></i>
                     <span>ข้อมูลการจอง</span>
                 </a>
@@ -144,7 +144,14 @@ function emp_dash($lavel_name, $lavel_color) {
                     <li class="sidebar-item">
                         <a href="?page=service-data" class="sidebar-link <?php echo ($current_page == 'service-data' ? 'active' : '') ?>">บริการ</a>
                     </li>
+                    <li class="sidebar-item">
+                        <a href="?page=booking-data" class="sidebar-link <?php echo ($current_page == 'booking-data' ? 'active' : '') ?>">
+                            <i class="lni lni-list"></i>
+                            <span>ข้อมูลการจอง</span>
+                        </a>
+                    </li>
                 </ul>
+                
             </li>
         </ul>
     <?php

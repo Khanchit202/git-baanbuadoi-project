@@ -72,7 +72,10 @@
                                 include 'room_data/room.php';
                                 break;
                             case 'service-data':
-                                include 'dash_data/dash.php';
+                                include 'service_data/service.php';
+                                break;
+                            case 'booking-data':
+                                include 'booking_data/booking.php';
                                 break;
                             default:
                                 echo "<h2>ไม่พบหน้า</h2>";

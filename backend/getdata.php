@@ -10,11 +10,14 @@
                 $response['data'] = "user_data/user_data.php";
                 break;
             case 'room-data':
-                $response['data'] = "user_data/user_data.php";
+                $response['data'] = "user_data/room.php";
                 break;
             case 'service-data':
-                $response['data'] = "user_data/user_data.php";
+                $response['data'] = "user_data/service.php";
                 break;
+                case 'booking-data':
+                    $response['data'] = "user_data/booking.php";
+                    break;
             default:
                 $response['data'] = "user_data/user_data.php";
         }
