@@ -62,7 +62,7 @@ function getUserLevelName($level) {
                         <button onclick="resetpass('<?php echo str_pad($user['userID'], 5, "0", STR_PAD_LEFT); ?>')" class="btn btn-primary btn-sm">
                             <i class="lni lni-key" style="padding: 5px;"></i>
                         </button>
-                        <button onclick="reset({
+                        <button onclick="updateLavel({
                             userID: '<?php echo addslashes($user['userID']); ?>',
                             userName: '<?php echo addslashes($user['userName']); ?>',
                             userFName: '<?php echo addslashes($user['userFName']); ?>',
@@ -143,45 +143,46 @@ function getUserLevelName($level) {
         <h5 class="modal-title" id="exampleModalLabel">กำหนดสิทธฺิการเข้าถึง</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body" >
+      <div class="modal-body">
           <div class="mb-3">
               <label for="name" class="form-label">ชื่อผู้ใช้</label>
-              <input type="text" class="form-control"  id="edit_userName" required disabled>
+              <input type="text" class="form-control" id="edit_userName" required disabled>
           </div>
           <div class="mb-3">
               <label for="fname" class="form-label">ชื่อจริง</label>
-              <input type="text" class="form-control"  id="edit_userFName" required disabled>
+              <input type="text" class="form-control" id="edit_userFName" required disabled>
           </div>
           <div class="mb-3">
               <label for="lname" class="form-label">นามสกุล</label>
-              <input type="text" class="form-control"  id="edit_userLName" required disabled>
+              <input type="text" class="form-control" id="edit_userLName" required disabled>
           </div>
           <div class="mb-3">
               <label for="tel" class="form-label">เบอร์โทรศัพท์</label>
-              <input type="number" class="form-control"  id="edit_userTel" required disabled>
+              <input type="number" class="form-control" id="edit_userTel" required disabled>
           </div>
           <div class="mb-3">
               <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control"  id="edit_userEmail" required disabled>
+              <input type="email" class="form-control" id="edit_userEmail" required disabled>
           </div>
           <div class="mb-3">
               <label for="accessLevel" class="form-label">สิทธิ์การเข้าถึง</label>
-              <select class="form-select"  id="edit_userLavelID" required >
+              <select class="form-select" id="edit_userLavelID" required>
                   <option value="1">ผู้ดูแลระบบ (Admin)</option>
                   <option value="2">เจ้าของกิจการ (Owner)</option>
                   <option value="3">พนักงาน (Employee)</option>
                   <option value="4">สมาชิก (Member)</option>
               </select>
           </div>
+          <input type="hidden" id="edit_userID">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
         <button type="submit" onclick="update_data()" class="btn btn-primary" name="submit">บันทึก</button>
-    
       </div>
     </div>
   </div>
 </div>
+
  <!-- Modal edit-->  
 
 

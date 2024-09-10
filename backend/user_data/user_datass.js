@@ -113,18 +113,26 @@ function save_data(){
 
 }
 
-var id;
-function reset(userID) {
+function updateLavel(userID) {
     // ตรวจสอบข้อมูลที่ส่งเข้ามา
     $('#editdatauser').modal('show');
 
-    
+    // ตั้งค่าระดับการเข้าถึงของผู้ใช้
     $('#edit_userLavelID').val(userID.userLavelID);
-    
+
+    // ตั้งค่า userID
+    $('#edit_userID').val(userID.userID);
+
+    // ตั้งค่าข้อมูลผู้ใช้อื่นๆ
+    $('#edit_userName').val(userID.userName);
+    $('#edit_userFName').val(userID.userFName);
+    $('#edit_userLName').val(userID.userLName);
+    $('#edit_userTel').val(userID.userTel);
+    $('#edit_userEmail').val(userID.userEmail);
 }
 
 function update_data() {
-    var id = $('#edit_userID').val(); // สมมติว่ามี input field สำหรับ id
+    var id = $('#edit_userID').val();
     var level = $('#edit_userLavelID').val();
     
     $.ajax({
@@ -136,20 +144,20 @@ function update_data() {
             level: level,
         },
         beforeSend: function() {
-            console.log("Sending data:", {
+            console.log("กำลังส่งข้อมูล:", {
                 id: id,
                 level: level,
             });
         }
     })
     .done(function(result) {
-        console.log("Response received:", result);
+        console.log("ได้รับการตอบกลับ:", result);
         if (result.status === 'success') {
             swal({
-                title: "Success",
+                title: "สำเร็จ",
                 text: result.message,
                 icon: "success",
-                button: "OK",
+                button: "ตกลง",
             }).then(() => {
                 // ปิด Modal
                 $('#editdatauser').modal('hide');
@@ -158,20 +166,25 @@ function update_data() {
             });
         } else {
             swal({
-                title: "Error",
+                title: "เกิดข้อผิดพลาด",
                 text: result.message,
                 icon: "error",
-                button: "OK",
+                button: "ตกลง",
             });
         }
     })
-    .fail(function() {
-        console.log("error");
+    .fail(function(jqXHR, textStatus, errorThrown) {
+        console.log("เกิดข้อผิดพลาด:", textStatus, errorThrown);
+        console.log("รายละเอียดเพิ่มเติม:", jqXHR.responseText);
+        alert("เกิดข้อผิดพลาด: " + jqXHR.responseText);
     })
     .always(function() {
-        console.log("complete");
+        console.log("เสร็จสิ้น");
     });
 }
+
+
+
 
 
 
