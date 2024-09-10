@@ -1,4 +1,3 @@
-
 function updateData() {
     // รับค่าจากฟอร์ม
     var username = document.getElementById('username').value;
@@ -121,5 +120,3 @@ function upImg() {
     };
     xhr.send(formData);
 }
-
-

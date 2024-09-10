@@ -49,120 +49,140 @@ $db_con = connect_db();
         // ตั้งค่าผลลัพธ์เป็น associative array
         $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $user = $stmt->fetch();
+        
+        $userLavelName = "";
 
-        // ปิดการเชื่อมต่อ
+            if ($user['userLavelID'] == 1) {
+                $userLavelName = 'ผู้ดูแลระบบ';
+            } else if ($user['userLavelID'] == 2) {
+                $userLavelName = 'เจ้าของกิจการ';
+            } else if ($user['userLavelID'] == 3) {
+                $userLavelName = 'พนักงาน';
+            } elseif ($user['userLavelID'] == 4) {
+                $userLavelName = 'สมาชิก';
+            }
+
         
     }
     ?>
 
-    <div class="container" style="display: flex; justify-content: center; align-items: center;  margin-top: 30px;">
-        <div class="row" style="width: 100%;justify-content: center;">
-            <!-- คอลัมน์ฝั่งซ้ายสำหรับรูปภาพ -->
-            <div class="col-md-4 ml-5" style="background-color: #FFF; padding: 20px; border-radius: 20px; text-align: right; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-            <div style="width: 380px; height: 400px; background-color: #fff; text-align: center; ">
-                <img src="img/profile/<?php echo htmlspecialchars($user['userImg']); ?>" class="img-fluid rounded" alt="Image Description" style="width: 380px; height: 390px; object-fit: cover;">
-            </div>
-                <div class="row mt-5" style="border: solid 5px green; border-radius: 10px;">
-                    <button type="button" class="btn btn-light btn-block"data-toggle="modal" data-target="#myimg">อัพโหลดรูปโปรไฟล์</button>
+    <div class="container" style="display: flex; padding: 60px 60px">
+        <div class="menu_pro d-flex" style="width: 100%">
+            <div class="wow fadeInUp" data-wow-delay="0.2s">
+                <div class="card" style="width: 250px;">
+                    <img src="img/profile/<?php echo htmlspecialchars($user['userImg']); ?>" class="card-img-top" alt="Programer" style="height: 250px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title" style="font-size: 16px; font-weight: bold;"><?php echo htmlspecialchars($user['userFName']) . " " . htmlspecialchars($user['userLName']); ?></h5>
+                        <p class="card-text" style="font-size: 12px;"><?php echo htmlspecialchars($userLavelName); ?></p>
+                        <div class="mt-3">
+                            <button type="button" class="btn btn-block mb-2" data-toggle="modal" data-target="#myimg" style="font-size: 10px; color: #4caf50; width: 100%; border: solid 2px #4caf50;">อัพโหลดรูปโปรไฟล์</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="row mt-3">
-                <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#myModal">เปลี่ยนรหัสผ่าน
-                </button>
+            </div>
+
+            <div class="col-md-6 ml-2" style="background-color: #FFF; padding: 40px; border-radius: 10px; margin-left: 10px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); flex-grow: 1;">
+
+                <div class="d-flex justify-content-between m-2 mb-5">
+                    <p>ข้อมูลส่วนตัว</p>
+                    <div class="d-flex ">
+                        <button type="button" class="btn me-1" data-toggle="modal" data-target="#myModal" style="font-size: 10px; background-color: #3B8386; color: #ffffff;"><i class="lni lni-key" style="padding: 5px;"></i>เปลี่ยนรหัสผ่าน</button>
+                        <button class="btn " style="font-size: 10px; background-color: #4caf50; color: #ffffff;" type="button" data-toggle="modal" data-target="#editModal"><i class="lni lni-pencil" style="padding: 5px;"></i>แก้ไขข้อมูลส่วนตัว</button>
+                    </div>
                 </div>
-                
-            </div>
 
-            <!-- คอลัมน์ฝั่งขวาสำหรับเนื้อหา -->
-            <div class="col-md-6 ml-2" style="background-color: #FFF; padding: 10px; border-radius: 20px;  margin-left: 10px;box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);">
-                <p style="font-weight: bold;">รายละเอียดข้อมูลส่วนตัว</p>
-
-                <div class="container">
-                    <!-- แถวที่ 1 -->
-                    <div class="row mb-4" style="display: flex; align-items: center;">
-                        <p>UserName :</p>
-                        <div class="col-md-3" style="flex: 1; border-radius: 10px; background-color: #fde0dc;">
-                            <p style="margin-top: 15px;"><?php echo htmlspecialchars($user['userName']); ?></p>
+                <div class="container" style="font-size: 12px; width: 100%">
+                    <div class="row mb-1" style="display: flex; align-items: center;">
+                        <p style="flex: 1; font-weight: bold;">ชื่อผู้ใช้ / User Name:</p>
+                        <div class="col-md-8">
+                            <p><?php echo htmlspecialchars($user['userName']); ?></p>
                         </div>
                     </div>
-
-                    <!-- <div class="row mb-4" style="display: flex; align-items: center;">
-                        <p>Password :</p>
-                        <div class="col-md-3" style="flex: 1; border-radius: 10px; background-color: #f0f0f0;">
-                            <p style="margin-top: 15px;"><?php echo str_repeat('*', min(10, strlen($user['userPass']))); ?></p>
-                        </div>
-                    </div> -->
-                    <div class="row mb-4" style="display: flex; align-items: center;">
-                        <p>ชื่อ-นามสกุล :</p>
-                        <div class="col-md-3" style="flex: 1; border-radius: 10px; background-color: #fde0dc;">
-                            <p style="margin-top: 15px;"><?php echo htmlspecialchars($user['userFName']) . " " . htmlspecialchars($user['userLName']); ?></p>
+                    <div class="row mb-1" style="display: flex; align-items: center;">
+                        <p style="flex: 1; font-weight: bold;">ชื่อ - นาทสกุล / First name - Last name:</p>
+                        <div class="col-md-8">
+                            <p><?php echo htmlspecialchars($user['userFName']) . " " . htmlspecialchars($user['userLName']); ?></p>
                         </div>
                     </div>
-
-                    <div class="row mb-4" style="display: flex; align-items: center;">
-                            <p>เบอร์โทรศัพท์ : <span style="margin-left: 190px;">สิทธิผู้ใช้งาน :</span></p>
-                        <div class="col-md-3" style="flex: 1; border-radius: 10px; background-color: #fde0dc; margin-right: 10px;">
-                            <p style="margin-top: 15px;"><?php echo htmlspecialchars($user['userTel']); ?></p>
-                        </div>
-                        
-                        <div class="col-md-3" style="flex: 1; border-radius: 10px; background-color: #fde0dc;">
-                            <p style="margin-top: 15px;">
-                                <?php 
-                                    if ($user['userLavelID'] == 1) {
-                                        echo 'ADMIN';
-                                    } else if($user['userLavelID'] == 2){
-                                        echo 'Owner';
-                                    } else if($user['userLavelID'] == 3){
-                                        echo 'พนักงาน';
-                                    } elseif($user['userLavelID'] == 4){
-                                        echo 'สมาชิก';
-                                    }
-                                    else {
-                                        
-                                    }
-                                ?>
-                            </p>
-                        </div>
-
-                    </div>
-
-                    <div class="row mb-4" style="display: flex; align-items: center;">
-                        <p>Email :</p>
-                        <div class="col-md-3" style="flex: 1; border-radius: 10px; background-color: #fde0dc;">
-                            <p style="margin-top: 15px;"><?php echo htmlspecialchars($user['userEmail']); ?></p>
+                    <div class="row mb-1" style="display: flex; align-items: center;">
+                        <p style="flex: 1; font-weight: bold;">เบอร์โทรศัพท์ / Phone Number:</p>
+                        <div class="col-md-8">
+                            <p><?php echo htmlspecialchars($user['userTel']); ?></p>
                         </div>
                     </div>
-                    <div class="row mt-3">
-                    <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#editModal">แก้ไขข้อมูลส่วนตัว</button>
+                    <div class="row mb-1" style="display: flex; align-items: center;">
+                        <p style="flex: 1; font-weight: bold; ">สิทธิผู้ใช้งาน / User Role:</p>
+                        <div class="col-md-8">
+                            <p><?php echo htmlspecialchars($userLavelName); ?></p>
+                        </div>
                     </div>
-            </div>
+                    
+                    <div class="row mb-1" style="display: flex; align-items: center;">
+                        <p style="flex: 1; font-weight: bold;">อีเมล / Email:</p>
+                        <div class="col-md-8">
+                            <p><?php echo htmlspecialchars($user['userEmail']); ?></p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        
-
     </div>
+
     <!-- ส่วนแสดงประวัติการจอง -->
-    <div class="container" style="display: flex; justify-content: center; align-items: center;  margin-top: 30px;">
-            <div class="row mb-5" style="width: 85%; background-color: #fff; height: 300px; display: flex; justify-content: center; align-items: center; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                <p>Content</p>
+    <div class="container" style=" padding: 10px 60px;">
+        <div class="pro" style="width: 100%; background-color: #fff; height: 300px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            <div class="d-flex justify-content-between m-2 mb-3" style="padding: 10px 35px;">
+                <p>ข้อมูลประวัติการจอง</p>
+                <div class="d-flex">
+                    <button type="button" class="btn" data-toggle="modal" data-target="#myModal" style="font-size: 10px; background-color: #3B8386; color: #ffffff;">แสดงรายการทั้งหมด</button>
+                </div>
             </div>
 
-        
+            <div class="testimonial-item rounded" style="font-size: 10px; padding: 10px 35px;">
+                <div class="bg-white border rounded d-flex align-items-start" style="padding: 10px 20px;">
+                    <!-- Testimonial Image -->
+                    <div class="testimonial-image me-3" style="width: 70px;">
+                        <div class="card" style="width: 80px;">
+                            <img src="img/profile/<?php echo htmlspecialchars($user['userImg']); ?>" class="card-img-top" style="height: 60px; object-fit: cover;">
+                        </div>
+                    </div>
 
-    </div>
-    <!-- ปิดส่วนแสดงประวัติการจอง -->
+                    <!-- Testimonial Content -->
+                    <div class="d-flex flex-column flex-grow-1 me-3">
+                        <div class="star-rating mb-1">
+                            <h5 class="fw-bold mb-0" style="font-size: 12px;">ห้องพักหใายเลข 2</h5>
+                            <p class="mb-0" style="font-size: 8px; opacity: 60%;">วันที่ทำรายการ: 09/09/2567</p>
+                        </div>
+                        <p style="font-size: 10px;">ราคามัดจำ:</p>
+                    </div>
 
-    <!-- ส่วนแสดงประวัติห้อง -->
-    <div class="container" style="display: flex; justify-content: center; align-items: center; ">
-            <div class="row mb-5" style="width: 85%; background-color: #fff; height: 300px; display: flex; justify-content: center; align-items: center; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                <p>Content</p>
+                    <!-- Success Message -->
+                    <div class="d-flex align-items-center me-3">
+                        <p style="padding: 6px 10px; background-color: #4caf50; color: #ffffff; border-radius: 10px;">ทำรายการสำเร็จ</p>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="d-flex align-items-center">
+                        <button type="button" class="btn me-1" data-toggle="modal" data-target="#myModal" style="font-size: 10px; background-color: #3B8386; color: #ffffff; border-radius: 5px;">รายละเอียดการจอง</button>
+                        <button type="button" class="btn me-1" data-toggle="modal" data-target="#myModal" style="font-size: 10px; background-color: #3B8386; color: #ffffff; border-radius: 5px;">รายละเอียดการชำระเงิน</button>
+                        <button type="button" class="btn" data-toggle="modal" data-target="#myModal" style="font-size: 10px; background-color: #DE6461; color: #ffffff; border-radius: 5px;">พิมพ์ใบจอง</button>
+                    </div>
+                </div>
             </div>
-
-        
-
+            
+        </div>
     </div>
-     <!-- ปิดส่วนแสดงประวัติห้อง -->
 </div>
+
+    <!-- ส่วนแสดงประวัติการจอง -->
+    <div class="container" style=" padding: 10px 60px;">
+        <div class="pro" style="width: 100%; background-color: #fff; height: 300px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+
+            
+            
+        </div>
+    </div>
+
 
 
   
@@ -195,32 +215,30 @@ $db_con = connect_db();
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editModalLabel">แก้ไขข้อมูล</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
+                <h5 class="modal-title" id="editModalLabel">แก้ไขข้อมูลส่วนตัว</h5>
+                <button type="button" class="btn-close" data-dismiss="modal"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="font-size: 12px;">
                 <!-- ฟอร์มแก้ไขข้อมูล -->
                 <form>
-                    <div class="form-group">
+                    <div class="form-group mb-3" ">
                         <label for="username">User Name</label>
                         <input type="text" class="form-control" id="username" value="<?php echo htmlspecialchars($user['userName']); ?>">
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="fname">ชื่อ</label>
                         <input type="text" class="form-control" id="fname" value="<?php echo htmlspecialchars($user['userFName']); ?>">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="lname">นามสกุล</label>
                         <input type="text" class="form-control" id="lname" value="<?php echo htmlspecialchars($user['userLName']); ?>">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="tel">Tel</label>
                         <input type="tel" class="form-control" id="tel" value="<?php echo htmlspecialchars($user['userTel']); ?>">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="email">Email</label>
                         <input type="email" class="form-control" id="email" value="<?php echo htmlspecialchars($user['userEmail']); ?>">
                     </div>
@@ -232,6 +250,7 @@ $db_con = connect_db();
             </div>
             <script>
                 var userId = <?php echo json_encode($_SESSION['userID']); ?>;
+                
             </script>
 
         </div>
@@ -247,12 +266,12 @@ $db_con = connect_db();
             <!-- Modal Header -->
             <div class="modal-header">
                 <h4 class="modal-title text-center w-100">เปลี่ยนรหัสผ่าน</h4>
-                <button type="button" class="close" data-dismiss="modal">×</button>
+                <button type="button" class="btn-close" data-dismiss="modal"></button>
             </div>
             <!-- Modal Body -->
             <div class="modal-body">
                 <form>
-                    <div class="form-group">
+                    <div class="form-group mb-4">
                         <label for="currentPassword">รหัสผ่านปัจจุบัน:</label>
                         <div class="input-group">
                             <input type="password" class="form-control" id="currentPassword">
@@ -261,7 +280,7 @@ $db_con = connect_db();
                             </span>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-2">
                         <label for="newPassword">รหัสผ่านใหม่:</label>
                         <div class="input-group">
                             <input type="password" class="form-control" id="newPassword">
@@ -270,7 +289,7 @@ $db_con = connect_db();
                             </span>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-4">
                         <label for="confirmPassword">ยืนยันรหัสผ่านใหม่:</label>
                         <div class="input-group">
                             <input type="password" class="form-control" id="confirmPassword">
@@ -279,12 +298,12 @@ $db_con = connect_db();
                             </span>
                         </div>
                     </div>
-                    <button type="button" onclick="updatepass()" class="btn btn-primary">บันทึก</button>
                 </form>
             </div>
             <!-- Modal Footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">ปิด</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
+                <button type="button" onclick="updatepass()" class="btn btn-primary">บันทึกการเปลี่ยนแปลง</button>
             </div>
             <script>
                 var userId = <?php echo json_encode($_SESSION['userID']); ?>;
@@ -301,8 +320,8 @@ $db_con = connect_db();
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title text-center w-100">อัพโหลดรูปโปรไฟล์</h4>
-                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 class="modal-title">อัพโหลดรูปโปรไฟล์</h4>
+                <button type="button" class="btn-close" data-dismiss="modal"></button>
             </div>
             <!-- Modal Body -->
             <div class="modal-body">
