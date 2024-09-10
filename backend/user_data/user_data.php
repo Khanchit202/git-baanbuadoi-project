@@ -135,12 +135,12 @@ function getUserLevelName($level) {
 <!-- End Modal -->
 
 
-    <!-- Modal edit-->
+<!-- Modal edit-->
 <div class="modal fade" id="editdatauser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">เเก้ไขข้อมูลนักศึกษา</h5>
+        <h5 class="modal-title" id="exampleModalLabel">กำหนดสิทธฺิการเข้าถึง</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" >
@@ -175,8 +175,8 @@ function getUserLevelName($level) {
           </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" onclick="update_data()" class="btn btn-primary" name="submit">UPDATE</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+        <button type="submit" onclick="update_data()" class="btn btn-primary" name="submit">บันทึก</button>
     
       </div>
     </div>

@@ -118,21 +118,13 @@ function reset(userID) {
     // ตรวจสอบข้อมูลที่ส่งเข้ามา
     $('#editdatauser').modal('show');
 
-    $('#edit_userName').val(userID.userName);
-    $('#edit_userFName').val(userID.userFName);
-    $('#edit_userLName').val(userID.userLName);
-    $('#edit_userTel').val(userID.userTel);
-    $('#edit_userEmail').val(userID.userEmail);
+    
     $('#edit_userLavelID').val(userID.userLavelID);
-    id = userID.userID;
+    
 }
 
 function update_data() {
-    var name = $('#edit_userName').val();
-    var fname = $('#edit_userFName').val();
-    var lname = $('#edit_userLName').val();
-    var tel = $('#edit_userTel').val();
-    var email = $('#edit_userEmail').val();
+    var id = $('#edit_userID').val(); // สมมติว่ามี input field สำหรับ id
     var level = $('#edit_userLavelID').val();
     
     $.ajax({
@@ -141,31 +133,21 @@ function update_data() {
         dataType: 'json',
         data: {
             id: id,
-            name: name,
-            fname: fname,
-            lname: lname,
-            tel: tel,
-            email: email,
             level: level,
         },
         beforeSend: function() {
             console.log("Sending data:", {
                 id: id,
-                name: name,
-                fname: fname,
-                lname: lname,
-                tel: tel,
-                email: email,
                 level: level,
             });
         }
     })
     .done(function(result) {
         console.log("Response received:", result);
-        if (response.status === 'success') {
+        if (result.status === 'success') {
             swal({
                 title: "Success",
-                text: response.message,
+                text: result.message,
                 icon: "success",
                 button: "OK",
             }).then(() => {
@@ -177,12 +159,11 @@ function update_data() {
         } else {
             swal({
                 title: "Error",
-                text: response.message,
+                text: result.message,
                 icon: "error",
                 button: "OK",
             });
         }
-        
     })
     .fail(function() {
         console.log("error");
@@ -190,8 +171,8 @@ function update_data() {
     .always(function() {
         console.log("complete");
     });
-    
 }
+
 
 
 
