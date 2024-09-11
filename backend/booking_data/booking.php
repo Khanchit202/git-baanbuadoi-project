@@ -31,7 +31,6 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
                     <th scope="col">รายละเอียด</th>
                     <th scope="col">การยืนยัน</th>
                     <th scope="col">สถานะห้อง</th>
-                    <th scope="col">ยกเลิก</th>
                     
                 </tr>
             </thead>
@@ -50,7 +49,6 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
                     <td><?php echo htmlspecialchars($user['bookDetail']); ?></td>
                     <td><?php echo htmlspecialchars($user['bookConfirm']); ?></td>
                     <td><?php echo htmlspecialchars($user['bookStatus']); ?></td>
-                    <td><?php echo htmlspecialchars($user['bookCancel']); ?></td>
                     
                     <td>
                         <button onclick="updatebook()" class="btn btn-primary btn-sm">

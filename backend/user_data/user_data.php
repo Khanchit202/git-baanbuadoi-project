@@ -62,7 +62,7 @@ function getUserLevelName($level) {
                         <button onclick="resetpass('<?php echo str_pad($user['userID'], 5, '0', STR_PAD_LEFT); ?>')" class="btn btn-primary btn-sm">
                             <i class="lni lni-key" style="padding: 5px;"></i>
                         </button>
-                        <button onclick="reset({
+                        <button onclick="updateLavel({
                             userID: '<?php echo addslashes($user['userID']); ?>',
                             userName: '<?php echo addslashes($user['userName']); ?>',
                             userFName: '<?php echo addslashes($user['userFName']); ?>',
@@ -173,6 +173,7 @@ function getUserLevelName($level) {
                   <option value="4">สมาชิก (Member)</option>
               </select>
           </div>
+          <input type="hidden" id="edit_userID">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
