@@ -126,12 +126,7 @@ function emp_dash($lavel_name, $lavel_color) {
                     <span>แดชบอร์ด</span>
                 </a>
             </li>
-            <li class="sidebar-item">
-                <a href="?page=user-data" class="sidebar-link <?php echo ($current_page == 'user-data' ? 'active' : '') ?>">
-                    <i class="lni lni-protection"></i>
-                    <span>กำหนดสิทธิ์การเข้าถึงระบบ</span>
-                </a>
-            </li>
+            
             <li class="sidebar-item">
                 <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
                     <i class="lni lni-list"></i>
