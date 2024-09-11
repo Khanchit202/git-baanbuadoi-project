@@ -10,7 +10,7 @@ function menu_navbar() {
     }
     
     if (empty($_SESSION['userImg'])) {
-        $profile_name = "img/profile/profile_1.jpg";
+        $profile_name = "profile_1.jpg";
     } else {
         $profile_name = $_SESSION['userImg'];
     }
@@ -28,12 +28,6 @@ function menu_navbar() {
 
 
 function render_dropdown($profile_name) {
-   
-    if (empty($_SESSION['userImg'])) {
-        $profile_name = "img/profile/profile_1.jpg";
-    } else {
-        $profile_name = $_SESSION['userImg'];
-    }
     ?>    
         <div class="dropdown" style="position: relative; display: inline-block;">
             <div class="profile-button" onclick="toggleDropdown()"
