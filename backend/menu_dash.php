@@ -142,7 +142,13 @@ function emp_dash($lavel_name, $lavel_color) {
                     <li class="sidebar-item">
                         <a href="?page=booking-data" class="sidebar-link <?php echo ($current_page == 'booking-data' ? 'active' : '') ?>">
                             <i class="lni lni-list"></i>
-                            <span>ข้อมูลการจอง</span>
+                            <span>จัดการข้อมูลการจอง</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="?page=premaket-data" class="sidebar-link <?php echo ($current_page == 'premaket-data' ? 'active' : '') ?>">
+                            <i class="lni lni-list"></i>
+                            <span>จัดการข้อมูลข่าวสาร</span>
                         </a>
                     </li>
                 </ul>

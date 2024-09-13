@@ -1,52 +1,51 @@
 <?php
-$users = $db_con->query("SELECT * FROM room_product");
+$users = $db_con->query("SELECT * FROM news");
 $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
 
 
 
 
 ?>
-<p style="font-size: 16px; padding: 5px 20px;">จัดการข้อมูลห้องพัก</p>
+<p style="font-size: 16px; padding: 5px 20px;">จัดการข้อมูลสารหน้าเว็บ</p>
 <div id="user-table" style="align-items: center;background-color: white; border-radius: 10px; padding: 50px;">
     <div class="d-flex justify-content-between">
-        <p style="font-size: 20px;">ข้อมูลห้องพักทั้งหมด</p>
-        <button class="btn btn-primary" style="font-size: 12px;margin-right: 80px;" data-bs-toggle="modal" data-bs-target="#addDataroom">
+        <p style="font-size: 20px;">ข้อมูลข่าวสารทั้งหมด</p>
+        <!-- <button class="btn btn-primary" style="font-size: 12px;margin-right: 80px;" data-bs-toggle="modal" data-bs-target="#addDataModal">
             <i class="lni lni-circle-plus" style="padding: 5px;"></i>
-            เพิ่มห้องพัก 
-        </button>
+            เพิ่มบริการ 
+        </button> -->
     </div>
     <div class="text-center">
         <table class="table" style="margin-top: 20px; font-size: 16px;">
             <thead>
                 <tr>
                     <th scope="col">ลำดับ</th>
-                    <th scope="col">รหัสห้อง</th>
-                    <th scope="col">ชื่อห้อง</th>
-                    <th scope="col">จำนวนเตียง</th>
-                    <th scope="col">จำนวนห้องน้ำ</th>
-                    <th scope="col">ราคาห้องพัก/คืน</th>
+                    <th scope="col">รหัสข่าวสาร</th>
+                    <th scope="col">หัวข้อข่าว</th>
+                    <th scope="col">ข่าวเกี่ยวกับ</th>
+                    <th scope="col">เวลาลงข่าว</th>
+                    
+                    
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($usersArray as $index => $room) : ?>
+                <?php foreach ($usersArray as $index => $user) : ?>
                 <tr>
-                    
                     <th scope="row"><?php echo $index + 1; ?></th>
-                    <td><?php echo htmlspecialchars($room['roomID']); ?></td>
-                    <td><?php echo htmlspecialchars($room['roomName']); ?></td>
-                    <td><?php echo htmlspecialchars($room['roomBed']); ?></td>
-                    <td><?php echo htmlspecialchars($room['roomBath']); ?></td>
-                    <td><?php echo htmlspecialchars($room['roomPrice']); ?></td>
+                    <td><?php echo htmlspecialchars($user['newID']); ?></td>
+                    <td><?php echo htmlspecialchars($user['newTitle']); ?></td>
+                    <td><?php echo htmlspecialchars($user['newType']); ?></td>
+                    <td><?php echo htmlspecialchars($user['newDate']); ?></td>
+                    
+                    
                     <td>
-                        
-                        <button onclick="updateroom()" class="btn btn-primary btn-sm">
+                        <button onclick="updatenew()" class="btn btn-primary btn-sm">
                             <i class="lni lni-pencil" style="padding: 5px;"></i>
                         </button>
 
-                        <button onclick="delete_room('<?php echo str_pad($room['roomID'], 5, "0", STR_PAD_LEFT); ?>')" class="btn btn-danger btn-sm">
+                        <button onclick="delete_new()" class="btn btn-danger btn-sm">
                             <i class="lni lni-trash-can" style="padding: 5px;"></i>
                         </button>
-
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -54,60 +53,51 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
         </table>
     </div>
 </div>
+
 <!-- Add Modal -->
-<div class="modal fade" id="addDataroom" tabindex="-1" aria-labelledby="addDataModalLabel" aria-hidden="true">
+<div class="modal fade" id="addDataModal" tabindex="-1" aria-labelledby="addDataModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="addDataModalLabel">เพิ่มข้อมูลห้องพัก</h5>
+        <h5 class="modal-title" id="addDataModalLabel">เพิ่มข้อมูลผู้ใช้ระบบ</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" >
           <div class="mb-3">
-              <label for="roomName" class="form-label">ชื่อห้อง</label>
-              <input type="text" class="form-control" name="roomName" id="roomName" required>
+              <label for="username" class="form-label">ชื่อผู้ใช้</label>
+              <input type="text" class="form-control" name="username" id="userName" required>
           </div>
           <div class="mb-3">
-              <label for="roomDetail" class="form-label">รายละเอียดห้องพัก</label>
-              <input type="text" class="form-control" name="roomDetail" id="roomDetail" required>
+              <label for="firstName" class="form-label">ชื่อจริง</label>
+              <input type="text" class="form-control" name="firstName" id="userFName" required>
           </div>
           <div class="mb-3">
-              <label for="roomBed" class="form-label">จำนวนเตียงนอน</label>
-              <input type="number" class="form-control" name="roomBed" id="roomBed" required>
+              <label for="lastName" class="form-label">นามสกุล</label>
+              <input type="text" class="form-control" name="lastName" id="userLName" required>
           </div>
           <div class="mb-3">
-              <label for="roomBath" class="form-label">ห้องน้ำ</label>
-              <input type="number" class="form-control" name="roomBath" id="roomBath" required>
+              <label for="phone" class="form-label">เบอร์โทรศัพท์</label>
+              <input type="tel" class="form-control" name="phone" id="userTel" required>
           </div>
           <div class="mb-3">
-              <label for="roomMax" class="form-label">พักได้สูงสุด</label>
-              <input type="number" class="form-control" name="roomMax" id="roomMax" required>
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" name="email" id="userEmail" required>
           </div>
           <div class="mb-3">
-              <label for="roomMin" class="form-label">พักได้ต่ำสุด</label>
-              <input type="number" class="form-control" name="roomMin" id="roomMin" required>
-          </div>
-          <div class="mb-3">
-              <label for="roomPrice" class="form-label">ราคา/คืน</label>
-              <input type="number" class="form-control" name="roomPrice" id="roomPrice" required>
-          </div>
-          <div class="mb-3">
-              <label for="roomStd" class="form-label">สถานะห้องพัก</label>
-              <select class="form-select" name="roomStd" id="roomStd" required>
-                  <option value="00001">ว่าง</option>
-                  <option value="00002">ไม่ว่าง</option>
-                  <option value="00003">รอสักครู่</option>
+              <label for="accessLevel" class="form-label">สิทธิ์การเข้าถึง</label>
+              <select class="form-select" name="accessLevel" id="userLavelID" required>
+                  <option value="1">ผู้ดูแลระบบ (Admin)</option>
+                  <option value="2">เจ้าของกิจการ (Owner)</option>
+                  <option value="3">พนักงาน (Employee)</option>
+                  <option value="4">สมาชิก (Member)</option>
               </select>
-          </div>
-          <div class="mb-3">
-              <label for="roomImage" class="form-label">อัปโหลดรูปภาพห้องพัก</label>
-              <input type="file" class="form-control" name="roomImage" id="roomImage" accept="image/*" required>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
-            <button type="button" onclick="save_room()" class="btn btn-primary">บันทึกข้อมูล</button>
+            <button type="button" onclick="save_data()" class="btn btn-primary">บันทึกข้อมูล</button>
         </div>
       </div>
+      
     </div>
   </div>
 </div>

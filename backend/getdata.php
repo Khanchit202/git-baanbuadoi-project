@@ -15,9 +15,12 @@
             case 'service-data':
                 $response['data'] = "user_data/service.php";
                 break;
-                case 'booking-data':
+            case 'booking-data':
                     $response['data'] = "user_data/booking.php";
-                    break;
+                break;
+            case 'premaket-data':
+                    $response['data'] = "user_data/premaket.php";
+                break;
             default:
                 $response['data'] = "user_data/user_data.php";
         }
