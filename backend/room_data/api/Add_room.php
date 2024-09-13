@@ -4,10 +4,7 @@ include("../../../db_config.php");
 $db_con = connect_db("client");
 $response = array();
 
-// ตรวจสอบการเชื่อมต่อ
-if ($db_con->connect_error) {
-    die(json_encode(["success" => false, "message" => "Connection failed: " . $db_con->connect_error]));
-}
+
 
 // ตรวจสอบว่ามีการส่งข้อมูลผ่าน POST หรือไม่
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -15,6 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $roomDetail = $_POST['roomDetail'];
     $roomBed = $_POST['roomBed'];
     $roomBath = $_POST['roomBath'];
+    $roomLo = $_POST['roomLo'];
     $roomMax = $_POST['roomMax'];
     $roomMin = $_POST['roomMin'];
     $roomPrice = $_POST['roomPrice'];
@@ -22,19 +20,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // จัดการกับไฟล์รูปภาพ
     $target_dir = "../../../img/room_pic/";
-    $target_file = $target_dir . basename($_FILES["roomImage"]["name"]);
-    move_uploaded_file($_FILES["roomImage"]["tmp_name"], $target_file);
-
-    // เพิ่มข้อมูลลงในฐานข้อมูล
-    $sql = "INSERT INTO room_product (roomName, roomDetail, roomBed, roomBath, roomMax, roomMin, roomPrice, stdID, roomPic)
-    VALUES ('$roomName', '$roomDetail', '$roomBed', '$roomBath', '$roomMax', '$roomMin', '$roomPrice', '$roomStd', '$target_file')";
-
-    if ($db_con->query($sql) === TRUE) {
-        echo json_encode(["success" => true]);
-    } else {
-        echo json_encode(["success" => false, "message" => "Error: " . $sql . "<br>" . $db_con->error]);
+    $new_filename = "room" . uniqid() . "." . pathinfo($_FILES["roomImage"]["name"], PATHINFO_EXTENSION);
+    $target_file = $target_dir . $new_filename;
+    if (!move_uploaded_file($_FILES["roomImage"]["tmp_name"], $target_file)) {
+        echo json_encode(["success" => false, "message" => "Failed to upload image."]);
+        exit;
     }
 
-    $db_con->close();
+    // เพิ่มข้อมูลลงในฐานข้อมูล
+    $sql = "INSERT INTO room_product (roomName, roomDetail, roomBed, roomBath,roomLocation, roomMax, roomMin, roomPrice, stdID, roomPic)
+    VALUES (:roomName, :roomDetail, :roomBed, :roomBath,:roomLo, :roomMax, :roomMin, :roomPrice, :roomStd, :roomPic)";
+    
+    $stmt = $db_con->prepare($sql);
+    $stmt->bindParam(':roomName', $roomName);
+    $stmt->bindParam(':roomDetail', $roomDetail);
+    $stmt->bindParam(':roomBed', $roomBed);
+    $stmt->bindParam(':roomBath', $roomBath);
+    $stmt->bindParam(':roomLo', $roomLo);
+    $stmt->bindParam(':roomMax', $roomMax);
+    $stmt->bindParam(':roomMin', $roomMin);
+    $stmt->bindParam(':roomPrice', $roomPrice);
+    $stmt->bindParam(':roomStd', $roomStd);
+    $stmt->bindParam(':roomPic', $new_filename);
+
+    if($stmt->execute()){
+        $response['status'] = 'ok';
+    }else{
+        $response['status'] = 'error';
+        $response['message'] = 'Failed to insert data.';
+    }
+
+    echo json_encode($response);
 }
 ?>

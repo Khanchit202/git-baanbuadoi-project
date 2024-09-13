@@ -80,6 +80,10 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
               <input type="number" class="form-control" name="roomBath" id="roomBath" required>
           </div>
           <div class="mb-3">
+              <label for="roomLo" class="form-label">ที่ตั้ง</label>
+              <input type="text" class="form-control" name="roomLo" id="roomLo" required>
+          </div>
+          <div class="mb-3">
               <label for="roomMax" class="form-label">พักได้สูงสุด</label>
               <input type="number" class="form-control" name="roomMax" id="roomMax" required>
           </div>

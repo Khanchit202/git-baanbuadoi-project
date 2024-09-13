@@ -48,72 +48,78 @@ function delete_room(roomID) {
 
 
 function save_room() {
-    // Get form data
-    const roomName = document.getElementById('roomName').value;
-    const roomDetail = document.getElementById('roomDetail').value;
-    const roomBed = document.getElementById('roomBed').value;
-    const roomBath = document.getElementById('roomBath').value;
-    const roomMax = document.getElementById('roomMax').value;
-    const roomMin = document.getElementById('roomMin').value;
-    const roomPrice = document.getElementById('roomPrice').value;
-    const roomStd = document.getElementById('roomStd').value;
-    const roomImage = document.getElementById('roomImage').files[0];
+    var roomName = $('#roomName').val();
+    var roomDetail = $('#roomDetail').val();
+    var roomBed = $('#roomBed').val();
+    var roomBath = $('#roomBath').val();
+    var roomLo = $('#roomLo').val();
+    var roomMax = $('#roomMax').val();
+    var roomMin = $('#roomMin').val();
+    var roomPrice = $('#roomPrice').val();
+    var roomStd = $('#roomStd').val();
+    var roomImage = $('#roomImage')[0].files[0];
 
-    // Create a FormData object to send the data
-    const formData = new FormData();
-    formData.append('roomName', roomName);
-    formData.append('roomDetail', roomDetail);
-    formData.append('roomBed', roomBed);
-    formData.append('roomBath', roomBath);
-    formData.append('roomMax', roomMax);
-    formData.append('roomMin', roomMin);
-    formData.append('roomPrice', roomPrice);
-    formData.append('roomStd', roomStd);
-    formData.append('roomImage', roomImage);
-
-    // Log the form data to the console
-    console.log('Form Data:');
-    for (let [key, value] of formData.entries()) {
-        console.log(key, value);
-    }
-
-    // Send the data to the server using fetch
-    fetch('room_data/api/Add_room.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-        }
-        return response.json();
-    })
-    .then(data => {
-        if (data.success) {
-            Swal.fire({
-                icon: 'success',
-                title: 'บันทึกข้อมูลสำเร็จ',
-                showConfirmButton: false,
-                timer: 1500
-            });
-            // Close the modal or reset the form if needed
-        } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'เกิดข้อผิดพลาด',
-                text: data.message
-            });
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
+    if(roomName == "" || roomDetail == "" || roomBed == "" || roomBath == "" || roomLo == "" || roomMax == "" || roomMin == "" || roomPrice == "" || roomStd == "" || !roomImage) {
         Swal.fire({
-            icon: 'error',
-            title: 'เกิดข้อผิดพลาดError',
-            text: error.message
+            title: "กรุณากรอกข้อมูลให้ครบ",
+            text: "คุณกรอกข้อมูลไม่ครบ กรุณากรอกข้อมูลแล้วลองอีกครั้ง",
+            icon: "warning"
         });
-    });
+    } else {
+        var formData = new FormData();
+        formData.append('roomName', roomName);
+        formData.append('roomDetail', roomDetail);
+        formData.append('roomBed', roomBed);
+        formData.append('roomBath', roomBath);
+        formData.append('roomLo', roomLo);
+        formData.append('roomMax', roomMax);
+        formData.append('roomMin', roomMin);
+        formData.append('roomPrice', roomPrice);
+        formData.append('roomStd', roomStd);
+        formData.append('roomImage', roomImage);
+
+        $.ajax({
+            url: 'room_data/api/Add_room.php',
+            type: 'POST',
+            dataType: 'json',
+            data: formData,
+            processData: false,
+            contentType: false
+        })
+        .done(function(result) {
+            if (result.status == 'ok') {
+                Swal.fire({
+                    title: "บันทึกข้อมูลสำเร็จ",
+                    text: "",
+                    icon: "success",
+                    didClose: () => {
+                        $('#addDataroom').modal('hide');
+                        window.location.reload(); // Refresh the page
+                    }
+                });
+            } else {
+                Swal.fire({
+                    title: "บันทึกข้อมูลไม่สำเร็จ",
+                    text: result.message,
+                    icon: "error"
+                });
+            }
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+            console.log("error", textStatus, errorThrown);
+            Swal.fire({
+                title: "ข้อผิดพลาด",
+                text: "ไม่สามารถติดต่อกับเซิร์ฟเวอร์ได้: " + textStatus,
+                icon: "error"
+            });
+        })
+        .always(function() {
+            console.log("complete");
+        });
+    }
 }
+
+
 
 
  function resetpass(userID) {
