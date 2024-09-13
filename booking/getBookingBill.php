@@ -25,6 +25,5 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $response['error'] = 'Invalid request method';
 }
 
-// ส่งข้อมูลเป็น JSON
 echo json_encode($response);
 ?>

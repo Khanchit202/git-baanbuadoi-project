@@ -18,8 +18,8 @@ function statusDate() {
         'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'
     ];
     
-    var year = date.getFullYear() + 543; // เพิ่ม 543 เพื่อเปลี่ยนเป็น พ.ศ.
-    var month = thaiMonths[date.getMonth()]; // เดือนในภาษาไทย
+    var year = date.getFullYear() + 543;
+    var month = thaiMonths[date.getMonth()];
     var day = date.getDate();
     var formattedDate = day + ' ' + month + ' ' + year;
 
@@ -35,47 +35,3 @@ function statusDate() {
     
  true;
 }
-
-
-
-
-
-// $(document).ready(function() {
-
-//     var selectedData = {};
-//     function getBookingBill(selectedId) {
-//         $.ajax({
-//             url: 'getBookingBill.php',
-//             type: 'POST',
-//             dataType: 'json',
-//             data: { id: selectedId }, // ส่ง ID ที่เลือกไปยังเซิร์ฟเวอร์
-            
-//         })
-//         .done(function(result) {
-//             if (result.data) {
-//                 console.log(result.data);
-//                 selectedData = result.data; // เก็บข้อมูลในตัวแปร global
-//                 document.getElementById('selected-date').innerHTML = '<h3 class="fw-bold" style="font-size:14px; margin-top:10px;">' + selectedData.payID + '</h3>';
-                
-//                 // ตรวจสอบข้อมูลหลังจากการดึงข้อมูลเสร็จ
-//                 console.log("ข้อมูลที่เก็บไว้: ", selectedData);
-//             } else {
-//                 console.log(result.error);
-//             }
-//         })
-//         .fail(function() {
-//             console.log("error");
-//         })
-//         .always(function() {
-//             console.log("complete");
-//         });
-//     }
-
-//     // เรียกใช้ฟังก์ชัน getBookingBill หลังจากเอกสารโหลด
-//     getBookingBill('00003'); // ใส่ ID ที่ต้องการ
-
-//     console.log("ข้อมูลที่เก็บไว้ภายนอก: ",selectedData)
-// });
-
-
-
