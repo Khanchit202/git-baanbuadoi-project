@@ -97,7 +97,7 @@ function confirmBooking(roomId) {
                     icon: 'success',
                     title: 'การจองสำเร็จ',
                 }).then(() => {
-                    $('#credit_card').show();  // แสดงข้อมูลลูกค้าหลังจากการจองสำเร็จ
+                    $('#credit_card').show();
                 });
             } else {
                 Swal.fire({
@@ -106,5 +106,14 @@ function confirmBooking(roomId) {
                 });
             }
         }
+    });
+}
+
+function showAlearLogin(){
+    Swal.fire({
+        icon: 'warning',
+        title: 'กรุณาเข้าสู่ระบบ',
+        text: "โปรดเข้าสู่ระบบก่อนทำรายการ",
+        confirmButtonText: 'ตกลง'
     });
 }

@@ -25,7 +25,7 @@ try {
         $now = date('Y-m-d H:i:s');
    
     $dateStart = new DateTime($bookingDate);
-    $dateEnd = $dateStart->add(new DateInterval('P1D')); // เพิ่ม 1 วัน
+    $dateEnd = $dateStart->add(new DateInterval('P1D'));
     $bookingDateEnd = $dateEnd->format('Y-m-d') . ' 11:00:00';
 
     $query = $db_con->prepare("
@@ -39,14 +39,14 @@ try {
     $query->bindParam(4, $bookingDateEnd);
     $query->bindParam(5, $bookingPrice);
     $query->bindParam(6, $bookingDetail);
-    $query->bindValue(7, $now);  // ใช้เวลาปัจจุบันที่สร้างจาก PHP แทน NOW()
-    $query->bindValue(8, 1);  // bookConfirm
-    $query->bindValue(9, 0);  // bookStatus
-    $query->bindValue(10, 0); // bookCancel
+    $query->bindValue(7, $now);
+    $query->bindValue(8, 1);
+    $query->bindValue(9, 0);
+    $query->bindValue(10, 0);
     $query->bindParam(11, $userId);
     $query->bindParam(12, $bookingPro);
     $query->bindParam(13, $roomId);
-    $query->bindParam(14, $serviceId);  // serviceID
+    $query->bindParam(14, $serviceId);
     $query->execute();
 
     echo "success";
