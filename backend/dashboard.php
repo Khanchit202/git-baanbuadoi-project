@@ -95,9 +95,13 @@
             </div>
         </div>
     </div>
+    <!-- นำเข้า javascript .js -->
+    <script src="main.js"></script>
     <script type="text/javascript" src="./user_data/user_datass.js"></script>
     <script type="text/javascript" src="./room_data/room_data.js"></script>
-    <script src="main.js"></script>
+    <script type="text/javascript" src="./service_data/service_data.js"></script>
+    <script type="text/javascript" src="./premaket_data/premaket_data.js"></script>
+    
     
     
 </body>

@@ -1,9 +1,9 @@
 
-function delete_room(roomID) {
-    console.log(roomID);
+function delete_service(serviceID) {
+    console.log(serviceID);
     Swal.fire({
         title: "ยืนยันการลบ",
-        text: "ลบข้อมูลห้องพักเลขที่ " + roomID + " หรือไม่?",
+        text: "ลบข้อมูลบริการเลขที่ " + serviceID + " หรือไม่?",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
@@ -13,16 +13,16 @@ function delete_room(roomID) {
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: 'room_data/api/delete.php',
+                url: 'service_data/api/delete.php',
                 type: 'POST',
                 dataType: 'json',
-                data: { roomID: roomID }
+                data: { serviceID: serviceID }
             })
             .done(function(response) {
                 if (response.status == 'ok') {
                     Swal.fire({
                         title: "ลบข้อมูลสำเร็จ",
-                        text: "ข้อมูลห้องพักถูกลบเรียบร้อยแล้ว",
+                        text: "ข้อมูลบริการถูกลบเรียบร้อยแล้ว",
                         icon: "success"
                     }).then(() => {
                         window.location.reload(); // Refresh the page
@@ -30,7 +30,7 @@ function delete_room(roomID) {
                 } else {
                     Swal.fire({
                         title: "ไม่สามารถลบข้อมูลได้",
-                        text: "มีข้อผิดพลาดในการลบข้อมูลห้องพัก",
+                        text: "มีข้อผิดพลาดในการลบข้อมูลบริการ",
                         icon: "error"
                     });
                 }
@@ -46,20 +46,16 @@ function delete_room(roomID) {
     });
 }
 
+function save_service() {
+    var serviceName = $('#serviceName').val();
+    var serviceDetail = $('#serviceDetail').val();
+    var servicePrice = $('#servicePrice').val();
+    var serviceTotal = $('#serviceTotal').val();
+    var serviceTime = $('#serviceTime').val();
+    var serviceStd = $('#serviceStd').val();
+    var serviceImg = $('#serviceImg')[0].files[0];
 
-function save_room() {
-    var roomName = $('#roomName').val();
-    var roomDetail = $('#roomDetail').val();
-    var roomBed = $('#roomBed').val();
-    var roomBath = $('#roomBath').val();
-    var roomLo = $('#roomLo').val();
-    var roomMax = $('#roomMax').val();
-    var roomMin = $('#roomMin').val();
-    var roomPrice = $('#roomPrice').val();
-    var roomStd = $('#roomStd').val();
-    var roomImage = $('#roomImage')[0].files[0];
-
-    if(roomName == "" || roomDetail == "" || roomBed == "" || roomBath == "" || roomLo == "" || roomMax == "" || roomMin == "" || roomPrice == "" || roomStd == "" || !roomImage) {
+    if(serviceName == "" || serviceDetail == "" || servicePrice == "" || serviceTotal == "" || serviceTime == "" || serviceStd == "" || !serviceImg) {
         Swal.fire({
             title: "กรุณากรอกข้อมูลให้ครบ",
             text: "คุณกรอกข้อมูลไม่ครบ กรุณากรอกข้อมูลแล้วลองอีกครั้ง",
@@ -67,19 +63,16 @@ function save_room() {
         });
     } else {
         var formData = new FormData();
-        formData.append('roomName', roomName);
-        formData.append('roomDetail', roomDetail);
-        formData.append('roomBed', roomBed);
-        formData.append('roomBath', roomBath);
-        formData.append('roomLo', roomLo);
-        formData.append('roomMax', roomMax);
-        formData.append('roomMin', roomMin);
-        formData.append('roomPrice', roomPrice);
-        formData.append('roomStd', roomStd);
-        formData.append('roomImage', roomImage);
+        formData.append('serviceName', serviceName);
+        formData.append('serviceDetail', serviceDetail);
+        formData.append('servicePrice', servicePrice);
+        formData.append('serviceTotal', serviceTotal);
+        formData.append('serviceTime', serviceTime);
+        formData.append('serviceStd', serviceStd);
+        formData.append('serviceImg', serviceImg);
 
         $.ajax({
-            url: 'room_data/api/Add_room.php',
+            url: 'service_data/api/add_service.php',
             type: 'POST',
             dataType: 'json',
             data: formData,
@@ -118,6 +111,7 @@ function save_room() {
         });
     }
 }
+
 
 
 
