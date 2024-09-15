@@ -165,7 +165,7 @@ $db_con = connect_db();
                     <div class="d-flex align-items-center">
                         <button type="button" class="btn me-1" data-toggle="modal" data-target="#myModal" style="font-size: 10px; background-color: #3B8386; color: #ffffff; border-radius: 5px;">รายละเอียดการจอง</button>
                         <button type="button" class="btn me-1" data-toggle="modal" data-target="#myModal" style="font-size: 10px; background-color: #3B8386; color: #ffffff; border-radius: 5px;">รายละเอียดการชำระเงิน</button>
-                        <button type="button" class="btn" data-toggle="modal" data-target="#myModal" style="font-size: 10px; background-color: #DE6461; color: #ffffff; border-radius: 5px;">พิมพ์ใบจอง</button>
+                        <button onclick="redirectToReport()" type="button" class="btn" style="font-size: 10px; background-color: #DE6461; color: #ffffff; border-radius: 5px;">พิมพ์ใบจอง</button>
                     </div>
                 </div>
             </div>
@@ -386,6 +386,11 @@ document.getElementById('toggle-confirm-password').addEventListener('click', fun
         passwordIcon.classList.add('fa-eye');
     }
 });
+
+function redirectToReport() {
+    window.location.href = 'report/report.php';
+}
+
 </script>
 
 <!-- แสดงรหัสที่กำลังกรอก -->
