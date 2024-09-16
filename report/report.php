@@ -5,32 +5,32 @@ $pdf = new FPDF('P', 'mm', 'A4');
 $pdf->AddPage();
 
 // Set Font
-$pdf->AddFont('THNiramitAS', '', 'THNiramit.php');
-$pdf->SetFont('THNiramitAS', '', 20);
+$pdf->AddFont('THSarabunPSK', '', 'THSarabun.php');
+$pdf->SetFont('THSarabunPSK', '', 20);
 
 // Header
 $pdf->Image('../tabbar_view/baanbuadoi.png', 10, 10, 20); // Logo
-$pdf->SetFont('THNiramitAS', '', 16);
+$pdf->SetFont('THSarabunPSK', '', 16);
 $pdf->Cell(190, 10, 'Baanbuadoi', 0, 1, 'C');
-$pdf->SetFont('THNiramitAS', '', 12);
+$pdf->SetFont('THSarabunPSK', '', 12);
 $pdf->Cell(190, 7, 'Baan nor la Sub-district, Fang District, Chiang Mai 50110', 0, 1, 'C');
 $pdf->Cell(190, 7, 'Tel: 02-222-2222, 03-003-0033', 0, 1, 'C');
 
 // Receipt Information
-$pdf->SetFont('THNiramitAS', '', 14);
+$pdf->SetFont('THSarabunPSK', '', 14);
 $pdf->Cell(190, 10, 'Receipt', 0, 1, 'C');
 
 // General Information
-$pdf->SetFont('THNiramitAS', '', 12);
-$pdf->Cell(130, 7, 'Date: January 3, 2024', 0, 0);
-$pdf->Cell(60, 7, 'Receipt No: 654-525-654-85265', 0, 1);
+$pdf->SetFont('THSarabunPSK', '', 12);
+$pdf->Cell(130, 7,iconv('utf-8', 'cp874', 'ลูกต้า : Date: January 3, 2024'), 0, 0);
+$pdf->Cell(60, 7,iconv('utf-8', 'cp874', 'ลูกต้า : Receipt No: 654-525-654-85265'), 0, 1);
 
 // Customer Information
-$pdf->Cell(130, 7, 'Customer: Mr. Khanchit Bangphra', 0, 0);
+$pdf->Cell(130, 7, iconv('utf-8', 'cp874', 'ลูกต้า : ครรชิต บางพระ'), 0, 0);
 $pdf->Cell(60, 7, 'Phone: 095-555-5555', 0, 1);
 
 // Table Header
-$pdf->SetFont('THNiramitAS', '', 12);
+$pdf->SetFont('THSarabunPSK', '', 12);
 $pdf->Cell(10, 7, 'No.', 1, 0, 'C');
 $pdf->Cell(80, 7, 'Description', 1, 0, 'C');
 $pdf->Cell(20, 7, 'Quantity', 1, 0, 'C');
@@ -38,7 +38,7 @@ $pdf->Cell(40, 7, 'Unit Price', 1, 0, 'C');
 $pdf->Cell(40, 7, 'Total', 1, 1, 'C');
 
 // Table Data
-$pdf->SetFont('THNiramitAS', '', 12);
+$pdf->SetFont('THSarabunPSK', '', 12);
 $pdf->Cell(10, 7, '1', 1, 0, 'C');
 $pdf->Cell(80, 7, 'A4 Paper', 1, 0);
 $pdf->Cell(20, 7, '200', 1, 0, 'C');
