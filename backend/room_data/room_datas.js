@@ -120,6 +120,91 @@ function save_room() {
 }
 
 
+function updateshow(roomID) {
+    // ตรวจสอบข้อมูลที่ส่งเข้ามา
+    $('#editDataroom').modal('show');
+
+    // ตั้งค่าข้อมูลห้องพัก
+    $('#edit_roomID').val(roomID.roomID);
+    $('#edit_roomName').val(roomID.roomName);
+    $('#edit_roomDetail').val(roomID.roomDetail);
+    $('#edit_roomBed').val(roomID.roomBed);
+    $('#edit_roomBath').val(roomID.roomBath);
+    $('#edit_roomLo').val(roomID.roomLocation);
+    $('#edit_roomMax').val(roomID.roomMax);
+    $('#edit_roomMin').val(roomID.roomMin);
+    $('#edit_roomPrice').val(roomID.roomPrice);
+    $('#edit_roomStd').val(roomID.stdID);
+}
+
+function update_room() {
+    // รับค่าจากฟอร์ม
+    var roomID = document.getElementById('edit_roomID').value;
+    var roomName = document.getElementById('edit_roomName').value;
+    var roomDetail = document.getElementById('edit_roomDetail').value;
+    var roomBed = document.getElementById('edit_roomBed').value;
+    var roomBath = document.getElementById('edit_roomBath').value;
+    var roomLo = document.getElementById('edit_roomLo').value;
+    var roomMax = document.getElementById('edit_roomMax').value;
+    var roomMin = document.getElementById('edit_roomMin').value;
+    var roomPrice = document.getElementById('edit_roomPrice').value;
+    var roomStd = document.getElementById('edit_roomStd').value;
+    var roomImg = document.getElementById('edit_roomImg').files[0];
+
+    // สร้าง FormData object
+    var formData = new FormData();
+    formData.append('roomID', roomID);
+    formData.append('roomName', roomName);
+    formData.append('roomDetail', roomDetail);
+    formData.append('roomBed', roomBed);
+    formData.append('roomBath', roomBath);
+    formData.append('roomLo', roomLo);
+    formData.append('roomMax', roomMax);
+    formData.append('roomMin', roomMin);
+    formData.append('roomPrice', roomPrice);
+    formData.append('roomStd', roomStd);
+    formData.append('roomImg', roomImg);
+
+    // ส่งข้อมูลไปยังไฟล์ PHP
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "room_data/api/update_room.php", true);
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+            if (response.status === 'success') {
+                // ปิด Modal ก่อน
+                $('#editDataroom').modal('hide');
+                
+                // แสดง SweetAlert หลังจากปิด Modal
+                swal({
+                    title: "แก้ไขข้อมูลสำเร็จ",
+                    text: response.message,
+                    icon: "success",
+                    button: "OK",
+                }).then(() => {
+                    // รีเฟรชข้อมูลใหม่
+                    location.reload();
+                });
+            } else {
+                swal({
+                    title: "แก้ไขข้อมูลไม่สำเร็จ",
+                    text: response.message,
+                    icon: "error",
+                    button: "OK",
+                });
+            }
+        }
+    };
+
+    xhr.onerror = function() {
+        console.error("Request failed");
+    };
+
+    xhr.send(formData);
+}
+
+
 
 
  

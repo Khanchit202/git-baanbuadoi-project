@@ -39,7 +39,19 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
                     <td><?php echo htmlspecialchars($room['roomPrice']); ?></td>
                     <td>
                         
-                        <button onclick="updateroom()" class="btn btn-primary btn-sm">
+                    <button onclick="updateshow({
+                            roomID: '<?php echo addslashes($room['roomID']); ?>',
+                            roomName: '<?php echo addslashes($room['roomName']); ?>',
+                            roomDetail: '<?php echo addslashes($room['roomDetail']); ?>',
+                            roomBed: '<?php echo addslashes($room['roomBed']); ?>',
+                            roomBath: '<?php echo addslashes($room['roomBath']); ?>',
+                            roomLocation: '<?php echo addslashes($room['roomLocation']); ?>',
+                            roomMax: '<?php echo addslashes($room['roomMax']); ?>',
+                            roomMin: '<?php echo addslashes($room['roomMin']); ?>',
+                            roomPrice: '<?php echo addslashes($room['roomPrice']); ?>',
+                            stdID: '<?php echo addslashes($room['stdID']); ?>',
+                            roomPic: '<?php echo addslashes($room['roomPic']); ?>'
+                        })" class="btn btn-primary btn-sm">
                             <i class="lni lni-pencil" style="padding: 5px;"></i>
                         </button>
 
@@ -118,52 +130,67 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
 <!-- End Modal -->
 
 
-    <!-- Modal edit-->
-<div class="modal fade" id="editdatauser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <!-- Modal edit-->
+ <div class="modal fade" id="editDataroom" tabindex="-1" aria-labelledby="addDataModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">เเก้ไขข้อมูลนักศึกษา</h5>
+        <h5 class="modal-title" id="addDataModalLabel">เเก้ไขข้อมูลห้องพัก</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body" >
+      <div class="modal-body">
+            <input type="hidden" id="edit_roomID">
           <div class="mb-3">
-              <label for="name" class="form-label">ชื่อผู้ใช้</label>
-              <input type="text" class="form-control"  id="edit_userName" required disabled>
+              <label for="roomName" class="form-label">ชื่อห้อง</label>
+              <input type="text" class="form-control"  id="edit_roomName" required>
           </div>
           <div class="mb-3">
-              <label for="fname" class="form-label">ชื่อจริง</label>
-              <input type="text" class="form-control"  id="edit_userFName" required disabled>
+              <label for="roomDetail" class="form-label">รายละเอียดห้องพัก</label>
+              <input type="text" class="form-control"  id="edit_roomDetail" required>
           </div>
           <div class="mb-3">
-              <label for="lname" class="form-label">นามสกุล</label>
-              <input type="text" class="form-control"  id="edit_userLName" required disabled>
+              <label for="roomBed" class="form-label">จำนวนเตียงนอน</label>
+              <input type="number" class="form-control"  id="edit_roomBed" required>
           </div>
           <div class="mb-3">
-              <label for="tel" class="form-label">เบอร์โทรศัพท์</label>
-              <input type="number" class="form-control"  id="edit_userTel" required disabled>
+              <label for="roomBath" class="form-label">ห้องน้ำ</label>
+              <input type="number" class="form-control"  id="edit_roomBath" required>
           </div>
           <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control"  id="edit_userEmail" required disabled>
+              <label for="roomLo" class="form-label">ที่ตั้ง</label>
+              <input type="text" class="form-control"  id="edit_roomLo" required>
           </div>
           <div class="mb-3">
-              <label for="accessLevel" class="form-label">สิทธิ์การเข้าถึง</label>
-              <select class="form-select"  id="edit_userLavelID" required >
-                  <option value="1">ผู้ดูแลระบบ (Admin)</option>
-                  <option value="2">เจ้าของกิจการ (Owner)</option>
-                  <option value="3">พนักงาน (Employee)</option>
-                  <option value="4">สมาชิก (Member)</option>
+              <label for="roomMax" class="form-label">พักได้สูงสุด</label>
+              <input type="number" class="form-control"  id="edit_roomMax" required>
+          </div>
+          <div class="mb-3">
+              <label for="roomMin" class="form-label">พักได้ต่ำสุด</label>
+              <input type="number" class="form-control"  id="edit_roomMin" required>
+          </div>
+          <div class="mb-3">
+              <label for="roomPrice" class="form-label">ราคา/คืน</label>
+              <input type="number" class="form-control"  id="edit_roomPrice" required>
+          </div>
+          <div class="mb-3">
+              <label for="roomStd" class="form-label">สถานะห้องพัก</label>
+              <select class="form-select"  id="edit_roomStd" required>
+                  <option value="00001">ว่าง</option>
+                  <option value="00002">ไม่ว่าง</option>
+                  <option value="00003">รอสักครู่</option>
               </select>
           </div>
-          <input type="hidden" id="edit_userID">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" onclick="update_data()" class="btn btn-primary" name="submit">UPDATE</button>
-    
+          
+          <div class="mb-3">
+              <label for="roomImage" class="form-label">อัปโหลดรูปภาพห้องพัก</label>
+              <input type="file" class="form-control"  id="edit_roomImg" accept="image/*" required>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+            <button type="button" onclick="update_room()" class="btn btn-primary">บันทึกข้อมูล</button>
+        </div>
       </div>
     </div>
   </div>
 </div>
- <!-- Modal edit-->
+

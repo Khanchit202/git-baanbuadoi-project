@@ -40,7 +40,15 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
                     
                     
                     <td>
-                        <button onclick="updatenew()" class="btn btn-primary btn-sm">
+                    <button onclick="updateshownew({
+                            newID: '<?php echo addslashes($new['newID']); ?>',
+                            newTitle: '<?php echo addslashes($new['newTitle']); ?>',
+                            newDetail: '<?php echo addslashes($new['newDetail']); ?>',
+                            newPic: '<?php echo addslashes($new['newPic']); ?>',
+                            newType: '<?php echo addslashes($new['newType']); ?>',
+                            newDate: '<?php echo addslashes($new['newDate']); ?>',
+                            user_userID: '<?php echo addslashes($new['user_userID']); ?>'
+                        })" class="btn btn-primary btn-sm">
                             <i class="lni lni-pencil" style="padding: 5px;"></i>
                         </button>
 
@@ -106,50 +114,50 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
 
 
     <!-- Modal edit-->
-<div class="modal fade" id="editdatauser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editDatanew" tabindex="-1" aria-labelledby="addDataModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">เเก้ไขข้อมูลนักศึกษา</h5>
+        <h5 class="modal-title" id="addDataModalLabel">เพิ่มข้อมูลข่าวสาร</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" >
+        <input type="hidden" id="edit_newID">
           <div class="mb-3">
-              <label for="name" class="form-label">ชื่อผู้ใช้</label>
-              <input type="text" class="form-control"  id="edit_userName" required disabled>
+              <label for="newName" class="form-label">หัวข้อข่าว</label>
+              <input type="text" class="form-control"  id="edit_newTitle" required>
           </div>
           <div class="mb-3">
-              <label for="fname" class="form-label">ชื่อจริง</label>
-              <input type="text" class="form-control"  id="edit_userFName" required disabled>
+              <label for="newDetail" class="form-label">รายละเอียดข่าวสาร</label>
+              <input type="text" class="form-control"  id="edit_newDetail" required>
           </div>
           <div class="mb-3">
-              <label for="lname" class="form-label">นามสกุล</label>
-              <input type="text" class="form-control"  id="edit_userLName" required disabled>
-          </div>
-          <div class="mb-3">
-              <label for="tel" class="form-label">เบอร์โทรศัพท์</label>
-              <input type="number" class="form-control"  id="edit_userTel" required disabled>
-          </div>
-          <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control"  id="edit_userEmail" required disabled>
-          </div>
-          <div class="mb-3">
-              <label for="accessLevel" class="form-label">สิทธิ์การเข้าถึง</label>
-              <select class="form-select"  id="edit_userLavelID" required >
-                  <option value="1">ผู้ดูแลระบบ (Admin)</option>
-                  <option value="2">เจ้าของกิจการ (Owner)</option>
-                  <option value="3">พนักงาน (Employee)</option>
-                  <option value="4">สมาชิก (Member)</option>
+              <label for="newStd" class="form-label">ชนิดข่าว</label>
+              <select class="form-select"  id="edit_newType" required>
+                  <option value="ชุมชน">ชุมชน</option>
+                  <option value="เทศกาล">เทศกาล</option>
+                  <option value="สินค้า">สินค้า</option>
+                  <option value="ข่าวสารอื่นๆ">ข่าวสารอื่นๆ</option>
               </select>
           </div>
-          <input type="hidden" id="edit_userID">
+          <div class="mb-3">
+              <label for="newTime" class="form-label">เวลาลงข่าว</label>
+              <input type="datetime-local" class="form-control"  id="edit_newTime" required>
+          </div>
+          <div class="mb-3">
+              <label for="newImg" class="form-label">อัปโหลดรูปภาพ</label>
+              <input type="file" class="form-control"  id="edit_newImg" accept="image/*" required>
+          </div>
+          <div class="mb-3">
+                <input type="hidden" class="form-control"  id="edit_userId" value="<?php echo $_SESSION['userID']; ?>">
+            </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+            <button type="button" onclick="update_new()" class="btn btn-primary">บันทึกข้อมูล</button>
+        </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" onclick="update_data()" class="btn btn-primary" name="submit">UPDATE</button>
-    
-      </div>
+      
     </div>
   </div>
 </div>

@@ -51,7 +51,15 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
                         ?>
                     </td>
                     <td>
-                        <button onclick="delete_service()" class="btn btn-primary btn-sm">
+                    <button onclick="updateshowservice({
+                            serviceID: '<?php echo addslashes($service['serviceID']); ?>',
+                            serviceName: '<?php echo addslashes($service['serviceName']); ?>',
+                            serviceDetail: '<?php echo addslashes($service['serviceDetail']); ?>',
+                            servicePrice: '<?php echo addslashes($service['servicePrice']); ?>',
+                            serviceTotal: '<?php echo addslashes($service['serviceTotal']); ?>',
+                            stdID: '<?php echo addslashes($service['stdID']); ?>',
+                            serviceTime: '<?php echo addslashes($service['serviceTime']); ?>'
+                        })" class="btn btn-primary btn-sm">
                             <i class="lni lni-pencil" style="padding: 5px;"></i>
                         </button>
 
@@ -110,6 +118,58 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
             <button type="button" onclick="save_service()" class="btn btn-primary">บันทึกข้อมูล</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Modal -->
+
+<!-- edit Modal -->
+<div class="modal fade" id="editDatservice" tabindex="-1" aria-labelledby="addDataModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addDataModalLabel">เพิ่มข้อมูลบริการ</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <input type="hidden" id="edit_serviceID">
+          <div class="mb-3">
+              <label for="serviceName" class="form-label">ชื่อบริการ</label>
+              <input type="text" class="form-control"  id="edit_serviceName" required>
+          </div>
+          <div class="mb-3">
+              <label for="serviceDetail" class="form-label">รายละเอียดบริการ</label>
+              <input type="text" class="form-control"  id="edit_serviceDetail" required>
+          </div>
+          <div class="mb-3">
+              <label for="servicePrice" class="form-label">ราคาค่าบริการ</label>
+              <input type="number" class="form-control"  id="edit_servicePrice" required>
+          </div>
+          <div class="mb-3">
+              <label for="serviceTotal" class="form-label">มีบริการทั้งหมด</label>
+              <input type="number" class="form-control"  id="edit_serviceTotal" required>
+          </div>
+          <div class="mb-3">
+              <label for="serviceTime" class="form-label">ระยะเวลาให้บริการ</label>
+              <input type="number" class="form-control"  id="edit_serviceTime" required>
+          </div>
+          <div class="mb-3">
+              <label for="serviceStd" class="form-label">สถานะบริการ</label>
+              <select class="form-select"  id="edit_serviceStd" required>
+                  <option value="00001">มีบริการ</option>
+                  <option value="00002">หมด</option>
+                  <option value="00003">กำลังเตรียม</option>
+              </select>
+          </div>
+          <div class="mb-3">
+              <label for="serviceImg" class="form-label">อัปโหลดรูปภาพบริการ</label>
+              <input type="file" class="form-control"  id="edit_serviceImg" accept="image/*" required>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+            <button type="button" onclick="update_service()" class="btn btn-primary">บันทึกข้อมูล</button>
         </div>
       </div>
     </div>
