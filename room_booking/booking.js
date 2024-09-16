@@ -95,9 +95,7 @@ function confirmBooking(roomId) {
             if (response === "success") {
                 Swal.fire({
                     icon: 'success',
-                    title: 'การจองสำเร็จ',
-                }).then(() => {
-                    $('#credit_card').show();
+                    title: 'การจองสำเร็จ'
                 });
             } else {
                 Swal.fire({

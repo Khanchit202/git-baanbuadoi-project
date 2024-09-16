@@ -12,7 +12,6 @@ try {
     $bookingPrice = $_POST['price'];
     $bookingDetail = $_POST['detail'];
     // $bookingPro = isset($_POST['promotion']) ? $_POST['promotion'] : '00000';
-    // $userId = $_SESSION['userId'];
         // $roomId = "00015";
         // $customerName = "ครรชิต บางพระ";
         // $customerPhone = "000000";
@@ -20,7 +19,7 @@ try {
         // $bookingPrice = 999;
         // $bookingDetail ="ไม่มี";
         $bookingPro = 00001;
-        $userId = $_SESSION['userId'];
+        $userId = $_SESSION['userID'];
         $serviceId = 00001;
         $now = date('Y-m-d H:i:s');
    

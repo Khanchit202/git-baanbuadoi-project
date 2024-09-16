@@ -10,6 +10,7 @@ $room = $query->fetch(PDO::FETCH_ASSOC);
 
 $price = $room['roomPrice'];
 $deposit = ($price * 30) / 100;
+$deposit = number_format($deposit, 2);
 
 if (!$room) {
     die("Room not found.");
@@ -53,16 +54,18 @@ if (!$room) {
             <div class="row">
                 <div class="col-md-6 mb-3" id="deteil_img">
                     <?php if (isset($room['roomPic'])): ?>
-                        <img style="border-radius: 10px;" src="img/room_pic/<?php echo htmlspecialchars($room['roomPic']); ?>" alt="Room Image" class="img-fluid">
+                        <img style="border-radius: 10px; width: 100%; height: 500px; object-fit: cover;" src="img/room_pic/<?php echo htmlspecialchars($room['roomPic']); ?>" alt="Room Image" class="img-fluid">
                     <?php endif; ?>
                 </div>
 
-                <div class="col-md-6 mt-2" id="deteil_text" style="font-size: 10px;">
-                    <h1 class="fw-bold" style="font-size: 20px; margin-bottom: 20px;"><?php echo htmlspecialchars($room['roomName']); ?></h1>
+                <div class="col-md-6 mt-2" id="deteil_text" style="font-size: 12px;">
+                        <h1 class="fw-bold" style="font-size: 20px; margin-bottom: 20px;"><?php echo htmlspecialchars($room['roomName']); ?></h1>
+                        <br>
                         <div class="row mb-1">
                             <div class="col-md-3 fw-bold"><p>รายละเอียด</p></div> 
                             <div class="col-md-7"><?php echo htmlspecialchars($room['roomDetail']); ?></div>
                         </div>
+                        <br>
                         <div class="row mb-2">
                             <div class="col-md-3 fw-bold"><p>ตั้งอยู่ที่</p></div> 
                             <div style="color:#4DA865; " class="col-md-7 fw-bold"><i class="lni lni-map-marker me-2" style=""></i><?php echo htmlspecialchars($room['roomLocation']); ?></div>

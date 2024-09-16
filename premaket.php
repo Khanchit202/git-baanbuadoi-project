@@ -41,15 +41,7 @@ $db_con = connect_db();
             <?php include("tabbar_view/tab_bar.php"); ?>
         </nav>
 
-        <div class="pre_image" style="height: 400px">
-                <?php include("headbar.php"); ?>
-        </div>
-
-
-        <div class="ddd" style="text-align: center;padding:10px;background-color: #4DA866;color: white;">
-            <h1 style="font-size: 16px;">แนะนำสินค้าผลิตภัณฑ์ชุมชน</h1>
-        </div>
-
+        
         <!-- <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
@@ -177,10 +169,10 @@ $db_con = connect_db();
                     <?php } ?>
                 </div>
         <!-- Team End -->
-
-
-
     </div>
+</div>
+</div>
+    
     <nav>
         <?php include("footer.php"); ?>
     </nav>
