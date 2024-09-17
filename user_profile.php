@@ -2,6 +2,10 @@
 
 include ("db_config.php");
 $db_con = connect_db();
+
+$bill = $db_con->query("SELECT * FROM booking_bill");
+$billArray = $bill->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -137,28 +141,33 @@ $db_con = connect_db();
                     <button type="button" class="btn" data-toggle="modal" data-target="#myModal" style="font-size: 10px; background-color: #3B8386; color: #ffffff;">แสดงรายการทั้งหมด</button>
                 </div>
             </div>
-
+            
             <div class="testimonial-item rounded" style="font-size: 10px; padding: 10px 35px;">
-                <div class="bg-white border rounded d-flex align-items-start" style="padding: 10px 20px;">
+
+            <?php foreach ($billArray as $index => $bill) : ?>
+
+                <div class="bg-white border rounded d-flex justify-content-between" style="padding: 10px 20px;">
                     <!-- Testimonial Image -->
-                    <div class="testimonial-image me-3" style="width: 70px;">
+                    <div class="testimonial-image" style="width: 70px;">
                         <div class="card" style="width: 80px;">
                             <img src="img/profile/<?php echo htmlspecialchars($user['userImg']); ?>" class="card-img-top" style="height: 60px; object-fit: cover;">
                         </div>
                     </div>
 
                     <!-- Testimonial Content -->
-                    <div class="d-flex flex-column flex-grow-1 me-3">
-                        <div class="star-rating mb-1">
-                            <h5 class="fw-bold mb-0" style="font-size: 12px;">ห้องพักหใายเลข 2</h5>
-                            <p class="mb-0" style="font-size: 8px; opacity: 60%;">วันที่ทำรายการ: 09/09/2567</p>
-                        </div>
-                        <p style="font-size: 10px;">ราคามัดจำ:</p>
+                    <div class="d-flex align-items-center">
+                        <h5 class="fw-bold" style="font-size: 10px;">ห้องพักหใายเลข 2</h5>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <h5 style="font-size: 10px; opacity: 60%;">วันที่ทำรายการ: 09/09/2567</h5>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <h5 style="font-size: 10px;">ราคามัดจำ:</h5>
                     </div>
 
                     <!-- Success Message -->
-                    <div class="d-flex align-items-center me-3">
-                        <p style="padding: 6px 10px; background-color: #4caf50; color: #ffffff; border-radius: 10px;">ทำรายการสำเร็จ</p>
+                    <div class="d-flex align-items-center">
+                        <h5 style="padding: 6px 12px; background-color: #4caf50; color: #ffffff; border-radius: 10px; font-size: 10px;">ทำรายการสำเร็จ</h5>
                     </div>
 
                     <!-- Button -->
@@ -168,8 +177,9 @@ $db_con = connect_db();
                         <button onclick="redirectToReport()" type="button" class="btn" style="font-size: 10px; background-color: #DE6461; color: #ffffff; border-radius: 5px;">พิมพ์ใบจอง</button>
                     </div>
                 </div>
+
+            <?php endforeach; ?>
             </div>
-            
         </div>
     </div>
 </div>

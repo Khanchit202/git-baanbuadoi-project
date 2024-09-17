@@ -11,7 +11,7 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
 <div id="user-table" style="align-items: center;background-color: white; border-radius: 10px; padding: 50px;">
     <div class="d-flex justify-content-between">
         <p style="font-size: 20px;">ข้อมูลข่าวสารทั้งหมด</p>
-        <button class="btn btn-primary" style="font-size: 12px;margin-right: 80px;" data-bs-toggle="modal" data-bs-target="#addDatanew">
+        <button class="btn btn-primary" style="font-size: 12px;margin-right: 50px;" data-bs-toggle="modal" data-bs-target="#addDatanew">
             <i class="lni lni-circle-plus" style="padding: 5px;"></i>
             เพิ่มข่าวสาร 
         </button>
@@ -20,25 +20,24 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
         <table class="table" style="margin-top: 20px; font-size: 16px;">
             <thead>
                 <tr>
-                    <th scope="col">ลำดับ</th>
-                    <th scope="col">รหัสข่าวสาร</th>
-                    <th scope="col">หัวข้อข่าว</th>
-                    <th scope="col">ข่าวเกี่ยวกับ</th>
-                    <th scope="col">เวลาลงข่าว</th>
-                    
-                    
+                    <th scope="col">#</th>
+                    <th scope="col">ภาพประชาสัมพันธ์</th>
+                    <th scope="col">หัวข้อประชาสัมพันธ์</th>
+                    <th scope="col">ประเภทประชาสัมพันธ์</th>
+                    <th scope="col">จัดการข้อมูล</th> 
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($usersArray as $index => $new) : ?>
                 <tr>
                     <th scope="row"><?php echo $index + 1; ?></th>
-                    <td><?php echo htmlspecialchars($new['newID']); ?></td>
+                    <td>
+                        <div class="card" style="width: 120px;">
+                            <img src="../img/news_pic/<?php echo htmlspecialchars($new['newPic']); ?>" class="card-img-top" style="height: 80px; object-fit: cover;">
+                        </div>
+                    </td>
                     <td><?php echo htmlspecialchars($new['newTitle']); ?></td>
-                    <td><?php echo htmlspecialchars($new['newType']); ?></td>
-                    <td><?php echo htmlspecialchars($new['newDate']); ?></td>
-                    
-                    
+                    <td><?php echo htmlspecialchars($new['newType']); ?></td>                    
                     <td>
                     <button onclick="updateshownew({
                             newID: '<?php echo addslashes($new['newID']); ?>',
