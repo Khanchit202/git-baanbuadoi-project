@@ -24,8 +24,8 @@
 }
 
 .topbar_menu_logo img {
-    width: 60px;
-    height: 60px;
+    width: 30px;
+    height: 30px;
 }
 
 .topbar_menu_logo p {
@@ -39,7 +39,6 @@
     align-items: center;
     font-size: 12px;
 }
-
 .topbar_menu_list ul {
     display: flex;
     margin: 0;

@@ -56,6 +56,9 @@ function confirmBooking(roomId) {
     var bookingDate = $('#booking_date').val();
     var paymentMethods = [];
 
+    const payment1 = document.getElementById('payment1');
+    const payment2 = document.getElementById('payment2');
+
     console.log(customerName)
     console.log(customerPhone)
     console.log(customerDetail)
@@ -79,6 +82,14 @@ function confirmBooking(roomId) {
         return;
     }
 
+    let paymentMethod = null;
+
+        if (payment1.checked) {
+            paymentMethod = payment1.value; // ได้ค่า "C"
+        } else if (payment2.checked) {
+            paymentMethod = payment2.value; // ได้ค่า "Q"
+        }
+
     $.ajax({
         url: 'confirm_booking.php',
         type: 'POST',
@@ -89,13 +100,17 @@ function confirmBooking(roomId) {
             detail: customerDetail,
             promotion: customerPro,
             price: customerPrice,
-            date: bookingDate
-        },
-        success: function(response) {
+            date: bookingDate,
+            pay: paymentMethod
+            }
+        })
+        .done(function(response) {
             if (response === "success") {
                 Swal.fire({
                     icon: 'success',
                     title: 'การจองสำเร็จ'
+                }).then(() => {
+                    window.location.href = '../payment/payment.php';
                 });
             } else {
                 Swal.fire({
@@ -103,9 +118,15 @@ function confirmBooking(roomId) {
                     title: 'เกิดข้อผิดพลาด',
                 });
             }
-        }
-    });
-}
+        })
+        .fail(function() {
+            Swal.fire({
+                title: "ข้อผิดพลาด",
+                text: "ไม่สามารถติดต่อกับเซิร์ฟเวอร์ได้",
+                icon: "error"
+            });
+        });
+    }
 
 function showAlearLogin(){
     Swal.fire({

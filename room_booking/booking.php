@@ -43,10 +43,10 @@ if (!$room) {
 </head>
 <body>
     <div class="container-xxl bg-white p-0">
-
-        <!-- <nav id="navbar">
-            <?php include("../tabbar_view/tab_bar.php"); ?>
-        </nav> -->
+        
+        <div onclick="goBack()" class="btn btn-lg btn-custom " style="position: fixed;top: 45px;left: 88%;z-index: 1000;cursor: pointer;">
+            <i class="fa fa-arrow-left" style="color: #ffffff;"></i>
+        </div>
 
         <div class="container mt-5">
             <div class="row">
@@ -123,7 +123,7 @@ if (!$room) {
             
             <h5>ช่องทางการชำระเงิน</h5>
             <div class="form-check">
-                <input type="checkbox" id="payment1" value="Credit Card" class="form-check-input">
+                <input type="radio" id="payment1" name="payment" value="C" class="form-check-input">
                 <label class="form-check-label d-flex align-items-center" for="payment1">
                     <i class="fab fa-cc-visa fa-2x me-2"></i>
                     <i class="fab fa-cc-mastercard payment-icon fa-2x me-2" aria-hidden="true"></i>
@@ -131,15 +131,16 @@ if (!$room) {
                 </label>
             </div>
             <div class="form-check">
-                <input type="checkbox" id="payment2" value="PromptPay" class="form-check-input" disabled>
+                <input type="radio" id="payment2" name="payment" value="Q" class="form-check-input">
                 <label class="form-check-label d-flex align-items-center" for="payment2">
                     <i class="fas fa-qrcode qr-code-icon me-2" style="font-size: 16px; color: #ffffff; border-radius: 3px; background-color: black; padding: 5px 11px;" aria-hidden="true"></i>
                     โอนผ่าน PromptPay QR CODE (ไม่พร้อมให้บริการ)
                 </label>
             </div>
-            <!-- <div class="row">
+
+            <div class="row">
                 <button onclick="confirmBooking('<?php echo $id ?>')" class="btn btn-success mt-3">ชำระเงิน</button>
-            </div>  -->
+            </div> 
         </div>
 
 
@@ -148,22 +149,6 @@ if (!$room) {
                 <div class="col-md-3 fw-bold"><p>สถานะห้องพัก</p></div> 
                 <div style="color:#ffffff; border-radius: 20px; background-color: red; padding-top: 3px; margin:0; height: 20px" class="col-md-2 text-center" ><h1 style="font-size: 12px; padding:0;margin:0;">มีการจองแล้ว</h1></div>  
             </div>
-        </div>
-
-        <div id="credit_card" class="bg-light" style="margin:20px 2%; padding: 20px 30px; display:none;">
-            <h5>ช่องทางชำระเงิน</h5>
-            <p>ข้อมูลบัตรเครดิต</p>
-            <input type="text" id="credit_card_number" class="form-control mb-3" placeholder="เลขบัตรเครดิต" maxlength="19" oninput="formatCardNumber(this)" />
-            <div class="row">
-                <div class="col-md-6">
-                        <input type="text" id="expiry_date" class="form-control mb-3" placeholder="วันหมดอายุ (MM/YY)" maxlength="5" oninput="formatExpiryDate(this)" />
-                    </div>
-                    <div class="col-md-6">
-                        <input type="password" id="cvv" class="form-control mb-3" placeholder="CVV" maxlength="3" />
-                    </div>
-                </div>
-                <button onclick="confirmBooking('<?php echo $id ?>')" class="btn btn-success mt-3">ชำระเงิน</button>
-            </div> 
         </div>
 
         <script>
@@ -182,13 +167,10 @@ if (!$room) {
                 }
             }
 
-            $('#payment1').change(function() {
-                if (this.checked) {
-                    $('#credit_card').show();
-                } else {
-                    $('#credit_card').hide();
-                }
-            });
+            function goBack() {
+                window.history.back();
+            }
+
         </script>
 
 
@@ -199,6 +181,7 @@ if (!$room) {
     <nav>
         <?php include("../footer.php"); ?>
     </nav>
+    
     <!-- Include Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
