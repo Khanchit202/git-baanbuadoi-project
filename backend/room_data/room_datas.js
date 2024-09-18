@@ -56,6 +56,7 @@ function save_room() {
     var roomMax = $('#roomMax').val();
     var roomMin = $('#roomMin').val();
     var roomPrice = $('#roomPrice').val();
+    var roomShow = $('#roomShow').is(':checked') ? 1 : 0;
     var roomStd = $('#roomStd').val();
     var roomImage = $('#roomImage')[0].files[0];
 
@@ -75,6 +76,7 @@ function save_room() {
         formData.append('roomMax', roomMax);
         formData.append('roomMin', roomMin);
         formData.append('roomPrice', roomPrice);
+        formData.append('roomShow', roomShow);
         formData.append('roomStd', roomStd);
         formData.append('roomImage', roomImage);
 
@@ -134,8 +136,10 @@ function updateshow(roomID) {
     $('#edit_roomMax').val(roomID.roomMax);
     $('#edit_roomMin').val(roomID.roomMin);
     $('#edit_roomPrice').val(roomID.roomPrice);
+    $('#edit_roomShow').prop('checked', roomID.roomShow == 1); // ตั้งค่า checkbox
     $('#edit_roomStd').val(roomID.stdID);
 }
+
 
 function update_room() {
     // รับค่าจากฟอร์ม
@@ -148,6 +152,7 @@ function update_room() {
     var roomMax = document.getElementById('edit_roomMax').value;
     var roomMin = document.getElementById('edit_roomMin').value;
     var roomPrice = document.getElementById('edit_roomPrice').value;
+    var roomShow = document.getElementById('edit_roomShow').checked ? 1 : 0;
     var roomStd = document.getElementById('edit_roomStd').value;
     var roomImg = document.getElementById('edit_roomImg').files[0];
 
@@ -162,6 +167,7 @@ function update_room() {
     formData.append('roomMax', roomMax);
     formData.append('roomMin', roomMin);
     formData.append('roomPrice', roomPrice);
+    formData.append('roomShow', roomShow);
     formData.append('roomStd', roomStd);
     formData.append('roomImg', roomImg);
 

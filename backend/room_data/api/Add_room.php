@@ -4,8 +4,6 @@ include("../../../db_config.php");
 $db_con = connect_db("client");
 $response = array();
 
-
-
 // ตรวจสอบว่ามีการส่งข้อมูลผ่าน POST หรือไม่
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $roomName = $_POST['roomName'];
@@ -16,6 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $roomMax = $_POST['roomMax'];
     $roomMin = $_POST['roomMin'];
     $roomPrice = $_POST['roomPrice'];
+    $roomShow = isset($_POST['roomShow']) ? 1 : 0; // ตรวจสอบว่า checkbox ถูกเลือกหรือไม่
     $roomStd = $_POST['roomStd'];
 
     // จัดการกับไฟล์รูปภาพ
@@ -28,8 +27,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // เพิ่มข้อมูลลงในฐานข้อมูล
-    $sql = "INSERT INTO room_product (roomName, roomDetail, roomBed, roomBath,roomLocation, roomMax, roomMin, roomPrice, stdID, roomPic)
-    VALUES (:roomName, :roomDetail, :roomBed, :roomBath,:roomLo, :roomMax, :roomMin, :roomPrice, :roomStd, :roomPic)";
+    $sql = "INSERT INTO room_product (roomName, roomDetail, roomBed, roomBath, roomLocation, roomMax, roomMin, roomPrice, roomShow, stdID, roomPic)
+    VALUES (:roomName, :roomDetail, :roomBed, :roomBath, :roomLo, :roomMax, :roomMin, :roomPrice, :roomShow, :roomStd, :roomPic)";
     
     $stmt = $db_con->prepare($sql);
     $stmt->bindParam(':roomName', $roomName);
@@ -40,6 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bindParam(':roomMax', $roomMax);
     $stmt->bindParam(':roomMin', $roomMin);
     $stmt->bindParam(':roomPrice', $roomPrice);
+    $stmt->bindParam(':roomShow', $roomShow);
     $stmt->bindParam(':roomStd', $roomStd);
     $stmt->bindParam(':roomPic', $new_filename);
 

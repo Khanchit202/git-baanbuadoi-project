@@ -14,6 +14,7 @@ $roomLo = $_POST['roomLo'];
 $roomMax = $_POST['roomMax'];
 $roomMin = $_POST['roomMin'];
 $roomPrice = $_POST['roomPrice'];
+$roomShow = isset($_POST['roomShow']) ? 1 : 0; // ตรวจสอบว่า checkbox ถูกเลือกหรือไม่
 $roomStd = $_POST['roomStd'];
 
 // ดึงชื่อไฟล์รูปภาพเก่าจากฐานข้อมูล
@@ -50,7 +51,7 @@ if($check !== false) {
 
 // อัปเดตข้อมูลในฐานข้อมูล
 try {
-    $stmt = $db_con->prepare("UPDATE room_product SET roomName = :roomName, roomDetail = :roomDetail, roomBed = :roomBed, roomBath = :roomBath, roomLocation = :roomLo, roomMax = :roomMax, roomMin = :roomMin, roomPrice = :roomPrice, stdID = :roomStd, roomPic = :roomImg WHERE roomID = :roomID");
+    $stmt = $db_con->prepare("UPDATE room_product SET roomName = :roomName, roomDetail = :roomDetail, roomBed = :roomBed, roomBath = :roomBath, roomLocation = :roomLo, roomMax = :roomMax, roomMin = :roomMin, roomPrice = :roomPrice, roomShow = :roomShow, stdID = :roomStd, roomPic = :roomImg WHERE roomID = :roomID");
     $stmt->bindParam(':roomID', $roomID);
     $stmt->bindParam(':roomName', $roomName);
     $stmt->bindParam(':roomDetail', $roomDetail);
@@ -60,6 +61,7 @@ try {
     $stmt->bindParam(':roomMax', $roomMax);
     $stmt->bindParam(':roomMin', $roomMin);
     $stmt->bindParam(':roomPrice', $roomPrice);
+    $stmt->bindParam(':roomShow', $roomShow);
     $stmt->bindParam(':roomStd', $roomStd);
     $stmt->bindParam(':roomImg', $roomImg);
     $stmt->execute();
