@@ -185,11 +185,11 @@ if (!$room) {
                 <p style="margin-left: 70px; color: #BC5686;">โฮมสเตย์บ้านบัวดอย รวบรวมห้องพักทั่วทั้งดอยอ่างขาง</p>
         </div>
         <?php
-            $stdID = isset($_GET['stdID']) ? $_GET['stdID'] : '00001';
+            $roomShow = isset($_GET['roomShow']) ? $_GET['roomShow'] : '1';
 
-            $sql = 'SELECT roomPic, roomName, roomID, roomBed, roomBath, roomPrice, stdID FROM room_product WHERE stdID = :stdID';
+            $sql = 'SELECT * FROM room_product WHERE roomShow = :roomShow';
             $stmt = $db_con->prepare($sql);
-            $stmt->execute(['stdID' => $stdID]);
+            $stmt->execute(['roomShow' => $roomShow]);
 
             $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>
@@ -199,7 +199,7 @@ if (!$room) {
                 $count = 0;
                 foreach ($rooms as $room) { 
                     if ($count >= 8) break;
-                    if ($room['stdID'] == '00001') {
+                    if ($room['roomShow']) {
                         $statusText = 'ว่าง';
                         $badgeColor = '#4caf50';
                         $buttonText = '+ จอง';

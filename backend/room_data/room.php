@@ -49,6 +49,7 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
                             roomMax: '<?php echo addslashes($room['roomMax']); ?>',
                             roomMin: '<?php echo addslashes($room['roomMin']); ?>',
                             roomPrice: '<?php echo addslashes($room['roomPrice']); ?>',
+                            roomShow: '<?php echo addslashes($room['roomShow']); ?>',
                             stdID: '<?php echo addslashes($room['stdID']); ?>',
                             roomPic: '<?php echo addslashes($room['roomPic']); ?>'
                         })" class="btn btn-primary btn-sm">
@@ -107,6 +108,10 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
               <label for="roomPrice" class="form-label">ราคา/คืน</label>
               <input type="number" class="form-control" name="roomPrice" id="roomPrice" required>
           </div>
+          <div class="mb-3">
+                <label for="roomShow" class="form-label">ต้องการแนะนำห้องพัก</label>
+                <input type="checkbox" class="form-check-input" name="roomShow" id="roomShow" value="1">
+            </div>
           <div class="mb-3">
               <label for="roomStd" class="form-label">สถานะห้องพัก</label>
               <select class="form-select" name="roomStd" id="roomStd" required>
@@ -172,6 +177,10 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
               <label for="roomPrice" class="form-label">ราคา/คืน</label>
               <input type="number" class="form-control"  id="edit_roomPrice" required>
           </div>
+          <div class="mb-3">
+                <label for="checkbox" class="form-label">ต้องการแนะนำห้องพัก</label>
+                <input type="checkbox" class="form-check-input"  id="edit_roomShow" value="1" required>
+            </div>
           <div class="mb-3">
               <label for="roomStd" class="form-label">สถานะห้องพัก</label>
               <select class="form-select"  id="edit_roomStd" required>

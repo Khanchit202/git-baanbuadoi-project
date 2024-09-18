@@ -16,7 +16,7 @@ $db_con = connect_db();
     <link rel="stylesheet" href="https://cdn.lineicons.com/3.0/lineicons.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="img/favicon.ico" rel="icon">
-    <link rel="icon" type="image/x-icon" href="img/bua/logo.png" style="border-radius: 5px;">
+    <link rel="icon" type="image/x-icon" href="tabbar_view/baanbuadoi.png" style="border-radius: 5px;">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
     <link href="lib/animate/animate.min.css" rel="stylesheet">
@@ -52,11 +52,11 @@ $db_con = connect_db();
 
     <!-- ห้องพัก -->
         <?php
-            $stdID = isset($_GET['stdID']) ? $_GET['stdID'] : '00001';
+            $roomShow = isset($_GET['roomShow']) ? $_GET['roomShow'] : '1';
 
-            $sql = 'SELECT roomPic, roomName, roomID, roomBed, roomBath, roomPrice, stdID FROM room_product WHERE stdID = :stdID';
+            $sql = 'SELECT * FROM room_product WHERE roomShow = :roomShow';
             $stmt = $db_con->prepare($sql);
-            $stmt->execute(['stdID' => $stdID]);
+            $stmt->execute(['roomShow' => $roomShow]);
 
             $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>
@@ -66,8 +66,7 @@ $db_con = connect_db();
                 $count = 0;
                 foreach ($rooms as $room) { 
                     if ($count >= 8) break;
-                    if ($room['stdID'] == '00001') {
-                        $statusText = 'ว่าง';
+                    if ($room['roomShow'] == '1') {
                         $badgeColor = '#4caf50';
                         $buttonText = '+ จอง';
                         $buttonColor = '#4caf50';
@@ -78,9 +77,7 @@ $db_con = connect_db();
                 <div class="wow fadeInUp" data-wow-delay="0.5s" style="margin: 30px;">
                     <div class="card position-relative text-white card-hover mb-5" style="width: 250px; height: 300px; overflow: hidden; position: relative; border-radius: 5px;">
                         <img src="img/room_pic/<?php echo $room['roomPic']; ?>" class="card-img" alt="Room Image" style="height: 100%; object-fit: cover;">
-                        <span class="badge position-absolute custom-badge" style="top: 10px; left: 15px; background-color: <?php echo $badgeColor; ?>; color: white; border-radius: 5px;  padding: 10px 20px; opacity: 60%;">
-                            <?php echo $statusText; ?>
-                        </span>
+                        
                         <div class="card-img-overlay d-flex flex-column justify-content-end" style="color: #000;">
                             <div class="overlay-content p-4" style="background: rgba(255, 255, 255, 0.9); border-radius: 10px; transition: transform 0.3s;">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
