@@ -142,14 +142,17 @@ $db_con = connect_db();
                                                 <td class="text-center">
 
                                                 <?php 
-                                                    if ($row['payStatus'] === NULL) {
+                                                    if ($row['payStatus'] === NULL || $row['bookCancel'] == 1) {
                                                         $pay_status = "";
                                                         $pay_color = '';
-                                                    } elseif ($row['payStatus'] == 1) {
+                                                    } else if ($row['payStatus'] == 1) {
+                                                        $pay_status = "กำลังตรวจสอบ";
+                                                        $pay_color = '#4caf50';
+                                                    } else if ($row['payStatus'] == 2) {
                                                         $pay_status = "ชำระเงินแล้ว";
                                                         $pay_color = '#A7CF5A';
                                                     } else {
-                                                        $pay_status = "กำลังตรวจสอบ";
+                                                        $pay_status = "รอการชำระเงิน";
                                                         $pay_color = '#3B8386';
                                                     }
                                                 ?>
@@ -181,9 +184,9 @@ $db_con = connect_db();
                                                     if($row['bookStatus'] == 1){
                                                         echo '<button type="button" class="btn me-1" data-toggle="modal" data-target="#myModal" style="font-size: 8px; background-color: #3B8386; color: #ffffff; border-radius: 5px;">ดูรายละเอียด</button>';
                                                     }
-                                                    if($row['payStatus'] == 1){
+                                                    if($row['payStatus'] == 2 || $row['payStatus'] == 1){
                                                         echo '<button type="button" class="btn me-1" data-toggle="modal" data-target="#myModal" style="font-size: 8px; background-color: #4caf50; color: #ffffff; border-radius: 5px;">การชำระเงิน</button>';
-                                                    }else if($row['payStatus'] === NULL){
+                                                    }else if($row['payStatus'] === NULL || $row['payStatus'] == 0){
                                                         echo '<button type="button" class="btn me-1" data-toggle="modal" data-target="#myModal" style="font-size: 8px; background-color: #4caf50; color: #ffffff; border-radius: 5px;">ดำเนินการชำระเงิน</button>';
                                                     }
                                                      if($row['billStatus'] == 1){
@@ -207,7 +210,12 @@ $db_con = connect_db();
         </div>
     </div>
 </div>
-
+        
+<script>
+    function redirectToReport() {
+    window.location.href = 'report/report.php';
+}
+</script>
 
 
   
