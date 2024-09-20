@@ -20,7 +20,6 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
             <thead>
                 <tr>
                     <th scope="col">ลำดับ</th>
-                    <th scope="col">รหัสห้อง</th>
                     <th scope="col">ชื่อห้อง</th>
                     <th scope="col">จำนวนเตียง</th>
                     <th scope="col">จำนวนห้องน้ำ</th>
@@ -32,7 +31,6 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
                 <tr>
                     
                     <th scope="row"><?php echo $index + 1; ?></th>
-                    <td><?php echo htmlspecialchars($room['roomID']); ?></td>
                     <td><?php echo htmlspecialchars($room['roomName']); ?></td>
                     <td><?php echo htmlspecialchars($room['roomBed']); ?></td>
                     <td><?php echo htmlspecialchars($room['roomBath']); ?></td>

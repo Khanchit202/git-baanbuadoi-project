@@ -20,7 +20,6 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
             <thead>
                 <tr>
                     <th scope="col">ลำดับ</th>
-                    <th scope="col">รหัสบริการ</th>
                     <th scope="col">ชื่อบริการ</th>
                     <th scope="col">รายละเอียดบริการ</th>
                     <th scope="col">จำนวนบริการ</th>
@@ -33,7 +32,6 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
                 <?php foreach ($usersArray as $index => $service) : ?>
                 <tr>
                     <th scope="row"><?php echo $index + 1; ?></th>
-                    <td><?php echo htmlspecialchars($service['serviceID']); ?></td>
                     <td><?php echo htmlspecialchars($service['serviceName']); ?></td>
                     <td><?php echo htmlspecialchars($service['serviceDetail']); ?></td>
                     <td><?php echo htmlspecialchars($service['serviceTotal']); ?></td>

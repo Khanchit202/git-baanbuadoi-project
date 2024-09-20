@@ -137,7 +137,7 @@ $db_con = connect_db();
 
         <div class="menu_pro d-flex" style="width: 100%">
             <div class="wow fadeInUp" data-wow-delay="0.2s">
-                <div class="card" style="width: 400px;">
+                <div class="card" style="width: 400px;display:<?php echo $qrcode ?>">
                     <img src="../img/qrcode/promptpay.jpg" class="card-img-top" style="height: 400px; object-fit: cover;">
                     <div class="card-body text-center">
                         <h5 class="card-title" style="font-size: 12px; font-weight: bold;">ชื่อบัญชี: บ้านบัวดอยโฮมสเตย์</h5>
