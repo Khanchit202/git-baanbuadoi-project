@@ -134,7 +134,7 @@ if (!$room) {
                 <input type="radio" id="payment2" name="payment" value="Q" class="form-check-input">
                 <label class="form-check-label d-flex align-items-center" for="payment2">
                     <i class="fas fa-qrcode qr-code-icon me-2" style="font-size: 16px; color: #ffffff; border-radius: 3px; background-color: black; padding: 5px 11px;" aria-hidden="true"></i>
-                    โอนผ่าน PromptPay QR CODE (ไม่พร้อมให้บริการ)
+                    โอนผ่าน PromptPay QR CODE (รอการตรวจสอบภายใน 72 ชั่วโมง)
                 </label>
             </div>
 

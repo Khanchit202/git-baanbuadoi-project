@@ -77,8 +77,7 @@ try {
     $queryBill->bindParam(4, $lastPayId);
     $queryBill->execute();
 
-    echo "success";
+    echo json_encode(['status' => 'success', 'payID' => $lastPayId]);
 } catch (PDOException $e) {
-    echo "error: " . $e->getMessage();
+    echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
 }
-?>
