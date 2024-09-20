@@ -132,10 +132,16 @@ $db_con = connect_db();
                         <input type="password" id="cvv" class="form-control mb-3" placeholder="CVV" maxlength="3" />
                     </div>
                 </div>
-                <button onclick="confirmBooking('<?php echo $id ?>')" class="btn btn-success mt-3">ชำระเงิน</button>
+                <div class="row d-flex">
+                    <button onclick="goHis()" class="btn btn-success mt-3">ชำระเงิน</button>
+                    <div class="text-end mt-3" style="margin-top: 10px;">
+                        <p>หากท่านไม่สามารถดำเนินการได้
+                        <a onclick="goSkip()" style=" color: #4DA866; cursor: pointer;">ดำเนินการภายหลัง <i class="fas fa-arrow-right"></i></a></p>
+                    </div>
+                </div>
         </div> 
 
-        <div class="menu_pro d-flex" style="width: 100%">
+        <div class="menu_pro d-flex " style="width: 100%">
             <div class="wow fadeInUp" data-wow-delay="0.2s">
                 <div class="card" style="width: 400px;display:<?php echo $qrcode ?>">
                     <img src="../img/qrcode/promptpay.jpg" class="card-img-top" style="height: 400px; object-fit: cover;">
@@ -145,6 +151,7 @@ $db_con = connect_db();
                     </div>
                 </div>
             </div>
+            
             <div id="qrcode" class="bg-light me-1" style="margin:0 20px 2%; padding: 20px 30px; display:<?php echo $qrcode ?>;width: 100%;">
                 <h5>ช่องทางชำระเงิน</h5>
                 <div class="mb-3">
@@ -174,8 +181,12 @@ $db_con = connect_db();
                     <label for="payment_receipt" class="form-label">อัพโหลดภาพหลักฐานการชำระเงิน</label>
                     <input type="file" id="payment_receipt" class="form-control" accept="image/*" required />
                 </div>
-                <div class="row">
-                    <button onclick="confirmBooking('<?php echo $id ?>')" class="btn btn-success mt-3">ยืนยันการชำระเงิน</button>
+                <div class="row d-flex">
+                    <button onclick="goHis()" class="btn btn-success mt-3">ชำระเงิน</button>
+                    <div class="text-end mt-3" style="margin-top: 10px;">
+                        <p>หากท่านไม่สามารถดำเนินการได้
+                        <a onclick="goSkip()" style=" color: #4DA866; cursor: pointer;">ดำเนินการภายหลัง <i class="fas fa-arrow-right"></i></a></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -200,11 +211,32 @@ $db_con = connect_db();
                 window.history.back();
             }
 
+            function goHis() {
+                window.location.href = '../user_history.php';
+            }
+            function goSkip() {
+                Swal.fire({
+                    title: "โปรดชำระเงินภายในเวลาที่กำหนด",
+                    text: "การจองจะถูกยกเลิก หากยังไม่ดำเนินการชำระเงินภายใน 3 วัน",
+                    icon: "info",
+                    showCancelButton: true,
+                    confirmButtonText: 'ยืนยัน, ดำเนินการภายหลัง',
+                    cancelButtonText: 'ยกเลิก'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '../user_history.php';
+                    }
+                });
+            }
+
+
         </script>
 
 
 
 </div> 
+
+
    
     
     <nav>
