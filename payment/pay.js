@@ -91,7 +91,7 @@ function qrPayment(payId){
             } else {
                 Swal.fire({
                     icon: 'error',
-                    title: 'มีบ้างอย่างผิดพลาดโปรดลองอีกครั้ง!'+payId,
+                    title: 'มีบ้างอย่างผิดพลาดโปรดลองอีกครั้ง!',
                 });
             }
         })
@@ -103,4 +103,105 @@ function qrPayment(payId){
             });
         });
     }
+}
+
+function creditPayment(){
+    var creditNumber = $('#credit_number').val();
+    var creditfname = $('#first_name').val();
+    var creditlname = $('#last_name').val();
+    var creditdate = $('#credit_date').val();
+    var creditcvv = $('#cvv').val();
+
+    console.log(creditNumber)
+    console.log(creditfname)
+    console.log(creditlname)
+    console.log(creditdate)
+    console.log(creditcvv)
+
+
+    if (creditNumber === "") {
+        Swal.fire({
+            icon: 'warning',
+            title: 'กรุณากรอกข้อมูล: เลขบัตรเคดิต',
+        }).then(() => {
+            document.getElementById("credit_number").focus();
+        });
+    }else if(creditfname === "") {
+        Swal.fire({
+            icon: 'warning',
+            title: 'กรุณากรอกข้อมูล: ชื่อผู้ถือบัตร',
+        }).then(() => {
+            document.getElementById("first_name").focus();
+        });
+    }else if(creditlname === "") {
+        Swal.fire({
+            icon: 'warning',
+            title: 'กรุณากรอกข้อมูล: นามสกุลผู้ถือบัตร',
+        }).then(() => {
+            document.getElementById("last_name").focus();
+        });
+    }else if(creditdate === "") {
+        Swal.fire({
+            icon: 'warning',
+            title: 'กรุณากรอกข้อมูล: วันหมดอายุบัตร',
+        }).then(() => {
+            document.getElementById("credit_date").focus();
+        });
+    }else if(creditcvv === "") {
+        Swal.fire({
+            icon: 'warning',
+            title: 'กรุณากรอกข้อมูล: กรอกเลข CVV',
+        }).then(() => {
+            document.getElementById("cvv").focus();
+        });
+    }else{
+
+        $.ajax({
+            url: 'credit_pay/credit.php',
+            type: 'POST',
+            data: {
+                payId: payId,
+                creditNumber: creditNumber,
+                creditfname: creditfname,
+                creditlname: creditlname,
+                creditdate: creditdate,
+                creditcvv: creditcvv
+            }
+        })
+        .done(function(response) {
+            if (response === "success") {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'การจองสำเร็จ'
+                }).then(() => {
+                    window.location.href = '../user_history.php';
+                });
+            }else if (response === "no") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'ไม่พบข้อมูลบัตรเคดิต'+payId,
+                    text: 'ไม่สามารถตัดค่าบริการได้'
+                });
+            }else if (response === "error") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'error',
+                    text: 'ไม่สามารถตัดค่าบริการได้'
+                });
+            }  else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'มีบ้างอย่างผิดพลาดโปรดลองอีกครั้ง!',
+                });
+            }
+        })
+        .fail(function() {
+            Swal.fire({
+                title: "ข้อผิดพลาด",
+                text: "ไม่สามารถติดต่อกับเซิร์ฟเวอร์ได้",
+                icon: "error"
+            });
+        });
+    }
+    
 }

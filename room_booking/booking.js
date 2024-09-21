@@ -111,7 +111,7 @@ function confirmBooking(roomId) {
                     icon: 'success',
                     title: 'การจองสำเร็จ'
                 }).then(() => {
-                    window.location.href = '../payment/payment.php?payID=' + data.payID;
+                    window.location.href = '../payment/payment.php?payId=' + data.payID;
                 });
             } else {
                 Swal.fire({

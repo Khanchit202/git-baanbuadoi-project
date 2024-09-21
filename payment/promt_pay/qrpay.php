@@ -7,8 +7,8 @@ try{
     $payId = $_POST['payId'];
     $name = $_POST['qrname'];
     $date = $_POST['qrdate'];
-    $price = $_POST['qrbank'];
-    $bank = $_POST['qrprice'];
+    $bank= $_POST['qrbank'];
+    $price = $_POST['qrprice'];
 
     $sql = "UPDATE booking_payment
     SET payNameAc = ?, payDate = ?, payManey = ?, payBank = ?, payStatus = ?
