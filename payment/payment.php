@@ -205,7 +205,7 @@ $payId = $_GET['payId'];
                     <input type="file" id="payment_receipt" class="form-control" accept="image/*" required />
                 </div>
                 <div class="row d-flex">
-                    <button onclick="qrPayment(<?php $payId; ?>)" class="btn btn-success mt-3">ชำระเงิน</button>
+                    <button onclick="qrPayment(<?php echo $payId; ?>)" class="btn btn-success mt-3">ชำระเงิน</button>
                     <div class="text-end mt-3" style="margin-top: 10px;">
                         <p>หากท่านไม่สามารถดำเนินการตอนนี้
                         <a onclick="goSkip()" style=" color: #4DA866; cursor: pointer;">ดำเนินการภายหลัง <i class="fas fa-arrow-right"></i></a></p>

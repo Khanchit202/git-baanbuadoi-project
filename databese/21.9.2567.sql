@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 07, 2024 at 12:50 PM
+-- Generation Time: Sep 21, 2024 at 11:01 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -50,8 +50,9 @@ CREATE TABLE `booking` (
 --
 
 INSERT INTO `booking` (`bookID`, `bookName`, `bookTel`, `bookDateStart`, `bookDateEnd`, `bookPrice`, `bookDate`, `bookDetail`, `bookConfirm`, `bookStatus`, `bookCancel`, `userID`, `pmtID`, `roomID`, `serviceID`) VALUES
-(00003, 'สมชาย', '0830026319', '2024-08-27 18:55:02', '2024-08-27 18:55:02', '500.00', '2024-08-27 18:55:02', 'จองห้องพัก', 1, 1, 0, 00003, 00001, 00007, 00001),
-(00004, 'นายครรชิต บางพระ', '0958000000', '2024-09-09 14:00:00', '2024-09-10 11:00:00', '500.00', '2024-09-07 13:33:27', 'ไม่มี', 1, 1, 0, 00004, 00001, 00016, 00004);
+(00109, 'ครรชิต บางพระ', '0958053137', '2024-09-23 14:00:00', '2024-09-24 11:00:00', '90.00', '2024-09-21 10:55:14', 'ไม่มี', 1, 1, 0, 00004, 00001, 00008, 00001),
+(00110, 'khanchit Bangphra', '0958053137', '2024-09-22 14:00:00', '2024-09-23 11:00:00', '897.00', '2024-09-21 10:56:00', 'sadasd', 1, 1, 0, 00004, 00001, 00016, 00001),
+(00111, 'khanchit Bangphra', '0958053137', '2024-09-29 14:00:00', '2024-09-30 11:00:00', '900.00', '2024-09-21 10:56:41', 'ไม่มี', 1, 1, 0, 00004, 00001, 00013, 00001);
 
 -- --------------------------------------------------------
 
@@ -61,20 +62,22 @@ INSERT INTO `booking` (`bookID`, `bookName`, `bookTel`, `bookDateStart`, `bookDa
 
 CREATE TABLE `booking_bill` (
   `billID` smallint(5) UNSIGNED ZEROFILL NOT NULL,
-  `payID` smallint(5) UNSIGNED ZEROFILL NOT NULL,
+  `payID` smallint(5) UNSIGNED ZEROFILL DEFAULT NULL,
   `bookID` smallint(5) UNSIGNED ZEROFILL NOT NULL,
   `userID` smallint(5) UNSIGNED ZEROFILL NOT NULL,
   `roomID` smallint(5) UNSIGNED ZEROFILL NOT NULL,
-  `serviceID` smallint(5) UNSIGNED ZEROFILL NOT NULL
+  `serviceID` smallint(5) UNSIGNED ZEROFILL DEFAULT NULL,
+  `billStatus` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `booking_bill`
 --
 
-INSERT INTO `booking_bill` (`billID`, `payID`, `bookID`, `userID`, `roomID`, `serviceID`) VALUES
-(00003, 00001, 00003, 00003, 00007, 00001),
-(00004, 00002, 00004, 00003, 00016, 00004);
+INSERT INTO `booking_bill` (`billID`, `payID`, `bookID`, `userID`, `roomID`, `serviceID`, `billStatus`) VALUES
+(00086, 00060, 00109, 00004, 00008, NULL, 1),
+(00087, 00061, 00110, 00004, 00016, NULL, 0),
+(00088, 00062, 00111, 00004, 00013, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -84,24 +87,27 @@ INSERT INTO `booking_bill` (`billID`, `payID`, `bookID`, `userID`, `roomID`, `se
 
 CREATE TABLE `booking_payment` (
   `payID` smallint(5) UNSIGNED ZEROFILL NOT NULL,
-  `payPic` varchar(100) NOT NULL,
-  `payDate` datetime NOT NULL,
-  `payNameAc` varchar(100) NOT NULL,
-  `payManey` decimal(8,2) NOT NULL,
+  `payPic` varchar(100) DEFAULT NULL,
+  `payDate` datetime DEFAULT NULL,
+  `payNameAc` varchar(100) DEFAULT NULL,
+  `payManey` decimal(8,2) DEFAULT NULL,
   `payStatus` tinyint(1) NOT NULL,
   `bookID` smallint(5) UNSIGNED ZEROFILL NOT NULL,
   `userID` smallint(5) UNSIGNED ZEROFILL NOT NULL,
   `roomID` smallint(5) UNSIGNED ZEROFILL NOT NULL,
-  `serviceID` smallint(5) UNSIGNED ZEROFILL NOT NULL
+  `serviceID` smallint(5) UNSIGNED ZEROFILL DEFAULT NULL,
+  `payType` varchar(1) DEFAULT NULL,
+  `payBank` varchar(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `booking_payment`
 --
 
-INSERT INTO `booking_payment` (`payID`, `payPic`, `payDate`, `payNameAc`, `payManey`, `payStatus`, `bookID`, `userID`, `roomID`, `serviceID`) VALUES
-(00001, 'pay.jpg', '2024-08-27 18:57:08', 'somchai', '250.00', 1, 00003, 00003, 00007, 00001),
-(00002, 'pamentslip/paymen_khanchit_01.jpg', '2024-09-08 13:41:30', 'นายครรชิต บางพระ', '500.00', 1, 00004, 00004, 00016, 00004);
+INSERT INTO `booking_payment` (`payID`, `payPic`, `payDate`, `payNameAc`, `payManey`, `payStatus`, `bookID`, `userID`, `roomID`, `serviceID`, `payType`, `payBank`) VALUES
+(00060, NULL, '2024-09-21 10:55:37', 'ครรชิต บางพระ', '2000.00', 2, 00109, 00004, 00008, NULL, 'C', 'KBANK'),
+(00061, NULL, '2024-09-22 12:00:00', 'ครรชิต บางพระ', '5.00', 1, 00110, 00004, 00016, NULL, 'Q', 'KBANK'),
+(00062, NULL, NULL, NULL, NULL, 0, 00111, 00004, 00013, NULL, 'C', NULL);
 
 -- --------------------------------------------------------
 
@@ -146,6 +152,30 @@ CREATE TABLE `checking_fine` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `credit_card`
+--
+
+CREATE TABLE `credit_card` (
+  `creditBank` varchar(5) NOT NULL,
+  `creditId` smallint(5) UNSIGNED ZEROFILL NOT NULL,
+  `creditNumber` varchar(19) NOT NULL,
+  `creditCsv` varchar(4) NOT NULL,
+  `creditValid` varchar(5) NOT NULL,
+  `creditToken` varchar(225) NOT NULL,
+  `creditName` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `credit_card`
+--
+
+INSERT INTO `credit_card` (`creditBank`, `creditId`, `creditNumber`, `creditCsv`, `creditValid`, `creditToken`, `creditName`) VALUES
+('KTB', 00001, '4444-3333-2222-1111', '123', '07/27', 'success', 'KHANCHIT BANGPHRA'),
+('KBANK', 00002, '1234-1234-1234-1234', '123', '22/33', 'success', 'ครรชิต บางพระ');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `news`
 --
 
@@ -172,7 +202,8 @@ INSERT INTO `news` (`newID`, `newTitle`, `newDetail`, `newPic`, `newType`, `newD
 (00011, 'สมุนไพรเจียวกู่หลาน', 'สมุนไพรเจียวกู่หลาน', 'jsl.jpg', 'สินค้า', '2024-08-18 08:32:34', 00003),
 (00012, 'สมุนไพรปู่เฒ่าทิ้งไม้เท้า', 'สมุนไพรปู่เฒ่าทิ้งไม้เท้า', 'butal.jpg', 'สินค้า', '2024-08-18 08:33:10', 00003),
 (00013, 'สมุนไพรปู่เฒ่าทิ้งไม้เท้า', 'สมุนไพรปู่เฒ่าทิ้งไม้เท้า', 'butal.jpg', 'สินค้า', '2024-08-18 08:33:10', 00003),
-(00015, 'ประเพณีงานหนุ่มสาวชุมชนบ้านนอแล', 'กิจกรรมช่วงก่อนออกพรรษาทางหนุ่มสาวบ้านนอแลจะมีการทำบุญและมีกิจกรรมร่วมกันเพื่อสร้างความสามัคคีกัน และเป็นการเชิญช่วนให้คนหนุ่มสาวหันมาเข้าวัดทำบุญกันมากขึ้น', 'about1.jpg', 'ชุมชน', '2024-08-18 08:33:10', 00003);
+(00015, 'ประเพณีงานหนุ่มสาวชุมชนบ้านนอแล', 'กิจกรรมช่วงก่อนออกพรรษาทางหนุ่มสาวบ้านนอแลจะมีการทำบุญและมีกิจกรรมร่วมกันเพื่อสร้างความสามัคคีกัน และเป็นการเชิญช่วนให้คนหนุ่มสาวหันมาเข้าวัดทำบุญกันมากขึ้น', 'about1.jpg', 'ชุมชน', '2024-08-18 08:33:10', 00003),
+(00016, 'ที่มาความเป็นมาของเรา', 'กิจกรรมช่วงก่อนออกพรรษาทางหนุ่มสาวบ้านนอแลจะมีการทำบุญและมีกิจกรรมร่วมกันเพื่อสร้างความสามัคคีกัน และเป็นการเชิญช่วนให้คนหนุ่มสาวหันมาเข้าวัดทำบุญกันมากขึ้น', 'baby1.jpg', 'ชุมชน', '2024-08-18 08:33:10', 00003);
 
 -- --------------------------------------------------------
 
@@ -270,6 +301,7 @@ CREATE TABLE `reviws_service` (
 --
 
 CREATE TABLE `room_product` (
+  `roomShow` tinyint(1) NOT NULL,
   `roomID` smallint(5) UNSIGNED ZEROFILL NOT NULL,
   `roomPrice` decimal(8,2) NOT NULL,
   `roomName` varchar(100) NOT NULL,
@@ -287,25 +319,25 @@ CREATE TABLE `room_product` (
 -- Dumping data for table `room_product`
 --
 
-INSERT INTO `room_product` (`roomID`, `roomPrice`, `roomName`, `roomDetail`, `roomBed`, `roomBath`, `roomLocation`, `roomPic`, `roomMax`, `roomMin`, `stdID`) VALUES
-(00007, '500.00', 'ห้องส่วนตัว', 'ห้องส่วนตัว', 2, 1, 'ห้องส่วนตัว', 'room1.jpg', 3, 1, 00001),
-(00008, '300.00', 'ห้องเดียว', 'ห้องเดียว', 1, 1, 'ห้องเดียว', 'room2.jpg', 1, 1, 00002),
-(00009, '300.00', 'ห้องเดียว', 'ห้องเดียว', 1, 1, 'ห้องเดียว', 'room3.jpg', 1, 1, 00003),
-(00010, '300.00', 'ห้องเดียว', 'ห้องเดียว', 1, 1, 'ห้องเดียว', 'room1.jpg', 1, 1, 00001),
-(00011, '500.00', 'บ้านระเบียงดาว 1', 'สัมผัสอากาศหนาว และขุนเขา ประกอบกับวิวทิวทัศน์และแปลงสตอเบอรีให้มีส่วนร่วมกับชุมชน', 3, 2, 'สถานีเกษตรหลวงอ่างขาง', 'room3.jpg', 3, 1, 00001),
-(00012, '500.00', 'ห้องส่วนตัว', 'ห้องเดียว', 2, 1, 'ห้องเดียว', 'room1.jpg', 1, 1, 00001),
-(00013, '3000.00', 'ห้องพักชุมชนบ้านนอแล ห้องที่ 1', 'บ้านพักนี้จัดทำขึ้นโดยกลุ่มวิสาหกิจชุมชนโฮมสเตย์ บ้านนอแล บรรยากาศหนาวหมอกหนา และทะเลหมอกในบางโอกาศ', 4, 2, 'ชุมชนบ้านนอแล', 'room2.jpg', 1, 6, 00002),
-(00014, '500.00', 'ห้องส่วนตัว', 'ห้องเดียว', 2, 1, 'ห้องเดียว', 'room1.jpg', 1, 1, 00001),
-(00015, '500.00', 'ห้องส่วนตัว', 'ห้องเดียว', 2, 1, 'ห้องเดียว', 'room1.jpg', 1, 1, 00001),
-(00016, '2990.00', 'ห้องพักใต้หมอก ห้องที่ 2', 'ห้องพักนี้ตั้งอยู่ที่บ้านนอแล ดอยอ่างขาง จังหวัดเชียงใหม่ มีวิวทะแลหมอกในตอนเช้า และมีหมอกคลุ้งตลอดทั้งวัน ให้ท่านได้สัมผัส ห้องพักนี้ตั้งอยู่ที่บ้านนอแล ดอยอ่างขาง จังหวัดเชียงใหม่ มีวิวทะแลหมอกในตอนเช้า และมีหมอกคลุ้งตลอดทั้งวัน ให้ท่านได้สัมผัส', 2, 1, 'บ้านนอแล ดอยอ่างขาง', 'room1.jpg', 3, 1, 00001),
-(00021, '2990.00', 'ห้องพักใต้หมอก ห้องที่ 1', 'ห้องพักนี้ตั้งอยู่ที่บ้านนอแล ดอยอ่างขาง จังหวัดเชียงใหม่ มีวิวทะแลหมอกในตอนเช้า และมีหมอกคลุ้งตลอดทั้งวัน ให้ท่านได้สัมผัส ห้องพักนี้ตั้งอยู่ที่บ้านนอแล ดอยอ่างขาง จังหวัดเชียงใหม่ มีวิวทะแลหมอกในตอนเช้า และมีหมอกคลุ้งตลอดทั้งวัน ให้ท่านได้สัมผัส', 2, 1, 'บ้านนอแล ดอยอ่างขาง', 'room1.jpg', 3, 1, 00001),
-(00022, '2990.00', 'ห้องพักใต้หมอก ห้องที่ 3', 'ห้องพักนี้ตั้งอยู่ที่บ้านนอแล ดอยอ่างขาง จังหวัดเชียงใหม่ มีวิวทะแลหมอกในตอนเช้า และมีหมอกคลุ้งตลอดทั้งวัน ให้ท่านได้สัมผัส ห้องพักนี้ตั้งอยู่ที่บ้านนอแล ดอยอ่างขาง จังหวัดเชียงใหม่ มีวิวทะแลหมอกในตอนเช้า และมีหมอกคลุ้งตลอดทั้งวัน ให้ท่านได้สัมผัส', 2, 1, 'บ้านนอแล ดอยอ่างขาง', 'room1.jpg', 3, 1, 00001),
-(00023, '3000.00', 'ห้องพักชุมชนบ้านนอแล ห้องที่ 2', 'บ้านพักนี้จัดทำขึ้นโดยกลุ่มวิสาหกิจชุมชนโฮมสเตย์ บ้านนอแล บรรยากาศหนาวหมอกหนา และทะเลหมอกในบางโอกาศ', 4, 2, 'ชุมชนบ้านนอแล', 'room2.jpg', 1, 6, 00001),
-(00024, '3000.00', 'ห้องพักชุมชนบ้านนอแล ห้องที่ 3', 'บ้านพักนี้จัดทำขึ้นโดยกลุ่มวิสาหกิจชุมชนโฮมสเตย์ บ้านนอแล บรรยากาศหนาวหมอกหนา และทะเลหมอกในบางโอกาศ', 4, 2, 'ชุมชนบ้านนอแล', 'room2.jpg', 1, 6, 00001),
-(00025, '3000.00', 'ห้องพักชุมชนบ้านนอแล ห้องที่ 4', 'บ้านพักนี้จัดทำขึ้นโดยกลุ่มวิสาหกิจชุมชนโฮมสเตย์ บ้านนอแล บรรยากาศหนาวหมอกหนา และทะเลหมอกในบางโอกาศ', 4, 2, 'ชุมชนบ้านนอแล', 'room2.jpg', 1, 6, 00002),
-(00026, '500.00', 'บ้านระเบียงดาว 2', 'สัมผัสอากาศหนาว และขุนเขา ประกอบกับวิวทิวทัศน์และแปลงสตอเบอรีให้มีส่วนร่วมกับชุมชน', 3, 2, 'สถานีเกษตรหลวงอ่างขาง', 'room3.jpg', 3, 1, 00001),
-(00027, '500.00', 'บ้านระเบียงดาว 3', 'สัมผัสอากาศหนาว และขุนเขา ประกอบกับวิวทิวทัศน์และแปลงสตอเบอรีให้มีส่วนร่วมกับชุมชน', 3, 2, 'สถานีเกษตรหลวงอ่างขาง', 'room3.jpg', 3, 1, 00003),
-(00028, '500.00', 'บ้านระเบียงดาว 4', 'สัมผัสอากาศหนาว และขุนเขา ประกอบกับวิวทิวทัศน์และแปลงสตอเบอรีให้มีส่วนร่วมกับชุมชน', 3, 2, 'สถานีเกษตรหลวงอ่างขาง', 'room3.jpg', 3, 1, 00001);
+INSERT INTO `room_product` (`roomShow`, `roomID`, `roomPrice`, `roomName`, `roomDetail`, `roomBed`, `roomBath`, `roomLocation`, `roomPic`, `roomMax`, `roomMin`, `stdID`) VALUES
+(0, 00007, '500.00', 'ห้องส่วนตัว', 'ห้องส่วนตัว', 2, 1, 'ห้องส่วนตัว', 'room1.jpg', 3, 1, 00001),
+(0, 00008, '300.00', 'ห้องเดียว', 'ห้องเดียว', 1, 1, 'ห้องเดียว', 'room2.jpg', 1, 1, 00002),
+(0, 00009, '300.00', 'ห้องเดียว', 'ห้องเดียว', 1, 1, 'ห้องเดียว', 'room3.jpg', 1, 1, 00003),
+(0, 00010, '300.00', 'ห้องเดียว', 'ห้องเดียว', 1, 1, 'ห้องเดียว', 'room1.jpg', 1, 1, 00001),
+(1, 00011, '500.00', 'บ้านระเบียงดาว 1', 'สัมผัสอากาศหนาว และขุนเขา ประกอบกับวิวทิวทัศน์และแปลงสตอเบอรีให้มีส่วนร่วมกับชุมชน', 3, 2, 'สถานีเกษตรหลวงอ่างขาง', 'room3.jpg', 3, 1, 00001),
+(0, 00012, '500.00', 'ห้องส่วนตัว', 'ห้องเดียว', 2, 1, 'ห้องเดียว', 'room1.jpg', 1, 1, 00001),
+(1, 00013, '3000.00', 'ห้องพักชุมชนบ้านนอแล ห้องที่ 1', 'บ้านพักนี้จัดทำขึ้นโดยกลุ่มวิสาหกิจชุมชนโฮมสเตย์ บ้านนอแล บรรยากาศหนาวหมอกหนา และทะเลหมอกในบางโอกาศ', 4, 2, 'ชุมชนบ้านนอแล', 'room2.jpg', 1, 6, 00002),
+(0, 00014, '500.00', 'ห้องส่วนตัว', 'ห้องเดียว', 2, 1, 'ห้องเดียว', 'room1.jpg', 1, 1, 00001),
+(0, 00015, '500.00', 'ห้องส่วนตัว', 'ห้องเดียว', 2, 1, 'ห้องเดียว', 'room1.jpg', 1, 1, 00001),
+(1, 00016, '2990.00', 'ห้องพักใต้หมอก ห้องที่ 2', 'ห้องพักนี้ตั้งอยู่ที่บ้านนอแล ดอยอ่างขาง จังหวัดเชียงใหม่ มีวิวทะแลหมอกในตอนเช้า และมีหมอกคลุ้งตลอดทั้งวัน ให้ท่านได้สัมผัส ห้องพักนี้ตั้งอยู่ที่บ้านนอแล ดอยอ่างขาง จังหวัดเชียงใหม่ มีวิวทะแลหมอกในตอนเช้า และมีหมอกคลุ้งตลอดทั้งวัน ให้ท่านได้สัมผัส', 2, 1, 'บ้านนอแล ดอยอ่างขาง', 'room1.jpg', 3, 1, 00001),
+(0, 00021, '2990.00', 'ห้องพักใต้หมอก ห้องที่ 1', 'ห้องพักนี้ตั้งอยู่ที่บ้านนอแล ดอยอ่างขาง จังหวัดเชียงใหม่ มีวิวทะแลหมอกในตอนเช้า และมีหมอกคลุ้งตลอดทั้งวัน ให้ท่านได้สัมผัส ห้องพักนี้ตั้งอยู่ที่บ้านนอแล ดอยอ่างขาง จังหวัดเชียงใหม่ มีวิวทะแลหมอกในตอนเช้า และมีหมอกคลุ้งตลอดทั้งวัน ให้ท่านได้สัมผัส', 2, 1, 'บ้านนอแล ดอยอ่างขาง', 'room1.jpg', 3, 1, 00001),
+(0, 00022, '2990.00', 'ห้องพักใต้หมอก ห้องที่ 3', 'ห้องพักนี้ตั้งอยู่ที่บ้านนอแล ดอยอ่างขาง จังหวัดเชียงใหม่ มีวิวทะแลหมอกในตอนเช้า และมีหมอกคลุ้งตลอดทั้งวัน ให้ท่านได้สัมผัส ห้องพักนี้ตั้งอยู่ที่บ้านนอแล ดอยอ่างขาง จังหวัดเชียงใหม่ มีวิวทะแลหมอกในตอนเช้า และมีหมอกคลุ้งตลอดทั้งวัน ให้ท่านได้สัมผัส', 2, 1, 'บ้านนอแล ดอยอ่างขาง', 'room1.jpg', 3, 1, 00001),
+(0, 00023, '3000.00', 'ห้องพักชุมชนบ้านนอแล ห้องที่ 2', 'บ้านพักนี้จัดทำขึ้นโดยกลุ่มวิสาหกิจชุมชนโฮมสเตย์ บ้านนอแล บรรยากาศหนาวหมอกหนา และทะเลหมอกในบางโอกาศ', 4, 2, 'ชุมชนบ้านนอแล', 'room2.jpg', 1, 6, 00001),
+(0, 00024, '3000.00', 'ห้องพักชุมชนบ้านนอแล ห้องที่ 3', 'บ้านพักนี้จัดทำขึ้นโดยกลุ่มวิสาหกิจชุมชนโฮมสเตย์ บ้านนอแล บรรยากาศหนาวหมอกหนา และทะเลหมอกในบางโอกาศ', 4, 2, 'ชุมชนบ้านนอแล', 'room2.jpg', 1, 6, 00001),
+(0, 00025, '3000.00', 'ห้องพักชุมชนบ้านนอแล ห้องที่ 4', 'บ้านพักนี้จัดทำขึ้นโดยกลุ่มวิสาหกิจชุมชนโฮมสเตย์ บ้านนอแล บรรยากาศหนาวหมอกหนา และทะเลหมอกในบางโอกาศ', 4, 2, 'ชุมชนบ้านนอแล', 'room2.jpg', 1, 6, 00002),
+(0, 00026, '500.00', 'บ้านระเบียงดาว 2', 'สัมผัสอากาศหนาว และขุนเขา ประกอบกับวิวทิวทัศน์และแปลงสตอเบอรีให้มีส่วนร่วมกับชุมชน', 3, 2, 'สถานีเกษตรหลวงอ่างขาง', 'room3.jpg', 3, 1, 00001),
+(1, 00027, '500.00', 'บ้านระเบียงดาว 3', 'สัมผัสอากาศหนาว และขุนเขา ประกอบกับวิวทิวทัศน์และแปลงสตอเบอรีให้มีส่วนร่วมกับชุมชน', 3, 2, 'สถานีเกษตรหลวงอ่างขาง', 'room3.jpg', 3, 1, 00003),
+(0, 00028, '500.00', 'บ้านระเบียงดาว 4', 'สัมผัสอากาศหนาว และขุนเขา ประกอบกับวิวทิวทัศน์และแปลงสตอเบอรีให้มีส่วนร่วมกับชุมชน', 3, 2, 'สถานีเกษตรหลวงอ่างขาง', 'room3.jpg', 3, 1, 00001);
 
 -- --------------------------------------------------------
 
@@ -368,11 +400,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`userID`, `userName`, `userPass`, `userFName`, `userLName`, `userTel`, `userEmail`, `userLavelID`, `userImg`) VALUES
-(00001, 'admin', '$2y$10$9THP/QOe9XU8yawf3gwyFeRrxkBaPQvjZAvpXB5esoS8sdnDY8m..', 'admin', 'test', '022222222', 'admin@buadoi.ac.th', 1, 'img/profile/profile_1.jpg'),
-(00002, 'owner', '$2y$10$HY6cvbKUxCAdTlafCj4J0eTUIJxRajqmV2OsX1ef844CnMZD/xilC', 'owner', 'test', '022222222', 'owner@buadoi.ac.th', 2, 'img/profile/profile_1.jpg'),
-(00003, 'emp', '$2y$10$TR.cHBGCl6oux5shnYyBC.8RNh0jr/ljP9sQwHQB7EmWS8fQs.25q', 'employee', 'test', '022222222', 'employee@buadoi.ac.th', 3, 'img/profile/profile_1.jpg'),
-(00004, 'member', '$2y$10$7y0j5hzGnJZAgqELMzLHQeYlqrUJ3NYiXFOl6FxgoIyEaeCTDahKa', 'member', 'test', '01111111', 'member@buadoi.ac.th', 4, 'img/profile/profile_1.jpg'),
-(00020, 'khanchit', '$2y$10$Ppqp3k6oO9teSuRmlQuEZu9r5997r8LDid1/N4NNBmKwcvvJiJPuW', 'ครรชิต', 'บางพระ', '0958053137', 'khanchit202@gmail.com', 1, 'img/profile/profile_1.jpg');
+(00001, 'admin', '$2y$10$9stBc3w6w9ji61wFM4IG/.D0KkQaXBBUqPT9MdN/jMITIJc8/ZTC.', 'admin', 'test', '022222222', 'admin@buadoi.ac.th', 1, 'profile00001.jpg'),
+(00002, 'owner', '$2y$10$HY6cvbKUxCAdTlafCj4J0eTUIJxRajqmV2OsX1ef844CnMZD/xilC', 'owner', 'test', '022222222', 'owner@buadoi.ac.th', 2, 'profile_1.jpg'),
+(00003, 'emp', '$2y$10$TR.cHBGCl6oux5shnYyBC.8RNh0jr/ljP9sQwHQB7EmWS8fQs.25q', 'employee', 'test', '022222222', 'employee@buadoi.ac.th', 3, 'profile_1.jpg'),
+(00004, 'member', '$2y$10$7y0j5hzGnJZAgqELMzLHQeYlqrUJ3NYiXFOl6FxgoIyEaeCTDahKa', 'member', 'test', '01111111', 'member@buadoi.ac.th', 4, 'profile00004.jpg'),
+(00020, 'khanchit', '$2y$10$Ppqp3k6oO9teSuRmlQuEZu9r5997r8LDid1/N4NNBmKwcvvJiJPuW', 'ครรชิต', 'บางพระ', '0958053137', 'khanchit202@gmail.com', 1, 'profile_1.jpg'),
+(00030, 'khanchit02', '$2y$10$OqvHvC7.FqkyvztMDu2OD.sSkZN3exLBtTfIDfXBDYiPV3OrpAETO', 'ครรชิต', 'บางพระ', '0999999999', 'khanchit@bis.com', 4, 'img/profile/profile_1.jpg');
 
 -- --------------------------------------------------------
 
@@ -447,6 +480,12 @@ ALTER TABLE `checking_fine`
   ADD KEY `checkID` (`checkID`),
   ADD KEY `userID` (`userID`),
   ADD KEY `billID` (`billID`);
+
+--
+-- Indexes for table `credit_card`
+--
+ALTER TABLE `credit_card`
+  ADD PRIMARY KEY (`creditId`);
 
 --
 -- Indexes for table `news`
@@ -529,19 +568,19 @@ ALTER TABLE `user_lavel`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `bookID` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `bookID` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- AUTO_INCREMENT for table `booking_bill`
 --
 ALTER TABLE `booking_bill`
-  MODIFY `billID` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `billID` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT for table `booking_payment`
 --
 ALTER TABLE `booking_payment`
-  MODIFY `payID` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `payID` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `checking`
@@ -556,10 +595,16 @@ ALTER TABLE `checking_fine`
   MODIFY `fineID` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `credit_card`
+--
+ALTER TABLE `credit_card`
+  MODIFY `creditId` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `newID` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `newID` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `product_status`
@@ -607,7 +652,7 @@ ALTER TABLE `statistics`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `userID` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `user_lavel`

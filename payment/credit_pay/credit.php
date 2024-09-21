@@ -19,15 +19,20 @@
         $sql = "UPDATE booking_payment
                     SET payNameAc = ?, payDate = ?, payManey = ?, payBank = ?, payStatus = ?
                     WHERE payID = ?";
+
+        $sql2 = "UPDATE booking_bill
+        SET billStatus = ?
+        WHERE payID = ?";
         
         if (count($results) > 0) {
+            $found = false;
+        
             foreach ($results as $row) {
                 if ($number == $row['creditNumber'] && $name == $row['creditName'] && $date == $row['creditValid'] && $cvv == $row['creditCsv']) {
-                    
+                    $found = true;
+        
                     $bank = $row['creditBank'];
-
-                    
-
+        
                     $stmt = $db_con->prepare($sql);
                     $stmt->bindParam(1, $name);
                     $stmt->bindValue(2, $now);
@@ -37,16 +42,23 @@
                     $stmt->bindParam(6, $payId);
                     $stmt->execute();
 
-
+                    $stmt2 = $db_con->prepare($sql2);
+                    $stmt2->bindValue(1, 1);
+                    $stmt2->bindParam(2, $payId);
+                    $stmt2->execute();
+        
                     echo "success";
-                } else {
-                    
-                    echo "no";
+                    break;
                 }
+            }
+        
+            if (!$found) {
+                echo "no";
             }
         } else {
             echo "error";
         }
+        
 
     } catch (PDOException $e) {
         echo "error: " . $e->getMessage();

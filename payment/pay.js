@@ -105,13 +105,14 @@ function qrPayment(payId){
     }
 }
 
-function creditPayment(){
+function creditPayment(payId){
     var creditNumber = $('#credit_number').val();
     var creditfname = $('#first_name').val();
     var creditlname = $('#last_name').val();
     var creditdate = $('#credit_date').val();
     var creditcvv = $('#cvv').val();
-
+    
+    console.log(payId)
     console.log(creditNumber)
     console.log(creditfname)
     console.log(creditlname)

@@ -138,7 +138,9 @@ $db_con = connect_db();
             INNER JOIN booking ON booking_bill.bookID = booking.bookID
             LEFT JOIN booking_payment ON booking_bill.payID = booking_payment.payID
             WHERE booking_bill.userID = :userID
+            ORDER BY booking_bill.billID DESC
         ";
+
 
         $data2 = $db_con->prepare($sql);
         $userID = $_SESSION['userID'];
@@ -186,15 +188,15 @@ $db_con = connect_db();
                                         <th class="text-center">ตัวเลือก</th>
                                     </tr>
                                 </thead>
-
                                 <tbody>
                                     <?php if ($dataArray) {
-                                        foreach ($dataArray as $row) { ?>   
+                                        foreach ($dataArray as $index => $row) : ?>
                                             <tr>
                                                 <!-- ตัวอย่างการดึงข้อมูลจากฐานข้อมูล -->
                                                 <td class="text-center"><?php echo $row['roomName']; ?></td>
 
                                                 <?php 
+                                                    $payId = $row['payID'];
                                                     $datetime = $row['bookDate'];
                                                     $date = new DateTime($datetime);
 
@@ -232,6 +234,9 @@ $db_con = connect_db();
                                                     }else if($row['bookCancel'] == 1){
                                                         $bill_status = "ยกเลิก";
                                                         $bill_color = '#DE6461';
+                                                    }else if($row['bookCancel'] == 2){
+                                                        $bill_status = "ถูกระงับ";
+                                                        $bill_color = '#DE6461';
                                                     }else{
                                                         $bill_status = "รอดำเนินการ";
                                                         $bill_color = '#3B8386';
@@ -250,7 +255,8 @@ $db_con = connect_db();
                                                     if($row['payStatus'] == 2 || $row['payStatus'] == 1){
                                                         echo '<button type="button" class="btn me-1" data-toggle="modal" data-target="#myModal" style="font-size: 8px; background-color: #4caf50; color: #ffffff; border-radius: 5px;">การชำระเงิน</button>';
                                                     }else if($row['payStatus'] === NULL || $row['payStatus'] == 0){
-                                                        echo '<button type="button" class="btn me-1" data-toggle="modal" data-target="#myModal" style="font-size: 8px; background-color: #4caf50; color: #ffffff; border-radius: 5px;">ดำเนินการชำระเงิน</button>';
+                                                        echo '<button type="button" onclick="goPay(' . $payId . ')" class="btn me-1" style="font-size: 8px; background-color: #4caf50; color: #ffffff; border-radius: 5px;">ดำเนินการชำระเงิน</button>';
+
                                                     }
                                                      if($row['billStatus'] == 1){
                                                         echo '<button onclick="redirectToReport()" type="button" class="btn" style="font-size: 8px; background-color: #DE6461; color: #ffffff; border-radius: 5px;">พิมพ์ใบจอง</button>';
@@ -258,7 +264,9 @@ $db_con = connect_db();
                                                 ?>
                                                 </td>
                                             </tr>
-                                        <?php } // end foreach 
+
+                                        <?php  endforeach;
+                                            
                                     } else { ?>
                                         <tr>
                                             <td colspan="6" class="text-center">ไม่มีรายการแสดง</td>
@@ -478,9 +486,12 @@ document.getElementById('toggle-confirm-password').addEventListener('click', fun
     }
 });
 
-function redirectToReport() {
-    window.location.href = 'report/report.php';
-}
+    function redirectToReport() {
+        window.location.href = 'report/report.php';
+    }
+    function goPay(payID) {
+        window.location.href = 'payment/payment.php?payId=' + payID;
+    }
 
 </script>
 </body>
