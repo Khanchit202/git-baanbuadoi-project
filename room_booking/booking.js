@@ -90,27 +90,28 @@ function confirmBooking(roomId) {
             paymentMethod = payment2.value; // ได้ค่า "Q"
         }
 
-    $.ajax({
-        url: 'confirm_booking.php',
-        type: 'POST',
-        data: {
-            roomId: roomId,
-            name: customerName,
-            phone: customerPhone,
-            detail: customerDetail,
-            promotion: customerPro,
-            price: customerPrice,
-            date: bookingDate,
-            pay: paymentMethod
-            }
+        $.ajax({
+            url: 'confirm_booking.php',
+            type: 'POST',
+            data: {
+                roomId: roomId,
+                name: customerName,
+                phone: customerPhone,
+                detail: customerDetail,
+                promotion: customerPro,
+                price: customerPrice,
+                date: bookingDate,
+                pay: paymentMethod
+                }
         })
         .done(function(response) {
-            if (response === "success") {
+            let data = JSON.parse(response);
+            if (data.status === "success") {
                 Swal.fire({
                     icon: 'success',
                     title: 'การจองสำเร็จ'
                 }).then(() => {
-                    window.location.href = '../payment/payment.php';
+                    window.location.href = '../payment/payment.php?payId=' + data.payID;
                 });
             } else {
                 Swal.fire({

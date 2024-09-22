@@ -25,7 +25,7 @@ function delete_data(userID) {
                         text: "ข้อมูลของผู้ใช้ถูกลบเรียบร้อยแล้ว",
                         icon: "success"
                     }).then(() => {
-                        window.location.reload(); // Refresh the page
+                        window.location.reload();
                     });
                 } else {
                     Swal.fire({
