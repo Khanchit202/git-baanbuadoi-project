@@ -21,6 +21,9 @@
             case 'premaket-data':
                     $response['data'] = "user_data/premaket.php";
                 break;
+            case 'bookingpayment-data':
+                    $response['data'] = "user_data/booking_payment.php";
+                break;
             default:
                 $response['data'] = "user_data/user_data.php";
         }

@@ -80,6 +80,9 @@
                             case 'premaket-data':
                                 include 'premaket_data/premaket.php';
                                 break;
+                            case 'bookingpayment-data':
+                                include 'booking_payment_data/booking_payment.php';
+                                break;
                             default:
                                 echo "<h2>ไม่พบหน้า</h2>";
                         }
@@ -101,6 +104,7 @@
     <script type="text/javascript" src="./room_data/room_datas.js"></script>
     <script type="text/javascript" src="./service_data/service_datas.js"></script>
     <script type="text/javascript" src="./premaket_data/premaket_datas.js"></script>
+    <!-- <script type="text/javascript" src="./booking_payment_data/premaket_datas.js"></script> -->
     
     
     
