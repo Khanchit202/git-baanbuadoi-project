@@ -44,11 +44,8 @@ if (!$room) {
 <body>
     <div class="container-xxl bg-white p-0">
         
-        <div onclick="goBack()" class="btn btn-lg btn-custom " style="position: fixed;top: 70px;left: 86%;z-index: 1000;cursor: pointer;">
-            <div class="d-flex">
-                <i class="fa fa-arrow-left" style="color: #ffffff;"></i>
-                <h5 style="font-size: 10px; padding:0; margin: 0; padding-left: 5px;">กลับ</h5>
-            </div>
+        <div onclick="goBack()" class="btn btn-lg btn-custom " style="position: fixed;top: 45px;left: 88%;z-index: 1000;cursor: pointer;">
+            <i class="fa fa-arrow-left" style="color: #ffffff;"></i>
         </div>
 
         <div class="container mt-5">
@@ -58,7 +55,7 @@ if (!$room) {
                         <img style="border-radius: 10px; width: 100%; height: 500px; object-fit: cover;" src="../img/room_pic/<?php echo htmlspecialchars($room['roomPic']); ?>" alt="Room Image" class="img-fluid">
                     <?php endif; ?>
                 </div>
-                <div class="col-md-6" id="deteil_text" style="height: 500px; font-size: 14px; border-left: solid 4px #4DA865; border-radius: 10px; padding: 30px 30px; box-shadow: 2px 2px 5px #ccc">
+                <div class="col-md-6 mt-2" id="deteil_text" style="font-size: 12px;">
                         <h1 class="fw-bold" style="font-size: 20px; margin-bottom: 20px;"><?php echo htmlspecialchars($room['roomName']); ?></h1>
                         <br>
                         <div class="row mb-1">
@@ -80,15 +77,15 @@ if (!$room) {
                         <div class="row mb-2">
                             <div class="col-md-3 fw-bold"><p>จำนวนห้องน้ำ</p></div> 
                             <div style="color:#4DA865; " class="col-md-2 fw-bold"><?php echo htmlspecialchars($room['roomMin']); ?> - <?php echo htmlspecialchars($room['roomMax']);?> <i class="lni lni-users me-2" style="font-size: 12px; margin-left: 5px;"></i></div>
-                            <div class="col-md-3 fw-bold"><p>*ราคามัดจำ</p></div> 
+                            <div class="col-md-3 fw-bold"><p>ราคามัดจำ (กรณีจองออนไลท์)</p></div> 
                             <div style="color:#4DA865; " class="col-md-2 fw-bold">30 เปอร์เซ็น</div>
                         </div>
                         
-                        <div class="row mb-1">
+                        <div class="row mb-2">
                             <div class="col-md-3 fw-bold"><p>ราคา/คืน</p></div> 
                             <div class="col-md-2 bg-light text-center" style="margin:0; padding:0; border-radius: 10px;"><h3 class="fw-bold" style="font-size:14px; margin-top:10px;"><?php echo $price ?> ฿</h3></div>
                             <div class="col-md-3 fw-bold"><p>ราคามัดจำ</p></div> 
-                            <div class="col-md-2 bg-light text-center" style="margin:0; padding:0; border-radius: 10px;"><h3 class="fw-bold" style="font-size:14px; margin-top:10px;"><?php echo $deposit ?> ฿</h3></div>
+                            <div class="col-md-2 bg-light text-center" margin:0; padding:0; border-radius: 10px;"><h3 class="fw-bold" style="font-size:14px; margin-top:10px;"><?php echo $deposit ?> ฿</h3></div>
                         </div>
                     <br><br>                     
                     <button onclick="showBookingForm('<?php echo $id ?>')" class="btn btn-custom" style="width: 100%;"> ยืนยันการจอง </button>

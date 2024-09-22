@@ -15,7 +15,7 @@ var lastBookingDate = "";
 
         function checkBooking(roomId) {
             var bookingDate = $('#booking_date').val();
-        
+
             if (bookingDate === "") {
                 Swal.fire({
                     icon: 'warning',
@@ -23,7 +23,7 @@ var lastBookingDate = "";
                 });
                 return;
             }
-        
+
             $.ajax({
                 url: 'check_booking.php',
                 type: 'POST',
@@ -32,14 +32,9 @@ var lastBookingDate = "";
                     console.log(response);
                     if (response === "available") {
                         $('#customer_info').show();
-                        document.getElementById("customer_info").scrollIntoView({
-                            behavior: 'smooth'
-                        });
+                        console.log(response);
                     } else if (response === "booked") {
                         $('#reserved').show();
-                        document.getElementById("reserved").scrollIntoView({
-                            behavior: 'smooth'
-                        });
                     } else if (response === "oldday") {
                         Swal.fire({
                             icon: 'warning',
@@ -49,8 +44,8 @@ var lastBookingDate = "";
                         });
                     }
                 }
-            });
-        }        
+            });                      
+        }
 
 function confirmBooking(roomId) {
     var customerName = $('#customer_name').val();

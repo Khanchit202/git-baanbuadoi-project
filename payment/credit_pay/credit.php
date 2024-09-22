@@ -2,7 +2,14 @@
     include ("../../db_config.php");
     $db_con = connect_db();
 
-    $payId = $_POST['payId'];
+    if (isset($_GET['payId'])) {
+        $payId = $_GET['payId'];
+    } elseif (isset($_POST['payId'])) {
+        $payId = $_POST['payId'];
+    } else {
+        $payId = null;
+    }
+
     $number = $_POST['creditNumber'];
     $fnam = $_POST['creditfname'];
     $lnam = $_POST['creditlname'];

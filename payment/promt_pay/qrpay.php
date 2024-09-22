@@ -1,10 +1,21 @@
 <?php
 include ("../../db_config.php");
 
+if (isset($_GET['payId'])) {
+        $payId = $_GET['payId'];
+    } elseif (isset($_POST['payId'])) {
+        $payId = $_POST['payId'];
+    } else {
+        $payId = null;
+    }
+
 try{
     $db_con = connect_db();
 
-    $payId = $_POST['payId'];
+    
+
+
+
     $name = $_POST['qrname'];
     $date = $_POST['qrdate'];
     $bank= $_POST['qrbank'];

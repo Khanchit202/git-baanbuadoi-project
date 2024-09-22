@@ -96,9 +96,9 @@ $db_con = connect_db();
                 foreach ($rooms as $room) { 
                     if ($count >= 8) break;
                     if ($room['roomShow'] == '1') {
-                        $badgeColor = '#4caf50';
+                        $badgeColor = '#4DA866';
                         $buttonText = '+ จอง';
-                        $buttonColor = '#4caf50';
+                        $buttonColor = '#4DA866';
                     } else {
                         // กรณีอื่น ๆ
                     }
@@ -225,9 +225,9 @@ $db_con = connect_db();
                     // กำหนดข้อความและสีพื้นหลังตามค่า stdID
                     if ($room['stdID'] == '00001') {
                         $statusText = 'มีบริการ';
-                        $badgeColor = '#4caf50';
+                        $badgeColor = '#4DA866';
                         $buttonText = '+ จอง';
-                        $buttonColor = '#4caf50';
+                        $buttonColor = '#4DA866';
                     } else {
                         // กรณีอื่น ๆ
                     }

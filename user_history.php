@@ -127,8 +127,10 @@ $db_con = connect_db();
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php if ($dataArray) {
-                                        foreach ($dataArray as $index => $row) : ?>
+                                <?php if ($dataArray) {
+                                    foreach ($dataArray as $index => $row) : 
+                                        if ($index >= 5) break; // หยุดลูปเมื่อครบ 5 ครั้ง
+                                ?>
                                             <tr>
                                                 <!-- ตัวอย่างการดึงข้อมูลจากฐานข้อมูล -->
                                                 <td class="text-center"><?php echo $row['roomName']; ?></td>
@@ -190,11 +192,10 @@ $db_con = connect_db();
                                                     if($row['bookStatus'] == 1){
                                                         echo '<button type="button" class="btn me-1" data-toggle="modal" data-target="#myModal" style="font-size: 8px; background-color: #3B8386; color: #ffffff; border-radius: 5px;">ดูรายละเอียด</button>';
                                                     }
-                                                    if($row['payStatus'] == 2 || $row['payStatus'] == 1){
+                                                    if($row['payStatus'] == 2 || $row['payStatus'] == 1 && $row['bookCancel'] != 1){
                                                         echo '<button type="button" class="btn me-1" data-toggle="modal" data-target="#myModal" style="font-size: 8px; background-color: #4caf50; color: #ffffff; border-radius: 5px;">การชำระเงิน</button>';
-                                                    }else if($row['payStatus'] === NULL || $row['payStatus'] == 0){
-                                                        echo '<button type="button" onclick="goPay(' . $payId . ')" class="btn me-1" style="font-size: 8px; background-color: #4caf50; color: #ffffff; border-radius: 5px;">ดำเนินการชำระเงิน</button>';
-
+                                                    }else if($row['payStatus'] === NULL || $row['payStatus'] == 0 && $row['bookCancel'] != 1){
+                                                        echo '<a href="payment/payment.php?payId='.$row['payID'].'" class="btn me-1 fw-bold" style="font-size: 8px; border: solid 1px #4caf50; color: #4caf50; background-color: none; border-radius: 5px;">ดำเนินการชำระเงิน</a>';
                                                     }
                                                      if($row['billStatus'] == 1){
                                                         echo '<button onclick="redirectToReport()" type="button" class="btn" style="font-size: 8px; background-color: #DE6461; color: #ffffff; border-radius: 5px;">พิมพ์ใบจอง</button>';
