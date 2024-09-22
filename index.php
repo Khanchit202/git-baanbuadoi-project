@@ -7,7 +7,7 @@ $db_con = connect_db();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ฺHome Buadoi</title>
+    <title>Home Buadoi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="tabbar_view/nav_bar.css">
     <link rel="stylesheet" href="style1.css">
@@ -50,30 +50,30 @@ $db_con = connect_db();
             <p style="color: #BC5686;">ท่านสามารถเก็บคูปอง หรือเข้าร่วมกิจกรรม เพื่อรับส่วนลดจากทางร้าน</p>
         </div>
         <!-- Testimonial Start -->
-        <div class="container-xxl py-5">
-            <div class="container">
-                <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="testimonial-item bg-light rounded p-3">
-                        <div class="bg-white border rounded p-4">
-                            <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd erat eos</p>
-                            
-                        </div>
-                    </div>
-                    <div class="testimonial-item bg-light rounded p-3">
-                        <div class="bg-white border rounded p-4">
-                            <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd erat eos</p>
-                            
-                        </div>
-                    </div>
-                    <div class="testimonial-item bg-light rounded p-3">
-                        <div class="bg-white border rounded p-4">
-                            <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd erat eos</p>
-                           
-                        </div>
+        <?php
+            $sql = 'SELECT * FROM promotions';
+            $stmt = $db_con->prepare($sql);
+            $stmt->execute();
+
+            $pmt = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            ?>
+
+            <div class="container-xxl py-5">
+                <div class="container">
+                    <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
+                        <?php foreach ($pmt as $promotion): ?>
+                            <div class="testimonial-item bg-light rounded p-3">
+                                <div class="bg-white border rounded p-4">
+                                    <img src="img/promotion_pic/<?php echo $promotion['pmtPic']; ?>" alt="Image 1" class="img-fluid"style="width: 500px; height: 150px; object-fit: cover;">
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
-        </div>
+
+
+
         <div class="text-start mx-auto mt-5 mb-2 wow slideInLeft" data-wow-delay="0.1s">
                 <h1 class="fw-bold" style="margin-left: 70px; color: #BC5686;">แนะนำห้องพัก</h1>
                 <p style="margin-left: 70px; color: #BC5686;">โฮมสเตย์บ้านบัวดอย รวบรวมห้องพักทั่วทั้งดอยอ่างขาง</p>

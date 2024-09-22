@@ -140,13 +140,16 @@ function emp_dash($lavel_name, $lavel_color) {
                         <a href="?page=service-data" class="sidebar-link <?php echo ($current_page == 'service-data' ? 'active' : '') ?>">บริการ</a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="?page=bookingpayment-data" class="sidebar-link <?php echo ($current_page == 'bookingpayment-data' ? 'active' : '') ?>">การจอง</a>
+                        <a href="?page=bookingpayment-data" class="sidebar-link <?php echo ($current_page == 'bookingpayment-data' ? 'active' : '') ?>">การชำระเงิน</a>
                     </li>
                     <li class="sidebar-item">
                         <a href="?page=booking-data" class="sidebar-link <?php echo ($current_page == 'booking-data' ? 'active' : '') ?>">จัดการข้อมูลการจอง</a>
                     </li>
                     <li class="sidebar-item">
                         <a href="?page=premaket-data" class="sidebar-link <?php echo ($current_page == 'premaket-data' ? 'active' : '') ?>">จัดการข้อมูลข่าวสาร</a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="?page=promotion-data" class="sidebar-link <?php echo ($current_page == 'promotion-data' ? 'active' : '') ?>">จัดการข้อมูลโปรโมชั่น</a>
                     </li>
                     
                 </ul>

@@ -24,6 +24,9 @@
             case 'bookingpayment-data':
                     $response['data'] = "user_data/booking_payment.php";
                 break;
+            case 'promotion-data':
+                    $response['data'] = "user_data/promotion.php";
+                break;
             default:
                 $response['data'] = "user_data/user_data.php";
         }
