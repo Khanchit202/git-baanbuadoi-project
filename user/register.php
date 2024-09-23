@@ -12,7 +12,7 @@ $db_con = connect_db("client");
     $email = $_POST['email'];
     $tel = $_POST['tel'];
     $userLavelID = 4;
-    $userProfile = "img/profile/profile_1.jpg";
+    $userProfile = "profile_1.jpg";
 
     // $username = "member";
     // $passwd = "123456";

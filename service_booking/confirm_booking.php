@@ -5,12 +5,16 @@ session_start();
 try {
     $db_con = connect_db();
 
-    $roomId = $_POST['roomId'];
+    $serviceId = $_POST['serviceId'];
     $customerName = $_POST['name'];
     $customerPhone = $_POST['phone'];
     $bookingDate = $_POST['date'];
     $bookingPrice = $_POST['price'];
     $bookingDetail = $_POST['detail'];
+    $bookingTime = $_POST['time'];
+
+    $datetime = $bookingDate . " " . $bookingTime;
+
     $pay = $_POST['pay'];
     // $bookingPro = isset($_POST['promotion']) ? $_POST['promotion'] : '00000';
         // $roomId = "00015";
@@ -21,7 +25,7 @@ try {
         // $bookingDetail ="ไม่มี";
         $bookingPro = 00001;
         $userId = $_SESSION['userID'];
-        $serviceId = 00001;
+        $roomId = 00007;
         $now = date('Y-m-d H:i:s');
    
     $dateStart = new DateTime($bookingDate);
@@ -29,13 +33,13 @@ try {
     $bookingDateEnd = $dateEnd->format('Y-m-d') . ' 11:00:00';
 
     $query = $db_con->prepare("
-        INSERT INTO booking (bookName, bookTel, bookDateStart, bookDateEnd, bookPrice, bookDetail, bookDate, bookConfirm, bookStatus, bookCancel, userID, pmtID, roomID, serviceID) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO booking (bookName, bookTel, bookDateStart, bookDateEnd, bookPrice, bookDetail, bookDate, bookConfirm, bookStatus, bookCancel, userID, pmtID, roomID, serviceID, bookType) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ");
 
     $query->bindParam(1, $customerName);
     $query->bindParam(2, $customerPhone);
-    $query->bindValue(3, $bookingDate . ' 14:00:00');
+    $query->bindValue(3, $datetime);
     $query->bindParam(4, $bookingDateEnd);
     $query->bindParam(5, $bookingPrice);
     $query->bindParam(6, $bookingDetail);
@@ -47,18 +51,19 @@ try {
     $query->bindParam(12, $bookingPro);
     $query->bindParam(13, $roomId);
     $query->bindParam(14, $serviceId);
+    $query->bindValue(15, 2);
     $query->execute();
     
     $lastInsertId = $db_con->lastInsertId();
 
     $queryPayment = $db_con->prepare("
-        INSERT INTO booking_payment (bookID, userID, roomID, payType, payStatus) 
+        INSERT INTO booking_payment (bookID, userID, serviceID, payType, payStatus) 
         VALUES (?, ?, ?, ?, ?)
     ");
 
     $queryPayment->bindParam(1, $lastInsertId);
     $queryPayment->bindParam(2, $userId);
-    $queryPayment->bindParam(3, $roomId);
+    $queryPayment->bindParam(3, $serviceId);
     $queryPayment->bindParam(4, $pay);
     $queryPayment->bindValue(5, 0);
     $queryPayment->execute();
@@ -67,13 +72,13 @@ try {
 
 
     $queryBill = $db_con->prepare("
-        INSERT INTO booking_bill (bookID, userID, roomID, payID) 
+        INSERT INTO booking_bill (bookID, userID, serviceID, payID) 
         VALUES (?, ?, ?, ?)
     ");
 
     $queryBill->bindParam(1, $lastInsertId);
     $queryBill->bindParam(2, $userId);
-    $queryBill->bindParam(3, $roomId);
+    $queryBill->bindParam(3, $serviceId);
     $queryBill->bindParam(4, $lastPayId);
     $queryBill->execute();
 

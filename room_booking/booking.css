@@ -6,7 +6,6 @@ input[type="date"]{
     border: none;
     outline: none;
     border-radius: 10px;
-    width: 250px;
 }
 ::-webkit-calendar-picker-indicator{
     background-color: white;

@@ -30,7 +30,7 @@ $payId = $_GET['payId'];
         $sql = "
             SELECT * 
             FROM booking_bill 
-            INNER JOIN room_product ON booking_bill.roomID = room_product.roomID
+            INNER JOIN service_product ON booking_bill.serviceID = service_product.serviceID
             INNER JOIN booking ON booking_bill.bookID = booking.bookID
             LEFT JOIN booking_payment ON booking_bill.payID = booking_payment.payID
             WHERE booking_payment.payID = ?
@@ -125,7 +125,7 @@ $payId = $_GET['payId'];
             <div class="col-md-6" id="deteil_text" style="margin-bottom: 20px; width: 100%; height: 100%; font-size: 14px; border-left: solid 4px #4DA865; border-radius: 10px; padding: 40px 50px; box-shadow: 2px 2px 5px #ccc">
                 <div class="row mb-3" >
                     <div class="col-md-2 fw-bold"><h1 style="font-size: 22px;">ชื่อรายการ: </h1></div> 
-                    <div class="col-md-7 fw-bold"><h1 style="font-size: 22px;"><?php echo $row['roomName'] ?></h1></div>
+                    <div class="col-md-7 fw-bold"><h1 style="font-size: 22px;"><?php echo $row['serviceName'] ?></h1></div>
                 </div>
                 <div class="row mb-1">
                     <div class="col-md-2 fw-bold"><p>วันเข้าพัก:</p></div> 
@@ -141,7 +141,7 @@ $payId = $_GET['payId'];
                 </div>
                 <div class="row mb-1">
                     <div class="col-md-2 fw-bold"><p>ราคาห้องพัก/คืน:</p></div> 
-                    <div class="col-md-7 "><?php echo $row['roomPrice']; ?></div>
+                    <div class="col-md-7 "><?php echo $row['servicePrice']; ?></div>
                 </div>
                 <div class="row mb-1">
                     <div class="col-md-2 fw-bold"><p>ราคาห้องพักทั้งหมด:</p></div> 
@@ -151,7 +151,7 @@ $payId = $_GET['payId'];
                 </div>
                 <div class="row mb-1">
                     <div class="col-md-2 fw-bold"><p>ราคาที่ต้องจ่าย:</p></div> 
-                    <div class="col-md-7 "><?php echo $row['roomPrice']; ?></div>
+                    <div class="col-md-7 "><?php echo $row['servicePrice']; ?></div>
                 </div>
             </div>
         
