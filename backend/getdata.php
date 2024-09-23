@@ -27,6 +27,12 @@
             case 'promotion-data':
                     $response['data'] = "user_data/promotion.php";
                 break;
+            case 'reviwsroom-data':
+                    $response['data'] = "user_data/reviwsroom.php";
+                break;
+            case 'reviwsservice-data':
+                    $response['data'] = "user_data/reviwsservice.php";
+                break;
             default:
                 $response['data'] = "user_data/user_data.php";
         }

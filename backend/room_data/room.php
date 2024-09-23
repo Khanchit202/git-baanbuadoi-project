@@ -177,7 +177,7 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
           </div>
           <div class="mb-3">
                 <label for="checkbox" class="form-label">ต้องการแนะนำห้องพัก</label>
-                <input type="checkbox" class="form-check-input"  id="edit_roomShow" value="1" required>
+                <input type="checkbox" class="form-check-input"  id="edit_roomShow"  required>
             </div>
           <div class="mb-3">
               <label for="roomStd" class="form-label">สถานะห้องพัก</label>

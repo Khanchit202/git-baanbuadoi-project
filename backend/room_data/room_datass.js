@@ -156,6 +156,20 @@ function update_room() {
     var roomStd = document.getElementById('edit_roomStd').value;
     var roomImg = document.getElementById('edit_roomImg').files[0];
 
+    // แสดงค่าที่รับมาที่คอนโซล
+    console.log("roomID: " + roomID);
+    console.log("roomName: " + roomName);
+    console.log("roomDetail: " + roomDetail);
+    console.log("roomBed: " + roomBed);
+    console.log("roomBath: " + roomBath);
+    console.log("roomLo: " + roomLo);
+    console.log("roomMax: " + roomMax);
+    console.log("roomMin: " + roomMin);
+    console.log("roomPrice: " + roomPrice);
+    console.log("roomShow: " + roomShow);
+    console.log("roomStd: " + roomStd);
+    console.log("roomImg: ", roomImg);
+
     // สร้าง FormData object
     var formData = new FormData();
     formData.append('roomID', roomID);
@@ -209,6 +223,7 @@ function update_room() {
 
     xhr.send(formData);
 }
+
 
 
 

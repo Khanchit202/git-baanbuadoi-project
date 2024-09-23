@@ -14,7 +14,7 @@ $roomLo = $_POST['roomLo'];
 $roomMax = $_POST['roomMax'];
 $roomMin = $_POST['roomMin'];
 $roomPrice = $_POST['roomPrice'];
-$roomShow = isset($_POST['roomShow']) ? 1 : 0; // ตรวจสอบว่า checkbox ถูกเลือกหรือไม่
+$roomShow = $_POST['roomShow']; // ตรวจสอบว่า checkbox ถูกเลือกหรือไม่
 $roomStd = $_POST['roomStd'];
 
 // ดึงชื่อไฟล์รูปภาพเก่าจากฐานข้อมูล

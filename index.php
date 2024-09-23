@@ -156,6 +156,7 @@ $db_con = connect_db();
                     </div>
                 </div>
                 </div>
+    <!-- ปิดmodal -->
 
         <div class="text-start mx-auto mt-5 mb-2 wow slideInLeft" data-wow-delay="0.1s">
                 <h1 class="fw-bold" style="margin-left: 70px; color: #BC5686;">แนะนำห้องพัก</h1>
@@ -222,25 +223,25 @@ $db_con = connect_db();
         <div class="menu_pro d-flex justify-content-between" style="margin: 60px 60px;">
             
             <div class="wow fadeInUp" data-wow-delay="0.2s">
-            <div class="button" onclick="showSystemUnavailableAlert()">
+            <div class="button" onclick="window.location.href='./service_product.php'">
                     <i class="lni lni-grid-alt" style="font-size: 30px;  color: #BC5686;"></i>
                     <p style="font-size: 14px;  color: #BC5686;">บริการทั้งหมด</p>
                 </div>
             </div>
             <div class="wow fadeInUp" data-wow-delay="0.4s">
-                <div class="button" onclick="showSystemUnavailableAlert()">
+                <div class="button" onclick="window.location.href='./room_product.php'">
                     <i class="lni lni-caravan" style="font-size: 30px;  color: #BC5686;"></i>
                     <p style="font-size: 14px;  color: #BC5686;">ห้องพัก</p>
                 </div>
             </div>
             <div class="wow fadeInUp" data-wow-delay="0.6s">
-                <div class="button" onclick="showSystemUnavailableAlert()">
+                <div class="button" onclick="window.location.href='./contect.php'">
                     <i class="lni lni-basketball" style="font-size: 30px;  color: #BC5686;"></i>
-                    <p style="font-size: 14px;  color: #BC5686;">บริการ</p>
+                    <p style="font-size: 14px;  color: #BC5686;">เกี่ยวกับเรา</p>
                 </div>
             </div>
             <div class="wow fadeInUp" data-wow-delay="0.8s">
-                <div class="button" onclick="showSystemUnavailableAlert()">
+                <div class="button" onclick="window.location.href='./premaket.php'">
                     <i class="lni lni-book" style="font-size: 30px;  color: #BC5686;"></i>
                     <p style="font-size: 14px;  color: #BC5686;">ข่าวสาร</p>
                 </div>
@@ -451,8 +452,8 @@ $db_con = connect_db();
             <script>
                 function showSystemUnavailableAlert() {
                     Swal.fire({
-                        title: 'ขออภัย!',
-                        text: 'ระบบยังไม่เปิดให้บริการ',
+                        title: 'โปรโมชั่น',
+                        text: 'ท่านสามารถดูโปรโมชั่นที่หน้าหลักได้เลย',
                         icon: 'info',
                         confirmButtonText: 'ตกลง',
                         allowOutsideClick: false,
@@ -478,7 +479,7 @@ $db_con = connect_db();
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    <script type="text/javascript" src="./backend/promotion_data/promotions.js"></script>        
+    <script type="text/javascript" src="./backend/promotion_data/promotion.js"></script>        
     
 </body>
 </html>

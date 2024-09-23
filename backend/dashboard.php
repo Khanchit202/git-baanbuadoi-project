@@ -86,6 +86,12 @@
                             case 'promotion-data':
                                 include 'promotion_data/promotion.php';
                                 break;
+                            case 'reviwsroom-data':
+                                    include 'reviwsroom_data/reviwsroom.php';
+                                    break;
+                            case 'reviwsservice-data':
+                                    include 'reviwsservice_data/reviwsservice.php';
+                                    break;
                             default:
                                 echo "<h2>ไม่พบหน้า</h2>";
                         }
@@ -104,12 +110,13 @@
     <!-- นำเข้า javascript .js -->
     <script src="main.js"></script>
     <script type="text/javascript" src="./user_data/user_datass.js"></script>
-    <script type="text/javascript" src="./room_data/room_datas.js"></script>
+    <script type="text/javascript" src="./room_data/room_datass.js"></script>
     <script type="text/javascript" src="./service_data/service_datas.js"></script>
     <script type="text/javascript" src="./premaket_data/premaket_datas.js"></script>
     <script type="text/javascript" src="./booking_payment_data/payment.js"></script>
     <script type="text/javascript" src="./booking_data/booking.js"></script>
     <script type="text/javascript" src="./promotion_data/promotion.js"></script>
+    <script type="text/javascript" src="./reviwsroom_data/reviwsroom.js"></script>
     
     
     

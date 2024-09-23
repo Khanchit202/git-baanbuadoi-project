@@ -68,6 +68,18 @@ function admin_dash($lavel_name, $lavel_color) {
                     <li class="sidebar-item">
                         <a href="?page=service-data" class="sidebar-link <?php echo ($current_page == 'service-data' ? 'active' : '') ?>">บริการ</a>
                     </li>
+                    <li class="sidebar-item">
+                        <a href="?page=reviwsroom-data" class="sidebar-link <?php echo ($current_page == 'reviwsroom-data' ? 'active' : '') ?>">ข้อมูลรีวิวห้องพัก</a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="?page=reviwsservice-data" class="sidebar-link <?php echo ($current_page == 'reviwsservice-data' ? 'active' : '') ?>">ข้อมูลรีวิวบริการ</a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="?page=premaket-data" class="sidebar-link <?php echo ($current_page == 'premaket-data' ? 'active' : '') ?>">จัดการข้อมูลข่าวสาร</a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="?page=promotion-data" class="sidebar-link <?php echo ($current_page == 'promotion-data' ? 'active' : '') ?>">จัดการข้อมูลโปรโมชั่น</a>
+                    </li>
                 </ul>
             </li>
             <li class="sidebar-item">
@@ -109,7 +121,21 @@ function owner_dash($lavel_name, $lavel_color) {
                     <li class="sidebar-item">
                         <a href="?page=service-data" class="sidebar-link <?php echo ($current_page == 'service-data' ? 'active' : '') ?>">บริการ</a>
                     </li>
+                    <li class="sidebar-item">
+                        <a href="?page=reviwsroom-data" class="sidebar-link <?php echo ($current_page == 'reviwsroom-data' ? 'active' : '') ?>">ข้อมูลรีวิวห้องพัก</a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="?page=reviwsservice-data" class="sidebar-link <?php echo ($current_page == 'reviwsservice-data' ? 'active' : '') ?>">ข้อมูลรีวิวบริการ</a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="?page=premaket-data" class="sidebar-link <?php echo ($current_page == 'premaket-data' ? 'active' : '') ?>">จัดการข้อมูลข่าวสาร</a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="?page=promotion-data" class="sidebar-link <?php echo ($current_page == 'promotion-data' ? 'active' : '') ?>">จัดการข้อมูลโปรโมชั่น</a>
+                    </li>
                 </ul>
+                
+                    
             </li>
         </ul>
     <?php
@@ -150,6 +176,12 @@ function emp_dash($lavel_name, $lavel_color) {
                     </li>
                     <li class="sidebar-item">
                         <a href="?page=promotion-data" class="sidebar-link <?php echo ($current_page == 'promotion-data' ? 'active' : '') ?>">จัดการข้อมูลโปรโมชั่น</a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="?page=reviwsroom-data" class="sidebar-link <?php echo ($current_page == 'reviwsroom-data' ? 'active' : '') ?>">จัดการข้อมูลรีวิวห้องพัก</a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="?page=reviwsservice-data" class="sidebar-link <?php echo ($current_page == 'reviwsservice-data' ? 'active' : '') ?>">จัดการข้อมูลรีวิวบริการ</a>
                     </li>
                     
                 </ul>
