@@ -37,7 +37,6 @@ if (!$room) {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Icon Font Stylesheet -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="booking.css">
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
@@ -98,11 +97,21 @@ if (!$room) {
 
         <div id="booking_form" class="bg-light" style="margin:20px 2%; padding: 20px 30px; display:none;">
             <h1 class="fw-bold" style="font-size: 16px;">เลือกวันที่ต้องการจอง</h1>
-            <div class="row">
-                <input type="date" id="booking_date" class="col-md-2 form-control" />
-                <button onclick="checkBooking('<?php echo $id ?>')" class="col-md-7 btn btn-custom" style="width: 200px; height">ตรวจสอบ</button>
+                <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="payer_first_name" class="form-label">เลือกวันเข้าพัก</label>
+                            <input type="date" id="booking_date" class="col-md-2 form-control"/>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="last_name" class="form-label">เลือกวันคืนห้องพัก</label>
+                            <input type="date" id="booking_dateend" class="col-md-2 form-control"/>
+                        </div>
+                        <div class="col-md-12 mb-3 text-end">
+                            <button onclick="checkBooking('<?php echo $id ?>')" class="col-md-7 btn btn-custom " style="width: 200px; height">ตรวจสอบ</button>
+                        </div>
+                    </div> 
             </div>
-        </div>
+       
 
         <div id="customer_info" class="bg-light" style="margin:20px 2%; padding: 20px 30px; display:none">            
             <div class="row mt-2">

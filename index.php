@@ -304,7 +304,7 @@ $db_con = connect_db();
                 <?php 
                 $count = 0;
                 foreach ($services as $service) { 
-                    if ($count >= 4) break; // แสดงแค่ 4 การ์ด
+                    if ($count >= 4) break;
                     // กำหนดข้อความและสีพื้นหลังตามค่า stdID
                     if ($room['stdID'] == '00001') {
                         $statusText = 'มีบริการ';
@@ -318,9 +318,6 @@ $db_con = connect_db();
                 <div class="wow fadeInUp" data-wow-delay="0.5s" style="margin: 30px;">
                     <div class="card position-relative text-white card-hover mb-5" style="width: 250px; height: 300px; overflow: hidden; position: relative; border-radius: 5px;">
                         <img src="img/service/<?php echo $service['servicePic']; ?>" class="card-img" alt="Room Image" style="height: 100%; object-fit: cover;">
-                        <span class="badge position-absolute custom-badge" style="top: 10px; left: 15px; background-color: <?php echo $badgeColor; ?>; color: white; border-radius: 5px; padding: 10px 20px; opacity: 60%;">
-                            <?php echo $statusText; ?>
-                        </span>
                         <div class="card-img-overlay d-flex flex-column justify-content-end" style="color: #000;">
                             <div class="overlay-content p-4" style="background: rgba(255, 255, 255, 0.9); border-radius: 10px; transition: transform 0.3s;">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
@@ -332,7 +329,7 @@ $db_con = connect_db();
                                 </div>
                             </div>
                         </div>
-                        <a href="javascript:void(0);" class="book-button" onclick="showSystemUnavailableAlert()" style="position: absolute; top: 230px; left: 10%; width: 80%; height: 50px; background-color: <?php echo $buttonColor; ?>; color: white; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;"><?php echo $buttonText; ?></a>
+                        <a href="deteil_service.php?id=<?php echo $service['serviceID']; ?>" class="book-button" style="position: absolute; top: 230px; left: 10%; width: 80%; height: 50px; background-color: <?php echo $buttonColor; ?>; color: white; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;"><?php echo $buttonText; ?></a>
                     </div>
                 </div>
                 <?php 

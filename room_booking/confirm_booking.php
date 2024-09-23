@@ -29,8 +29,8 @@ try {
     $bookingDateEnd = $dateEnd->format('Y-m-d') . ' 11:00:00';
 
     $query = $db_con->prepare("
-        INSERT INTO booking (bookName, bookTel, bookDateStart, bookDateEnd, bookPrice, bookDetail, bookDate, bookConfirm, bookStatus, bookCancel, userID, pmtID, roomID, serviceID) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO booking (bookName, bookTel, bookDateStart, bookDateEnd, bookPrice, bookDetail, bookDate, bookConfirm, bookStatus, bookCancel, userID, pmtID, roomID, serviceID, bookType) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ");
 
     $query->bindParam(1, $customerName);
@@ -47,6 +47,7 @@ try {
     $query->bindParam(12, $bookingPro);
     $query->bindParam(13, $roomId);
     $query->bindParam(14, $serviceId);
+    $query->bindValue(15, 1);
     $query->execute();
     
     $lastInsertId = $db_con->lastInsertId();

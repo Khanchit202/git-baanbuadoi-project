@@ -3,17 +3,17 @@ include ("db_config.php");
 $db_con = connect_db();
 $id = $_GET['id'];
 
-$query = $db_con->prepare("SELECT * FROM room_product WHERE roomID = :id");
+$query = $db_con->prepare("SELECT * FROM service_product WHERE serviceID = :id");
 $query->bindParam(':id', $id, PDO::PARAM_INT);
 $query->execute();
-$room = $query->fetch(PDO::FETCH_ASSOC);
+$ser = $query->fetch(PDO::FETCH_ASSOC);
 
-$price = $room['roomPrice'];
+$price = $ser['servicePrice'];
 $deposit = ($price * 30) / 100;
 $deposit = number_format($deposit, 2);
 
-if (!$room) {
-    die("Room not found.");
+if (!$ser) {
+    die("Service not found.");
 }
 ?>
 <!DOCTYPE html>
@@ -53,45 +53,32 @@ if (!$room) {
         <div class="container mt-5">
             <div class="row">
                 <div class="col-md-6 mb-3" id="deteil_img">
-                    <?php if (isset($room['roomPic'])): ?>
-                        <img style="border-radius: 10px; width: 100%; height: 500px; object-fit: cover;" src="img/room_pic/<?php echo htmlspecialchars($room['roomPic']); ?>" alt="Room Image" class="img-fluid">
+                    <?php if (isset($ser['servicePic'])): ?>
+                        <img style="border-radius: 10px; width: 100%; height: 500px; object-fit: cover;" src="img/service/<?php echo htmlspecialchars($ser['servicePic']); ?>" alt="Service Image" class="img-fluid">
                     <?php endif; ?>
                 </div>
 
                 <div class="col-md-6" id="deteil_text" style="height: 500px; font-size: 14px; border-left: solid 4px #4DA865; border-radius: 10px; padding: 30px 30px; box-shadow: 2px 2px 5px #ccc">
-                        <h1 class="fw-bold" style="font-size: 20px; margin-bottom: 20px;"><?php echo htmlspecialchars($room['roomName']); ?></h1>
+                        <h1 class="fw-bold" style="font-size: 20px; margin-bottom: 20px;"><?php echo htmlspecialchars($ser['serviceName']); ?></h1>
                         <br>
                         <div class="row mb-1">
                             <div class="col-md-3 fw-bold"><p>รายละเอียด</p></div> 
-                            <div class="col-md-7"><?php echo htmlspecialchars($room['roomDetail']); ?></div>
+                            <div class="col-md-7"><?php echo htmlspecialchars($ser['serviceDetail']); ?></div>
                         </div>
                         <br>
                         <div class="row mb-2">
                             <div class="col-md-3 fw-bold"><p>ตั้งอยู่ที่</p></div> 
-                            <div style="color:#4DA865; " class="col-md-7 fw-bold"><i class="lni lni-map-marker me-2" style=""></i><?php echo htmlspecialchars($room['roomLocation']); ?></div>
+                            <div style="color:#4DA865; " class="col-md-7 fw-bold"><i class="lni lni-map-marker me-2"></i>บ้านนอแล ดอยอ่างขาง</div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-md-3 fw-bold"><p>จำนวนเตียงนอน</p></div> 
-                            <div style="color:#4DA865; " class="col-md-2 fw-bold"><?php echo htmlspecialchars($room['roomBed']); ?> <i class="fa fa-bed me-2" style="padding: 5px; margin-left: 5px;"></i></div>
-                            <div class="col-md-3 fw-bold"><p>จำนวนห้องน้ำ</p></div> 
-                            <div style="color:#4DA865; " class="col-md-2 fw-bold"><?php echo htmlspecialchars($room['roomBed']); ?> <i class="fa fa-bath me-2" style="padding: 5px; margin-left: 5px;"></i></div>
+                            <div style="color:#4DA865; " class="col-md-2 fw-bold"><?php echo htmlspecialchars($ser['servicePrice']); ?></div>
+                            <div class="col-md-3 fw-bold"><p>เวลาให้บริการ/ครั้ง</p></div> 
+                            <div style="color:#4DA865; " class="col-md-2 fw-bold"><?php echo htmlspecialchars($ser['serviceTime']); ?> ชั่วโมง</div>
                         </div>
 
-                        <div class="row mb-2">
-                            <div class="col-md-3 fw-bold"><p>จำนวนห้องน้ำ</p></div> 
-                            <div style="color:#4DA865; " class="col-md-2 fw-bold"><?php echo htmlspecialchars($room['roomMin']); ?> - <?php echo htmlspecialchars($room['roomMax']);?> <i class="lni lni-users me-2" style="font-size: 12px; margin-left: 5px;"></i></div>
-                            <div class="col-md-3 fw-bold"><p>*ราคามัดจำ</p></div> 
-                            <div style="color:#4DA865; " class="col-md-2 fw-bold">30 เปอร์เซ็น</div>
-                        </div>
-                        
-                        <div class="row mb-1">
-                            <div class="col-md-3 fw-bold"><p>ราคา/คืน</p></div> 
-                            <div class="col-md-2 bg-light text-center" style="margin:0; padding:0; border-radius: 10px;"><h3 class="fw-bold" style="font-size:14px; margin-top:10px;"><?php echo $price ?> ฿</h3></div>
-                            <div class="col-md-3 fw-bold"><p>ราคามัดจำ</p></div> 
-                            <div class="col-md-2 bg-light text-center" style="margin:0; padding:0; border-radius: 10px;"><h3 class="fw-bold" style="font-size:14px; margin-top:10px;"><?php echo $deposit ?> ฿</h3></div>
-                        </div>
                     <br><br>                     
-                    <button onclick="window.location.href='room_booking/booking.php?id=<?php echo $room['roomID']; ?>'" class="btn btn-custom" style="width: 100%;"> + จอง </button>
+                    <button onclick="window.location.href='service_booking/booking.php?id=<?php echo $ser['serviceID']; ?>'" class="btn btn-custom" style="width: 100%;"> + จอง </button>
                 </div>
             </div>
         </div>
@@ -125,17 +112,14 @@ if (!$room) {
                                             <i class="fa fa-star-half-alt"></i>
                                         </div>
                                     </div>
-                                    <p style="width: 90%; font-size: 10px;">ห้องพักมีความสะดวกสบาย และสะอาดมากครับห้องพักมีความสะดวกสบาย และสะอาดมากครับห้องพักมีความสะดวกสบาย และสะอาดมากครับ</p>
+                                    <p class="testimonial-text" style="font-size: 10px;">บรรยากาศดี อาหารอร่อย บริการเยี่ยมมากครับ!</p>
                                 </div>
                             </div>
                         </div>
-
                     <?php } ?>
                 </div>
             </div>
         </div>
-
-    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

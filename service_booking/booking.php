@@ -9,18 +9,17 @@ if (($_SESSION['userID']) == "") {
     exit;
 }
 
-$query = $db_con->prepare("SELECT * FROM room_product WHERE roomID = :id");
+$query = $db_con->prepare("SELECT * FROM service_product WHERE serviceID = :id");
 $query->bindParam(':id', $id, PDO::PARAM_INT);
 $query->execute();
-$room = $query->fetch(PDO::FETCH_ASSOC);
+$ser = $query->fetch(PDO::FETCH_ASSOC);
 
-$price = $room['roomPrice'];
+$price = $ser['servicePrice'];
 $deposit = ($price * 30) / 100;
 $deposit = number_format($deposit, 2);
 
-
-if (!$room) {
-    die("Room not found.");
+if (!$ser) {
+    die("Service not found.");
 }
 ?>
 <!DOCTYPE html>
@@ -35,59 +34,60 @@ if (!$room) {
     <link rel="stylesheet" href="booking.css">
     <link rel="stylesheet" href="https://cdn.lineicons.com/3.0/lineicons.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
     <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="booking.css">
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <script type="text/javascript" src="indexs.js"></script>
 </head>
 <body>
+
     <div class="container-xxl bg-white p-0">
         
-        <div onclick="goBack()" class="btn btn-lg btn-custom " style="position: fixed;top: 45px;left: 88%;z-index: 1000;cursor: pointer;">
-            <i class="fa fa-arrow-left" style="color: #ffffff;"></i>
+        <div onclick="goBack()" class="btn btn-lg btn-custom " style="position: fixed;top: 70px;left: 86%;z-index: 1000;cursor: pointer;">
+            <div class="d-flex">
+                <i class="fa fa-arrow-left" style="color: #ffffff;"></i>
+                <h5 style="font-size: 10px; padding:0; margin: 0; padding-left: 5px;">กลับ</h5>
+            </div>
         </div>
 
         <div class="container mt-5">
             <div class="row">
                 <div class="col-md-6 mb-3" id="deteil_img">
-                    <?php if (isset($room['roomPic'])): ?>
-                        <img style="border-radius: 10px; width: 100%; height: 500px; object-fit: cover;" src="../img/room_pic/<?php echo htmlspecialchars($room['roomPic']); ?>" alt="Room Image" class="img-fluid">
+                    <?php if (isset($ser['servicePic'])): ?>
+                        <img style="border-radius: 10px; width: 100%; height: 500px; object-fit: cover;" src="../img/service/<?php echo htmlspecialchars($ser['servicePic']); ?>" alt="Service Image" class="img-fluid">
                     <?php endif; ?>
                 </div>
-                <div class="col-md-6 mt-2" id="deteil_text" style="font-size: 12px;">
-                        <h1 class="fw-bold" style="font-size: 20px; margin-bottom: 20px;"><?php echo htmlspecialchars($room['roomName']); ?></h1>
+
+                <div class="col-md-6" id="deteil_text" style="height: 500px; font-size: 14px; border-left: solid 4px #4DA865; border-radius: 10px; padding: 30px 30px; box-shadow: 2px 2px 5px #ccc">
+                        <h1 class="fw-bold" style="font-size: 20px; margin-bottom: 20px;"><?php echo htmlspecialchars($ser['serviceName']); ?></h1>
                         <br>
                         <div class="row mb-1">
                             <div class="col-md-3 fw-bold"><p>รายละเอียด</p></div> 
-                            <div class="col-md-7"><?php echo htmlspecialchars($room['roomDetail']); ?></div>
+                            <div class="col-md-7"><?php echo htmlspecialchars($ser['serviceDetail']); ?></div>
                         </div>
                         <br>
                         <div class="row mb-2">
                             <div class="col-md-3 fw-bold"><p>ตั้งอยู่ที่</p></div> 
-                            <div style="color:#4DA865; " class="col-md-7 fw-bold"><i class="lni lni-map-marker me-2" style=""></i><?php echo htmlspecialchars($room['roomLocation']); ?></div>
+                            <div style="color:#4DA865; " class="col-md-7 fw-bold"><i class="lni lni-map-marker me-2"></i>บ้านนอแล ดอยอ่างขาง</div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-md-3 fw-bold"><p>จำนวนเตียงนอน</p></div> 
-                            <div style="color:#4DA865; " class="col-md-2 fw-bold"><?php echo htmlspecialchars($room['roomBed']); ?> <i class="fa fa-bed me-2" style="padding: 5px; margin-left: 5px;"></i></div>
-                            <div class="col-md-3 fw-bold"><p>จำนวนห้องน้ำ</p></div> 
-                            <div style="color:#4DA865; " class="col-md-2 fw-bold"><?php echo htmlspecialchars($room['roomBed']); ?> <i class="fa fa-bath me-2" style="padding: 5px; margin-left: 5px;"></i></div>
+                            <div style="color:#4DA865; " class="col-md-2 fw-bold"><?php echo htmlspecialchars($ser['servicePrice']); ?></div>
+                            <div class="col-md-3 fw-bold"><p>เวลาให้บริการ/ครั้ง</p></div> 
+                            <div style="color:#4DA865; " class="col-md-2 fw-bold"><?php echo htmlspecialchars($ser['serviceTime']); ?> ชั่วโมง</div>
                         </div>
-
-                        <div class="row mb-2">
-                            <div class="col-md-3 fw-bold"><p>จำนวนห้องน้ำ</p></div> 
-                            <div style="color:#4DA865; " class="col-md-2 fw-bold"><?php echo htmlspecialchars($room['roomMin']); ?> - <?php echo htmlspecialchars($room['roomMax']);?> <i class="lni lni-users me-2" style="font-size: 12px; margin-left: 5px;"></i></div>
-                            <div class="col-md-3 fw-bold"><p>ราคามัดจำ (กรณีจองออนไลท์)</p></div> 
-                            <div style="color:#4DA865; " class="col-md-2 fw-bold">30 เปอร์เซ็น</div>
-                        </div>
-                        
-                        <div class="row mb-2">
-                            <div class="col-md-3 fw-bold"><p>ราคา/คืน</p></div> 
-                            <div class="col-md-2 bg-light text-center" style="margin:0; padding:0; border-radius: 10px;"><h3 class="fw-bold" style="font-size:14px; margin-top:10px;"><?php echo $price ?> ฿</h3></div>
-                            <div class="col-md-3 fw-bold"><p>ราคามัดจำ</p></div> 
-                            <div class="col-md-2 bg-light text-center" margin:0; padding:0; border-radius: 10px;"><h3 class="fw-bold" style="font-size:14px; margin-top:10px;"><?php echo $deposit ?> ฿</h3></div>
-                        </div>
-                    <br><br>                     
+                    <br><br>                      
                     <button onclick="showBookingForm('<?php echo $id ?>')" class="btn btn-custom" style="width: 100%;"> ยืนยันการจอง </button>
                 </div>
             </div>
@@ -95,11 +95,32 @@ if (!$room) {
 
         <div id="booking_form" class="bg-light" style="margin:20px 2%; padding: 20px 30px; display:none;">
             <h1 class="fw-bold" style="font-size: 16px;">เลือกวันที่ต้องการจอง</h1>
-            <div class="row">
-                <input type="date" id="booking_date" class="col-md-2 form-control" />
-                <button onclick="checkBooking('<?php echo $id ?>')" class="col-md-7 btn btn-custom" style="width: 200px; height">ตรวจสอบ</button>
+                <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="payer_first_name" class="form-label">เลือกวันรับบริการ</label>
+                            <input type="date" id="booking_date" class="col-md-2 form-control"/>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="time" class="form-label">รอบเวลาการจอง</label>
+                            <select id="time" name="bookingTime" class="form-select" required>
+                                <option value="">เลือกเวลารอบ</option>
+                                <option value="09:00:00">รอบที่ 1 (เริ่ม 9.00 น.)</option>
+                                <option value="10:00:00">รอบที่ 2 (เริ่ม 10.00 น.)</option>
+                                <option value="11:00:00">รอบที่ 3 (เริ่ม 11.00 น.)</option>
+                                <option value="12:00:00">รอบที่ 4 (เริ่ม 12.00 น.)</option>
+                                <option value="13:00:00">รอบที่ 5 (เริ่ม 13.00 น.)</option>
+                                <option value="14:00:00">รอบที่ 6 (เริ่ม 14.00 น.)</option>
+                                <option value="15:00:00">รอบที่ 7 (เริ่ม 15.00 น.)</option>
+                                <option value="16:00:00">รอบที่ 8 (เริ่ม 16.00 น.)</option>
+                                <option value="17:00:00">รอบที่ 9 (เริ่ม 17.00 น.)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12 mb-3 text-end">
+                            <button onclick="checkBooking('<?php echo $id ?>')" class="col-md-7 btn btn-custom " style="width: 200px; height">ตรวจสอบ</button>
+                        </div>
+                    </div> 
             </div>
-        </div>
+        
 
         <div id="customer_info" class="bg-light" style="margin:20px 2%; padding: 20px 30px; display:none">            
             <div class="row mt-2">

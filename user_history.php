@@ -103,10 +103,10 @@ $db_con = connect_db();
 
     <br><br>
     <!-- ส่วนแสดงประวัติการจอง -->
-    <div class="container" style=" padding: 0px 60px;">
-        <div class="pro" style="width: 100%; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 20px 0px;">
+    <div class="container " style=" padding: 0px 60px;">
+        <div class="pro mb-4" style="width: 100%; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 20px 0px;">
             <div class="d-flex justify-content-between m-2 mb-3" style="padding: 10px 35px;">
-                <p>ข้อมูลประวัติการจอง</p>
+                <p>ข้อมูลประวัติการจองห้องพัก</p>
                 <div class="d-flex">
                     <button type="button" class="btn" data-toggle="modal" data-target="#myModal" style="font-size: 10px; background-color: #3B8386; color: #ffffff;">แสดงรายการทั้งหมด</button>
                 </div>
@@ -126,26 +126,30 @@ $db_con = connect_db();
                                         <th class="text-center">ตัวเลือก</th>
                                     </tr>
                                 </thead>
+
                                 <tbody>
-                                <?php if ($dataArray) {
+                                <?php 
+                                    $hasData = false; // สถานะการแสดงผลรายการ
+                                    $displayCount = 0; // ตัวนับรายการที่แสดง
                                     foreach ($dataArray as $index => $row) : 
-                                        if ($index >= 5) break; // หยุดลูปเมื่อครบ 5 ครั้ง
-                                ?>
-                                            <tr>
-                                                <!-- ตัวอย่างการดึงข้อมูลจากฐานข้อมูล -->
-                                                <td class="text-center"><?php echo $row['roomName']; ?></td>
+                                        if ($row['bookType'] != 1) continue; // ตรวจสอบ bookType
 
-                                                <?php 
-                                                    $payId = $row['payID'];
-                                                    $datetime = $row['bookDate'];
-                                                    $date = new DateTime($datetime);
+                                        if ($displayCount >= 5) break; // จำกัดจำนวนรายการที่แสดง
+                                        $hasData = true; // มีข้อมูลที่ตรงตามเงื่อนไข
+                                        $displayCount++; // เพิ่มตัวนับ
+                                    ?>
+                                        <tr>
+                                            <td class="text-center"><?php echo $row['roomName']; ?></td>
 
-                                                    $thaiDate = formatThaiDate($date);
-                                                ?>
+                                            <?php 
+                                                $payId = $row['payID'];
+                                                $datetime = $row['bookDate'];
+                                                $date = new DateTime($datetime);
+                                                $thaiDate = formatThaiDate($date);
+                                            ?>
 
-                                                <td class="text-center"><?php echo $thaiDate; ?></td>
-                                                <td class="text-center">
-
+                                            <td class="text-center"><?php echo $thaiDate; ?></td>
+                                            <td class="text-center">
                                                 <?php 
                                                     if ($row['payStatus'] === NULL || $row['bookCancel'] == 1) {
                                                         $pay_status = "";
@@ -161,63 +165,178 @@ $db_con = connect_db();
                                                         $pay_color = '#3B8386';
                                                     }
                                                 ?>
-                                                    <h5 class="text-center" style="background-color: <?php echo $pay_color; ?>; font-size: 8px; padding: 5px 0; border-radius: 10px; color: #ffffff;">
-                                                        <?php echo $pay_status; ?>
-                                                    </h5>
-                                                </td>
-                                                <td class="text-center">
-
+                                                <h5 class="text-center" style="background-color: <?php echo $pay_color; ?>; font-size: 8px; padding: 5px 0; border-radius: 10px; color: #ffffff;">
+                                                    <?php echo $pay_status; ?>
+                                                </h5>
+                                            </td>
+                                            <td class="text-center">
                                                 <?php 
                                                     if($row['billStatus'] == 1){
                                                         $bill_status = "จองสำเร็จ";
                                                         $bill_color = '#A7CF5A';
-                                                    }else if($row['bookCancel'] == 1){
+                                                    } else if($row['bookCancel'] == 1){
                                                         $bill_status = "ยกเลิก";
                                                         $bill_color = '#DE6461';
-                                                    }else if($row['bookCancel'] == 2){
+                                                    } else if($row['bookCancel'] == 2){
                                                         $bill_status = "ถูกระงับ";
                                                         $bill_color = '#DE6461';
-                                                    }else{
+                                                    } else {
                                                         $bill_status = "รอดำเนินการ";
                                                         $bill_color = '#3B8386';
                                                     }
                                                 ?>
-                                                    <h5 class="text-center" style="background-color: <?php echo $bill_color; ?>; font-size: 8px; padding: 5px 0; border-radius: 10px; color: #ffffff;">
-                                                        <?php echo $bill_status; ?> <!-- ใส่สถานะการจองจากฐานข้อมูล -->
-                                                    </h5>
-                                                </td>
-                                                <td class="text-center"><?php echo $row['note'] ?? ' - '; ?></td>
-                                                <td class="text-start">
+                                                <h5 class="text-center" style="background-color: <?php echo $bill_color; ?>; font-size: 8px; padding: 5px 0; border-radius: 10px; color: #ffffff;">
+                                                    <?php echo $bill_status; ?>
+                                                </h5>
+                                            </td>
+                                            <td class="text-center"><?php echo $row['note'] ?? ' - '; ?></td>
+                                            <td class="text-start">
                                                 <?php
                                                     if($row['bookStatus'] == 1){
                                                         echo '<button type="button" class="btn me-1" data-toggle="modal" data-target="#myModal" style="font-size: 8px; background-color: #3B8386; color: #ffffff; border-radius: 5px;">ดูรายละเอียด</button>';
                                                     }
                                                     if($row['payStatus'] == 2 || $row['payStatus'] == 1 && $row['bookCancel'] != 1){
                                                         echo '<button type="button" class="btn me-1" data-toggle="modal" data-target="#myModal" style="font-size: 8px; background-color: #4caf50; color: #ffffff; border-radius: 5px;">การชำระเงิน</button>';
-                                                    }else if($row['payStatus'] === NULL || $row['payStatus'] == 0 && $row['bookCancel'] != 1){
+                                                    } else if($row['payStatus'] === NULL || $row['payStatus'] == 0 && $row['bookCancel'] != 1){
                                                         echo '<a href="payment/payment.php?payId='.$row['payID'].'" class="btn me-1 fw-bold" style="font-size: 8px; border: solid 1px #4caf50; color: #4caf50; background-color: none; border-radius: 5px;">ดำเนินการชำระเงิน</a>';
                                                     }
-                                                     if($row['billStatus'] == 1){
+                                                    if($row['billStatus'] == 1){
                                                         echo '<button onclick="redirectToReport()" type="button" class="btn" style="font-size: 8px; background-color: #DE6461; color: #ffffff; border-radius: 5px;">พิมพ์ใบจอง</button>';
                                                     }
                                                 ?>
-                                                </td>
-                                            </tr>
+                                            </td>
+                                        </tr>
 
-                                        <?php  endforeach;
-                                            
-                                    } else { ?>
+                                    <?php endforeach; ?>
+                                    <?php if (!$hasData) { ?>
                                         <tr>
                                             <td colspan="6" class="text-center">ไม่มีรายการแสดง</td>
                                         </tr>
                                     <?php } ?>
-
                                 </tbody>
+
 
                             </table>
                         </div>
             </div>
         </div>
+
+
+
+        <?php
+        $sql2 = "
+            SELECT * 
+            FROM booking_bill 
+            INNER JOIN service_product ON booking_bill.serviceID = service_product.serviceID
+            INNER JOIN booking ON booking_bill.bookID = booking.bookID
+            LEFT JOIN booking_payment ON booking_bill.payID = booking_payment.payID
+            WHERE booking_bill.userID = :userID
+            ORDER BY booking_bill.billID DESC
+        ";
+
+
+        $data3 = $db_con->prepare($sql2);
+        $data3->bindParam(':userID', $userID, PDO::PARAM_INT);
+        $data3->execute();
+        $dataArray2 = $data3->fetchAll(PDO::FETCH_ASSOC);
+        ?>
+
+
+         <div class="pro" style="width: 100%; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 20px 0px;">
+    <div class="d-flex justify-content-between m-2 mb-3" style="padding: 10px 35px;">
+        <p>ข้อมูลประวัติการจองบริการ</p>
+        <div class="d-flex">
+            <button type="button" class="btn" data-toggle="modal" data-target="#myModal" style="font-size: 10px; background-color: #3B8386; color: #ffffff;">แสดงรายการทั้งหมด</button>
+        </div>
+    </div>
+
+    <div class="testimonial-item rounded" style="font-size: 12px; padding: 10px 25px;">
+    <div class="table-responsive" style="overflow-x: auto;">
+        <table class="table table-hover table-bordered" style="min-width: 800px;">
+            <thead style="background-color: #97C7C9;">
+                <tr>
+                    <th class="text-center">ชื่อรายการ</th>
+                    <th class="text-center">วันที่ทำการ</th>
+                    <th class="text-center">การชำระเงิน</th>
+                    <th class="text-center">สถานะ</th>
+                    <th class="text-center">หมายเหตุ</th>
+                    <th class="text-center">ตัวเลือก</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php 
+                $hasData2 = false;
+                $displayCount2 = 0;
+                    foreach ($dataArray2 as $index2 => $row2) : 
+                    if ($row2['bookType'] != 2) continue;
+
+                    if ($displayCount2 >= 5) break;
+                        $hasData2 = true;
+                        $displayCount2++;
+                    ?>
+
+                    <tr>
+                        <td class="text-center"><?php echo $row2['serviceName']; ?></td>
+
+                        <?php 
+                            $datetime = $row2['bookDate'];
+                            $date = new DateTime($datetime);
+                            $thaiDate = formatThaiDate($date);
+                        ?>
+                        <td class="text-center"><?php echo $thaiDate; ?></td>
+                        <td class="text-center">
+                            <?php 
+                                $pay_status = ($row2['payStatus'] === NULL || $row2['bookCancel'] == 1) ? "" : ($row2['payStatus'] == 1 ? "กำลังตรวจสอบ" : ($row2['payStatus'] == 2 ? "ชำระเงินแล้ว" : "รอการชำระเงิน"));
+                                $pay_color = ($row2['payStatus'] === NULL || $row2['bookCancel'] == 1) ? '' : ($row2['payStatus'] == 1 ? '#4caf50' : ($row2['payStatus'] == 2 ? '#A7CF5A' : '#3B8386'));
+                            ?>
+                            <h5 class="text-center" style="background-color: <?php echo $pay_color; ?>; font-size: 8px; padding: 5px 0; border-radius: 10px; color: #ffffff;">
+                                <?php echo $pay_status; ?>
+                            </h5>
+                        </td>
+                        <td class="text-center">
+                            <?php 
+                                $bill_status = ($row2['billStatus'] == 1) ? "จองสำเร็จ" : (($row2['bookCancel'] == 1 || $row2['bookCancel'] == 2) ? "ยกเลิก" : "รอดำเนินการ");
+                                $bill_color = ($row2['billStatus'] == 1) ? '#A7CF5A' : (($row2['bookCancel'] == 1 || $row2['bookCancel'] == 2) ? '#DE6461' : '#3B8386');
+                            ?>
+                            <h5 class="text-center" style="background-color: <?php echo $bill_color; ?>; font-size: 8px; padding: 5px 0; border-radius: 10px; color: #ffffff;">
+                                <?php echo $bill_status; ?>
+                            </h5>
+                        </td>
+                        <td class="text-center"><?php echo $row2['note'] ?? ' - '; ?></td>
+                        <td class="text-start">
+                            <?php
+                                if($row2['bookStatus'] == 1){
+                                    echo '<button type="button" class="btn me-1" data-toggle="modal" data-target="#myModal" style="font-size: 8px; background-color: #3B8386; color: #ffffff; border-radius: 5px;">ดูรายละเอียด</button>';
+                                }
+                                if($row2['payStatus'] == 2 || ($row2['payStatus'] == 1 && $row2['bookCancel'] != 1)){
+                                    echo '<button type="button" class="btn me-1" data-toggle="modal" data-target="#myModal" style="font-size: 8px; background-color: #4caf50; color: #ffffff; border-radius: 5px;">การชำระเงิน</button>';
+                                } else if($row2['payStatus'] === NULL || ($row2['payStatus'] == 0 && $row2['bookCancel'] != 1)){
+                                    echo '<a href="payment/payment_service.php?payId='.$row2['payID'].'" class="btn me-1 fw-bold" style="font-size: 8px; border: solid 1px #4caf50; color: #4caf50; background-color: none; border-radius: 5px;">ดำเนินการชำระเงิน</a>';
+                                }
+                                if($row2['billStatus'] == 1){
+                                    echo '<button onclick="redirectToReport()" type="button" class="btn" style="font-size: 8px; background-color: #DE6461; color: #ffffff; border-radius: 5px;">พิมพ์ใบจอง</button>';
+                                }
+                            ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                
+                <?php if (!$hasData2) { ?>
+                    <tr>
+                        <td colspan="6" class="text-center">ไม่มีรายการแสดง</td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</div>
+
+        
+
+
+
     </div>
 </div>
         
