@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 21, 2024 at 11:01 AM
+-- Generation Time: Sep 23, 2024 at 02:44 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -41,18 +41,10 @@ CREATE TABLE `booking` (
   `bookCancel` tinyint(1) NOT NULL,
   `userID` smallint(5) UNSIGNED ZEROFILL NOT NULL,
   `pmtID` tinyint(5) UNSIGNED ZEROFILL NOT NULL,
-  `roomID` smallint(5) UNSIGNED ZEROFILL NOT NULL,
-  `serviceID` smallint(5) UNSIGNED ZEROFILL NOT NULL
+  `roomID` smallint(5) UNSIGNED ZEROFILL DEFAULT NULL,
+  `serviceID` smallint(5) UNSIGNED ZEROFILL DEFAULT NULL,
+  `bookType` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `booking`
---
-
-INSERT INTO `booking` (`bookID`, `bookName`, `bookTel`, `bookDateStart`, `bookDateEnd`, `bookPrice`, `bookDate`, `bookDetail`, `bookConfirm`, `bookStatus`, `bookCancel`, `userID`, `pmtID`, `roomID`, `serviceID`) VALUES
-(00109, 'ครรชิต บางพระ', '0958053137', '2024-09-23 14:00:00', '2024-09-24 11:00:00', '90.00', '2024-09-21 10:55:14', 'ไม่มี', 1, 1, 0, 00004, 00001, 00008, 00001),
-(00110, 'khanchit Bangphra', '0958053137', '2024-09-22 14:00:00', '2024-09-23 11:00:00', '897.00', '2024-09-21 10:56:00', 'sadasd', 1, 1, 0, 00004, 00001, 00016, 00001),
-(00111, 'khanchit Bangphra', '0958053137', '2024-09-29 14:00:00', '2024-09-30 11:00:00', '900.00', '2024-09-21 10:56:41', 'ไม่มี', 1, 1, 0, 00004, 00001, 00013, 00001);
 
 -- --------------------------------------------------------
 
@@ -65,19 +57,10 @@ CREATE TABLE `booking_bill` (
   `payID` smallint(5) UNSIGNED ZEROFILL DEFAULT NULL,
   `bookID` smallint(5) UNSIGNED ZEROFILL NOT NULL,
   `userID` smallint(5) UNSIGNED ZEROFILL NOT NULL,
-  `roomID` smallint(5) UNSIGNED ZEROFILL NOT NULL,
+  `roomID` smallint(5) UNSIGNED ZEROFILL DEFAULT NULL,
   `serviceID` smallint(5) UNSIGNED ZEROFILL DEFAULT NULL,
   `billStatus` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `booking_bill`
---
-
-INSERT INTO `booking_bill` (`billID`, `payID`, `bookID`, `userID`, `roomID`, `serviceID`, `billStatus`) VALUES
-(00086, 00060, 00109, 00004, 00008, NULL, 1),
-(00087, 00061, 00110, 00004, 00016, NULL, 0),
-(00088, 00062, 00111, 00004, 00013, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -94,20 +77,11 @@ CREATE TABLE `booking_payment` (
   `payStatus` tinyint(1) NOT NULL,
   `bookID` smallint(5) UNSIGNED ZEROFILL NOT NULL,
   `userID` smallint(5) UNSIGNED ZEROFILL NOT NULL,
-  `roomID` smallint(5) UNSIGNED ZEROFILL NOT NULL,
+  `roomID` smallint(5) UNSIGNED ZEROFILL DEFAULT NULL,
   `serviceID` smallint(5) UNSIGNED ZEROFILL DEFAULT NULL,
   `payType` varchar(1) DEFAULT NULL,
   `payBank` varchar(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `booking_payment`
---
-
-INSERT INTO `booking_payment` (`payID`, `payPic`, `payDate`, `payNameAc`, `payManey`, `payStatus`, `bookID`, `userID`, `roomID`, `serviceID`, `payType`, `payBank`) VALUES
-(00060, NULL, '2024-09-21 10:55:37', 'ครรชิต บางพระ', '2000.00', 2, 00109, 00004, 00008, NULL, 'C', 'KBANK'),
-(00061, NULL, '2024-09-22 12:00:00', 'ครรชิต บางพระ', '5.00', 1, 00110, 00004, 00016, NULL, 'Q', 'KBANK'),
-(00062, NULL, NULL, NULL, NULL, 0, 00111, 00004, 00013, NULL, 'C', NULL);
 
 -- --------------------------------------------------------
 
@@ -171,7 +145,8 @@ CREATE TABLE `credit_card` (
 
 INSERT INTO `credit_card` (`creditBank`, `creditId`, `creditNumber`, `creditCsv`, `creditValid`, `creditToken`, `creditName`) VALUES
 ('KTB', 00001, '4444-3333-2222-1111', '123', '07/27', 'success', 'KHANCHIT BANGPHRA'),
-('KBANK', 00002, '1234-1234-1234-1234', '123', '22/33', 'success', 'ครรชิต บางพระ');
+('KBANK', 00002, '1234-1234-1234-1234', '123', '22/33', 'success', 'ครรชิต บางพระ'),
+('KBANK', 00003, '1234-1234-1234-1234', '123', '22/33', 'success', 'khanchit bangphra');
 
 -- --------------------------------------------------------
 
@@ -405,7 +380,8 @@ INSERT INTO `users` (`userID`, `userName`, `userPass`, `userFName`, `userLName`,
 (00003, 'emp', '$2y$10$TR.cHBGCl6oux5shnYyBC.8RNh0jr/ljP9sQwHQB7EmWS8fQs.25q', 'employee', 'test', '022222222', 'employee@buadoi.ac.th', 3, 'profile_1.jpg'),
 (00004, 'member', '$2y$10$7y0j5hzGnJZAgqELMzLHQeYlqrUJ3NYiXFOl6FxgoIyEaeCTDahKa', 'member', 'test', '01111111', 'member@buadoi.ac.th', 4, 'profile00004.jpg'),
 (00020, 'khanchit', '$2y$10$Ppqp3k6oO9teSuRmlQuEZu9r5997r8LDid1/N4NNBmKwcvvJiJPuW', 'ครรชิต', 'บางพระ', '0958053137', 'khanchit202@gmail.com', 1, 'profile_1.jpg'),
-(00030, 'khanchit02', '$2y$10$OqvHvC7.FqkyvztMDu2OD.sSkZN3exLBtTfIDfXBDYiPV3OrpAETO', 'ครรชิต', 'บางพระ', '0999999999', 'khanchit@bis.com', 4, 'img/profile/profile_1.jpg');
+(00030, 'khanchit02', '$2y$10$OqvHvC7.FqkyvztMDu2OD.sSkZN3exLBtTfIDfXBDYiPV3OrpAETO', 'ครรชิต', 'บางพระ', '0999999999', 'khanchit@bis.com', 4, 'img/profile/profile_1.jpg'),
+(00031, 'member2', '$2y$10$Aor6pgn7M/LpYMUtI6Q1qupW/ms3FCgQZfvFzpfDKVekjbPZyXmEa', 'khanchit', 'Bangphra', '0958053137', 'khanchit202@gmail.com', 4, 'profile00031.jpg');
 
 -- --------------------------------------------------------
 
@@ -568,19 +544,19 @@ ALTER TABLE `user_lavel`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `bookID` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `bookID` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
 
 --
 -- AUTO_INCREMENT for table `booking_bill`
 --
 ALTER TABLE `booking_bill`
-  MODIFY `billID` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `billID` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 
 --
 -- AUTO_INCREMENT for table `booking_payment`
 --
 ALTER TABLE `booking_payment`
-  MODIFY `payID` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `payID` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT for table `checking`
@@ -598,7 +574,7 @@ ALTER TABLE `checking_fine`
 -- AUTO_INCREMENT for table `credit_card`
 --
 ALTER TABLE `credit_card`
-  MODIFY `creditId` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `creditId` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `news`
@@ -652,7 +628,7 @@ ALTER TABLE `statistics`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `userID` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `user_lavel`
