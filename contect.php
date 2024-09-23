@@ -41,7 +41,7 @@ $db_con = connect_db();
         <?php
             
 
-            $sql = 'SELECT newTitle, newDetail,newID,newPic FROM news WHERE newID = "00017"';
+            $sql = 'SELECT newTitle, newDetail,newID,newPic FROM news WHERE newID = "00016"';
             $stmt = $db_con->prepare($sql);
             $stmt->execute();
 

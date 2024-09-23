@@ -155,6 +155,22 @@ function show_pro(pmtID) {
     $('#editpmtEndDate').val(pmtID.pmtEndDate);
 }
 
+
+function select_promo(promotion) {
+    // แสดง modal
+    $('#exampleModal').modal('show');
+
+    // ตั้งค่าข้อมูลใน modal
+    $('#pmtTitle').text(promotion.pmtTitle);
+    $('#pmtDetail').text(promotion.pmtDetail);
+    $('#pmtCode').text(promotion.pmtCode).css('background-color', '#00FFFF');
+    $('#pmtDiscont').text(promotion.pmtDiscont +'บาท');
+    $('#pmtStartDate').text(promotion.pmtStartDate);
+    $('#pmtEndDate').text(promotion.pmtEndDate);
+}
+
+
+
 function update_pro() {
     // รับค่าจากฟอร์ม
     var pmtID = document.getElementById('editpmtID').value;

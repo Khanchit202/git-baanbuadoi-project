@@ -64,15 +64,98 @@ $db_con = connect_db();
                         <?php foreach ($pmt as $promotion): ?>
                             <div class="testimonial-item bg-light rounded p-3">
                                 <div class="bg-white border rounded p-4">
-                                    <img src="img/promotion_pic/<?php echo $promotion['pmtPic']; ?>" alt="Image 1" class="img-fluid"style="width: 500px; height: 150px; object-fit: cover;">
+                                <button type="button" class="btn btn-primary" style="padding: 0; border: none; background: none;" 
+                                        onclick="select_promo({
+                                            pmtID: '<?php echo addslashes($promotion['pmtID']); ?>',
+                                            pmtTitle: '<?php echo addslashes($promotion['pmtTitle']); ?>',
+                                            pmtDetail: '<?php echo addslashes($promotion['pmtDetail']); ?>',
+                                            pmtDiscont: '<?php echo addslashes($promotion['pmtDiscont']); ?>',
+                                            pmtCode: '<?php echo addslashes($promotion['pmtCode']); ?>',
+                                            pmtStartDate: '<?php echo addslashes($promotion['pmtStartDate']); ?>',
+                                            pmtEndDate: '<?php echo addslashes($promotion['pmtEndDate']); ?>'
+                                        })">
+                                    <img src="img/promotion_pic/<?php echo $promotion['pmtPic']; ?>" alt="Image 1" class="img-fluid" style="width: 500px; height: 150px; object-fit: cover;">
+                                </button>
+
+
                                 </div>
                             </div>
                         <?php endforeach; ?>
                     </div>
                 </div>
             </div>
-
-
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="addDataModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-xl">
+                    <div class="modal-content">
+                    <div class="modal-header ">
+                        <h5 class="modal-title " id="addDataModalLabel">
+                        <img src="tabbar_view/baanbuadoi.png" alt="Logo" style="height: 80px; margin-right: 10px;">
+                        รายละเอียดโปรโมชั่น
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row mb-3 d-flex justify-content-center">
+                            <div class="col-2">
+                                <label for="pmtID" class="form-label" style="font-weight: bold;margin-left: 20px;">โปรโมชั่น:</label>
+                            </div>
+                            <div class="col-3">
+                                <p id="pmtTitle"></p>
+                            </div>
+                            
+                        </div>
+                        <div class="row mb-3 d-flex justify-content-center">
+                            <div class="col-2">
+                                <label for="pmtDetail" class="form-label" style="font-weight: bold;margin-left: 20px;">รายละเอียดโปรโมชั่น:</label>
+                            </div>
+                            <div class="col-3">
+                                <p id="pmtDetail"></p>
+                            </div>
+                            
+                        </div>
+                        <div class="row mb-3 d-flex justify-content-center">
+                        <div class="col-2">
+                                <label for="pmtTitle" class="form-label" style="font-weight: bold;margin-left: 20px;">โค๊ดส่วนลด:</label>
+                            </div>
+                            <div class="col-3" >
+                                <p id="pmtCode"></p>
+                            </div>
+                        </div>
+                        <div class="row mb-3 d-flex justify-content-center">
+                        <div class="col-2">
+                                <label for="pmtTitle" class="form-label" style="font-weight: bold;margin-left: 20px;">ส่วนลด:</label>
+                            </div>
+                            <div class="col-3" >
+                                <p id="pmtDiscont"></p>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3 d-flex justify-content-center">
+                            <div class="col-2">
+                                <label for="pmtStartDate" class="form-label" style="font-weight: bold;margin-left: 20px;">ใช้ได้ตั้งแต่วันที่</label>
+                            </div>
+                            <div class="col-3">
+                                <p id="pmtStartDate"></p>
+                            </div>
+                            
+                        </div>
+                        <div class="row mb-3 d-flex justify-content-center">
+                            <div class="col-2">
+                                <label for="pmtPic" class="form-label" style="margin-left: 20px;font-weight: bold;">ถึงวันที่:</label>
+                            </div>
+                            <div class="col-3">
+                                <p id="pmtEndDate"></p>
+                            </div>
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
 
         <div class="text-start mx-auto mt-5 mb-2 wow slideInLeft" data-wow-delay="0.1s">
                 <h1 class="fw-bold" style="margin-left: 70px; color: #BC5686;">แนะนำห้องพัก</h1>
@@ -398,7 +481,8 @@ $db_con = connect_db();
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-
+    <script type="text/javascript" src="./backend/promotion_data/promotions.js"></script>        
     
 </body>
 </html>
+
