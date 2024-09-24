@@ -38,7 +38,7 @@ $db_con = connect_db();
                         <?php include("welcome.php"); ?>
                     </div>
                     <p class="lead" style="font-size: 18px; padding-left: 60px; color: #4DA865;">ระบบจองห้องพักและบริการสำหรับนักท่องเที่ยวให้ความสะดวกสบายในการจองที่พักและบริการ พร้อมยกระดับประสบการณ์การท่องเที่ยวที่ดียิ่งขึ้น</p>
-                    <a href="#" class="btn btn-custom shadow" style="margin-left: 60px; margin-top: 30px; font-size: 15px;"><i class="lni lni-pointer-top" style="font-size: 25px;"></i>&nbsp;&nbsp;ดูห้องพักและบริการทั้งหมด</a>
+                    <a href="room_product.php" class="btn btn-custom shadow" style="margin-left: 60px; margin-top: 30px; font-size: 15px;"><i class="lni lni-pointer-top" style="font-size: 25px;"></i>&nbsp;&nbsp;ดูห้องพักและบริการทั้งหมด</a>
                 </div>
                 <div class="col-lg-5 wow slideInRight" data-wow-delay="0.1s" style="position: absolute; top: 0; right: 0; height: 100%; width: 50%; background: url('img/news_pic/baby1.jpg') no-repeat center center; background-size: cover;">
                 </div>
