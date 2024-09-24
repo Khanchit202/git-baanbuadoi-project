@@ -26,10 +26,6 @@ $db_con = connect_db();
     <link href="lib/animate/animate.min.css" rel="stylesheet">
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <script type="text/javascript" src="indexs.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
 
     
@@ -42,35 +38,7 @@ $db_con = connect_db();
         </nav>
 
         
-        <!-- <div class="container-xxl py-5">
-            <div class="container">
-                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                    <h1 class="mb-3">กิจกรรมชุมชน</h1>
-                    <p >บ้านนอแล ดอยอ่างขาง</p>
-                </div>
-                <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="testimonial-item bg-light rounded p-3">
-                        <div class="bg-white border rounded p-4">
-                            <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd erat eos</p>
-                            
-                        </div>
-                    </div>
-                    <div class="testimonial-item bg-light rounded p-3">
-                        <div class="bg-white border rounded p-4">
-                            <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd erat eos</p>
-                            
-                        </div>
-                    </div>
-                    <div class="testimonial-item bg-light rounded p-3">
-                        <div class="bg-white border rounded p-4">
-                            <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd erat eos</p>
-                           
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
+        
 
         <!-- ส่วนแสดงข่าวสารประชาสัมพันธ์ -->
         <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
@@ -100,7 +68,7 @@ $db_con = connect_db();
                                     <div class="card-img-overlay d-flex flex-column justify-content-end" style="color: #000;">
                                         <div class="overlay-content p-4" style="border-radius: 20px; transition: transform 0.3s;"></div>
                                     </div>
-                                    <a href="news_detail.php&id" class="book-button" style="display: none; position: absolute; top: 320px; left: 10%; width: 80%; height: 50px; background-color: #fff; color: #000; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;">อ่านเพิ่มเติม</a>
+                                    <a href="detail_premaket.php?id=<?php echo $product['newID']; ?>" class="book-button" style="display: none; position: absolute; top: 320px; left: 10%; width: 80%; height: 50px; background-color: #fff; color: #000; border: none; border-radius: 5px; font-size: 10px; font-weight: bold; text-align: center; line-height: 50px; text-decoration: none;">อ่านเพิ่มเติม</a>
                                 </div>
                             </div>
                         <?php } ?>

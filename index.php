@@ -277,7 +277,7 @@ $db_con = connect_db();
                             <h1 class="mb-4">ข่าวสารน่าสนใจวันนี้</h1>
                             <h2><?php echo $item['newTitle']; ?></h2>
                             <p class="mb-4"><?php echo $item['newDetail']; ?></p>
-                            <a class="btn btn-custom py-3 px-5 mt-3" href="javascript:void(0);" onclick="showSystemUnavailableAlert()">อ่านเพิ่มเติม</a>
+                            <a class="btn btn-custom py-3 px-5 mt-3"  onclick="window.location.href='./detail_premaket.php?id=<?php echo $item['newID']; ?>'">อ่านเพิ่มเติม</a>
                         </div>
                     <?php } ?>
                 </div>
@@ -386,27 +386,33 @@ $db_con = connect_db();
         </div>
         <!-- Testimonial Start -->
         <div class="container-xxl py-5">
-            <div class="container">
-                <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="testimonial-item bg-light rounded p-3">
-                        <div class="bg-white border rounded p-4">
-                            <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd erat eos</p>
-                            
+        <div class="container">
+                <?php
+                    $sql = "SELECT * FROM news WHERE newType IN ('ชุมชน', 'เทศกาล')";
+
+                    $stmt = $db_con->prepare($sql);
+                    $stmt->execute();
+
+                    // เก็บข้อมูลในตัวแปร $products
+                    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                ?>
+                <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s" >
+                    <!-- การ์ดสำหรับกิจกรรม -->
+                    <?php foreach ($products as $product) { ?>
+                        <div class="testimonial-item bg-light rounded p-3" style="display: flex; align-items: center;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);border-radius:10px;">
+                            <div class="bg-white border rounded p-4" style="display: flex; align-items: center;">
+                                <div class="position-relative" style=" width: 250px; margin-right: 10px;">
+                                    <a href="detail_premaket.php?id=<?php echo $product['newID']; ?>"><img class="img-fluid zoom" src="img/news_pic/<?php echo $product['newPic']; ?>" alt="Product Image" style="width: 250px; height: 250px;border-radius:5px;"></a>
+                                </div>
+                                <div class="text-center p-4 bg-light-green" style=" width: 250px;">
+                                    <h5 class="fw-bold mb-0" style="font-size: 16px;"><?php echo $product['newTitle']; ?></h5>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="testimonial-item bg-light rounded p-3">
-                        <div class="bg-white border rounded p-4">
-                            <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd erat eos</p>
-                            
-                        </div>
-                    </div>
-                    <div class="testimonial-item bg-light rounded p-3">
-                        <div class="bg-white border rounded p-4">
-                            <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd erat eos</p>
-                           
-                        </div>
-                    </div>
+                    <?php } ?>
                 </div>
+
+
             </div>
         </div>
     </div>
@@ -461,6 +467,7 @@ $db_con = connect_db();
                     });
                 }
             </script>
+            
     </div>   
 </div>
     <nav>
