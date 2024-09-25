@@ -1,5 +1,8 @@
 function showBookingForm(roomId) {
     document.getElementById('booking_form').style.display = 'block';
+    document.getElementById("booking_form").scrollIntoView({
+        behavior: 'smooth'
+    });
 }
 
 var lastBookingDate = "";

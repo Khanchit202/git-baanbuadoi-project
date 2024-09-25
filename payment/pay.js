@@ -180,8 +180,8 @@ function creditPayment(payId){
             }else if (response === "no") {
                 Swal.fire({
                     icon: 'error',
-                    title: 'ไม่พบข้อมูลบัตรเคดิต'+payId,
-                    text: 'ไม่สามารถตัดค่าบริการได้'
+                    title: 'ไม่พบข้อมูลบัตรเคดิต',
+                    text: 'ขออภัย! ไม่สามารถตัดค่าบริการได้'
                 });
             }else if (response === "error") {
                 Swal.fire({
