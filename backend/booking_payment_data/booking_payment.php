@@ -81,10 +81,10 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
     <div class="row mb-3">
         <div class="col-6">
             <label for="payPic" class="form-label" style="font-weight: bold;">สลิปโอนเงิน:</label>
-            <img id="payPic" src="path_to_your_image" alt="สลิปโอนเงิน" style="width: 100%;">
+            <img id="payPic" src="" alt="สลิปโอนเงิน" style="width: 100%;">
         </div>
         <div class="col-6">
-            <div class="row mb-3">
+            <div class="row mb-3"style="margin-top:30px">
                 <div class="col-4">
                     <label for="payID" class="form-label" style="font-weight: bold;">รหัสการชำระเงิน:</label>
                 </div>
@@ -157,8 +157,8 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
                 </div>
             </div>
           <div class="modal-footer">
-            <button type="button" onclick="cancle()" class="btn btn-danger">ข้อมูลไม่ถูกต้อง</button>
-            <button type="button" onclick="confirm()" class="btn btn-success">ยืนยัน</button>
+            <button type="button" onclick="cancle('<?php echo addslashes($pay['payID']); ?>')" class="btn btn-danger">ข้อมูลไม่ถูกต้อง</button>
+            <button type="button" onclick="confirm('<?php echo addslashes($pay['payID']); ?>')" class="btn btn-success">ยืนยัน</button>
           </div>
       </div>
     </div>
