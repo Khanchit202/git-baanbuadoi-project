@@ -33,11 +33,12 @@ function goSkip() {
         }
     });
 }
-function qrPayment(payId){
+function qrPayment(payId) {
     var qrname = $('#qr_name').val();
     var qrdate = $('#qr_date').val();
     var qrbank = $('#qr_bank').val();
     var qrprice = $('#qr_price').val();
+    var paymentReceipt = $('#payment_receipt')[0].files[0];
 
     if (qrname === "") {
         Swal.fire({
@@ -46,39 +47,49 @@ function qrPayment(payId){
         }).then(() => {
             document.getElementById("qr_name").focus();
         });
-    }else if(qrdate === "") {
+    } else if (qrdate === "") {
         Swal.fire({
             icon: 'warning',
             title: 'กรุณากรอกข้อมูล: วันชำระเงิน',
         }).then(() => {
-            document.getElementById("qr_name").focus();
+            document.getElementById("qr_date").focus();
         });
-    }else if(qrbank === "") {
+    } else if (qrbank === "") {
         Swal.fire({
             icon: 'warning',
             title: 'กรุณากรอกข้อมูล: ชื่อธนาคาร',
         }).then(() => {
-            document.getElementById("qr_name").focus();
+            document.getElementById("qr_bank").focus();
         });
-    }else if(qrprice === "") {
+    } else if (qrprice === "") {
         Swal.fire({
             icon: 'warning',
             title: 'กรุณากรอกข้อมูล: จำนวนเงิน',
         }).then(() => {
-            document.getElementById("qr_name").focus();
+            document.getElementById("qr_price").focus();
         });
-    }else{
+    } else if (!paymentReceipt) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'กรุณาอัพโหลดภาพหลักฐานการชำระเงิน',
+        }).then(() => {
+            document.getElementById("payment_receipt").focus();
+        });
+    } else {
+        var formData = new FormData();
+        formData.append('payId', payId);
+        formData.append('qrname', qrname);
+        formData.append('qrdate', qrdate);
+        formData.append('qrbank', qrbank);
+        formData.append('qrprice', qrprice);
+        formData.append('payment_receipt', paymentReceipt);
 
         $.ajax({
             url: 'promt_pay/qrpay.php',
             type: 'POST',
-            data: {
-                payId: payId,
-                qrname: qrname,
-                qrdate: qrdate,
-                qrbank: qrbank,
-                qrprice: qrprice,
-            }
+            data: formData,
+            processData: false,
+            contentType: false
         })
         .done(function(response) {
             if (response === "success") {
@@ -91,19 +102,21 @@ function qrPayment(payId){
             } else {
                 Swal.fire({
                     icon: 'error',
-                    title: 'มีบ้างอย่างผิดพลาดโปรดลองอีกครั้ง!',
+                    title: 'มีบางอย่างผิดพลาดโปรดลองอีกครั้ง!',
                 });
             }
         })
-        .fail(function() {
+        .fail(function(jqXHR, textStatus, errorThrown) {
             Swal.fire({
                 title: "ข้อผิดพลาด",
-                text: "ไม่สามารถติดต่อกับเซิร์ฟเวอร์ได้",
+                text: "ไม่สามารถติดต่อกับเซิร์ฟเวอร์ได้: " + textStatus + " - " + errorThrown,
                 icon: "error"
             });
         });
     }
 }
+
+
 
 function creditPayment(payId){
     var creditNumber = $('#credit_number').val();
