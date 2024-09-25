@@ -57,5 +57,6 @@ function select_pay(payID) {
     $('#roomID').text(payID.roomID);
     $('#payType').text(payID.payType);
     $('#payBank').text(payID.payBank);
+    $('#payManey').text(payID.payManey + 'บาท');
     $('#payPic').attr('', payID.payPic);
 }

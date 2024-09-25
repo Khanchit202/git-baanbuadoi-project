@@ -364,7 +364,7 @@ $db_con = connect_db();
                             <div class="property-item rounded overflow-hidden">
                                 <div class="team-item rounded overflow-hidden bg-light">
                                     <div class="position-relative">
-                                        <a href=""><img class="img-fluid zoom" src="img/news_pic/<?php echo $product['newPic']; ?>" alt="Product Image"></a>
+                                        <a href="product_detail.php?id=<?php echo $product['newID']; ?>"><img class="img-fluid zoom" src="img/news_pic/<?php echo $product['newPic']; ?>" alt="Product Image"></a>
                                         <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
                                         </div>
                                     </div>

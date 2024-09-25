@@ -78,80 +78,87 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-          <div class="row mb-3 d-flex justify-content-center">
-              <div class="col-2">
-                  <label for="payID" class="form-label" style="font-weight: bold;margin-left: 20px;">รหัสการชำระเงิน:</label>
-              </div>
-              <div class="col-3">
-                  <p id="payID"></p>
-              </div>
-              <div class="col-2">
-                  <label for="payDate" class="form-label" style="font-weight: bold;margin-left: 20px;">วันที่ชำระเงิน:</label>
-              </div>
-              <div class="col-3">
-                  <p id="payDate"></p>
-              </div>
-          </div>
-          <div class="row mb-3 d-flex justify-content-center">
-          <div class="col-2">
-                  <label for="payNameAc" class="form-label" style="font-weight: bold;margin-left: 20px;">ชื่อผู้ชำระเงิน:</label>
-              </div>
-              <div class="col-3">
-                  <p id="payNameAc"></p>
-              </div>
-              <div class="col-2">
-                  <label for="userID" class="form-label" style="font-weight: bold;margin-left: 20px;">รหัสลูกค้า:</label>
-              </div>
-              <div class="col-3">
-                  <p id="userID"></p>
-              </div>
-          </div>
-          <div class="row mb-3 d-flex justify-content-center">
-          <div class="col-2">
-                  <label for="bookID" class="form-label" style="font-weight: bold;margin-left: 20px;">รหัสการจอง:</label>
-              </div>
-              <div class="col-3">
-                  <p id="bookID"></p>
-              </div>
-              <div class="col-2">
-                  <label for="roomID" class="form-label" style="font-weight: bold;margin-left: 20px;">รหัสห้องพัก:</label>
-              </div>
-              <div class="col-3">
-                  <p id="roomID"></p>
-              </div>
-          </div>
-          <div class="row mb-3 d-flex justify-content-center">
-              <div class="col-2">
-                  <label for="payType" class="form-label" style="font-weight: bold;margin-left: 20px;">ประเภทการชำระเงิน:</label>
-              </div>
-              <div class="col-3">
-                  <p id="payType"></p>
-              </div>
-              <div class="col-2">
-                  <label for="payBank" class="form-label" style="font-weight: bold;margin-left: 20px;">ธนาคารที่เลือก:</label>
-              </div>
-              <div class="col-3">
-                  <p id="payBank"></p>
-              </div>
-          </div>
-          <div class="row mb-3 d-flex justify-content-center">
-                <div class="col-2">
-                    <label for="payPic" class="form-label" style="font-weight: bold;margin-left: 20px;">สลิปโอนเงิน:</label>
+    <div class="row mb-3">
+        <div class="col-6">
+            <label for="payPic" class="form-label" style="font-weight: bold;">สลิปโอนเงิน:</label>
+            <img id="payPic" src="path_to_your_image" alt="สลิปโอนเงิน" style="width: 100%;">
+        </div>
+        <div class="col-6">
+            <div class="row mb-3">
+                <div class="col-4">
+                    <label for="payID" class="form-label" style="font-weight: bold;">รหัสการชำระเงิน:</label>
                 </div>
-                <div class="col-3">
-                    <img id="payPic" src="" alt="สลิปโอนเงิน" style="max-width: 100%;">
-                </div>
-                <div class="col-2">
-                    <label for="" class="form-label" style="font-weight: bold;margin-left: 20px;"></label>
-                </div>
-                <div class="col-3">
-                    
+                <div class="col-8">
+                    <p id="payID"></p>
                 </div>
             </div>
-
-          
+            <div class="row mb-3">
+                <div class="col-4">
+                    <label for="payDate" class="form-label" style="font-weight: bold;">วันที่ชำระเงิน:</label>
+                </div>
+                <div class="col-8">
+                    <p id="payDate"></p>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-4">
+                    <label for="payNameAc" class="form-label" style="font-weight: bold;">ชื่อผู้ชำระเงิน:</label>
+                </div>
+                <div class="col-8">
+                    <p id="payNameAc"></p>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-4">
+                    <label for="userID" class="form-label" style="font-weight: bold;">รหัสลูกค้า:</label>
+                </div>
+                <div class="col-8">
+                    <p id="userID"></p>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-4">
+                    <label for="bookID" class="form-label" style="font-weight: bold;">รหัสการจอง:</label>
+                </div>
+                <div class="col-8">
+                    <p id="bookID"></p>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-4">
+                    <label for="roomID" class="form-label" style="font-weight: bold;">รหัสห้องพัก:</label>
+                </div>
+                <div class="col-8">
+                    <p id="roomID"></p>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-4">
+                    <label for="payType" class="form-label" style="font-weight: bold;">ประเภทการชำระเงิน:</label>
+                </div>
+                <div class="col-8">
+                    <p id="payType"></p>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-4">
+                    <label for="payBank" class="form-label" style="font-weight: bold;">ธนาคารที่เลือก:</label>
+                </div>
+                <div class="col-8">
+                    <p id="payBank"></p>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-4">
+                    <label for="payManey" class="form-label" style="font-weight: bold;">จำนวนเงินที่ชำระ:</label>
+                </div>
+                <div class="col-8">
+                    <p id="payManey"></p>
+                </div>
+            </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+            <button type="button" onclick="cancle()" class="btn btn-danger">ข้อมูลไม่ถูกต้อง</button>
+            <button type="button" onclick="confirm()" class="btn btn-success">ยืนยัน</button>
           </div>
       </div>
     </div>
