@@ -87,11 +87,17 @@
                                 include 'promotion_data/promotion.php';
                                 break;
                             case 'reviwsroom-data':
-                                    include 'reviwsroom_data/reviwsroom.php';
-                                    break;
+                                include 'reviwsroom_data/reviwsroom.php';
+                                break;
                             case 'reviwsservice-data':
-                                    include 'reviwsservice_data/reviwsservice.php';
-                                    break;
+                                include 'reviwsservice_data/reviwsservice.php';
+                                break;
+                            case 'checkin-data':
+                                include "checking_data/check_show.php";
+                                break;
+                            case 'checkout-data':
+                                include "checking_data/check_show.php";
+                                break;
                             default:
                                 echo "<h2>ไม่พบหน้า</h2>";
                         }
@@ -118,7 +124,77 @@
     <script type="text/javascript" src="./promotion_data/promotion.js"></script>
     <script type="text/javascript" src="./reviwsroom_data/reviwsroom.js"></script>
     
-    
+    <script>
+function showDetails(bookName, billStatus, bookType, checkIn, checkOut, payMoney, roomName, roomLocation, roomPrice) {
+    // แปลงค่า payMoney เป็นตัวเลข และตรวจสอบค่าที่ถูกต้อง
+    let parsedPayMoney = parseFloat(payMoney);
+    let parsedRoomPrice = parseFloat(roomPrice);
+
+    // เช็คว่าค่าเป็นตัวเลขหรือไม่ ถ้าไม่ใช่ให้ตั้งค่าเป็น 0
+    if (isNaN(parsedPayMoney)) {
+        parsedPayMoney = 0;
+    }
+    if (isNaN(parsedRoomPrice)) {
+        parsedRoomPrice = 0;
+    }
+
+    let vat = (parsedRoomPrice * 7) / 100;
+    let total = parsedRoomPrice + vat;
+    let remainingPrice = total - parsedPayMoney;
+
+    if (document.getElementById('modalName')) {
+        document.getElementById('modalName').innerText = bookName;
+    }
+    if (document.getElementById('modalBookName')) {
+        document.getElementById('modalBookName').innerText = bookName;
+    }
+    if (document.getElementById('modalBillStatus')) {
+        document.getElementById('modalBillStatus').innerText = billStatus;
+    }
+    if (document.getElementById('modalBookType')) {
+        document.getElementById('modalBookType').innerText = bookType;
+    }
+    if (document.getElementById('modalCheckIn')) {
+        document.getElementById('modalCheckIn').innerText = checkIn;
+    }
+    if (document.getElementById('modalCheckOut')) {
+        document.getElementById('modalCheckOut').innerText = checkOut;
+    }
+    if (document.getElementById('modalPayMoney')) {
+        document.getElementById('modalPayMoney').innerText = parsedPayMoney.toFixed(2);
+    }
+    if (document.getElementById('modalRoomName')) {
+        document.getElementById('modalRoomName').innerText = roomName;
+    }
+    if (document.getElementById('modalRoomLocation')) {
+        document.getElementById('modalRoomLocation').innerText = roomLocation;
+    }
+    if (document.getElementById('modalRoomPrice')) {
+        document.getElementById('modalRoomPrice').innerText = parsedRoomPrice.toFixed(2);
+    }
+    if (document.getElementById('modalPrice')) {
+        document.getElementById('modalPrice').innerText = parsedRoomPrice.toFixed(2);
+    }
+    if (document.getElementById('modalVat')) {
+        document.getElementById('modalVat').innerText = vat.toFixed(2);
+    }
+    if (document.getElementById('modalTotalAmount')) {
+        document.getElementById('modalTotalAmount').innerText = total.toFixed(2);
+    }
+    if (document.getElementById('modalRemainingAmount')) {
+        document.getElementById('modalRemainingAmount').innerText = remainingPrice.toFixed(2);
+    }
+
+    // เปิด modal
+    $('#detailsModal').modal('show');
+}
+
+
+
+</script>
+
+
+
     
 </body>
 

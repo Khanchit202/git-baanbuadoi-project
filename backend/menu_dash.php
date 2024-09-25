@@ -149,28 +149,47 @@ function emp_dash($lavel_name, $lavel_color) {
             <li class="sidebar-item">
                 <a href="?page=dashboard" class="sidebar-link <?php echo ($current_page == 'dashboard' ? 'active' : '') ?>">
                     <i class="lni lni-grid-alt"></i>
-                    <span>แดชบอร์ด</span>
+                    <span class="fw-bold" style="font-size: 12px;">แดชบอร์ด</span>
                 </a>
             </li>
-            
+
             <li class="sidebar-item">
-                <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
-                    <i class="lni lni-list"></i>
-                    <span>จัดการข้อมูล</span>
+                
+                <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#roomService" aria-expanded="false" aria-controls="roomService">
+                <i class="lni lni-layers"></i>
+                    <span class="fw-bold" style="font-size: 12px;">จัดการข้อมูลห้องพักและบริการ</span>
                 </a>
-                <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                <ul id="roomService" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                     <li class="sidebar-item">
                         <a href="?page=room-data" class="sidebar-link <?php echo ($current_page == 'room-data' ? 'active' : '') ?>">ห้องพัก</a>
                     </li>
                     <li class="sidebar-item">
                         <a href="?page=service-data" class="sidebar-link <?php echo ($current_page == 'service-data' ? 'active' : '') ?>">บริการ</a>
                     </li>
+                </ul>
+            </li>
+       
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#booking" aria-expanded="false" aria-controls="booking">
+                    <i class="lni lni-library"></i>
+                    <span class="fw-bold" style="font-size: 12px;">จัดการข้อมูลการจอง</span>
+                </a>
+                <ul id="booking" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                     <li class="sidebar-item">
                         <a href="?page=bookingpayment-data" class="sidebar-link <?php echo ($current_page == 'bookingpayment-data' ? 'active' : '') ?>">การชำระเงิน</a>
                     </li>
                     <li class="sidebar-item">
                         <a href="?page=booking-data" class="sidebar-link <?php echo ($current_page == 'booking-data' ? 'active' : '') ?>">จัดการข้อมูลการจอง</a>
                     </li>
+                </ul>
+            </li>
+        
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#website" aria-expanded="false" aria-controls="website">
+                    <i class="lni lni-code-alt"></i>
+                    <span class="fw-bold" style="font-size: 12px;">จัดการข้อมูลหน้าเว็บไซต์</span>
+                </a>
+                <ul id="website" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                     <li class="sidebar-item">
                         <a href="?page=premaket-data" class="sidebar-link <?php echo ($current_page == 'premaket-data' ? 'active' : '') ?>">จัดการข้อมูลข่าวสาร</a>
                     </li>
@@ -183,13 +202,29 @@ function emp_dash($lavel_name, $lavel_color) {
                     <li class="sidebar-item">
                         <a href="?page=reviwsservice-data" class="sidebar-link <?php echo ($current_page == 'reviwsservice-data' ? 'active' : '') ?>">จัดการข้อมูลรีวิวบริการ</a>
                     </li>
-                    
                 </ul>
-                
             </li>
+
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#check" aria-expanded="false" aria-controls="check">
+                    <i class="lni lni-write"></i>
+                    <span class="fw-bold" style="font-size: 12px;">จัดการการเข้าและคืน</span>
+                </a>
+                <ul id="check" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                    <li class="sidebar-item">
+                        <a href="?page=checkin-data" class="sidebar-link <?php echo ($current_page == 'checkin-data' ? 'active' : '') ?>">คำขอเข้าใช้บริการ</a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="?page=checkout-data" class="sidebar-link <?php echo ($current_page == 'checkout-data' ? 'active' : '') ?>">คำขอส่งคืนบริการ</a>
+                    </li>
+                </ul>
+            </li>
+
+            
         </ul>
     <?php
-} 
+}
+
 
 
 function no_dash() {
