@@ -16,15 +16,16 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
         </button>
     </div>
     <div class="text-center">
-        <table class="table" style="margin-top: 20px; font-size: 16px;">
-            <thead>
+    <div class="table-responsive" style="overflow-x: auto;">
+        <table class="table table-hover table-bordered" style="min-width: 800px; font-size: 16px;">
+            <thead style="background-color: #97C7C9;">
                 <tr>
                     <th scope="col">ลำดับ</th>
                     <th scope="col">หัวข้อโปรโมชั่น</th>
                     <th scope="col">รายละเอียด</th>
                     <th scope="col">ส่วนลด/บาท</th>
                     <th scope="col">รหัส/Code ส่วนลด</th>
-                    
+                    <th scope="col">ตัวเลือก</th>
                 </tr>
             </thead>
             <tbody>
@@ -77,7 +78,7 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
             </tbody>
         </table>
     </div>
-</div>
+</div></div>
 <!-- Add Modal -->
 <div class="modal fade" id="addProModal" tabindex="-1" aria-labelledby="addDataModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">

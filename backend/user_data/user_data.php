@@ -24,8 +24,9 @@ function getUserLevelName($level) {
         </button>
     </div>
     <div class="text-center">
-        <table class="table" style="margin-top: 20px; font-size: 16px;">
-            <thead>
+    <div class="table-responsive" style="overflow-x: auto;">
+        <table class="table table-hover table-bordered" style="min-width: 800px; font-size: 16px;">
+            <thead style="background-color: #97C7C9;">
                 <tr>
                     <th scope="col">ลำดับ</th>
                     <th scope="col">ชื่อผู้ใช้</th>
@@ -84,6 +85,7 @@ function getUserLevelName($level) {
             </tbody>
         </table>
     </div>
+</div>
 </div>
 <!-- Add Modal -->
 <div class="modal fade" id="addDataModal" tabindex="-1" aria-labelledby="addDataModalLabel" aria-hidden="true">

@@ -17,8 +17,9 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
         </button> -->
     </div>
     <div class="text-center">
-        <table class="table" style="margin-top: 20px; font-size: 16px;">
-            <thead>
+    <div class="table-responsive" style="overflow-x: auto;">
+        <table class="table table-hover table-bordered" style="min-width: 800px; font-size: 12px;">
+            <thead style="background-color: #97C7C9;">
                 <tr>
                     <th scope="col">ลำดับ</th>
                     <th scope="col">ชื่อผู้จอง</th>
@@ -26,7 +27,7 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
                     <th scope="col">จองห้องเลขที่</th>
                     <th scope="col">ID ลูกค้า</th>
                     <th scope="col">จำนวนเงินที่ชำระ</th>
-                    
+                    <th scope="col">ตัวเลือก</th>
                 </tr>
             </thead>
             <tbody>
@@ -65,7 +66,7 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
         </table>
     </div>
 </div>
-
+</div>
 <!-- Add Modal -->
 <div class="modal fade" id="select_pay" tabindex="-1" aria-labelledby="addDataModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-xl">
