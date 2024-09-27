@@ -80,7 +80,7 @@ $db_con = connect_db();
                         <div class="card" style="width: 250px;">
                             <img src="img/bua/team1.jpg" class="card-img-top" alt="Programer" style="height: 200px; object-fit: cover;">
                             <div class="card-body">
-                                <h5 class="card-title" style="font-size: 16px; font-weight: bold;">Somchai manhoeng</h5>
+                                <h5 class="card-title" style="font-size: 16px; font-weight: bold;">Somchai Manhoeng</h5>
                                 <p class="card-text" style="font-size: 12px;">Programer</p>
                                 <div class="mt-3">
                                     <a href="https://www.facebook.com/somchai.munheng" target="_blank" style="text-decoration: none;">
