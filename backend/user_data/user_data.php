@@ -23,7 +23,7 @@ function getUserLevelName($level) {
             เพิ่มผู้ใช้  
         </button>
     </div>
-    <div class="text-center">
+    <div class="text-start">
     <div class="table-responsive" style="overflow-x: auto;">
         <table class="table table-hover table-bordered" style="min-width: 800px; font-size: 16px;">
             <thead style="background-color: #97C7C9;">
