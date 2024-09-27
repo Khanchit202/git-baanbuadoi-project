@@ -83,12 +83,12 @@ $db_con = connect_db();
                                 <h5 class="card-title" style="font-size: 16px; font-weight: bold;">Somchai Manhoeng</h5>
                                 <p class="card-text" style="font-size: 12px;">Programer</p>
                                 <div class="mt-3">
-                                    <a href="https://www.facebook.com" target="_blank" style="text-decoration: none;">
+                                    <a href="https://www.facebook.com/somchai.munheng" target="_blank" style="text-decoration: none;">
                                         <div style="width: 40px; height: 40px; border-radius: 5px; background-color: #3b5998; display: inline-flex; align-items: center; justify-content: center;">
                                             <i class="bi bi-facebook" style="font-size: 16px; color: white;"></i>
                                         </div>
                                     </a>
-                                    <a href="https://www.instagram.com" target="_blank" style="text-decoration: none;">
+                                    <a href="https://www.instagram.com/hobb_p002/" target="_blank" style="text-decoration: none;">
                                         <div style="width: 40px; height: 40px; border-radius: 5px; background-color: #E1306C; display: inline-flex; align-items: center; justify-content: center;">
                                             <i class="bi bi-instagram" style="font-size: 16px; color: white;"></i>
                                         </div>
@@ -146,12 +146,12 @@ $db_con = connect_db();
                                 <h5 class="card-title" style="font-size: 16px; font-weight: bold;">สมชาย หมั่นเฮิง</h5>
                                 <p class="card-text" style="font-size: 12px;">Admin</p>
                                 <div class="mt-3">
-                                    <a href="https://web.facebook.com/khanchit.bp/" target="_blank" style="text-decoration: none;">
+                                    <a href="https://www.facebook.com/somchai.munheng" target="_blank" style="text-decoration: none;">
                                         <div style="width: 40px; height: 40px; border-radius: 5px; background-color: #3b5998; display: inline-flex; align-items: center; justify-content: center;">
                                             <i class="bi bi-facebook" style="font-size: 16px; color: white;"></i>
                                         </div>
                                     </a>
-                                    <a href="https://www.instagram.com/khanchit.ig/" target="_blank" style="text-decoration: none;">
+                                    <a href="https://www.instagram.com/hobb_p002/" target="_blank" style="text-decoration: none;">
                                         <div style="width: 40px; height: 40px; border-radius: 5px; background-color: #E1306C; display: inline-flex; align-items: center; justify-content: center;">
                                             <i class="bi bi-instagram" style="font-size: 16px; color: white;"></i>
                                         </div>
@@ -189,7 +189,7 @@ $db_con = connect_db();
                                     </div>
                                     <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.3s">
                                         <div class="bg-light rounded p-3">
-                                            <a href=""style="text-decoration:none;color: black;">
+                                            <a href="https://www.facebook.com/profile.php?id=100070511153829"style="text-decoration:none;color: black;">
                                                 <div class="d-flex align-items-center bg-white rounded p-3" style="border: 1px dashed rgba(0, 185, 142, .3)">
                                                 <div class="icon me-3 " style="width: 60px; height: 60px;">
                                                     <i class="fab fa-facebook-f fa-3x "></i>
