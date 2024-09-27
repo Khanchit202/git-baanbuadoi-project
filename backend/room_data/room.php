@@ -6,6 +6,7 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
 
 
 ?>
+
 <p style="font-size: 16px; padding: 5px 20px;">จัดการข้อมูลห้องพัก</p>
 <div id="user-table" style="align-items: center;background-color: white; border-radius: 10px; padding: 50px;">
     <div class="d-flex justify-content-between">
@@ -16,7 +17,7 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
         </button>
     </div>
     <div class="text-center">
-        <table class="table" style="margin-top: 20px; font-size: 16px;">
+        <table class="table"  style="margin-top: 20px; font-size: 16px;">
             <thead>
                 <tr>
                     <th scope="col">ลำดับ</th>
