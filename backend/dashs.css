@@ -144,3 +144,74 @@ a.sidebar-link:hover {
     transition: all .2s ease-out;
 
 }
+
+.green-box {
+    border-radius: 10px;
+    height: 100px;
+    width: 22%;
+    background-color: #72d572;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.red-box {
+    border-radius: 10px;
+    height: 100px;
+    width: 22%;
+    background-color: #e84e40;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.blue-box {
+    border-radius: 10px;
+    height: 100px;
+    width: 22%;
+    background-color: #5677fc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.yellow-box {
+    border-radius: 10px;
+    height: 100px;
+    width: 22%;
+    background-color: #ffee58;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.center-text {
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+
+.button-style {
+    border-radius: 10px;
+    background-color: #3b8386;
+    height: 40px;
+    width: 22%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    text-decoration: none; /* ลบเส้นใต้ของลิงก์ */
+    transition: background-color 0.3s;
+}
+.button-style:hover {
+    background-color: #e3e5e7; /* สีพื้นหลังเมื่อเมาส์ชี้ */
+}
