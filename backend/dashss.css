@@ -149,44 +149,41 @@ a.sidebar-link:hover {
     border-radius: 10px;
     height: 100px;
     width: 22%;
-    background-color: #72d572;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    color: #ffffff;
     font-weight: bold;
     font-size: 25px;
+    border-left: solid 4px #72d572;
 }
 
 .red-box {
     border-radius: 10px;
     height: 100px;
     width: 22%;
-    background-color: #e84e40;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    color: #ffffff;
     font-weight: bold;
     font-size: 25px;
+    border-left: solid 4px #e84e40;
 }
 
 .blue-box {
     border-radius: 10px;
     height: 100px;
     width: 22%;
-    background-color: #5677fc;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    color: #ffffff;
     font-weight: bold;
     font-size: 25px;
+    border-left: solid 4px #5677fc;
 }
 
 .yellow-box {
     border-radius: 10px;
     height: 100px;
     width: 22%;
-    background-color: #ffee58;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    color: #ffffff;
     font-weight: bold;
     font-size: 25px;
+    border-left: solid 4px #ffee58;
+
 }
 
 .center-text {
@@ -194,7 +191,7 @@ a.sidebar-link:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: rgb(13, 13, 13);
     font-weight: bold;
 }
 

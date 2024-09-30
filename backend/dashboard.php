@@ -124,9 +124,9 @@
     <script type="text/javascript" src="./booking_data/booking.js"></script>
     <script type="text/javascript" src="./promotion_data/promotion.js"></script>
     <script type="text/javascript" src="./reviwsroom_data/reviwsroom.js"></script>
+
     <script type="text/javascript" src="./dash_data/dash.js"></script>
     <script type="text/javascript" src="./checking_data/check.js"></script>
-    
     <script>
         
 function showDetails(bookName, billStatus, bookType, checkIn, checkOut, payMoney, roomName, roomLocation, roomPrice) {

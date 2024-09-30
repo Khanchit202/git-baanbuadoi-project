@@ -1,7 +1,3 @@
-/* chart.js chart examples */
-
-
-// chart colors
 var colors = ['#f8bbd0','#d0d9ff','#d0d9ff','#d0d9ff','#dc3545','#6c757d'];
 
 /* large line chart */
