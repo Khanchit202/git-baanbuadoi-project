@@ -12,15 +12,24 @@ $serviceArray = $service->fetchAll(PDO::FETCH_ASSOC);
 $numberOfservice = count($serviceArray);
 
 
-
-
 $date = date('Y-m-d') . ' 14:00:00'; // กำหนดวันที่ปัจจุบันและเวลา 14:00:00
 $bookingday = $db_con->query("SELECT * FROM booking WHERE bookDateStart = '$date'");
 $bookingdayArray = $bookingday->fetchAll(PDO::FETCH_ASSOC);
 $numberOfbookingday = count($bookingdayArray);
 
+$date = date('Y-m-d');
+// สร้าง SQL query เพื่อดึงข้อมูล roomID และ serviceID จาก booking_payment
+$sql = "SELECT serviceID FROM booking_payment WHERE bookDateStart = '$date'";
+$day = $db_con->query($sql);
+$dayArray = $day->fetchAll(PDO::FETCH_ASSOC);
+$numberOfdayArray = count($dayArray);
 
-
+$date = date('Y-m-d');
+// สร้าง SQL query เพื่อดึงข้อมูล roomID และ serviceID จาก booking_payment
+$sql = "SELECT roomID FROM booking_payment WHERE bookDateStart = '$date'";
+$dayroom = $db_con->query($sql);
+$dayroomArray = $dayroom->fetchAll(PDO::FETCH_ASSOC);
+$numberOfdayroomArray = count($dayroomArray);
 ?>
 
 
@@ -34,7 +43,7 @@ $numberOfbookingday = count($bookingdayArray);
         <div class="text-center">
             <div class="container">
                 <div class="row mt-5"style="display: flex; justify-content: space-between;">
-                <div class="col-md-2 green-box">
+                <div class="col-md-2 green-box" style=" border-left: solid 4px #72d572;">
                     <div class="row center-text mt-2">
                         <p>จำนวนห้องพัก</p>
                     </div>
@@ -188,6 +197,11 @@ $numberOfbookingday = count($bookingdayArray);
                     </div>
                 </div>
 
+
+                <div class="col-md-6" id="deteil_text" style="height: 500px; font-size: 14px; border-left: solid 4px #4DA865; border-radius: 10px; padding: 30px 30px; box-shadow: 2px 2px 5px #ccc">
+                                            
+                    
+                </div>
                 
             </div>
         </div>
