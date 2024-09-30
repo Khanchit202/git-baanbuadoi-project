@@ -130,151 +130,122 @@ try {
                 <h5 style="font-size: 16px;" class="modal-title fw-bold" id="modalName"></h5>
                 <button style="font-size: 10px;" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body p-5" style="font-size: 12px;">
+            <div class="modal-body" style="font-size: 10px; padding: 10px 20px;">
+        
+            <h1 class="fw-bold" style="font-size: 12px;">ข้อมูลรายการ</h1>
+            <div class="table-responsive" style="overflow-x: auto;">
+                <table class="table table-hover table-bordered" style="min-width: 800px; font-size: 10px;">
+                    <thead style="background-color: #97C7C9;">
+                        <tr>
+                            <th>ชื่อรายการ</th>
+                            <th>ที่ตั้ง</th>
+                            <th>ราคา/หน่วย</th>
+                            <th>ประเภทรายการ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><p id="modalRoomName"></p></td>
+                            <td><p id="modalRoomLocation"></p></td>
+                            <td><p id="modalRoomPrice"></p></td>
+                            <td><p id="modalBookType"></p></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h1 class="fw-bold" style="font-size: 12px;">ข้อมูลผู้จอง</h1>
+                <table class="table table-hover table-bordered" style="min-width: 800px; font-size: 10px;">
+                    <thead style="background-color: #97C7C9;">
+                        <tr>
+                            <th>ชื่อผู้จอง</th>
+                            <th>สถานะรายการ</th>
+                            <th>Check In</th>
+                            <th>Check Out</th>
+                            <th>เบอร์โทรศัพท์</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><p id="modalBookName" style="background-color: yellow;"></p</td>
+                            <td><p id="modalBillStatus"></p</td>
+                            <td><p id="modalCheckIn"></p</td>
+                            <td><p id="modalCheckOut"></p</td>
+                            <td><p id="modalName">0958053137</p</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-        <div class="row mb-2">
-            <div class="col-md-6 text-center">
-                <strong>ข้อมูลรายการ</strong>
-            </div>
-            <div class="col-md-6 text-center">
-                <strong>ข้อมูลผู้จอง</strong>
-            </div>
-        </div>
 
-        <br>
+            <div class="row ">
+                <div class="col-md-2"></div>
+                <div class="col-md-4"></div>
+                <div class="col-md-2 text-end">
+                    <strong>ราคา(ก่อนหักภาษี):</strong>
+                </div>
+                <div class="col-md-3">
+                    <p id="modalPrice"></p>
+                </div>
+            </div>
 
-        <div class="row mb-2">
-            <div class="col-md-2">
-                <strong>ชื่อรายการ:</strong>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-4"></div>
+                <div class="col-md-2 text-end">
+                    <strong>หักภาษีมูลค่าเพิ่ม:</strong>
+                </div>
+                <div class="col-md-3">
+                    <p id="modalVat"></p>
+                </div>
             </div>
-            <div class="col-md-4">
-                <p id="modalRoomName"></p>
-            </div>
-            <div class="col-md-2">
-                <strong>ชื่อผู้จอง:</strong>
-            </div>
-            <div class="col-md-4">
-                <p id="modalBookName"></p>
-            </div>
-        </div>
 
-        <div class="row mb-2">
-            <div class="col-md-2">
-                <strong>ที่ตั้ง:</strong>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-4"></div>
+                <div class="col-md-2 text-end">
+                    <strong>ส่วนลด:</strong>
+                </div>
+                <div class="col-md-3">
+                    <p id="modalDiscount">-</p>
+                </div>
             </div>
-            <div class="col-md-4">
-                <p id="modalRoomLocation"></p>
-            </div>
-            <div class="col-md-2">
-                <strong>สถานะการชำระเงิน:</strong>
-            </div>
-            <div class="col-md-4">
-                <p id="modalBillStatus"></p>
-            </div>
-        </div>
 
-        <div class="row mb-2">
-            <div class="col-md-2">
-                <strong>ราคา/หน่วย:</strong>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-4"></div>
+                <div class="col-md-2 text-end">
+                    <strong>ราคารวม:</strong>
+                </div>
+                <div class="col-md-3">
+                    <p id="modalTotalAmount"></p>
+                </div>
             </div>
-            <div class="col-md-4">
-                <p id="modalRoomPrice"></p>
-            </div>
-            <div class="col-md-2">
-                <strong>ประเภทการจอง:</strong>
-            </div>
-            <div class="col-md-4">
-                <p id="modalBookType"></p>
-            </div>
-        </div>
 
-        <div class="row mb-2">
-            <div class="col-md-2">
-                <strong>Check In:</strong>
+            <div class="row mb-2">
+                <div class="col-md-2"></div>
+                <div class="col-md-4"></div>
+                <div class="col-md-2 text-end">
+                    <strong>จ่ายมัดจำแล้ว:</strong>
+                </div>
+                <div class="col-md-3">
+                    <p id="modalPayMoney"></p>
+                </div>
             </div>
-            <div class="col-md-4">
-                <p id="modalCheckIn"></p>
-            </div>
-            <div class="col-md-2">
-                <strong>Check Out:</strong>
-            </div>
-            <div class="col-md-4">
-                <p id="modalCheckOut"></p>
-            </div>
-        </div>
 
-        <br><br>
-
-        <div class="row mb-2">
-            <div class="col-md-2"></div>
-            <div class="col-md-4"></div>
-            <div class="col-md-2 text-end">
-                <strong>ราคา(ก่อนหักภาษี):</strong>
+            <div class="row mb-2" >
+                <div class="col-md-2"></div>
+                <div class="col-md-4"></div>
+                <div class="col-md-2 text-end">
+                    <strong>คงเหลือจ่าย:</strong>
+                </div>
+                <div class="col-md-3">
+                    <p id="modalRemainingAmount" class="fw-bold " style="padding: 15px; border: solid 1px red;"></p>
+                </div>
             </div>
-            <div class="col-md-3">
-                <p id="modalPrice"></p>
-            </div>
-        </div>
-
-        <div class="row mb-2">
-            <div class="col-md-2"></div>
-            <div class="col-md-4"></div>
-            <div class="col-md-2 text-end">
-                <strong>หักภาษีมูลค่าเพิ่ม:</strong>
-            </div>
-            <div class="col-md-3">
-                <p id="modalVat"></p>
-            </div>
-        </div>
-
-        <div class="row mb-2">
-            <div class="col-md-2"></div>
-            <div class="col-md-4"></div>
-            <div class="col-md-2 text-end">
-                <strong>ส่วนลด:</strong>
-            </div>
-            <div class="col-md-3">
-                <p id="modalDiscount">-</p>
-            </div>
-        </div>
-
-        <div class="row mb-2">
-            <div class="col-md-2"></div>
-            <div class="col-md-4"></div>
-            <div class="col-md-2 text-end">
-                <strong>ราคารวม:</strong>
-            </div>
-            <div class="col-md-3">
-                <p id="modalTotalAmount"></p>
-            </div>
-        </div>
-
-        <div class="row mb-2">
-            <div class="col-md-2"></div>
-            <div class="col-md-4"></div>
-            <div class="col-md-2 text-end">
-                <strong>จ่ายมัดจำแล้ว:</strong>
-            </div>
-            <div class="col-md-3">
-                <p id="modalPayMoney"></p>
-            </div>
-        </div>
-
-        <div class="row mb-2">
-            <div class="col-md-2"></div>
-            <div class="col-md-4"></div>
-            <div class="col-md-2 text-end">
-                <strong>คงเหลือจ่าย:</strong>
-            </div>
-            <div class="col-md-3">
-                <p id="modalRemainingAmount"></p>
-            </div>
-        </div>
 
             </div>
             <div class="modal-footer">
                 <a href="" class="btn me-1 fw-bold" style="font-size: 14px; border: solid 1px #DE6461; color: #4caf50; background-color: none; border-radius: 5px;">ยกเลิกรายการ</a>
-                <a href="" class="btn me-1 " style="font-size: 14px; background-color: #4caf50; color: #ffffff; background-color: none; border-radius: 5px;">เซ็คอิน</a>
+                <a href="#" class="btn me-1 " style="font-size: 14px; background-color: #4caf50; color: #ffffff; background-color: none; border-radius: 5px;" onclick="checkinHandler('<?php echo htmlspecialchars($row['billID']); ?>')">Checkin</a>
             </div>
         </div>
     </div>

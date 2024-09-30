@@ -1,5 +1,17 @@
-function checkinHandler(billID) {
-    Swal.fire({
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Test SweetAlert2</title>
+</head>
+<body>
+    <button onclick="checkinHandler(1)">Checkin</button>
+    <script>
+        function checkinHandler(billID) {
+            Swal.fire({
         title: 'กรุณาใส่รหัสผ่านเพื่อยืนยันการ Checkin',
         input: 'password',
         inputPlaceholder: 'ใส่รหัสผ่านของคุณ',
@@ -69,4 +81,7 @@ function checkinHandler(billID) {
             });
         }
     });
-}
+        }
+    </script>
+</body>
+</html>
