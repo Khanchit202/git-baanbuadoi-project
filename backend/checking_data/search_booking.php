@@ -16,7 +16,9 @@ try {
             INNER JOIN room_product ON booking_bill.roomID = room_product.roomID
             INNER JOIN booking ON booking_bill.bookID = booking.bookID
             LEFT JOIN booking_payment ON booking_bill.payID = booking_payment.payID
-            WHERE booking.bookName LIKE :query AND booking_bill.billStatus = 1
+            WHERE booking.bookName LIKE :query AND 
+                  booking_bill.billStatus = 1 AND 
+                  booking_bill.billID NOT IN (SELECT billID FROM checking)
             ORDER BY booking_bill.billID DESC
         ";
         $data2 = $db_con->prepare($sql);
@@ -29,7 +31,8 @@ try {
             INNER JOIN room_product ON booking_bill.roomID = room_product.roomID
             INNER JOIN booking ON booking_bill.bookID = booking.bookID
             LEFT JOIN booking_payment ON booking_bill.payID = booking_payment.payID
-            WHERE booking_bill.billStatus = 1
+            WHERE booking_bill.billStatus = 1 AND 
+                  booking_bill.billID NOT IN (SELECT billID FROM checking)
             ORDER BY booking_bill.billID DESC
         ";
         $data2 = $db_con->prepare($sql);
@@ -246,6 +249,26 @@ try {
             <div class="modal-footer">
                 <a href="" class="btn me-1 fw-bold" style="font-size: 14px; border: solid 1px #DE6461; color: #4caf50; background-color: none; border-radius: 5px;">ยกเลิกรายการ</a>
                 <a href="#" class="btn me-1 " style="font-size: 14px; background-color: #4caf50; color: #ffffff; background-color: none; border-radius: 5px;" onclick="checkinHandler('<?php echo htmlspecialchars($row['billID']); ?>')">Checkin</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Password Modal -->
+<div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="passwordModalLabel">กรุณาใส่รหัสผ่าน</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="password" id="passwordInput" class="form-control" placeholder="ใส่รหัสผ่านของคุณ">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                <button type="button" class="btn btn-primary" id="submitPasswordBtn">ยืนยัน</button>
             </div>
         </div>
     </div>

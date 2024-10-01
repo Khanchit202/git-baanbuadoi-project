@@ -24,7 +24,6 @@ function searchBooking() {
     })
     .then(response => response.text())
     .then(data => {
-        // อัปเดตตารางแสดงผลลัพธ์
         document.getElementById('result-table').innerHTML = data;
     })
     .catch(error => console.error('Error:', error));

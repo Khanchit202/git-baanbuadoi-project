@@ -160,6 +160,7 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
           <div class="modal-footer">
             <button type="button" onclick="cancle('<?php echo addslashes($pay['payID']); ?>')" class="btn btn-danger">ข้อมูลไม่ถูกต้อง</button>
             <button type="button" onclick="confirm('<?php echo addslashes($pay['payID']); ?>')" class="btn btn-success">ยืนยัน</button>
+            <a href="#" class="btn me-1 " style="font-size: 14px; background-color: #4caf50; color: #ffffff; background-color: none; border-radius: 5px;" onclick="confirm('<?php echo addslashes($pay['payID']); ?>')">Checkin</a>
           </div>
       </div>
     </div>

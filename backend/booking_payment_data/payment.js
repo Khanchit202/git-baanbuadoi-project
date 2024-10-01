@@ -128,14 +128,15 @@ function cancle(payID) {
 
 function confirm(payID) {
     // แสดง SweetAlert เพื่อยืนยันการดำเนินการ
-    swal({
+    Swal.fire({
         title: "คุณแน่ใจหรือไม่?",
         text: "คุณต้องการยืนยันการชำระเงินนี้หรือไม่?",
-        icon: "success",
-        buttons: true,
-        successMode: true,
-    }).then((willDelete) => {
-        if (willDelete) {
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: 'ใช่',
+        cancelButtonText: 'ไม่'
+    }).then((result) => {
+        if (result.isConfirmed) {
             // สร้าง FormData เพื่อส่งข้อมูล
             var formData = new FormData();
             formData.append('payID', payID);
@@ -152,23 +153,23 @@ function confirm(payID) {
                     if (response.status === 'success') {
                         // ปิด Modal ก่อน
                         $('#select_pay').modal('hide');
-                        
+
                         // แสดง SweetAlert หลังจากปิด Modal
-                        swal({
+                        Swal.fire({
                             title: "ยืนยันการชำระเงินสำเร็จ",
                             text: response.message,
                             icon: "success",
-                            button: "OK",
+                            confirmButtonText: "OK",
                         }).then(() => {
                             // รีเฟรชข้อมูลใหม่
                             location.reload();
                         });
                     } else {
-                        swal({
+                        Swal.fire({
                             title: "ยืนยันการชำระเงินไม่สำเร็จ",
                             text: response.message,
                             icon: "error",
-                            button: "OK",
+                            confirmButtonText: "OK",
                         });
                     }
                 }
@@ -176,11 +177,16 @@ function confirm(payID) {
 
             xhr.onerror = function() {
                 console.error("Request failed");
+                Swal.fire({
+                    title: "ข้อผิดพลาด",
+                    text: "ไม่สามารถติดต่อกับเซิร์ฟเวอร์ได้",
+                    icon: "error"
+                });
             };
 
             xhr.send(formData);
         } else {
-            swal("การยกเลิก");
+            Swal.fire("การยกเลิก");
         }
     });
 }
