@@ -97,8 +97,9 @@
                                 include "checking_data/check_show.php";
                                 break;
                             case 'checkout-data':
-                                include "checking_data/check_show.php";
+                                include "checkout_data/check_show.php";
                                 break;
+                                
                             default:
                                 echo "<h2>ไม่พบหน้า</h2>";
                         }
@@ -127,6 +128,7 @@
 
     <script type="text/javascript" src="./dash_data/dash.js"></script>
     <script type="text/javascript" src="./checking_data/check.js"></script>
+    <script type="text/javascript" src="./checkout_data/check.js"></script>
     
     <script>
         

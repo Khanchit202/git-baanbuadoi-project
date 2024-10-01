@@ -37,7 +37,7 @@
                     $response['data'] = "checking_data/check_show.php";
                 break;
             case 'checkout-data':
-                    $response['data'] = "checking_data/check_show.php";
+                    $response['data'] = "checkout_data/check_show.php";
                 break;
             default:
                 $response['data'] = "user_data/user_data.php";
