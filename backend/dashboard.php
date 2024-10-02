@@ -126,7 +126,7 @@
     <script type="text/javascript" src="./promotion_data/promotion.js"></script>
     <script type="text/javascript" src="./reviwsroom_data/reviwsroom.js"></script>
 
-    <script type="text/javascript" src="./dash_data/dash.js"></script>
+    <script type="text/javascript" src="./dash_data/dashs.js"></script>
     <script type="text/javascript" src="./checking_data/check.js"></script>
     <script type="text/javascript" src="./checkout_data/check.js"></script>
     
