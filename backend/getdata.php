@@ -39,6 +39,9 @@
             case 'checkout-data':
                     $response['data'] = "checkout_data/check_show.php";
                 break;
+            case 'checkstory-data':
+                    $response['data'] = "checkstory_data/check_show.php";
+                break;
             default:
                 $response['data'] = "user_data/user_data.php";
         }

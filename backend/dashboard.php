@@ -99,6 +99,9 @@
                             case 'checkout-data':
                                 include "checkout_data/check_show.php";
                                 break;
+                            case 'checkstory-data':
+                                include "checkstory_data/check_show.php";
+                                break;
                                 
                             default:
                                 echo "<h2>ไม่พบหน้า</h2>";
@@ -129,6 +132,7 @@
     <script type="text/javascript" src="./dash_data/dashss.js"></script>
     <script type="text/javascript" src="./checking_data/check.js"></script>
     <script type="text/javascript" src="./checkout_data/check.js"></script>
+    <script type="text/javascript" src="./checkstory_data/check.js"></script>
     
     <script>
         
@@ -147,7 +151,7 @@ function showDetails(bookName, billStatus, bookType, checkIn, checkOut, payMoney
 
     let vat = (parsedRoomPrice * 7) / 100;
     let total = parsedRoomPrice + vat;
-    let remainingPrice = total - parsedPayMoney;
+    let remainingPrice = total - payMoney;
 
     if (document.getElementById('modalName')) {
         document.getElementById('modalName').innerText = bookName;
@@ -168,7 +172,7 @@ function showDetails(bookName, billStatus, bookType, checkIn, checkOut, payMoney
         document.getElementById('modalCheckOut').innerText = checkOut;
     }
     if (document.getElementById('modalPayMoney')) {
-        document.getElementById('modalPayMoney').innerText = parsedPayMoney.toFixed(2);
+        document.getElementById('modalPayMoney').innerText = payMoney;
     }
     if (document.getElementById('modalRoomName')) {
         document.getElementById('modalRoomName').innerText = roomName;

@@ -58,7 +58,7 @@ if (!$room) {
                     <?php endif; ?>
                 </div>
 
-                <div class="col-md-6" id="deteil_text" style="height: 500px; font-size: 14px; border-left: solid 4px #4DA865; border-radius: 10px; padding: 30px 30px; box-shadow: 2px 2px 5px #ccc">
+                <div class="col-md-6" id="deteil_text" style="font-size: 14px; border-left: solid 4px #4DA865; border-radius: 10px; padding: 30px 30px; box-shadow: 2px 2px 5px #ccc">
                         <h1 class="fw-bold" style="font-size: 20px; margin-bottom: 20px;"><?php echo htmlspecialchars($room['roomName']); ?></h1>
                         <br>
                         <div class="row mb-1">
