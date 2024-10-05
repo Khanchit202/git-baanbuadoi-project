@@ -22,7 +22,7 @@ $numberOfbookingday = count($bookingdayArray);
 
 
 
-<p style="font-size: 16px; padding: 5px 20px;">รายงานสารสนเทศ</p>
+<p style="font-size: 16px; padding: 5px 20px;">หน้าหลักแดชบอร์ด</p>
 <div id="user-table" style="align-items: center;background-color: white; border-radius: 10px; padding: 50px;">
     <div class="d-flex justify-content-between">
         <p style="font-size: 20px;font-weight:bold">ข้อมูลรายงานสารสนเทศ</p>
@@ -33,39 +33,39 @@ $numberOfbookingday = count($bookingdayArray);
                 <div class="row mt-5"style="display: flex; justify-content: space-between;">
                 <div class="col-md-2 green-box" style=" border-left: solid 4px #72d572;">
                     <div class="row center-text mt-2">
-                        <p>จำนวนห้องพัก</p>
+                        <p style="font-size: 14px;">จำนวนห้องพัก</p>
                     </div>
                     <div class="row">
-                        <p><?php echo $numberOfUsers; ?> ห้อง</p>
+                        <p style='font-size: 18px;'><?php echo $numberOfUsers; ?> ห้อง</p>
                     </div>
                 </div>
-                <div class="col-md-2 red-box">
+                <div class="col-md-2 red-box" >
                     <div class="row center-text mt-2">
-                        <p>รอตรวจสอบ</p>
+                        <p style="font-size: 14px;">รอตรวจสอบ</p>
                     </div>
                     <div class="row">
-                        <p><?php echo $numberOfpay; ?> รายการ</p>
+                        <p style="font-size: 18px;"><?php echo $numberOfpay; ?> รายการ</p>
                     </div>
                 </div>
                 <div class="col-md-2 blue-box">
                     <div class="row center-text mt-2">
-                        <p>จำนวนบริการ</p>
+                        <p style='font-size: 14px;'>จำนวนบริการ</p>
                     </div>
                     <div class="row">
-                         <p><?php echo $numberOfservice; ?> บริการ</p>
+                         <p style="font-size: 18px;"><?php echo $numberOfservice; ?> บริการ</p>
                     </div>
                 </div>
                 <div class="col-md-2 yellow-box">
                     <div class="row center-text mt-2">
-                        <p>ห้องพักที่มีการจองวันนี้</p>
+                        <p style="font-size: 14px;">ห้องพักที่มีการจองวันนี้</p>
                     </div>
                     <div class="row">
                         
                         <?php
                         if ($numberOfbookingday > 0) {
-                                echo "<p> $numberOfbookingday ห้อง</p>";
+                                echo "<p style='font-size: 18px;'> $numberOfbookingday ห้อง</p>";
                             } else {
-                                echo "<p>ไม่มีการจองวันนี้</p>";
+                                echo "<p style='font-size: 18px;'>ไม่มีการจองวันนี้</p>";
                             }
                             ?><
                     </div>

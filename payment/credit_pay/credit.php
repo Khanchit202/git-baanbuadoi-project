@@ -43,7 +43,7 @@
                     $stmt = $db_con->prepare($sql);
                     $stmt->bindParam(1, $name);
                     $stmt->bindValue(2, $now);
-                    $stmt->bindValue(3, 2000);
+                    $stmt->bindValue(3, 300);
                     $stmt->bindParam(4, $bank);
                     $stmt->bindValue(5, 2);
                     $stmt->bindParam(6, $payId);

@@ -217,6 +217,9 @@ function emp_dash($lavel_name, $lavel_color) {
                     <li class="sidebar-item">
                         <a href="?page=checkout-data" class="sidebar-link <?php echo ($current_page == 'checkout-data' ? 'active' : '') ?>">คำขอส่งคืนบริการ</a>
                     </li>
+                    <li class="sidebar-item">
+                        <a href="?page=checkstory-data" class="sidebar-link <?php echo ($current_page == 'checkstory-data' ? 'active' : '') ?>">ประวัติการเข้าพัก</a>
+                    </li>
                 </ul>
             </li>
 
