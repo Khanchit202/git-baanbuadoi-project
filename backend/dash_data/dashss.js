@@ -77,18 +77,18 @@ if (chPie) {
 }
 
 /* bar chart */
-var chBar = document.getElementById("chBar");
+var chBar = document.getElementById("chBars");
 if (chBar) {
   new Chart(chBar, {
   type: 'bar',
   data: {
-    labels: ["S", "M", "T", "W", "T", "F", "S"],
+    labels: ["S"],
     datasets: [{
-      data: [589, 445, 483, 503, 689, 692, 634],
+      data: [numberOfBookings], 
       backgroundColor: colors[0]
     },
     {
-      data: [639, 465, 493, 478, 589, 632, 674],
+      data: [639],
       backgroundColor: colors[1]
     }]
   },

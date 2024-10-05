@@ -18,6 +18,16 @@ $bookingdayArray = $bookingday->fetchAll(PDO::FETCH_ASSOC);
 $numberOfbookingday = count($bookingdayArray);
 
 
+$datesroom = date('Y-m-d'); // กำหนดวันที่ปัจจุบันและเวลา 14:00:00
+$bookingdaygaf = $db_con->query("SELECT roomID FROM booking_payment WHERE payDate = '$datesroom'");
+$bookingdaygafArray = $bookingdaygaf->fetchAll(PDO::FETCH_ASSOC);
+$numberOfbookingdaygafArray = count($bookingdaygafArray);
+
+$dates = date('Y-m-d'); // กำหนดวันที่ปัจจุบันและเวลา 14:00:00
+$bookingdayser = $db_con->query("SELECT serviceID FROM booking_payment WHERE payDate = '$dates'");
+$bookingdayserArray = $bookingdayser->fetchAll(PDO::FETCH_ASSOC);
+$numberOfbookingdayserArray = count($bookingdayserArray);
+
 ?>
 
 
@@ -100,7 +110,7 @@ $numberOfbookingday = count($bookingdayArray);
                         <p style="font-weight:bold">วัน</p>
                         <div class="card">
                             <div class="card-body">
-                                <canvas id="chLine"></canvas>
+                                <canvas id="myBarChart"></canvas>
                             </div>
                         </div>
                     </div>
@@ -108,7 +118,7 @@ $numberOfbookingday = count($bookingdayArray);
                     <p style="font-weight:bold">เดือน</p>
                         <div class="card">
                             <div class="card-body">
-                                <canvas id="chBar"></canvas>
+                                <canvas id="chLine"></canvas>
                             </div>
                         </div>
                     </div>
@@ -191,3 +201,36 @@ $numberOfbookingday = count($bookingdayArray);
             </div>
         </div>
 </div>
+<script>
+        // รับข้อมูลจาก PHP
+        var roomOfBookings = <?php echo $numberOfbookingdaygafArray; ?>;
+        var serOfBookings = <?php echo $numberOfbookingdayserArray; ?>;
+        var ctx = document.getElementById('myBarChart').getContext('2d');
+        var myBarChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Today'],
+                datasets: [{
+                    label: 'Number of Bookings',
+                    data: [roomOfBookings],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                },
+            {
+                label: 'ser of Bookings',
+                    data: [serOfBookings],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+            }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
