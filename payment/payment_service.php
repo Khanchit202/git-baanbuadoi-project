@@ -17,6 +17,7 @@ $payId = $_GET['payId'];
     <link rel="stylesheet" href="../tabbar_view/nav_bar.css">
     <link rel="stylesheet" href="../style1.css">
     <link rel="stylesheet" href="https://cdn.lineicons.com/3.0/lineicons.css">
+    <link rel="icon" type="image/x-icon" href="../baanbuadoi_top.png" style="border-radius: 5px;">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Icon Font Stylesheet -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">

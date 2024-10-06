@@ -7,10 +7,10 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
 
 
 ?>
-<p style="font-size: 16px; padding: 5px 20px;">การชำระเงิน</p>
+<p style="font-size: 16px; padding: 5px 20px;">ตรวจสอบการชำระเงิน</p>
 <div id="user-table" style="align-items: center;background-color: white; border-radius: 10px; padding: 50px;">
     <div class="d-flex justify-content-between">
-        <p style="font-size: 20px;">การชำระเงินทั้งหมด</p>
+        <p style="font-size: 20px;">การชำระเงินที่ต้องตรวจสอบ</p>
         <!-- <button class="btn btn-primary" style="font-size: 12px;margin-right: 80px;" data-bs-toggle="modal" data-bs-target="#addDataModal">
             <i class="lni lni-circle-plus" style="padding: 5px;"></i>
             เพิ่มบริการ 
@@ -67,22 +67,22 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
     </div>
 </div>
 </div>
+
+
 <!-- Add Modal -->
 <div class="modal fade" id="select_pay" tabindex="-1" aria-labelledby="addDataModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-xl">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="addDataModalLabel">
-          <img src="booking_payment_data/api/baanbuadoi.png" alt="Logo" style="height: 80px; margin-right: 10px;">
-          รายละเอียดการชำระเงิน
+          <img src="booking_payment_data/api/baanbuadoi.png" alt="Logo" style="height: 60px; margin-right: 10px;">
         </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-    <div class="row mb-3">
+    <div class="row mb-3" style="font-size: 12px;">
         <div class="col-6">
-            <label for="payPic" class="form-label" style="font-weight: bold;">สลิปโอนเงิน:</label>
-            <img id="payPic" src="" alt="สลิปโอนเงิน" style="width: 100%;">
+            <img id="payPic" src="" alt="สลิปโอนเงิน" style="width: 400px;">
         </div>
         <div class="col-6">
             <div class="row mb-3"style="margin-top:30px">
@@ -160,11 +160,10 @@ $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
           <div class="modal-footer">
             <button type="button" onclick="cancle('<?php echo addslashes($pay['payID']); ?>')" class="btn btn-danger">ข้อมูลไม่ถูกต้อง</button>
             <button type="button" onclick="confirm('<?php echo addslashes($pay['payID']); ?>')" class="btn btn-success">ยืนยัน</button>
-            <a href="#" class="btn me-1 " style="font-size: 14px; background-color: #4caf50; color: #ffffff; background-color: none; border-radius: 5px;" onclick="confirm('<?php echo addslashes($pay['payID']); ?>')">Checkin</a>
           </div>
       </div>
     </div>
   </div>
 </div>
-
+</div>
 <!-- End Modal -->

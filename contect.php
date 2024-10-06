@@ -16,7 +16,7 @@ $db_con = connect_db();
 
     <!-- Favicon -->
     <link href="../img/favicon.ico" rel="icon">
-    <link rel="icon" type="image/x-icon" href="tabbar_view/baanbuadoi.png" style="border-radius: 5px;">
+    <link rel="icon" type="image/x-icon" href="baanbuadoi_top.png" style="border-radius: 5px;">
     
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -69,19 +69,19 @@ $db_con = connect_db();
         <!-- About End -->
     
         
-        <!-- Team  -->
+    <!-- Team  -->
         
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;margin-top:70px;">
-                    <h1 class="mb-3">เจ้าหน้าที่ดูแลระบบ</h1>
+                    <h1 class="mb-3">บุคคลกรภายในองค์กร</h1>
                 </div>
 
                 <div class="menu_pro d-flex justify-content-between" style="margin: 60px 60px;" >
                     <div class="wow fadeInUp" data-wow-delay="0.2s">
                         <div class="card" style="width: 250px;">
-                            <img src="img/bua/team1.jpg" class="card-img-top" alt="Programer" style="height: 200px; object-fit: cover;">
+                            <img src="img/profile/owner_p01.jpg" class="card-img-top" alt="Programer" style="height: 200px; object-fit: cover;">
                             <div class="card-body">
-                                <h5 class="card-title" style="font-size: 16px; font-weight: bold;">Somchai Manhoeng</h5>
-                                <p class="card-text" style="font-size: 12px;">Programer</p>
+                                <h5 class="card-title" style="font-size: 16px; font-weight: bold;">คุณพุธรักษ์ ลายเฮิง</h5>
+                                <p class="card-text" style="font-size: 12px;">เจ้าของกิจการ</p>
                                 <div class="mt-3">
                                     <a href="https://www.facebook.com/somchai.munheng" target="_blank" style="text-decoration: none;">
                                         <div style="width: 40px; height: 40px; border-radius: 5px; background-color: #3b5998; display: inline-flex; align-items: center; justify-content: center;">
@@ -99,10 +99,10 @@ $db_con = connect_db();
                     </div>
                     <div class="wow fadeInUp" data-wow-delay="0.2s">
                         <div class="card" style="width: 250px;">
-                            <img src="img/profile/khanchit.jpg" class="card-img-top" alt="Programer" style="height: 200px; object-fit: cover;">
+                            <img src="img/profile/co_owner.jpg" class="card-img-top" alt="Programer" style="height: 200px; object-fit: cover;">
                             <div class="card-body">
-                                <h5 class="card-title" style="font-size: 16px; font-weight: bold;">ครรชิต บางพระ</h5>
-                                <p class="card-text" style="font-size: 12px;">Programer</p>
+                                <h5 class="card-title" style="font-size: 16px; font-weight: bold;">ณัฐกิจ คำกุย</h5>
+                                <p class="card-text" style="font-size: 12px;">ผู้ช่วยเจ้าของกิจการ</p>
                                 <div class="mt-3">
                                     <a href="https://web.facebook.com/khanchit.bp/" target="_blank" style="text-decoration: none;">
                                         <div style="width: 40px; height: 40px; border-radius: 5px; background-color: #3b5998; display: inline-flex; align-items: center; justify-content: center;">
@@ -120,10 +120,10 @@ $db_con = connect_db();
                     </div>
                     <div class="wow fadeInUp" data-wow-delay="0.4s">
                         <div class="card" style="width: 250px;">
-                            <img src="img/profile/khanchit_bp.jpg" class="card-img-top" alt="Addmin" style="height: 200px; object-fit: cover;">
+                            <img src="img/profile/emp02.jpg" class="card-img-top" alt="Addmin" style="height: 200px; object-fit: cover;">
                             <div class="card-body">
-                                <h5 class="card-title" style="font-size: 16px; font-weight: bold;">Khanchit Bangphra</h5>
-                                <p class="card-text" style="font-size: 12px;">Admin</p>
+                                <h5 class="card-title" style="font-size: 16px; font-weight: bold;">นครินทร์ ใจศักดิ์</h5>
+                                <p class="card-text" style="font-size: 12px;">พนักงาน</p>
                                 <div class="mt-3">
                                     <a href="https://web.facebook.com/khanchit.bp/" target="_blank" style="text-decoration: none;">
                                         <div style="width: 40px; height: 40px; border-radius: 5px; background-color: #3b5998; display: inline-flex; align-items: center; justify-content: center;">
@@ -141,10 +141,10 @@ $db_con = connect_db();
                     </div>
                     <div class="wow fadeInUp" data-wow-delay="0.6s">
                         <div class="card" style="width: 250px;">
-                            <img src="img/bua/team1.jpg" class="card-img-top" alt="Addmin" style="height: 200px; object-fit: cover;">
+                            <img src="img/profile/emp01.jpg" class="card-img-top" alt="Addmin" style="height: 200px; object-fit: cover;">
                             <div class="card-body">
-                                <h5 class="card-title" style="font-size: 16px; font-weight: bold;">สมชาย หมั่นเฮิง</h5>
-                                <p class="card-text" style="font-size: 12px;">Admin</p>
+                                <h5 class="card-title" style="font-size: 16px; font-weight: bold;">ชูเกียรติ ทำบุญ</h5>
+                                <p class="card-text" style="font-size: 12px;">พนักงาน</p>
                                 <div class="mt-3">
                                     <a href="https://www.facebook.com/somchai.munheng" target="_blank" style="text-decoration: none;">
                                         <div style="width: 40px; height: 40px; border-radius: 5px; background-color: #3b5998; display: inline-flex; align-items: center; justify-content: center;">
@@ -162,7 +162,70 @@ $db_con = connect_db();
                     </div>
                 </div>
         <!-- Team End -->
+
          
+        <!-- Team  -->
+        
+                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;margin-top:70px;">
+                    <h1 class="mb-3">เจ้าหน้าที่ดูแลระบบ</h1>
+                </div>
+
+                <div class="menu_pro d-flex justify-content-between" style="margin: 60px 60px;" >
+                    <div class="wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="card" style="width: 250px;">
+                            <img src="img/bua/team1.jpg" class="card-img-top" alt="Programer" style="height: 200px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title" style="font-size: 16px; font-weight: bold;">สมชาย หมั่นเฮิง</h5>
+                                <p class="card-text" style="font-size: 12px;">Admin - Programer</p>
+                                <div class="mt-3">
+                                    <a href="https://www.facebook.com/somchai.munheng" target="_blank" style="text-decoration: none;">
+                                        <div style="width: 40px; height: 40px; border-radius: 5px; background-color: #3b5998; display: inline-flex; align-items: center; justify-content: center;">
+                                            <i class="bi bi-facebook" style="font-size: 16px; color: white;"></i>
+                                        </div>
+                                    </a>
+                                    <a href="https://www.instagram.com/hobb_p002/" target="_blank" style="text-decoration: none;">
+                                        <div style="width: 40px; height: 40px; border-radius: 5px; background-color: #E1306C; display: inline-flex; align-items: center; justify-content: center;">
+                                            <i class="bi bi-instagram" style="font-size: 16px; color: white;"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="card" style="width: 250px;">
+                            <img src="img/profile/khanchit_bp.jpg" class="card-img-top" alt="Programer" style="height: 200px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title" style="font-size: 16px; font-weight: bold;">ครรชิต บางพระ</h5>
+                                <p class="card-text" style="font-size: 12px;">Admin - Programer</p>
+                                <div class="mt-3">
+                                    <a href="https://web.facebook.com/khanchit.bp/" target="_blank" style="text-decoration: none;">
+                                        <div style="width: 40px; height: 40px; border-radius: 5px; background-color: #3b5998; display: inline-flex; align-items: center; justify-content: center;">
+                                            <i class="bi bi-facebook" style="font-size: 16px; color: white;"></i>
+                                        </div>
+                                    </a>
+                                    <a href="https://www.instagram.com/khanchit.ig/" target="_blank" style="text-decoration: none;">
+                                        <div style="width: 40px; height: 40px; border-radius: 5px; background-color: #E1306C; display: inline-flex; align-items: center; justify-content: center;">
+                                            <i class="bi bi-instagram" style="font-size: 16px; color: white;"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="" style="width: 250px;">
+                            
+                        </div>
+                    </div>
+                    <div class="wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="" style="width: 250px;">
+                            
+                        </div>
+                    </div>
+                </div>
+        <!-- Team End -->
+
         <!-- Call to Action Start -->
         <div class="container-xxl bg-white p-0">
             <div class="container">
@@ -249,6 +312,8 @@ $db_con = connect_db();
                     </div>
             </div>
         </div>
+
+
         <!-- Call to Action End -->
         <div class="text-center mx-auto mb-5 mt-5 fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
             <h1 class="mb-3">เยี่ยมชมทางเราถึงที่</h1>

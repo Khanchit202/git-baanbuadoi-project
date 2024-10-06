@@ -6,7 +6,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
 <div class="topbar_menu">
     <div class="topbar_menu_logo">
-        <a href="index.php"><img src="tabbar_view/baanbuadoi.png" alt="โฮมสเตย์บ้านบัวดอย Baanbuadoi" style="width: 45px; height: 45px;"></a>
+        <a href="index.php"><img src="baanbuadoi_top.png" alt="โฮมสเตย์บ้านบัวดอย Baanbuadoi" style="width: 54px; height: 45px;"></a>
         <p>โฮมสเตย์บ้านบัวดอย</p>
     </div>
     <div class="topbar_menu_list">
