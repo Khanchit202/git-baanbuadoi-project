@@ -37,6 +37,7 @@ if (!$ser) {
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
+    <link rel="icon" type="image/x-icon" href="../baanbuadoi_top.png" style="border-radius: 5px;">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">

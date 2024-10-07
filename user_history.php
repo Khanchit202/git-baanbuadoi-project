@@ -18,7 +18,7 @@ $db_con = connect_db();
     <link rel="stylesheet" href="https://cdn.lineicons.com/3.0/lineicons.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="img/favicon.ico" rel="icon">
-    <link rel="icon" type="image/x-icon" href="img/bua/logo.png" style="border-radius: 5px;">
+    <link rel="icon" type="image/x-icon" href="baanbuadoi_top.png" style="border-radius: 5px;">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
     <link href="lib/animate/animate.min.css" rel="stylesheet">
@@ -37,7 +37,6 @@ $db_con = connect_db();
     </nav>
     <?php
     if (isset($_GET['userID'])) {
-        // รับค่าพารามิเตอร์ userID
         $userID = $_GET['userID'];
         
 
