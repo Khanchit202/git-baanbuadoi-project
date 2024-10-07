@@ -16,7 +16,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.0/css/dataTables.dataTables.css" />
-    <link rel="stylesheet" href="dashss.css">
+    <link rel="stylesheet" href="dash.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <link rel="icon" type="image/x-icon" href="../baanbuadoi_top.png" style="border-radius: 5px;">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script> 
@@ -133,7 +133,7 @@
     <script type="text/javascript" src="./promotion_data/promotion.js"></script>
     <script type="text/javascript" src="./reviwsroom_data/reviwsroom.js"></script>
 
-    <script type="text/javascript" src="./dash_data/dashss.js"></script>
+    
     <script type="text/javascript" src="./checking_data/check.js"></script>
     <script type="text/javascript" src="./checkout_data/check.js"></script>
     <script type="text/javascript" src="./checkstory_data/check.js"></script>

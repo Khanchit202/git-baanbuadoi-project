@@ -212,3 +212,37 @@ a.sidebar-link:hover {
 .button-style:hover {
     background-color: #e3e5e7; /* สีพื้นหลังเมื่อเมาส์ชี้ */
 }
+
+.circleDiv {
+    width: 400px; /* กำหนดความกว้างของวงกลม */
+    height: 400px; /* กำหนดความสูงของวงกลม */
+    background-color: #7FFF00; /* กำหนดพื้นหลังสีเขียว */
+    border-radius: 50%; /* ทำให้เป็นวงกลม */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.circleDivinside {
+    width: 300px; /* กำหนดความกว้างของวงกลม */
+    height: 300px; /* กำหนดความสูงของวงกลม */
+    background-color: rgb(243, 246, 243); /* กำหนดพื้นหลังสีเขียว */
+    border-radius: 50%; /* ทำให้เป็นวงกลม */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.green-boxs {
+    border-radius: 10px;
+    height: 100px;
+    width: 40%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    font-size: 25px;
+    border-left: solid 4px #72d572;
+    margin-left: 30%;
+}

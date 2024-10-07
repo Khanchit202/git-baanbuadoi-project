@@ -29,14 +29,26 @@ $bookingdayserArray = $bookingdayser->fetchAll(PDO::FETCH_ASSOC);
 $numberOfbookingdayserArray = count($bookingdayserArray);
 
 $mout = date('Y-m'); // กำหนดเดือนและปีปัจจุบัน
-$mountbook = $db_con->query("SELECT serviceID FROM booking_payment WHERE DATE_FORMAT(payDate, '%Y-%m') = '$mout'");
+$mountbook = $db_con->query("SELECT serviceID FROM booking_payment WHERE DATE_FORMAT(payDate, '%Y-%m') = '$mout' AND serviceID IS NOT NULL");
 $mountbookArray = $mountbook->fetchAll(PDO::FETCH_ASSOC);
 $numberOfmountbookArray = count($mountbookArray);
 
 $mouts = date('Y-m'); // กำหนดเดือนและปีปัจจุบัน
-$mountbookr = $db_con->query("SELECT roomID FROM booking_payment WHERE DATE_FORMAT(payDate, '%Y-%m') = '$mouts'");
+$mountbookr = $db_con->query("SELECT roomID FROM booking_payment WHERE DATE_FORMAT(payDate, '%Y-%m') = '$mouts' AND roomID IS NOT NULL");
 $mountbookrArray = $mountbookr->fetchAll(PDO::FETCH_ASSOC);
 $numberOfmountbookrArray = count($mountbookrArray);
+
+
+$yeas = date('Y'); // กำหนดเดือนและปีปัจจุบัน
+$yeasbookr = $db_con->query("SELECT roomID FROM booking_payment WHERE DATE_FORMAT(payDate, '%Y') = '$yeas' AND roomID IS NOT NULL");
+$yeasbookrArray = $yeasbookr->fetchAll(PDO::FETCH_ASSOC);
+$numberOfyeasbookrArray = count($yeasbookrArray);
+
+ // กำหนดเดือนและปีปัจจุบัน
+ $yeasbooks = $db_con->query("SELECT serviceID FROM booking_payment WHERE DATE_FORMAT(payDate, '%Y') = '$yeas' AND serviceID IS NOT NULL");
+ $yeasbooksArray = $yeasbooks->fetchAll(PDO::FETCH_ASSOC);
+ $numberOfyeasbooksArray = count($yeasbooksArray);
+ 
 ?>
 
 
@@ -116,7 +128,7 @@ $numberOfmountbookrArray = count($mountbookrArray);
                 </div>
                 <div class="row mt-5" style="display: flex; justify-content: space-between;">
                     <div class="col-md-5 py-2"style="width:50%;">
-                        <p style="font-weight:bold">การจองวันนี้</p>
+                        <p style="font-weight:bold">การจองวันนี้ <?php echo $dates; ?></p>
                         <div class="card">
                             <div class="card-body">
                                 <canvas id="myBarChart"></canvas>
@@ -124,7 +136,7 @@ $numberOfmountbookrArray = count($mountbookrArray);
                         </div>
                     </div>
                     <div class="col-md-5 py-2"style="width:50%;">
-                    <p style="font-weight:bold">การจองเดือนนี้</p>
+                    <p style="font-weight:bold">การจองเดือนนี้ <?php echo $mouts; ?></p>
                         <div class="card">
                             <div class="card-body">
                                 <canvas id="chLines"></canvas>
@@ -133,16 +145,16 @@ $numberOfmountbookrArray = count($mountbookrArray);
                     </div>
                     
                 </div>
-                <!-- <div class="row mt-5" style="display: flex; justify-content: center;">
-                    <div class="col-md-5 py-2"style="width:80%;">
-                        <p style="font-weight:bold">ปี</p>
+                <div class="row mt-5" style="display: flex; justify-content: center;">
+                    <div class="col-md-5 py-2"style="width:55%;">
+                        <p style="font-weight:bold">การจองในปี <?php echo $yeas; ?></p>
                         <div class="card">
                             <div class="card-body">
-                                <canvas id="chBar1"></canvas>
+                            <canvas id="chBar1" ></canvas>
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
                 <!-- <div class="d-flex justify-content-between mt-5">
                     <p style="font-size: 20px;font-weight:bold">ข้อมูลการจองทั้งหมดทั้งหมด</p>
                     
@@ -247,4 +259,32 @@ $numberOfmountbookrArray = count($mountbookrArray);
                 }
             }
         });
+
+
+        var roomOfyeas = <?php echo $numberOfyeasbookrArray; ?>;
+        var serOfyeas = <?php echo $numberOfyeasbooksArray; ?>;
+        var ctx = document.getElementById('chBar1').getContext('2d');
+        var myDoughnutChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: [ 'จองห้องพัก','จองบริการ'],
+                datasets: [{
+                    label: 'การจอง',
+                    data: [roomOfyeas,serOfyeas],
+                    backgroundColor: [colors[0], colors[1]],
+                    borderColor: [colors[0], colors[1]],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+
+        
             </script>
