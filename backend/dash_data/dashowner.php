@@ -1,19 +1,18 @@
 <?php
-$users = $db_con->query("SELECT * FROM room_product");
+$users = $db_con->query("SELECT userLavelID FROM users WHERE userLavelID = 3");
 $usersArray = $users->fetchAll(PDO::FETCH_ASSOC);
 $numberOfUsers = count($usersArray);
 
-$booking = $db_con->query("SELECT * FROM booking_payment WHERE payStatus = 1");
+$booking = $db_con->query("SELECT userLavelID FROM users WHERE userLavelID = 4");
 $bookingArray = $booking->fetchAll(PDO::FETCH_ASSOC);
 $numberOfpay = count($bookingArray);
 
-$service = $db_con->query("SELECT * FROM service_product ");
+$service = $db_con->query("SELECT * FROM reviws_room ");
 $serviceArray = $service->fetchAll(PDO::FETCH_ASSOC);
 $numberOfservice = count($serviceArray);
 
 
-$date = date('Y-m-d') . ' 14:00:00'; // กำหนดวันที่ปัจจุบันและเวลา 14:00:00
-$bookingday = $db_con->query("SELECT * FROM booking WHERE bookDateStart = '$date'");
+$bookingday = $db_con->query("SELECT * FROM reviws_service ");
 $bookingdayArray = $bookingday->fetchAll(PDO::FETCH_ASSOC);
 $numberOfbookingday = count($bookingdayArray);
 
@@ -41,10 +40,10 @@ $numberOfmountbookrArray = count($mountbookrArray);
 
 
 
-<p style="font-size: 16px; padding: 5px 20px;">หน้าหลักแดชบอร์ด</p>
+<p style="font-size: 16px; padding: 5px 20px;">แดชบอร์ดส่วนเจ้าของกิจการ</p>
 <div id="user-table" style="align-items: center;background-color: white; border-radius: 10px; padding: 50px;">
     <div class="d-flex justify-content-between">
-        <p style="font-size: 20px;font-weight:bold">ข้อมูลรายงานสารสนเทศ</p>
+        <p style="font-size: 20px;font-weight:bold">ข้อมูลรายงานสารสนเทศเจ้าของกิจการ</p>
         
     </div>
         <div class="text-center">
@@ -52,59 +51,53 @@ $numberOfmountbookrArray = count($mountbookrArray);
                 <div class="row mt-5"style="display: flex; justify-content: space-between;">
                 <div class="col-md-2 green-box" style=" border-left: solid 4px #72d572;">
                     <div class="row center-text mt-2">
-                        <p style="font-size: 14px;">จำนวนห้องพัก</p>
+                        <p style="font-size: 14px;">จำนวนพนักงาน</p>
                     </div>
                     <div class="row">
-                        <p style='font-size: 18px;'><?php echo $numberOfUsers; ?> ห้อง</p>
+                        <p style='font-size: 18px;'><?php echo $numberOfUsers; ?> คน</p>
                     </div>
                 </div>
                 <div class="col-md-2 red-box" >
                     <div class="row center-text mt-2">
-                        <p style="font-size: 14px;">รอตรวจสอบ</p>
+                        <p style="font-size: 14px;">จำนวนสมาชิก</p>
                     </div>
                     <div class="row">
-                        <p style="font-size: 18px;"><?php echo $numberOfpay; ?> รายการ</p>
+                        <p style="font-size: 18px;"><?php echo $numberOfpay; ?> คน</p>
                     </div>
                 </div>
                 <div class="col-md-2 blue-box">
                     <div class="row center-text mt-2">
-                        <p style='font-size: 14px;'>จำนวนบริการ</p>
+                        <p style='font-size: 14px;'>การรีวิวห้องพัก</p>
                     </div>
                     <div class="row">
-                         <p style="font-size: 18px;"><?php echo $numberOfservice; ?> บริการ</p>
+                         <p style="font-size: 18px;"><?php echo $numberOfservice; ?> รีวิว</p>
                     </div>
                 </div>
                 <div class="col-md-2 yellow-box">
                     <div class="row center-text mt-2">
-                        <p style="font-size: 14px;">ห้องพักที่มีการจองวันนี้</p>
+                        <p style="font-size: 14px;">การรีวิวบริการ</p>
                     </div>
                     <div class="row">
-                        
-                        <?php
-                        if ($numberOfbookingday > 0) {
-                                echo "<p style='font-size: 18px;'> $numberOfbookingday ห้อง</p>";
-                            } else {
-                                echo "<p style='font-size: 18px;'>ไม่มีการจองวันนี้</p>";
-                            }
-                            ?><
+                         <p style="font-size: 18px;"><?php echo $numberOfbookingday; ?> รีวิว</p>
                     </div>
+                    
                 </div>
 
                 </div>
                 <div class="row mt-3" style="display: flex; justify-content: space-between;">
-                    <a href="?page=room-data" class="col-md-2 button-style">
+                    <a href="?page=user-data" class="col-md-2 button-style">
                         จัดการ
                     </a>
 
-                    <a href="?page=bookingpayment-data" class="col-md-2 button-style">
+                    <a href="?page=user-data" class="col-md-2 button-style">
                         จัดการ
                     </a>
 
-                    <a href="?page=service-data" class="col-md-2 button-style">
+                    <a href="?page=reviwsroom-data" class="col-md-2 button-style">
                         จัดการ
                     </a>
 
-                    <a href="?page=checkin-data" class="col-md-2 button-style">
+                    <a href="?page=reviwsservice-data" class="col-md-2 button-style">
                         จัดการ
                     </a>
 
@@ -133,7 +126,7 @@ $numberOfmountbookrArray = count($mountbookrArray);
                     </div>
                     
                 </div>
-                <!-- <div class="row mt-5" style="display: flex; justify-content: center;">
+                <div class="row mt-5" style="display: flex; justify-content: center;">
                     <div class="col-md-5 py-2"style="width:80%;">
                         <p style="font-weight:bold">ปี</p>
                         <div class="card">
@@ -142,8 +135,8 @@ $numberOfmountbookrArray = count($mountbookrArray);
                             </div>
                         </div>
                     </div>
-                </div> -->
-                <!-- <div class="d-flex justify-content-between mt-5">
+                </div> 
+                <div class="d-flex justify-content-between mt-5">
                     <p style="font-size: 20px;font-weight:bold">ข้อมูลการจองทั้งหมดทั้งหมด</p>
                     
                 </div>
@@ -172,7 +165,7 @@ $numberOfmountbookrArray = count($mountbookrArray);
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
                 
 
 

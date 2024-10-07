@@ -63,6 +63,9 @@
                     if (isset($_GET['page'])) {
                         $page = $_GET['page'];
                         switch ($page) {
+                            case 'dashboard-owner':
+                                include 'dash_data/dashowner.php';
+                                break;
                             case 'dashboard':
                                 include 'dash_data/dash.php';
                                 break;
