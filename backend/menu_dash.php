@@ -47,33 +47,39 @@ function admin_dash($lavel_name, $lavel_color) {
             <li class="sidebar-item">
                 <a href="?page=dashboard-admin" class="sidebar-link <?php echo ($current_page == 'dashboard-admin' ? 'active' : '') ?>">
                     <i class="lni lni-grid-alt"></i>
-                    <span>แดชบอร์ด</span>
+                    <span class="fw-bold" style="font-size: 12px;">แดชบอร์ด</span>
                 </a>
             </li>
             <li class="sidebar-item">
                 <a href="?page=user-data" class="sidebar-link <?php echo ($current_page == 'user-data' ? 'active' : '') ?>">
                     <i class="lni lni-protection"></i>
-                    <span>กำหนดสิทธิ์การเข้าถึงระบบ</span>
+                    <span class="fw-bold" style="font-size: 12px;">กำหนดสิทธิ์การเข้าถึงระบบ</span>
                 </a>
             </li>
+
             <li class="sidebar-item">
-                <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
-                    <i class="lni lni-list"></i>
-                    <span>จัดการข้อมูลกิจการ</span>
+                
+                <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#roomService" aria-expanded="false" aria-controls="roomService">
+                <i class="lni lni-layers"></i>
+                    <span class="fw-bold" style="font-size: 12px;">จัดการข้อมูลห้องพักและบริการ</span>
                 </a>
-                <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                <ul id="roomService" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                     <li class="sidebar-item">
                         <a href="?page=room-data" class="sidebar-link <?php echo ($current_page == 'room-data' ? 'active' : '') ?>">ห้องพัก</a>
                     </li>
                     <li class="sidebar-item">
                         <a href="?page=service-data" class="sidebar-link <?php echo ($current_page == 'service-data' ? 'active' : '') ?>">บริการ</a>
                     </li>
-                    <li class="sidebar-item">
-                        <a href="?page=reviwsroom-data" class="sidebar-link <?php echo ($current_page == 'reviwsroom-data' ? 'active' : '') ?>">ข้อมูลรีวิวห้องพัก</a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="?page=reviwsservice-data" class="sidebar-link <?php echo ($current_page == 'reviwsservice-data' ? 'active' : '') ?>">ข้อมูลรีวิวบริการ</a>
-                    </li>
+                </ul>
+            </li>
+
+            
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#website" aria-expanded="false" aria-controls="website">
+                    <i class="lni lni-code-alt"></i>
+                    <span class="fw-bold" style="font-size: 12px;">จัดการข้อมูลหน้าเว็บไซต์</span>
+                </a>
+                <ul id="website" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                     <li class="sidebar-item">
                         <a href="?page=premaket-data" class="sidebar-link <?php echo ($current_page == 'premaket-data' ? 'active' : '') ?>">จัดการข้อมูลข่าวสาร</a>
                     </li>
@@ -82,12 +88,24 @@ function admin_dash($lavel_name, $lavel_color) {
                     </li>
                 </ul>
             </li>
+
+
             <li class="sidebar-item">
-                <a href="?page=booking-data" class="sidebar-link <?php echo ($current_page == 'booking-data' ? 'active' : '') ?>">
-                    <i class="lni lni-list"></i>
-                    <span>ข้อมูลการจอง</span>
+                <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#comment" aria-expanded="false" aria-controls="comment">
+                    <i class="lni lni-thought"></i>
+                    <span class="fw-bold" style="font-size: 12px;">จัดการข้อมูลความคิดเห็น</span>
                 </a>
+                <ul id="comment" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                    <li class="sidebar-item">
+                        <a href="?page=reviwsroom-data" class="sidebar-link <?php echo ($current_page == 'reviwsroom-data' ? 'active' : '') ?>">จัดการข้อมูลรีวิวห้องพัก</a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="?page=reviwsservice-data" class="sidebar-link <?php echo ($current_page == 'reviwsservice-data' ? 'active' : '') ?>">จัดการข้อมูลรีวิวบริการ</a>
+                    </li>
+                </ul>
             </li>
+            
+            
         </ul>
     <?php
 } 
@@ -100,33 +118,50 @@ function owner_dash($lavel_name, $lavel_color) {
             <li class="sidebar-item">
                 <a href="?page=dashboard-owner" class="sidebar-link <?php echo ($current_page == 'dashboard-owner' ? 'active' : '') ?>">
                     <i class="lni lni-grid-alt"></i>
+<<<<<<< Updated upstream
                     <span>แดชบอร์ด เจ้าของกิจการ</span>
+=======
+                    <span class="fw-bold" style="font-size: 12px;">แดชบอร์ด</span>
+>>>>>>> Stashed changes
                 </a>
             </li>
             <li class="sidebar-item">
                 <a href="?page=user-data" class="sidebar-link <?php echo ($current_page == 'user-data' ? 'active' : '') ?>">
-                    <i class="lni lni-protection"></i>
-                    <span>กำหนดสิทธิ์การเข้าถึงระบบ</span>
+                    <i class="lni lni-pulse"></i>
+                    <span class="fw-bold" style="font-size: 12px;">รายงานสารสนเทศ</span>
                 </a>
             </li>
+
             <li class="sidebar-item">
-                <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
-                    <i class="lni lni-list"></i>
-                    <span>จัดการข้อมูล</span>
+                <a href="?page=user-data" class="sidebar-link <?php echo ($current_page == 'user-data' ? 'active' : '') ?>">
+                    <i class="lni lni-protection"></i>
+                    <span class="fw-bold" style="font-size: 12px;">ข้อมูลผู้ใช้งานระบบ</span>
                 </a>
-                <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+            </li>
+
+            <li class="sidebar-item">
+                
+                <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#roomService" aria-expanded="false" aria-controls="roomService">
+                <i class="lni lni-layers"></i>
+                    <span class="fw-bold" style="font-size: 12px;">จัดการข้อมูลห้องพักและบริการ</span>
+                </a>
+                <ul id="roomService" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                     <li class="sidebar-item">
                         <a href="?page=room-data" class="sidebar-link <?php echo ($current_page == 'room-data' ? 'active' : '') ?>">ห้องพัก</a>
                     </li>
                     <li class="sidebar-item">
                         <a href="?page=service-data" class="sidebar-link <?php echo ($current_page == 'service-data' ? 'active' : '') ?>">บริการ</a>
                     </li>
-                    <li class="sidebar-item">
-                        <a href="?page=reviwsroom-data" class="sidebar-link <?php echo ($current_page == 'reviwsroom-data' ? 'active' : '') ?>">ข้อมูลรีวิวห้องพัก</a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="?page=reviwsservice-data" class="sidebar-link <?php echo ($current_page == 'reviwsservice-data' ? 'active' : '') ?>">ข้อมูลรีวิวบริการ</a>
-                    </li>
+                </ul>
+            </li>
+
+            
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#website" aria-expanded="false" aria-controls="website">
+                    <i class="lni lni-code-alt"></i>
+                    <span class="fw-bold" style="font-size: 12px;">จัดการข้อมูลหน้าเว็บไซต์</span>
+                </a>
+                <ul id="website" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                     <li class="sidebar-item">
                         <a href="?page=premaket-data" class="sidebar-link <?php echo ($current_page == 'premaket-data' ? 'active' : '') ?>">จัดการข้อมูลข่าวสาร</a>
                     </li>
@@ -134,9 +169,25 @@ function owner_dash($lavel_name, $lavel_color) {
                         <a href="?page=promotion-data" class="sidebar-link <?php echo ($current_page == 'promotion-data' ? 'active' : '') ?>">จัดการข้อมูลโปรโมชั่น</a>
                     </li>
                 </ul>
-                
-                    
             </li>
+
+
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#comment" aria-expanded="false" aria-controls="comment">
+                    <i class="lni lni-thought"></i>
+                    <span class="fw-bold" style="font-size: 12px;">จัดการข้อมูลความคิดเห็น</span>
+                </a>
+                <ul id="comment" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                    <li class="sidebar-item">
+                        <a href="?page=reviwsroom-data" class="sidebar-link <?php echo ($current_page == 'reviwsroom-data' ? 'active' : '') ?>">จัดการข้อมูลรีวิวห้องพัก</a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="?page=reviwsservice-data" class="sidebar-link <?php echo ($current_page == 'reviwsservice-data' ? 'active' : '') ?>">จัดการข้อมูลรีวิวบริการ</a>
+                    </li>
+                </ul>
+            </li>
+            
+            
         </ul>
     <?php
 } 
