@@ -61,8 +61,6 @@ $db_con = connect_db();
         color: #f39c12; /* สีดาวเมื่อวางเมาส์ */
     }
 </style>
-
-
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
