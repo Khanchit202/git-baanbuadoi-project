@@ -764,13 +764,9 @@ $db_con = connect_db();
                                                     }
                                                     if($row['billStatus'] == 1){
                                                         echo '<button onclick="redirectToReport()" type="button" class="btn" style="font-size: 8px; background-color: #DE6461; color: #ffffff; border-radius: 5px;">พิมพ์</button>';
-<<<<<<< Updated upstream
                                                         echo '<a href="report/bookroom_report.php?bookId='.$row['bookID'].'" class="btn me-1 fw-bold" style="font-size: 8px; color: #4caf50; background-color: #DE6461; border-radius: 5px;">พิมพ์ใบจอง</a>';
                                                     }
                                                     
-=======
-                                                    }     
->>>>>>> Stashed changes
                                                 ?>
                                             </td>
                                         </tr>
