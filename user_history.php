@@ -28,13 +28,6 @@ $db_con = connect_db();
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-    <!-- ใส่ใน <head> -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-    <!-- ใส่ก่อนปิด </body> -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     
     <style>
     .star-rating {
@@ -763,14 +756,9 @@ $db_con = connect_db();
                                                         echo '<a href="payment/payment.php?payId='.$row['payID'].'" class="btn me-1 fw-bold" style="font-size: 8px; border: solid 1px #4caf50; color: #4caf50; background-color: none; border-radius: 5px;">ดำเนินการชำระเงิน</a>';
                                                     }
                                                     if($row['billStatus'] == 1){
-                                                        echo '<button onclick="redirectToReport()" type="button" class="btn" style="font-size: 8px; background-color: #DE6461; color: #ffffff; border-radius: 5px;">พิมพ์</button>';
-<<<<<<< Updated upstream
-                                                        echo '<a href="report/bookroom_report.php?bookId='.$row['bookID'].'" class="btn me-1 fw-bold" style="font-size: 8px; color: #4caf50; background-color: #DE6461; border-radius: 5px;">พิมพ์ใบจอง</a>';
+                                                        echo '<a href="report/bookroom_report.php?bookId='.$row['bookID'].'" class="btn me-1" style="font-size: 8px; color: #ffffff; background-color: #DE6461; border-radius: 5px;">พิมพ์ใบจอง</a>';
                                                     }
                                                     
-=======
-                                                    }     
->>>>>>> Stashed changes
                                                 ?>
                                             </td>
                                         </tr>
@@ -882,7 +870,10 @@ $db_con = connect_db();
 </div>
 </div>
 
-
+<!-- ใส่ก่อนปิด </body> -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
         
 <script>

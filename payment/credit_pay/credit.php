@@ -3,9 +3,9 @@
     $db_con = connect_db();
 
     if (isset($_GET['payId'])) {
-        $payId = $_GET['payId'];
-    } elseif (isset($_POST['payId'])) {
-        $payId = $_POST['payId'];
+        $payId = (string) $_GET['payId'];
+    } else if (isset($_POST['payId'])) {
+        $payId = (string) $_POST['payId'];
     } else {
         $payId = null;
     }

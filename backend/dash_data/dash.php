@@ -86,12 +86,20 @@ $numberOfyeasbookrArray = count($yeasbookrArray);
                          <p style="font-size: 20px;"><?php echo $numberOfservice; ?> บริการ</p>
                     </div>
                 </div>
+                <?php 
+                $sql_count = "SELECT COUNT(*) AS coundTime FROM statistic";
+                $stmt_count = $db_con->prepare($sql_count);
+                $stmt_count->execute();
+                $result = $stmt_count->fetch(PDO::FETCH_ASSOC);
+                $totalCount = $result['coundTime'];  // เก็บจำนวนข้อมูลในตัวแปร
+                ?>
+
                 <div class="col-md-2 yellow-box" style="background-color: #A7CF5A;">
                     <div class="row center-text mt-2">
                         <p style="font-size: 12px;">จำนวนการเข้าใช้ระบบ</p>
                     </div>
                     <div class="row">
-                        <p style="font-size: 20px;"><?php echo $numberOfservice; ?> คน</p>
+                        <p style="font-size: 20px;"><?php echo $totalCount; ?> คน</p>
                     </div>
                 </div>
 

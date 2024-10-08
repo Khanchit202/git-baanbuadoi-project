@@ -26,6 +26,8 @@ $db_con = connect_db();
   
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
 </head>
 <body>
     <div class="container-xxl bg-white p-0">
@@ -126,396 +128,6 @@ $db_con = connect_db();
             </div>
         </div>
     </div>
-
-    <?php
-        // SQL Query to select data from booking_bill and other related tables
-        $sql = "
-            SELECT * 
-            FROM booking_bill 
-            INNER JOIN room_product ON booking_bill.roomID = room_product.roomID
-            INNER JOIN booking ON booking_bill.bookID = booking.bookID
-            LEFT JOIN booking_payment ON booking_bill.payID = booking_payment.payID
-            WHERE booking_bill.userID = :userID
-            ORDER BY booking_bill.billID DESC
-        ";
-
-
-        $data2 = $db_con->prepare($sql);
-        $userID = $_SESSION['userID'];
-        $data2->bindParam(':userID', $userID, PDO::PARAM_INT);
-        $data2->execute();
-        $dataArray = $data2->fetchAll(PDO::FETCH_ASSOC);
-
-        // Function to format date in Thai style
-        function formatThaiDate($date) {
-            $monthNames = [
-                'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน',
-                'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'
-            ];
-                                                                            
-            $day = $date->format('j');
-            $month = $monthNames[$date->format('n') - 1];
-            $year = $date->format('Y') + 543;
-                                                                        
-            return "{$day} {$month} {$year}";
-        }
-        ?>
-
-    <br><br>
-    <!-- ส่วนแสดงประวัติการจอง -->
-    <div class="container " style=" padding: 0px 60px;">
-        <div class="pro mb-4" style="width: 100%; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 20px 0px;">
-            <div class="d-flex justify-content-between m-2 mb-3" style="padding: 10px 35px;">
-                <p>ข้อมูลประวัติการจองห้องพัก</p>
-                <div class="d-flex">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#roomModal" style="text-decoration: none;"><p class="btn" style="font-size: 10px; background-color: #3B8386; color: #ffffff;">แสดงรายการทั้งหมด</p></a>
-                </div>
-            </div>
-            
-            
-            <div class="testimonial-item rounded" style="font-size: 12px; padding: 10px 25px;">
-                        <div class="table-responsive" style="overflow-x: auto;">
-                            <table class="table table-hover table-bordered" style="min-width: 800px;">
-                                <thead style="background-color: #97C7C9;">
-                                    <tr>
-                                        <th class="text-center">ชื่อรายการ</th>
-                                        <th class="text-center">วันที่ทำการ</th>
-                                        <th class="text-center">การชำระเงิน</th>
-                                        <th class="text-center">สถานะ</th>
-                                        <th class="text-center">หมายเหตุ</th>
-                                        <th class="text-center">ตัวเลือก</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                <?php 
-                                    $hasData = false; // สถานะการแสดงผลรายการ
-                                    $displayCount = 0; // ตัวนับรายการที่แสดง
-                                    foreach ($dataArray as $index => $row) : 
-                                        if ($row['bookType'] != 1) continue; // ตรวจสอบ bookType
-
-                                        if ($displayCount >= 5) break; // จำกัดจำนวนรายการที่แสดง
-                                        $hasData = true; // มีข้อมูลที่ตรงตามเงื่อนไข
-                                        $displayCount++; // เพิ่มตัวนับ
-                                    ?>
-                                        <tr>
-                                            <td class="text-center"><?php echo $row['roomName']; ?></td>
-
-                                            <?php 
-                                                $payId = $row['payID'];
-                                                $datetime = $row['bookDate'];
-                                                $date = new DateTime($datetime);
-                                                $thaiDate = formatThaiDate($date);
-                                            ?>
-
-                                            <td class="text-center"><?php echo $thaiDate; ?></td>
-                                            <td class="text-center">
-                                                <?php 
-                                                    if ($row['payStatus'] === NULL || $row['bookCancel'] == 1) {
-                                                        $pay_status = "";
-                                                        $pay_color = '';
-                                                    } else if ($row['payStatus'] == 1) {
-                                                        $pay_status = "กำลังตรวจสอบ";
-                                                        $pay_color = '#4caf50';
-                                                    } else if ($row['payStatus'] == 2) {
-                                                        $pay_status = "ชำระเงินแล้ว";
-                                                        $pay_color = '#A7CF5A';
-                                                    } else {
-                                                        $pay_status = "รอการชำระเงิน";
-                                                        $pay_color = '#3B8386';
-                                                    }
-                                                ?>
-                                                <h5 class="text-center" style="background-color: <?php echo $pay_color; ?>; font-size: 8px; padding: 5px 0; border-radius: 10px; color: #ffffff;">
-                                                    <?php echo $pay_status; ?>
-                                                </h5>
-                                            </td>
-                                            <td class="text-center">
-                                                <?php 
-                                                    // กำหนดวันที่ปัจจุบัน
-                                                    $currentDateTime = date('Y-m-d H:i:s'); // เปลี่ยนตามความเหมาะสมของรูปแบบวันที่
-
-                                                    // แปลง bookDateStart และ bookDateEnd เป็น DateTime
-                                                    $bookDateStart = new DateTime($row['bookDateStart']);
-                                                    $bookDateEnd = new DateTime($row['bookDateEnd']);
-                                                    $currentDateTime = new DateTime($currentDateTime);
-
-                                                    // ตรวจสอบสถานะการจอง
-                                                    if ($row['billStatus'] == 1 && $currentDateTime == $bookDateStart) {
-                                                        $bill_status = "เช็คอิน"; // เปลี่ยนเมื่อถึงวันที่เช็คอิน
-                                                        $bill_color = '#A7CF5A';
-                                                        
-                                                    } else if ($row['billStatus'] == 1 && $currentDateTime > $bookDateEnd) {
-                                                        $bill_status = "เช็คเอาท์"; // เปลี่ยนเมื่อถึงวันที่เช็คเอาท์
-                                                        $bill_color = '#DE6461';
-                                                    } else if ($row['bookCancel'] == 1) {
-                                                        $bill_status = "ยกเลิก";
-                                                        $bill_color = '#DE6461';
-                                                    } else if ($row['bookCancel'] == 2) {
-                                                        $bill_status = "ถูกระงับ";
-                                                        $bill_color = '#DE6461';
-                                                    } else if ($row['billStatus'] == 1) {
-                                                        $bill_status = "จองสำเร็จ";
-                                                        $bill_color = '#A7CF5A';
-                                                    } else {
-                                                        $bill_status = "รอดำเนินการ";
-                                                        $bill_color = '#3B8386';
-                                                    }
-                                                ?>
-                                                <h5 class="text-center" style="background-color: <?php echo $bill_color; ?>; font-size: 8px; padding: 5px 0; border-radius: 10px; color: #ffffff;">
-                                                    <?php echo $bill_status; ?>
-                                                </h5>
-                                            </td>
-
-                                            <td class="text-center"><?php echo $row['note'] ?? ' - '; ?></td>
-                                            <td class="text-start">
-                                                <?php
-                                                    if($row['bookStatus'] == 1){
-                                                        echo '<button type="button" class="btn me-1" data-toggle="modal" data-target="#myModal" style="font-size: 8px; background-color: #3B8386; color: #ffffff; border-radius: 5px;">ดูรายละเอียด</button>';
-                                                    }
-                                                    if($row['payStatus'] == 2 || $row['payStatus'] == 1 && $row['bookCancel'] != 1){
-                                                        echo '<button type="button" class="btn me-1" data-toggle="modal" data-target="#myModal" style="font-size: 8px; background-color: #4caf50; color: #ffffff; border-radius: 5px;">การชำระเงิน</button>';
-                                                    } else if($row['payStatus'] === NULL || $row['payStatus'] == 0 && $row['bookCancel'] != 1){
-                                                        echo '<a href="payment/payment.php?payId='.$row['payID'].'" class="btn me-1 fw-bold" style="font-size: 8px; border: solid 1px #4caf50; color: #4caf50; background-color: none; border-radius: 5px;">ดำเนินการชำระเงิน</a>';
-                                                    }
-                                                    if($row['billStatus'] == 1){
-                                                        echo '<a href="report/bookroom_report.php?bookId='.$row['bookID'].'" class="btn me-1" style="font-size: 8px; color: #ffffff; background-color: #DE6461; border-radius: 5px;">พิมพ์ใบจอง</a>';
-                                                    }
-
-                                                    $currentDateTime = date('Y-m-d H:i:s'); // เวลาปัจจุบัน
-                                                    if ($row['bookDateEnd'] < $currentDateTime && $row['billStatus'] == 1) {
-                                                        // ถ้าเวลาถึงหรือเกิน bookDateEnd ให้แสดงปุ่ม "รีวิว"
-                                                        echo '<button type="button" class="btn me-1" data-toggle="modal" data-target="#reviewModalroom" style="font-size: 8px; margin-left: 5px; background-color: #FF9500; color: #ffffff; border-radius: 5px;">รีวิว</button>';
-                                                    }
-                                                ?>
-                                            </td>
-                                        </tr>
-
-                                    <?php endforeach; ?>
-                                    <?php if (!$hasData) { ?>
-                                        <tr>
-                                            <td colspan="6" class="text-center">ไม่มีรายการแสดง</td>
-                                        </tr>
-                                    <?php } ?>
-                                </tbody>
-
-
-                            </table>
-                        </div>
-            </div>
-        </div>
-<!-- Modal สำหรับรีวิว -->
-<div class="modal fade" id="reviewModalroom" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="reviewModalLabel">รีวิวห้องพัก</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form onsubmit="return upreviewsroom();" method="POST">
-                    <input type="hidden" name="roomID" id="roomID" value="<?php echo $row['roomID']; ?>">
-                    <input type="hidden" name="userID" id="userID" value="<?php echo $row['userID']; ?>">
-                    <input type="hidden" name="billID" id="billID" value="<?php echo $row['billID']; ?>">
-                    <input type="hidden" name="currentDateTime" id="currentDateTime" value="<?php echo date('Y-m-d H:i:s'); ?>">
-
-                    <div class="form-group">
-                        <label for="rating">คะแนน:</label>
-                        <div class="star-rating">
-                            <input type="radio" name="rating" id="star1" value="5" />
-                            <label for="star1" title="5 ดาว">★</label>
-                            <input type="radio" name="rating" id="star2" value="4" />
-                            <label for="star2" title="4 ดาว">★</label>
-                            <input type="radio" name="rating" id="star3" value="3" />
-                            <label for="star3" title="3 ดาว">★</label>
-                            <input type="radio" name="rating" id="star4" value="2" />
-                            <label for="star4" title="2 ดาว">★</label>
-                            <input type="radio" name="rating" id="star5" value="1" />
-                            <label for="star5" title="1 ดาว">★</label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="comment">ความคิดเห็น:</label>
-                        <textarea class="form-control" id="comment" name="comment" rows="4" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">ส่งรีวิว</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-<!-- JavaScript สำหรับเรียกฟังก์ชัน upreviews() -->
-<script>
-   function upreviewsroom() {
-    var rating = document.querySelector('input[name="rating"]:checked').value;
-    var comment = document.getElementById('comment').value;
-    var roomID = document.getElementById('roomID').value;
-    var userID = document.getElementById('userID').value;
-    var checkID = '00002';
-    var billID = document.getElementById('billID').value;
-    var currentDateTime = document.getElementById('currentDateTime').value;
-
-    // เรียกใช้ฟังก์ชัน upreviews พร้อมกับการส่งข้อมูล
-    $.ajax({
-        url: "backend/room_data/api/upreviwsroom.php", // URL ของฟังก์ชัน PHP
-        method: "POST",
-        data: {
-            rating: rating,
-            comment: comment,
-            roomID: roomID,
-            userID: userID,
-            checkID: checkID,
-            billID: billID,
-            currentDateTime: currentDateTime
-        },
-        success: function(response) {
-            // รีเซ็ตค่าในฟอร์ม
-            document.querySelector('input[name="rating"]:checked').checked = false;
-            document.getElementById('comment').value = '';
-            document.getElementById('roomID').value = '';
-            document.getElementById('userID').value = '';
-            document.getElementById('billID').value = '';
-            document.getElementById('currentDateTime').value = '';
-
-            // ปิด modal ก่อน
-            $('#reviewModalroom').modal('hide');
-
-            // แสดงการแจ้งเตือน
-            Swal.fire({
-                title: 'สำเร็จ!',
-                text: 'รีวิวของคุณถูกส่งเรียบร้อยแล้ว!',
-                icon: 'success'
-            });
-        },
-        error: function(error) {
-            // ปิด modal ก่อน
-            $('#reviewModalroom').modal('hide');
-
-            // แสดงการแจ้งเตือน
-            Swal.fire({
-                title: 'เกิดข้อผิดพลาด',
-                text: 'กรุณาลองใหม่อีกครั้ง',
-                icon: 'error'
-            });
-        }
-    });
-
-    return false; // ป้องกันการ submit form แบบปกติ
-}
-
-
-        <?php
-        $sql2 = "
-            SELECT * 
-            FROM booking_bill 
-            INNER JOIN service_product ON booking_bill.serviceID = service_product.serviceID
-            INNER JOIN booking ON booking_bill.bookID = booking.bookID
-            LEFT JOIN booking_payment ON booking_bill.payID = booking_payment.payID
-            WHERE booking_bill.userID = :userID
-            ORDER BY booking_bill.billID DESC
-        ";
-
-
-        $data3 = $db_con->prepare($sql2);
-        $data3->bindParam(':userID', $userID, PDO::PARAM_INT);
-        $data3->execute();
-        $dataArray2 = $data3->fetchAll(PDO::FETCH_ASSOC);
-        ?>
-
-
-         <div class="pro" style="width: 100%; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 20px 0px;">
-            <div class="d-flex justify-content-between m-2 mb-3" style="padding: 10px 35px;">
-                <p>ข้อมูลประวัติการจองบริการ</p>
-                <div class="d-flex">
-                <a href="#" data-bs-toggle="modal" data-bs-target="#serviceModal" style="text-decoration: none;"><p class="btn" style="font-size: 10px; background-color: #3B8386; color: #ffffff;">แสดงรายการทั้งหมด</p></a>
-                </div>
-            </div>
-
-            <div class="testimonial-item rounded" style="font-size: 12px; padding: 10px 25px;">
-            <div class="table-responsive" style="overflow-x: auto;">
-                <table class="table table-hover table-bordered" style="min-width: 800px;">
-                    <thead style="background-color: #97C7C9;">
-                        <tr>
-                            <th class="text-center">ชื่อรายการ</th>
-                            <th class="text-center">วันที่ทำการ</th>
-                            <th class="text-center">การชำระเงิน</th>
-                            <th class="text-center">สถานะ</th>
-                            <th class="text-center">หมายเหตุ</th>
-                            <th class="text-center">ตัวเลือก</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <?php 
-                        $hasData2 = false;
-                        $displayCount2 = 0;
-                            foreach ($dataArray2 as $index2 => $row2) : 
-                            if ($row2['bookType'] != 2) continue;
-
-                            if ($displayCount2 >= 5) break;
-                                $hasData2 = true;
-                                $displayCount2++;
-                            ?>
-
-                            <tr>
-                                <td class="text-center"><?php echo $row2['serviceName']; ?></td>
-
-                                <?php 
-                                    $datetime = $row2['bookDate'];
-                                    $date = new DateTime($datetime);
-                                    $thaiDate = formatThaiDate($date);
-                                ?>
-                                <td class="text-center"><?php echo $thaiDate; ?></td>
-                                <td class="text-center">
-                                    <?php 
-                                        $pay_status = ($row2['payStatus'] === NULL || $row2['bookCancel'] == 1) ? "" : ($row2['payStatus'] == 1 ? "กำลังตรวจสอบ" : ($row2['payStatus'] == 2 ? "ชำระเงินแล้ว" : "รอการชำระเงิน"));
-                                        $pay_color = ($row2['payStatus'] === NULL || $row2['bookCancel'] == 1) ? '' : ($row2['payStatus'] == 1 ? '#4caf50' : ($row2['payStatus'] == 2 ? '#A7CF5A' : '#3B8386'));
-                                    ?>
-                                    <h5 class="text-center" style="background-color: <?php echo $pay_color; ?>; font-size: 8px; padding: 5px 0; border-radius: 10px; color: #ffffff;">
-                                        <?php echo $pay_status; ?>
-                                    </h5>
-                                </td>
-                                <td class="text-center">
-                                    <?php 
-                                        $bill_status = ($row2['billStatus'] == 1) ? "จองสำเร็จ" : (($row2['bookCancel'] == 1 || $row2['bookCancel'] == 2) ? "ยกเลิก" : "รอดำเนินการ");
-                                        $bill_color = ($row2['billStatus'] == 1) ? '#A7CF5A' : (($row2['bookCancel'] == 1 || $row2['bookCancel'] == 2) ? '#DE6461' : '#3B8386');
-                                    ?>
-                                    <h5 class="text-center" style="background-color: <?php echo $bill_color; ?>; font-size: 8px; padding: 5px 0; border-radius: 10px; color: #ffffff;">
-                                        <?php echo $bill_status; ?>
-                                    </h5>
-                                </td>
-                                <td class="text-center"><?php echo $row2['note'] ?? ' - '; ?></td>
-                                <td class="text-start">
-                                    <?php
-                                        if($row2['bookStatus'] == 1){
-                                            echo '<button type="button" class="btn me-1" data-toggle="modal" data-target="#myModal" style="font-size: 8px; background-color: #3B8386; color: #ffffff; border-radius: 5px;">ดูรายละเอียด</button>';
-                                        }
-                                        if($row2['payStatus'] == 2 || ($row2['payStatus'] == 1 && $row2['bookCancel'] != 1)){
-                                            echo '<button type="button" class="btn me-1" data-toggle="modal" data-target="#myModal" style="font-size: 8px; background-color: #4caf50; color: #ffffff; border-radius: 5px;">การชำระเงิน</button>';
-                                        } else if($row2['payStatus'] === NULL || ($row2['payStatus'] == 0 && $row2['bookCancel'] != 1)){
-                                            echo '<a href="payment/payment_service.php?payId='.$row2['payID'].'" class="btn me-1 fw-bold" style="font-size: 8px; border: solid 1px #4caf50; color: #4caf50; background-color: none; border-radius: 5px;">ดำเนินการชำระเงิน</a>';
-                                        }
-                                        if($row2['billStatus'] == 1){
-                                            echo '<button onclick="redirectToReport()" type="button" class="btn" style="font-size: 8px; background-color: #DE6461; color: #ffffff; border-radius: 5px;">พิมพ์ใบจอง</button>';
-                                        }
-                                    ?>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                        
-                        <?php if (!$hasData2) { ?>
-                            <tr>
-                                <td colspan="6" class="text-center">ไม่มีรายการแสดง</td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>  
     </div>
 </div>
 </div>
@@ -557,7 +169,7 @@ $db_con = connect_db();
                 <form>
                     <div class="form-group mb-3" ">
                         <label for="username">User Name</label>
-                        <input type="text" class="form-control" id="username" value="<?php echo htmlspecialchars($user['userName']); ?>">
+                        <input type="text" class="form-control" id="username" value="<?php echo htmlspecialchars($user['userName']); ?>" disabled>
                     </div>
 
                     <div class="form-group mb-3">
@@ -689,7 +301,7 @@ $db_con = connect_db();
             <div class="table-responsive" style="overflow-x: auto;">
             <table class="table table-hover table-bordered" style="min-width: 800px;">
                                 <thead style="background-color: #97C7C9;">
-                                <tr>
+                                    <tr>
                                         <th class="text-center">ชื่อรายการ</th>
                                         <th class="text-center">วันที่ทำการ</th>
                                         <th class="text-center">การชำระเงิน</th>
@@ -701,14 +313,10 @@ $db_con = connect_db();
 
                                 <tbody>
                                 <?php 
-                                    $hasData = false; // สถานะการแสดงผลรายการ
-                                    $displayCount = 0; // ตัวนับรายการที่แสดง
+                                    $hasData = false;
                                     foreach ($dataArray as $index => $row) : 
-                                        if ($row['bookType'] != 1) continue; // ตรวจสอบ bookType
-
-                                        if ($displayCount >= 5) break; // จำกัดจำนวนรายการที่แสดง
-                                        $hasData = true; // มีข้อมูลที่ตรงตามเงื่อนไข
-                                        $displayCount++; // เพิ่มตัวนับ
+                                        if ($row['bookType'] != 1) continue;
+                                        $hasData = true;
                                     ?>
                                         <tr>
                                             <td class="text-center"><?php echo $row['roomName']; ?></td>
@@ -743,31 +351,15 @@ $db_con = connect_db();
                                             </td>
                                             <td class="text-center">
                                                 <?php 
-                                                    // กำหนดวันที่ปัจจุบัน
-                                                    $currentDateTime = date('Y-m-d H:i:s'); // เปลี่ยนตามความเหมาะสมของรูปแบบวันที่
-
-                                                    // แปลง bookDateStart และ bookDateEnd เป็น DateTime
-                                                    $bookDateStart = new DateTime($row['bookDateStart']);
-                                                    $bookDateEnd = new DateTime($row['bookDateEnd']);
-                                                    $currentDateTime = new DateTime($currentDateTime);
-
-                                                    // ตรวจสอบสถานะการจอง
-                                                    if ($row['billStatus'] == 1 && $currentDateTime == $bookDateStart) {
-                                                        $bill_status = "เช็คอิน"; // เปลี่ยนเมื่อถึงวันที่เช็คอิน
-                                                        $bill_color = '#A7CF5A';
-                                                        
-                                                    } else if ($row['billStatus'] == 1 && $currentDateTime > $bookDateEnd) {
-                                                        $bill_status = "เช็คเอาท์"; // เปลี่ยนเมื่อถึงวันที่เช็คเอาท์
-                                                        $bill_color = '#DE6461';
-                                                    } else if ($row['bookCancel'] == 1) {
-                                                        $bill_status = "ยกเลิก";
-                                                        $bill_color = '#DE6461';
-                                                    } else if ($row['bookCancel'] == 2) {
-                                                        $bill_status = "ถูกระงับ";
-                                                        $bill_color = '#DE6461';
-                                                    } else if ($row['billStatus'] == 1) {
+                                                    if($row['billStatus'] == 1){
                                                         $bill_status = "จองสำเร็จ";
                                                         $bill_color = '#A7CF5A';
+                                                    } else if($row['bookCancel'] == 1){
+                                                        $bill_status = "ยกเลิก";
+                                                        $bill_color = '#DE6461';
+                                                    } else if($row['bookCancel'] == 2){
+                                                        $bill_status = "ถูกระงับ";
+                                                        $bill_color = '#DE6461';
                                                     } else {
                                                         $bill_status = "รอดำเนินการ";
                                                         $bill_color = '#3B8386';
@@ -777,7 +369,6 @@ $db_con = connect_db();
                                                     <?php echo $bill_status; ?>
                                                 </h5>
                                             </td>
-
                                             <td class="text-center"><?php echo $row['note'] ?? ' - '; ?></td>
                                             <td class="text-start">
                                                 <?php
@@ -791,12 +382,6 @@ $db_con = connect_db();
                                                     }
                                                     if($row['billStatus'] == 1){
                                                         echo '<button onclick="redirectToReport()" type="button" class="btn" style="font-size: 8px; background-color: #DE6461; color: #ffffff; border-radius: 5px;">พิมพ์ใบจอง</button>';
-                                                    }
-
-                                                    $currentDateTime = date('Y-m-d H:i:s'); // เวลาปัจจุบัน
-                                                    if ($row['bookDateEnd'] < $currentDateTime && $row['billStatus'] == 1) {
-                                                        // ถ้าเวลาถึงหรือเกิน bookDateEnd ให้แสดงปุ่ม "รีวิว"
-                                                        echo '<button type="button" class="btn me-1" data-toggle="modal" data-target="#reviewModalroom" style="font-size: 8px; margin-left: 5px; background-color: #FF9500; color: #ffffff; border-radius: 5px;">รีวิว</button>';
                                                     }
                                                 ?>
                                             </td>
@@ -954,8 +539,8 @@ document.getElementById('toggle-confirm-password').addEventListener('click', fun
     }
 });
 
-function redirectToReport() {
-        window.location.href = 'report/bookroom_report.php';
+    function redirectToReport() {
+        window.location.href = 'report/report.php';
     }
     function goPay(payID) {
         window.location.href = 'payment/payment.php?payId=' + payID;

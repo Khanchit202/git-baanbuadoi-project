@@ -7,7 +7,7 @@
     </form>
 </div>
 
-<div id="result-table" style="background-color: white; border-radius: 10px; padding: 20px; font-size: 14px; height: 400px;">
+<div id="result-table" style="background-color: white; border-radius: 10px; padding: 20px; font-size: 14px; height: 100%;">
     
 </div>
 

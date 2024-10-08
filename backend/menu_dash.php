@@ -118,11 +118,7 @@ function owner_dash($lavel_name, $lavel_color) {
             <li class="sidebar-item">
                 <a href="?page=dashboard-owner" class="sidebar-link <?php echo ($current_page == 'dashboard-owner' ? 'active' : '') ?>">
                     <i class="lni lni-grid-alt"></i>
-<<<<<<< Updated upstream
-                    <span>แดชบอร์ด เจ้าของกิจการ</span>
-=======
                     <span class="fw-bold" style="font-size: 12px;">แดชบอร์ด</span>
->>>>>>> Stashed changes
                 </a>
             </li>
             <li class="sidebar-item">
