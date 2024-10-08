@@ -233,15 +233,31 @@ $db_con = connect_db();
                                             </td>
                                             <td class="text-center">
                                                 <?php 
-                                                    if($row['billStatus'] == 1){
-                                                        $bill_status = "จองสำเร็จ";
+                                                    // กำหนดวันที่ปัจจุบัน
+                                                    $currentDateTime = date('Y-m-d H:i:s'); // เปลี่ยนตามความเหมาะสมของรูปแบบวันที่
+
+                                                    // แปลง bookDateStart และ bookDateEnd เป็น DateTime
+                                                    $bookDateStart = new DateTime($row['bookDateStart']);
+                                                    $bookDateEnd = new DateTime($row['bookDateEnd']);
+                                                    $currentDateTime = new DateTime($currentDateTime);
+
+                                                    // ตรวจสอบสถานะการจอง
+                                                    if ($row['billStatus'] == 1 && $currentDateTime == $bookDateStart) {
+                                                        $bill_status = "เช็คอิน"; // เปลี่ยนเมื่อถึงวันที่เช็คอิน
                                                         $bill_color = '#A7CF5A';
-                                                    } else if($row['bookCancel'] == 1){
+                                                        
+                                                    } else if ($row['billStatus'] == 1 && $currentDateTime > $bookDateEnd) {
+                                                        $bill_status = "เช็คเอาท์"; // เปลี่ยนเมื่อถึงวันที่เช็คเอาท์
+                                                        $bill_color = '#DE6461';
+                                                    } else if ($row['bookCancel'] == 1) {
                                                         $bill_status = "ยกเลิก";
                                                         $bill_color = '#DE6461';
-                                                    } else if($row['bookCancel'] == 2){
+                                                    } else if ($row['bookCancel'] == 2) {
                                                         $bill_status = "ถูกระงับ";
                                                         $bill_color = '#DE6461';
+                                                    } else if ($row['billStatus'] == 1) {
+                                                        $bill_status = "จองสำเร็จ";
+                                                        $bill_color = '#A7CF5A';
                                                     } else {
                                                         $bill_status = "รอดำเนินการ";
                                                         $bill_color = '#3B8386';
@@ -251,6 +267,7 @@ $db_con = connect_db();
                                                     <?php echo $bill_status; ?>
                                                 </h5>
                                             </td>
+
                                             <td class="text-center"><?php echo $row['note'] ?? ' - '; ?></td>
                                             <td class="text-start">
                                                 <?php
@@ -264,6 +281,12 @@ $db_con = connect_db();
                                                     }
                                                     if($row['billStatus'] == 1){
                                                         echo '<button onclick="redirectToReport()" type="button" class="btn" style="font-size: 8px; background-color: #DE6461; color: #ffffff; border-radius: 5px;">พิมพ์ใบจอง</button>';
+                                                    }
+
+                                                    $currentDateTime = date('Y-m-d H:i:s'); // เวลาปัจจุบัน
+                                                    if ($row['bookDateEnd'] < $currentDateTime && $row['billStatus'] == 1) {
+                                                        // ถ้าเวลาถึงหรือเกิน bookDateEnd ให้แสดงปุ่ม "รีวิว"
+                                                        echo '<button type="button" class="btn me-1" data-toggle="modal" data-target="#reviewModalroom" style="font-size: 8px; margin-left: 5px; background-color: #FF9500; color: #ffffff; border-radius: 5px;">รีวิว</button>';
                                                     }
                                                 ?>
                                             </td>
@@ -282,7 +305,110 @@ $db_con = connect_db();
                         </div>
             </div>
         </div>
+<!-- Modal สำหรับรีวิว -->
+<div class="modal fade" id="reviewModalroom" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reviewModalLabel">รีวิวห้องพัก</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="return upreviewsroom();" method="POST">
+                    <input type="hidden" name="roomID" id="roomID" value="<?php echo $row['roomID']; ?>">
+                    <input type="hidden" name="userID" id="userID" value="<?php echo $row['userID']; ?>">
+                    <input type="hidden" name="billID" id="billID" value="<?php echo $row['billID']; ?>">
+                    <input type="hidden" name="currentDateTime" id="currentDateTime" value="<?php echo date('Y-m-d H:i:s'); ?>">
 
+                    <div class="form-group">
+                        <label for="rating">คะแนน:</label>
+                        <div class="star-rating">
+                            <input type="radio" name="rating" id="star1" value="5" />
+                            <label for="star1" title="5 ดาว">★</label>
+                            <input type="radio" name="rating" id="star2" value="4" />
+                            <label for="star2" title="4 ดาว">★</label>
+                            <input type="radio" name="rating" id="star3" value="3" />
+                            <label for="star3" title="3 ดาว">★</label>
+                            <input type="radio" name="rating" id="star4" value="2" />
+                            <label for="star4" title="2 ดาว">★</label>
+                            <input type="radio" name="rating" id="star5" value="1" />
+                            <label for="star5" title="1 ดาว">★</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="comment">ความคิดเห็น:</label>
+                        <textarea class="form-control" id="comment" name="comment" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">ส่งรีวิว</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- JavaScript สำหรับเรียกฟังก์ชัน upreviews() -->
+<script>
+   function upreviewsroom() {
+    var rating = document.querySelector('input[name="rating"]:checked').value;
+    var comment = document.getElementById('comment').value;
+    var roomID = document.getElementById('roomID').value;
+    var userID = document.getElementById('userID').value;
+    var checkID = '00002';
+    var billID = document.getElementById('billID').value;
+    var currentDateTime = document.getElementById('currentDateTime').value;
+
+    // เรียกใช้ฟังก์ชัน upreviews พร้อมกับการส่งข้อมูล
+    $.ajax({
+        url: "backend/room_data/api/upreviwsroom.php", // URL ของฟังก์ชัน PHP
+        method: "POST",
+        data: {
+            rating: rating,
+            comment: comment,
+            roomID: roomID,
+            userID: userID,
+            checkID: checkID,
+            billID: billID,
+            currentDateTime: currentDateTime
+        },
+        success: function(response) {
+            // รีเซ็ตค่าในฟอร์ม
+            document.querySelector('input[name="rating"]:checked').checked = false;
+            document.getElementById('comment').value = '';
+            document.getElementById('roomID').value = '';
+            document.getElementById('userID').value = '';
+            document.getElementById('billID').value = '';
+            document.getElementById('currentDateTime').value = '';
+
+            // ปิด modal ก่อน
+            $('#reviewModalroom').modal('hide');
+
+            // แสดงการแจ้งเตือน
+            Swal.fire({
+                title: 'สำเร็จ!',
+                text: 'รีวิวของคุณถูกส่งเรียบร้อยแล้ว!',
+                icon: 'success'
+            });
+        },
+        error: function(error) {
+            // ปิด modal ก่อน
+            $('#reviewModalroom').modal('hide');
+
+            // แสดงการแจ้งเตือน
+            Swal.fire({
+                title: 'เกิดข้อผิดพลาด',
+                text: 'กรุณาลองใหม่อีกครั้ง',
+                icon: 'error'
+            });
+        }
+    });
+
+    return false; // ป้องกันการ submit form แบบปกติ
+}
 
 
         <?php
@@ -565,7 +691,7 @@ $db_con = connect_db();
             <div class="table-responsive" style="overflow-x: auto;">
             <table class="table table-hover table-bordered" style="min-width: 800px;">
                                 <thead style="background-color: #97C7C9;">
-                                    <tr>
+                                <tr>
                                         <th class="text-center">ชื่อรายการ</th>
                                         <th class="text-center">วันที่ทำการ</th>
                                         <th class="text-center">การชำระเงิน</th>
@@ -577,10 +703,14 @@ $db_con = connect_db();
 
                                 <tbody>
                                 <?php 
-                                    $hasData = false;
+                                    $hasData = false; // สถานะการแสดงผลรายการ
+                                    $displayCount = 0; // ตัวนับรายการที่แสดง
                                     foreach ($dataArray as $index => $row) : 
-                                        if ($row['bookType'] != 1) continue;
-                                        $hasData = true;
+                                        if ($row['bookType'] != 1) continue; // ตรวจสอบ bookType
+
+                                        if ($displayCount >= 5) break; // จำกัดจำนวนรายการที่แสดง
+                                        $hasData = true; // มีข้อมูลที่ตรงตามเงื่อนไข
+                                        $displayCount++; // เพิ่มตัวนับ
                                     ?>
                                         <tr>
                                             <td class="text-center"><?php echo $row['roomName']; ?></td>
@@ -615,15 +745,31 @@ $db_con = connect_db();
                                             </td>
                                             <td class="text-center">
                                                 <?php 
-                                                    if($row['billStatus'] == 1){
-                                                        $bill_status = "จองสำเร็จ";
+                                                    // กำหนดวันที่ปัจจุบัน
+                                                    $currentDateTime = date('Y-m-d H:i:s'); // เปลี่ยนตามความเหมาะสมของรูปแบบวันที่
+
+                                                    // แปลง bookDateStart และ bookDateEnd เป็น DateTime
+                                                    $bookDateStart = new DateTime($row['bookDateStart']);
+                                                    $bookDateEnd = new DateTime($row['bookDateEnd']);
+                                                    $currentDateTime = new DateTime($currentDateTime);
+
+                                                    // ตรวจสอบสถานะการจอง
+                                                    if ($row['billStatus'] == 1 && $currentDateTime == $bookDateStart) {
+                                                        $bill_status = "เช็คอิน"; // เปลี่ยนเมื่อถึงวันที่เช็คอิน
                                                         $bill_color = '#A7CF5A';
-                                                    } else if($row['bookCancel'] == 1){
+                                                        
+                                                    } else if ($row['billStatus'] == 1 && $currentDateTime > $bookDateEnd) {
+                                                        $bill_status = "เช็คเอาท์"; // เปลี่ยนเมื่อถึงวันที่เช็คเอาท์
+                                                        $bill_color = '#DE6461';
+                                                    } else if ($row['bookCancel'] == 1) {
                                                         $bill_status = "ยกเลิก";
                                                         $bill_color = '#DE6461';
-                                                    } else if($row['bookCancel'] == 2){
+                                                    } else if ($row['bookCancel'] == 2) {
                                                         $bill_status = "ถูกระงับ";
                                                         $bill_color = '#DE6461';
+                                                    } else if ($row['billStatus'] == 1) {
+                                                        $bill_status = "จองสำเร็จ";
+                                                        $bill_color = '#A7CF5A';
                                                     } else {
                                                         $bill_status = "รอดำเนินการ";
                                                         $bill_color = '#3B8386';
@@ -633,6 +779,7 @@ $db_con = connect_db();
                                                     <?php echo $bill_status; ?>
                                                 </h5>
                                             </td>
+
                                             <td class="text-center"><?php echo $row['note'] ?? ' - '; ?></td>
                                             <td class="text-start">
                                                 <?php
@@ -646,6 +793,12 @@ $db_con = connect_db();
                                                     }
                                                     if($row['billStatus'] == 1){
                                                         echo '<button onclick="redirectToReport()" type="button" class="btn" style="font-size: 8px; background-color: #DE6461; color: #ffffff; border-radius: 5px;">พิมพ์ใบจอง</button>';
+                                                    }
+
+                                                    $currentDateTime = date('Y-m-d H:i:s'); // เวลาปัจจุบัน
+                                                    if ($row['bookDateEnd'] < $currentDateTime && $row['billStatus'] == 1) {
+                                                        // ถ้าเวลาถึงหรือเกิน bookDateEnd ให้แสดงปุ่ม "รีวิว"
+                                                        echo '<button type="button" class="btn me-1" data-toggle="modal" data-target="#reviewModalroom" style="font-size: 8px; margin-left: 5px; background-color: #FF9500; color: #ffffff; border-radius: 5px;">รีวิว</button>';
                                                     }
                                                 ?>
                                             </td>

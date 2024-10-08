@@ -8,9 +8,20 @@ $query->bindParam(':id', $id, PDO::PARAM_INT);
 $query->execute();
 $room = $query->fetch(PDO::FETCH_ASSOC);
 
+$sql = "SELECT r.*, u.userFName 
+        FROM reviws_room r 
+        JOIN users u ON r.userID = u.userID 
+        WHERE r.roomID = :id";
+$stmt = $db_con->prepare($sql);
+$stmt->bindParam(':id', $id);
+$stmt->execute();
+$reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 $price = $room['roomPrice'];
 $deposit = ($price * 30) / 100;
 $deposit = number_format($deposit, 2);
+
+
 
 if (!$room) {
     die("Room not found.");
@@ -105,38 +116,67 @@ if (!$room) {
                 </div>
             </div>
             <div class="container">
-                <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
-                    <?php for($i = 0; $i < 5 ; $i++){ ?>
-                        <div class="testimonial-item bg-light rounded p-3">
-                            <div class="bg-white border rounded p-3 pb-1 d-flex">
-                                <div class="testimonial-image me-1" style="width: 70px;">
-                                    <img src="img/profile/profile_1.jpg" alt="Reviewer Image" class="img-fluid rounded-circle" style="width: 40px; height: 40px;">
-                                </div>
-                                <div class="testimonial-content d-flex flex-column">
-                                    <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <div class="star-rating" style="font-size: 12px;">
-                                            <h5 class="fw-bold mb-0" style="font-size: 12px;">ครรชิต บางพระ</h5>
-                                            <p class="mb-0" style="font-size: 8px; opacity: 60%;">09/09/2567</p>
-                                        </div>
-                                        <div class="star-rating" style="font-size: 12px; color: #BC5686;">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-half-alt"></i>
-                                        </div>
+            <?php
+            ?>
+
+            <?php
+            function thai_date($date) {
+                $thai_month_arr = array(
+                    "01" => "มกราคม",
+                    "02" => "กุมภาพันธ์",
+                    "03" => "มีนาคม",
+                    "04" => "เมษายน",
+                    "05" => "พฤษภาคม",
+                    "06" => "มิถุนายน",
+                    "07" => "กรกฎาคม",
+                    "08" => "สิงหาคม",
+                    "09" => "กันยายน",
+                    "10" => "ตุลาคม",
+                    "11" => "พฤศจิกายน",
+                    "12" => "ธันวาคม"
+                );
+
+                $year = substr($date, 0, 4) + 543;
+                $month = substr($date, 5, 2);
+                $day = substr($date, 8, 2);
+
+                return $day . " " . $thai_month_arr[$month] . " " . $year;
+            }
+            ?>
+
+            <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
+                <?php foreach ($reviews as $review) { ?>
+                    <div class="testimonial-item bg-light rounded p-3">
+                        <div class="bg-white border rounded p-3 pb-1 d-flex">
+                            <div class="testimonial-image me-1" style="width: 70px;">
+                                <img src="img/profile/profile_1.jpg" alt="Reviewer Image" class="img-fluid rounded-circle" style="width: 40px; height: 40px;">
+                            </div>
+                            <div class="testimonial-content d-flex flex-column"style="width: 80%;">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <div class="star-rating" style="font-size: 12px;">
+                                        <h5 class="fw-bold mb-0" style="font-size: 12px;"><?php echo htmlspecialchars($review['userFName']); ?></h5>
+                                        <p class="mb-0" style="font-size: 8px; opacity: 60%;"><?php echo htmlspecialchars(thai_date($review['rvrDate'])); ?></p>
                                     </div>
-                                    <p style="width: 90%; font-size: 10px;">ห้องพักมีความสะดวกสบาย และสะอาดมากครับห้องพักมีความสะดวกสบาย และสะอาดมากครับห้องพักมีความสะดวกสบาย และสะอาดมากครับ</p>
+                                    <div class="star-rating" style="font-size: 12px; color: #BC5686;">
+                                        <?php
+                                        $rating = $review['rvrScore'];
+                                        for ($i = 0; $i < 5; $i++) {
+                                            if ($i < $rating) {
+                                                echo '<i class="fa fa-star"></i>';
+                                            } else {
+                                                echo '<i class="fa fa-star-o"></i>';
+                                            }
+                                        }
+                                        ?>
+                                    </div>
                                 </div>
+                                <p style="width: 90%; font-size: 10px;"><?php echo htmlspecialchars($review['rvrDetail']); ?></p>
                             </div>
                         </div>
-
-                    <?php } ?>
-                </div>
+                    </div>
+                <?php } ?>
             </div>
-        </div>
 
-    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -147,31 +187,36 @@ if (!$room) {
                 <button style="font-size: 10px;" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <?php for($i = 0; $i < 5 ; $i++){ ?>
-
-                            <div class="bg-white border rounded p-3 pb-1 d-flex mb-1">
-                                <div class="testimonial-image me-1" style="width: 70px;">
-                                    <img src="img/profile/profile_1.jpg" alt="Reviewer Image" class="img-fluid rounded-circle" style="width: 40px; height: 40px;">
+            <?php foreach ($reviews as $review) { ?>
+                <div class="testimonial-item bg-light rounded p-3">
+                    <div class="bg-white border rounded p-3 pb-1 d-flex">
+                        <div class="testimonial-image me-1" style="width: 70px;">
+                            <img src="img/profile/profile_1.jpg" alt="Reviewer Image" class="img-fluid rounded-circle" style="width: 40px; height: 40px;">
+                        </div>
+                        <div class="testimonial-content d-flex flex-column"style="width: 80%;">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <div class="star-rating" style="font-size: 12px;">
+                                    <h5 class="fw-bold mb-0" style="font-size: 12px;"><?php echo htmlspecialchars($review['userFName']); ?></h5>
+                                    <p class="mb-0" style="font-size: 8px; opacity: 60%;"><?php echo htmlspecialchars(thai_date($review['rvrDate'])); ?></p>
                                 </div>
-                                <div class="testimonial-content d-flex flex-column">
-                                    <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <div class="star-rating" style="font-size: 12px;">
-                                            <h5 class="fw-bold mb-0" style="font-size: 12px;">ครรชิต บางพระ</h5>
-                                            <p class="mb-0" style="font-size: 8px; opacity: 60%;">09/09/2567</p>
-                                        </div>
-                                        <div class="star-rating" style="font-size: 12px; color: #BC5686;">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-half-alt"></i>
-                                        </div>
-                                    </div>
-                                    <p style="width: 90%; font-size: 10px;">ห้องพักมีความสะดวกสบาย และสะอาดมากครับห้องพักมีความสะดวกสบาย และสะอาดมากครับห้องพักมีความสะดวกสบาย และสะอาดมากครับ</p>
+                                <div class="star-rating" style="font-size: 12px; color: #BC5686;">
+                                    <?php
+                                    $rating = $review['rvrScore'];
+                                    for ($i = 0; $i < 5; $i++) {
+                                        if ($i < $rating) {
+                                            echo '<i class="fa fa-star"></i>';
+                                        } else {
+                                            echo '<i class="fa fa-star-o"></i>';
+                                        }
+                                    }
+                                    ?>
                                 </div>
                             </div>
-
-                    <?php } ?>
+                            <p style="width: 90%; font-size: 10px;"><?php echo htmlspecialchars($review['rvrDetail']); ?></p>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
             </div>
         </div>
     </div>
@@ -296,7 +341,9 @@ if (!$room) {
             </div>
     </div>
     <!-- ปิดบริการ -->
-
+    </div>
+    </div>
+    </div>
     <nav>
         <?php include("footer.php"); ?>
     </nav>

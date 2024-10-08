@@ -115,7 +115,6 @@ $numberOfyeasbookrArray = count($yeasbookrArray);
 
 
                 </div>
-<<<<<<< Updated upstream
                 <div class="d-flex justify-content-between mt-5">
                     <p style="font-size: 20px;font-weight:bold">ข้อมูลการจองห้องพักและบริการทั้งหมด</p>
                     
@@ -180,13 +179,10 @@ $numberOfyeasbookrArray = count($yeasbookrArray);
                     </div>
                 </div> -->
                 
-=======
->>>>>>> Stashed changes
 
 
             </div>
         </div>
-<<<<<<< Updated upstream
 </div>
 <script>
         // รับข้อมูลจาก PHP
@@ -283,6 +279,3 @@ $numberOfyeasbookrArray = count($yeasbookrArray);
 
         
             </script>
-=======
-</div>
->>>>>>> Stashed changes
