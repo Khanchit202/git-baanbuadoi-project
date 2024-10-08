@@ -246,3 +246,14 @@ a.sidebar-link:hover {
     border-left: solid 4px #72d572;
     margin-left: 30%;
 }
+
+.circleDivinsideadmin {
+    width: 400px; /* กำหนดความกว้างของวงกลม */
+    height: 400px; /* กำหนดความสูงของวงกลม */
+    background-color: #3b8386; /* กำหนดพื้นหลังสีเขียว */
+    border-radius: 50%; /* ทำให้เป็นวงกลม */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
