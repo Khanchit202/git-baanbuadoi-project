@@ -40,12 +40,12 @@ function user_status($lavel_name, $lavel_color) {
 } 
 
 function admin_dash($lavel_name, $lavel_color) {
-    $current_page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
+    $current_page = isset($_GET['page']) ? $_GET['page'] : 'dashboard-admin';
     ?>   
         <ul class="sidebar-nav">
             <?php user_status($lavel_name, $lavel_color); ?>
             <li class="sidebar-item">
-                <a href="?page=dashboard" class="sidebar-link <?php echo ($current_page == 'dashboard' ? 'active' : '') ?>">
+                <a href="?page=dashboard-admin" class="sidebar-link <?php echo ($current_page == 'dashboard-admin' ? 'active' : '') ?>">
                     <i class="lni lni-grid-alt"></i>
                     <span>แดชบอร์ด</span>
                 </a>

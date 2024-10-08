@@ -3,6 +3,9 @@
     if (isset($_POST['page'])) {
         $page = $_POST['page'];
         switch ($page) {
+            case 'dashboard-admin':
+                $response['data'] = "user_data/dashadmin.php";
+                break;
             case 'dashboard-owner':
                 $response['data'] = "user_data/dashowner.php";
                 break;
