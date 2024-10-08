@@ -1,34 +1,34 @@
-function delete_book(payID) {
+function delete_book(bookID) {
     Swal.fire({
         title: "ยืนยันการลบ",
-        text: "ลบข้อมูลการจองเลขที่ " + payID + " หรือไม่?",
+        text: "ลบข้อมูลของผู้ใช้เลขที่ " + bookID + " หรือไม่?",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "ยืนยัน, ลบข้อมูล",
+        confirmButtonText: "ยืนยัน, ลบบัญชี",
         cancelButtonText: "ยกเลิก"
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: 'booking_data/api/delete.php',
+                url: 'booking_data/api/deletes.php',
                 type: 'POST',
                 dataType: 'json',
-                data: { payID: payID }
+                data: { bookID: bookID }
             })
             .done(function(response) {
                 if (response.status == 'ok') {
                     Swal.fire({
                         title: "ลบข้อมูลสำเร็จ",
-                        text: "ข้อมูลถูกลบเรียบร้อยแล้ว",
+                        text: "ข้อมูลของผู้ใช้ถูกลบเรียบร้อยแล้ว",
                         icon: "success"
                     }).then(() => {
-                        window.location.reload(); // Refresh the page
+                        window.location.reload();
                     });
                 } else {
                     Swal.fire({
                         title: "ไม่สามารถลบข้อมูลได้",
-                        text: "มีข้อผิดพลาดในการลบข้อมูล",
+                        text: "มีข้อผิดพลาดในการลบข้อมูลของผู้ใช้",
                         icon: "error"
                     });
                 }
