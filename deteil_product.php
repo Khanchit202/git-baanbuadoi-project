@@ -98,9 +98,9 @@ if (!$room) {
                         
                         <div class="row mb-1">
                             <div class="col-md-3 fw-bold"><p>ราคา/คืน</p></div> 
-                            <div class="col-md-2 bg-light text-center" style="margin:0; padding:0; border-radius: 10px;"><h3 class="fw-bold" style="font-size:14px; margin-top:10px;"><?php echo $price ?> ฿</h3></div>
+                            <div class="col-md-2 bg-light text-center" style="margin:0; padding:0; border-radius: 10px;"><h3 class="fw-bold" style="font-size:14px; margin-top:10px;"><?php echo number_format($price); ?> ฿</h3></div>
                             <div class="col-md-3 fw-bold"><p>ราคามัดจำ</p></div> 
-                            <div class="col-md-2 bg-light text-center" style="margin:0; padding:0; border-radius: 10px;"><h3 class="fw-bold" style="font-size:14px; margin-top:10px;"><?php echo $deposit ?> ฿</h3></div>
+                            <div class="col-md-2 bg-light text-center" style="margin:0; padding:0; border-radius: 10px;"><h3 class="fw-bold" style="font-size:14px; margin-top:10px;"><?php echo number_format($deposit); ?> ฿</h3></div>
                         </div>
                     <br><br>                     
                     <button onclick="window.location.href='room_booking/booking.php?id=<?php echo $room['roomID']; ?>'" class="btn btn-custom" style="width: 100%;"> + จอง </button>

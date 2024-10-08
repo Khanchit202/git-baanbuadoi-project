@@ -109,8 +109,6 @@ $payId = $_GET['payId'];
             echo "ไม่มีข้อมูล";
         }
 
-        $totalprice = floor(($row['bookPrice'] * 30) / 100);
-        $totalpriceFormatted = number_format($totalprice, 2, '.', ''); // แสดงผลเป็น 100.00
 
 
         ?>
@@ -148,17 +146,28 @@ $payId = $_GET['payId'];
                 </div>
                 <div class="row mb-1">
                     <div class="col-md-2 fw-bold"><p>ราคาห้องพัก/คืน:</p></div> 
-                    <div class="col-md-7 "><?php echo $row['roomPrice']; ?> บาท</div>
+                    <div class="col-md-7 "><?php echo number_format($row['roomPrice']); ?> บาท</div>
                 </div>
+                <?php 
+                    $vat = ($row['bookPrice'] * 7)/100;
+                    $total = $row['bookPrice'] + $vat;
+
+                    $totalprice = floor(($total * 30) / 100);
+                    $totalpriceFormatted = number_format($totalprice, 2, '.', '');
+                ?>
                 <div class="row mb-1">
-                    <div class="col-md-2 fw-bold"><p>ราคาห้องพักทั้งหมด:</p></div> 
-                    <div class="col-md-2 "><?php echo $row['bookPrice']; ?> บาท</div>
+                    <div class="col-md-2 fw-bold"><p>7.00% VAT:</p></div> 
+                    <div class="col-md-2 "><?php echo number_format($vat); ?> บาท</div>
                     <div class="col-md-2 fw-bold"><p>ช่องทางการชำระเงิน:</p></div> 
                     <div class="col-md-2 ">บัตรเคดิต</div>
                 </div>
+				<div class="row mb-1">
+                    <div class="col-md-2 fw-bold"><p>ราคาห้องพักทั้งหมด:</p></div> 
+                    <div class="col-md-7 "><?php echo number_format($total); ?> บาท</div>
+                </div>
                 <div class="row mb-1">
                     <div class="col-md-2 fw-bold"><p>ราคามัดจำขั้นต่ำ:</p></div> 
-                    <div class="col-md-7 "><?php echo $totalpriceFormatted ?> บาท</div>
+                    <div class="col-md-7 "><?php echo number_format($totalpriceFormatted); ?> บาท</div>
                 </div>
             </div>
         
