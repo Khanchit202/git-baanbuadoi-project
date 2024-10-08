@@ -108,8 +108,14 @@ $payId = $_GET['payId'];
         } else {
             echo "ไม่มีข้อมูล";
         }
-        
+
+        $totalprice = floor(($row['bookPrice'] * 30) / 100);
+        $totalpriceFormatted = number_format($totalprice, 2, '.', ''); // แสดงผลเป็น 100.00
+
+
         ?>
+
+        
 
         <div onclick="goBack()" class="btn btn-lg btn-custom " style="position: fixed;top: 70px;left: 86%;z-index: 1000;cursor: pointer;">
             <div class="d-flex">
@@ -142,17 +148,17 @@ $payId = $_GET['payId'];
                 </div>
                 <div class="row mb-1">
                     <div class="col-md-2 fw-bold"><p>ราคาห้องพัก/คืน:</p></div> 
-                    <div class="col-md-7 "><?php echo $row['roomPrice']; ?></div>
+                    <div class="col-md-7 "><?php echo $row['roomPrice']; ?> บาท</div>
                 </div>
                 <div class="row mb-1">
                     <div class="col-md-2 fw-bold"><p>ราคาห้องพักทั้งหมด:</p></div> 
-                    <div class="col-md-2 "><?php echo formatThaiTime($row['bookDateStart']); ?></div>
+                    <div class="col-md-2 "><?php echo $row['bookPrice']; ?> บาท</div>
                     <div class="col-md-2 fw-bold"><p>ช่องทางการชำระเงิน:</p></div> 
                     <div class="col-md-2 ">บัตรเคดิต</div>
                 </div>
                 <div class="row mb-1">
-                    <div class="col-md-2 fw-bold"><p>ราคาที่ต้องจ่าย:</p></div> 
-                    <div class="col-md-7 "><?php echo $row['roomPrice']; ?></div>
+                    <div class="col-md-2 fw-bold"><p>ราคามัดจำขั้นต่ำ:</p></div> 
+                    <div class="col-md-7 "><?php echo $totalpriceFormatted ?> บาท</div>
                 </div>
             </div>
         

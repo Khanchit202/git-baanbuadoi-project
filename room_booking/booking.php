@@ -132,7 +132,7 @@ if (!$room) {
             <input type="text" id="customer_phone" class="form-control mb-3" placeholder="เบอร์โทร" />
             <input type="text" id="customer_detail" class="form-control mb-3" placeholder="รายละเอียดเพิ่มเติม (ถ้ามี)" />
             <input type="text" id="customer_pro" class="form-control mb-3" placeholder="โค้ดส่วนลด (ถ้ามี)" />
-            <input type="hidden" id="price" class="form-control mb-3" value="<?php echo $deposit ?>" />
+            <input type="hidden" id="price" class="form-control mb-3" value="<?php echo $price ?>" />
             
             <h5>ช่องทางการชำระเงิน</h5>
             <div class="form-check">

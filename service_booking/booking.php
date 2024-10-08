@@ -15,8 +15,8 @@ $query->execute();
 $ser = $query->fetch(PDO::FETCH_ASSOC);
 
 $price = $ser['servicePrice'];
-$deposit = ($price * 30) / 100;
-$deposit = number_format($deposit, 2);
+$deposit = $price;
+
 
 if (!$ser) {
     die("Service not found.");
@@ -83,8 +83,8 @@ if (!$ser) {
                             <div style="color:#4DA865; " class="col-md-7 fw-bold"><i class="lni lni-map-marker me-2"></i>บ้านนอแล ดอยอ่างขาง</div>
                         </div>
                         <div class="row mb-2">
-                            <div class="col-md-3 fw-bold"><p>จำนวนเตียงนอน</p></div> 
-                            <div style="color:#4DA865; " class="col-md-2 fw-bold"><?php echo htmlspecialchars($ser['servicePrice']); ?></div>
+                            <div class="col-md-3 fw-bold"><p>ราคา/ครั้ง</p></div> 
+                            <div style="color:#4DA865; " class="col-md-2 fw-bold"><?php echo $deposit ?> บาท</div>
                             <div class="col-md-3 fw-bold"><p>เวลาให้บริการ/ครั้ง</p></div> 
                             <div style="color:#4DA865; " class="col-md-2 fw-bold"><?php echo htmlspecialchars($ser['serviceTime']); ?> ชั่วโมง</div>
                         </div>

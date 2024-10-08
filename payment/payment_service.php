@@ -146,13 +146,13 @@ $payId = $_GET['payId'];
                 </div>
                 <div class="row mb-1">
                     <div class="col-md-2 fw-bold"><p>ราคาห้องพักทั้งหมด:</p></div> 
-                    <div class="col-md-2 "><?php echo formatThaiTime($row['bookDateStart']); ?></div>
+                    <div class="col-md-2 "><?php echo $row['bookPrice']; ?></div>
                     <div class="col-md-2 fw-bold"><p>ช่องทางการชำระเงิน:</p></div> 
                     <div class="col-md-2 ">บัตรเคดิต</div>
                 </div>
                 <div class="row mb-1">
                     <div class="col-md-2 fw-bold"><p>ราคาที่ต้องจ่าย:</p></div> 
-                    <div class="col-md-7 "><?php echo $row['servicePrice']; ?></div>
+                    <div class="col-md-7 "><?php echo $row['bookPrice']; ?></div>
                 </div>
             </div>
         

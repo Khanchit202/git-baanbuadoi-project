@@ -62,6 +62,7 @@ function confirmBooking(roomId) {
     var customerPro = $('#customer_pro').val();
     var customerPrice = $('#price').val();
     var bookingDate = $('#booking_date').val();
+    var bookingDateend = $('#booking_dateend').val();
     var paymentMethods = [];
 
     const payment1 = document.getElementById('payment1');
@@ -74,7 +75,7 @@ function confirmBooking(roomId) {
     console.log(customerPrice)
     console.log(bookingDate)
     console.log(paymentMethods)
-    
+    console.log(bookingDateend)
     
     if ($('#payment1').is(':checked')) {
         paymentMethods.push($('#credit_card').val());
@@ -109,7 +110,8 @@ function confirmBooking(roomId) {
                 promotion: customerPro,
                 price: customerPrice,
                 date: bookingDate,
-                pay: paymentMethod
+                pay: paymentMethod,
+                bookingDateend: bookingDateend
                 }
         })
         .done(function(response) {
