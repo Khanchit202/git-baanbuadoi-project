@@ -16,7 +16,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.0/css/dataTables.dataTables.css" />
-    <link rel="stylesheet" href="dashs.css">
+    <link rel="stylesheet" href="dashss.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <link rel="icon" type="image/x-icon" href="../baanbuadoi_top.png" style="border-radius: 5px;">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script> 
@@ -134,7 +134,7 @@
     <script type="text/javascript" src="./service_data/service_datass.js"></script>
     <script type="text/javascript" src="./premaket_data/premaket_datas.js"></script>
     <script type="text/javascript" src="./booking_payment_data/payments.js"></script>
-    <script type="text/javascript" src="./booking_data/booking.js"></script>
+    <script type="text/javascript" src="./booking_data/bookingss.js"></script>
     <script type="text/javascript" src="./promotion_data/promotion.js"></script>
     <script type="text/javascript" src="./reviwsroom_data/reviwsroom.js"></script>
 
