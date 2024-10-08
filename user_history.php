@@ -426,7 +426,8 @@ $db_con = connect_db();
                                                         echo '<a href="payment/payment.php?payId='.$row['payID'].'" class="btn me-1 fw-bold" style="font-size: 8px; border: solid 1px #4caf50; color: #4caf50; background-color: none; border-radius: 5px;">ดำเนินการชำระเงิน</a>';
                                                     }
                                                     if($row['billStatus'] == 1){
-                                                        echo '<button onclick="redirectToReport()" type="button" class="btn" style="font-size: 8px; background-color: #DE6461; color: #ffffff; border-radius: 5px;">พิมพ์ใบจอง</button>';
+                                                        echo '<button onclick="redirectToReport()" type="button" class="btn" style="font-size: 8px; background-color: #DE6461; color: #ffffff; border-radius: 5px;">พิมพ์</button>';
+                                                        echo '<a href="report/bookroom_report.php?bookId='.$row['bookID'].'" class="btn me-1 fw-bold" style="font-size: 8px; color: #4caf50; background-color: #DE6461; border-radius: 5px;">พิมพ์ใบจอง</a>';
                                                     }
                                                 ?>
                                             </td>
@@ -544,7 +545,7 @@ $db_con = connect_db();
         
 <script>
     function redirectToReport() {
-        window.location.href = 'report/report.php';
+        window.location.href = 'report/bookroom_report.php';
     }
     function goPay(payID) {
         window.location.href = 'payment/payment.php?payId=' + payID;
