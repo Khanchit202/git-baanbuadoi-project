@@ -127,7 +127,7 @@ if ($lastBill) {
                "ราคา: " . $price . "\tบาท\n" .
                "รายละเอียด: " . $bookingDetail . "\n\n" .
                "โปรดดำเนินการชำระเงิน" . "\n" .
-               "ไปยังหน้าเว็บไซต์: https://baabbuadoi.com" . "\n\n" .
+               "ไปยังหน้าเว็บไซต์: https://baanbuadoi.com/index.php" . "\n\n" .
                "ขอบพระคุณที่ใช้บริการ" . "\n" .
                "สอบถามเพิ่ม: 0958053137" . "\n" .
                "หรือ Email: Khanchit202@gmail.com\n\n";

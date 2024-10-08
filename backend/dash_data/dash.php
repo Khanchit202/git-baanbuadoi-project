@@ -184,6 +184,7 @@ $numberOfyeasbookrArray = count($yeasbookrArray);
             </div>
         </div>
 </div>
+<<<<<<< Updated upstream
 <script>
         // รับข้อมูลจาก PHP
         var colors = ['#f8bbd0','#d0d9ff','#d0d9ff','#d0d9ff','#dc3545','#6c757d'];
@@ -279,3 +280,5 @@ $numberOfyeasbookrArray = count($yeasbookrArray);
 
         
             </script>
+=======
+>>>>>>> Stashed changes

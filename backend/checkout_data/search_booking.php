@@ -15,10 +15,10 @@ try {
             FROM booking_bill 
             INNER JOIN room_product ON booking_bill.roomID = room_product.roomID
             INNER JOIN booking ON booking_bill.bookID = booking.bookID
-            LEFT JOIN booking_payment ON booking_bill.payID = booking_payment.payID
+            INNER JOIN booking_payment ON booking_bill.payID = booking_payment.payID
             WHERE booking.bookName LIKE :query AND 
                   booking_bill.billStatus = 1 AND 
-                  booking_bill.billID NOT IN (SELECT billID FROM checking WHERE checkStatus = 2)
+                  booking_bill.billID IN (SELECT billID FROM checking WHERE checkStatus = 1)
             ORDER BY booking_bill.billID DESC
         ";
         $data2 = $db_con->prepare($sql);
@@ -30,9 +30,9 @@ try {
             FROM booking_bill 
             INNER JOIN room_product ON booking_bill.roomID = room_product.roomID
             INNER JOIN booking ON booking_bill.bookID = booking.bookID
-            LEFT JOIN booking_payment ON booking_bill.payID = booking_payment.payID
+            INNER JOIN booking_payment ON booking_bill.payID = booking_payment.payID
             WHERE booking_bill.billStatus = 1 AND 
-                  booking_bill.billID NOT IN (SELECT billID FROM checking WHERE checkStatus = 2)
+                  booking_bill.billID IN (SELECT billID FROM checking WHERE checkStatus = 1)
             ORDER BY booking_bill.billID DESC
         ";
         $data2 = $db_con->prepare($sql);
