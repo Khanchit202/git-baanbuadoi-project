@@ -59,7 +59,7 @@ $numberOfyeasbookrArray = count($yeasbookrArray);
         <p style="font-size: 20px;font-weight:bold">ข้อมูลรายงานสารสนเทศ</p>
         
     </div>
-        <div class="text-center">
+        <div class="text-end">
             <div class="container">
                 <div class="row mt-5"style="display: flex; justify-content: space-between;">
                 <div class="col-md-2 green-box" style=" border-left: solid 4px #72d572;">
@@ -96,7 +96,7 @@ $numberOfyeasbookrArray = count($yeasbookrArray);
 
                 <div class="col-md-2 yellow-box" style="background-color: #A7CF5A;">
                     <div class="row center-text mt-2">
-                        <p style="font-size: 12px;">การเข้าพักวันนี้</p>
+                        <p style="font-size: 12px;">จำนวนการเข้าใช้ระบบ</p>
                     </div>
                     <div class="row">
                         <p style="font-size: 20px;"><?php echo $totalCount; ?> คน</p>

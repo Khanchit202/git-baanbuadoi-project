@@ -748,10 +748,10 @@ $db_con = connect_db();
                                             <td class="text-start">
                                                 <?php
                                                     if($row['bookStatus'] == 1){
-                                                        echo '<button type="button" class="btn me-1" data-toggle="modal" data-target="#myModal" style="font-size: 8px; background-color: #3B8386; color: #ffffff; border-radius: 5px;">ดูรายละเอียด</button>';
+                                                        echo '';
                                                     }
                                                     if($row['payStatus'] == 2 || $row['payStatus'] == 1 && $row['bookCancel'] != 1){
-                                                        echo '<button type="button" class="btn me-1" data-toggle="modal" data-target="#myModal" style="font-size: 8px; background-color: #4caf50; color: #ffffff; border-radius: 5px;">การชำระเงิน</button>';
+                                                        echo '';
                                                     } else if($row['payStatus'] === NULL || $row['payStatus'] == 0 && $row['bookCancel'] != 1){
                                                         echo '<a href="payment/payment.php?payId='.$row['payID'].'" class="btn me-1 fw-bold" style="font-size: 8px; border: solid 1px #4caf50; color: #4caf50; background-color: none; border-radius: 5px;">ดำเนินการชำระเงิน</a>';
                                                     }
@@ -839,10 +839,10 @@ $db_con = connect_db();
                             <td class="text-start">
                                 <?php
                                     if($row2['bookStatus'] == 1){
-                                        echo '<button type="button" class="btn me-1" data-toggle="modal" data-target="#myModal" style="font-size: 8px; background-color: #3B8386; color: #ffffff; border-radius: 5px;">ดูรายละเอียด</button>';
+                                        echo '';
                                     }
                                     if($row2['payStatus'] == 2 || ($row2['payStatus'] == 1 && $row2['bookCancel'] != 1)){
-                                        echo '<button type="button" class="btn me-1" data-toggle="modal" data-target="#myModal" style="font-size: 8px; background-color: #4caf50; color: #ffffff; border-radius: 5px;">การชำระเงิน</button>';
+                                        echo '';
                                     } else if($row2['payStatus'] === NULL || ($row2['payStatus'] == 0 && $row2['bookCancel'] != 1)){
                                         echo '<a href="payment/payment_service.php?payId='.$row2['payID'].'" class="btn me-1 fw-bold" style="font-size: 8px; border: solid 1px #4caf50; color: #4caf50; background-color: none; border-radius: 5px;">ดำเนินการชำระเงิน</a>';
                                     }
